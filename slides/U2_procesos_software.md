@@ -153,6 +153,23 @@ sistema se desarrolla en varios lugares. En estas circunstancias el modelo de ca
 
 ----
 
+### Cascada en la práctica
+<!-- .slide: style="font-size: 0.80em" -->
+
+**Caso: software de aviónica de un avión comercial**
+
+El software que controla el sistema de vuelo debe certificarse bajo una norma internacional
+(DO-178C) antes de poder volar. La certificación exige demostrar, documento por documento,
+que cada línea de código responde a un requisito aprobado y que fue probada.
+
+* Los requisitos vienen fijados por el fabricante del avión y la autoridad aeronáutica: **no cambian a mitad de camino**.
+* Cada fase produce documentación que el auditor revisa **antes** de habilitar la siguiente.
+* Un cambio tardío no es solo caro: obliga a rehacer la certificación.
+
+Mismo razonamiento aplica a: equipamiento médico, señalización ferroviaria, sistemas de control industrial.
+
+----
+
 ### 💡 Ejercicio: ¿Dónde entra la cascada?
 <!-- .slide: class="exercise-slide" -->
 
@@ -188,6 +205,11 @@ Fases:
 Especificación, desarrollo y validación se intercalan.
 
 Se aplica cuando se espera que los requerimientos evolucionen o se refinen durante el proyecto: cada incremento permite incorporar la retroalimentación del cliente sin rehacer todo el análisis previo.
+
+**Ejemplo:** sistema de gestión para una veterinaria de barrio. Se arranca con la ficha de
+cada paciente porque es lo único que el dueño tiene claro; recién usando eso descubre que
+necesita recordatorios de vacunación, y más adelante control de stock de medicamentos.
+Ninguno de esos requisitos existía en la reunión inicial.
 
 ----
 
@@ -327,6 +349,29 @@ La reutilización es ahora el enfoque estándar para la construcción de muchos 
 ### Ingeniería de software orientado a Reutilización
 ![Software Orientado a Reutilización](images/unidad2/software-reutilizacion.jpg)
 
+----
+
+### Reutilización en la práctica
+<!-- .slide: style="font-size: 0.80em" -->
+
+**Caso: tienda online de una PyME**
+
+Casi nada se escribe desde cero. Un equipo arma el sistema integrando piezas que ya existen:
+
+| Necesidad | Se reutiliza |
+|---|---|
+| Catálogo y carrito | Plataforma de e-commerce (WooCommerce, Shopify) |
+| Cobros | SDK de la pasarela de pago |
+| Login y cuentas | Servicio de autenticación de terceros |
+| Envío de mails | Servicio transaccional |
+| Reportes | Librería de gráficos |
+
+**Lo único propio:** las reglas de negocio que ninguna herramienta trae — cómo calcula esta
+empresa sus descuentos por volumen y cómo se integra con su sistema contable.
+
+**El costo oculto:** el sistema hereda las limitaciones de cada componente. Si la plataforma
+no permite algo, el requisito se negocia o se paga caro.
+
 
 ---
 
@@ -373,6 +418,11 @@ En este modelo se distinguen las siguientes fases:
 4. Se repite el ciclo hasta llegar al producto final.
 
 Generalmente se aplica este tipo de modelo cuando los requerimientos no están bien definidos desde el principio.
+
+**Ejemplo:** una municipalidad quiere "una app para el vecino". Nadie sabe qué significa eso.
+Se maqueta una pantalla con tres trámites, se la prueba con vecinos reales en una oficina,
+y en dos semanas queda claro que lo único que la gente quiere es sacar turno y pagar la tasa
+municipal. Todo lo demás se descarta antes de escribir una línea de código.
 
 ----
 
@@ -520,6 +570,11 @@ Se enfoca en la identificación y gestión de riesgos en cada ciclo, permitiendo
 Permite adaptarse a cambios y modificaciones durante el desarrollo del proyecto.
 
 Facilita la incorporación de nuevas funcionalidades o mejoras en cada iteración, basándose en la experiencia y la retroalimentación de los usuarios.
+
+**Ejemplo:** migrar el sistema de historias clínicas de un hospital que hoy funciona en papel.
+El riesgo no es programar: es que los médicos no lo usen, que se pierdan datos en la migración
+o que la conexión falle en una guardia. Cada vuelta de la espiral ataca uno de esos riesgos con
+un piloto acotado —un solo servicio, un solo turno— antes de comprometer el resto del hospital.
 
 
 ----
@@ -821,6 +876,166 @@ para aprender, no para producir código de producción.
 [Adobe XD](https://xd.adobe.com/view/79dd4690-1c36-4223-9d53-c4d50d2463c9-2c8e/)
 
 [Nivel de Detalle](https://www.figma.com/proto/h5wKQ7FzejsrPIlw9MTKEx/Tienda-Claro---Desktop-%2B-Mobile?node-id=2265-1936&scaling=contain&page-id=0%3A1&starting-point-node-id=2265%3A1936)
+
+---
+
+### Cierre: los cinco modelos de un vistazo
+<!-- .slide: style="font-size: 0.70em" -->
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th>Modelo</th>
+      <th>Cuándo conviene</th>
+      <th>Ventaja principal</th>
+      <th>Riesgo principal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Cascada</b></td>
+      <td>Requisitos estables y bien entendidos; normativa o certificación</td>
+      <td>Trazabilidad y coordinación de equipos grandes</td>
+      <td>Un cambio tardío es carísimo</td>
+    </tr>
+    <tr>
+      <td><b>Incremental</b></td>
+      <td>Requisitos que se van a refinar durante el proyecto</td>
+      <td>Absorbe cambios a bajo costo; feedback temprano</td>
+      <td>La estructura se degrada incremento a incremento</td>
+    </tr>
+    <tr>
+      <td><b>Reutilización</b></td>
+      <td>Ya existen componentes que resuelven el grueso del problema</td>
+      <td>Menos tiempo, menos costo, menos riesgo técnico</td>
+      <td>Se heredan las limitaciones de cada componente</td>
+    </tr>
+    <tr>
+      <td><b>Evolutivo</b></td>
+      <td>Nadie sabe todavía qué hay que construir</td>
+      <td>Aclara requisitos antes de invertir en código</td>
+      <td>Confundir el prototipo con el producto</td>
+    </tr>
+    <tr>
+      <td><b>Espiral</b></td>
+      <td>El proyecto tiene riesgos altos que hay que ir despejando</td>
+      <td>Cada ciclo evalúa y reduce un riesgo concreto</td>
+      <td>Pesado: exige gestión y análisis en cada vuelta</td>
+    </tr>
+  </tbody>
+</table>
+
+**En la práctica ningún proyecto usa uno solo:** los sistemas grandes combinan elementos de todos.
+
+---
+
+### 📝 Cuestionario para resolver
+<!-- .slide: class="exercise-slide" -->
+
+Este cuestionario es **para llevarse y resolver en casa**.
+
+* **Parte A:** 8 preguntas de opción múltiple (una sola correcta).
+* **Parte B:** 3 casos para analizar y justificar.
+
+Las filminas quedan publicadas online, así que pueden volver sobre cualquier tema.
+Lo repasamos al inicio de la próxima clase.
+
+----
+
+### Parte A — Opción múltiple (1 a 4)
+<!-- .slide: style="font-size: 0.62em" -->
+
+**1.** ¿Cuáles son las cuatro actividades fundamentales de todo proceso de software?
+a) Planificar, programar, probar, documentar
+b) Especificación, diseño e implementación, validación, evolución
+c) Análisis, diseño, codificación, entrega
+d) Requisitos, prototipo, iteración, cierre
+<!--Correcta: b-->
+
+**2.** El principal inconveniente del modelo de cascada es:
+a) Que no genera documentación
+b) Que no permite hacer pruebas
+c) La dificultad para acomodar cambios una vez iniciado el proceso
+d) Que necesita equipos muy grandes
+<!--Correcta: c-->
+
+**3.** En el desarrollo incremental:
+a) Las fases están separadas y una empieza cuando termina la anterior
+b) Especificación, desarrollo y validación se intercalan
+c) El cliente recién ve el producto al final
+d) No se puede planificar nada
+<!--Correcta: b-->
+
+**4.** Un problema típico del desarrollo incremental es:
+a) Que la estructura del sistema tiende a degradarse con cada incremento
+b) Que no admite cambios de requisitos
+c) Que exige congelar la especificación al inicio
+d) Que impide la retroalimentación del cliente
+<!--Correcta: a. Se degrada porque se invierte poco tiempo en refactorizar.-->
+
+----
+
+### Parte A — Opción múltiple (5 a 8)
+<!-- .slide: style="font-size: 0.62em" -->
+
+**5.** La diferencia entre *entrega incremental* y *desarrollo incremental* es que:
+a) Son dos nombres para lo mismo
+b) La entrega se enfoca en cómo se libera al usuario; el desarrollo, en cómo se construye
+c) La entrega es ágil y el desarrollo es dirigido por plan
+d) El desarrollo incremental no usa iteraciones
+<!--Correcta: b-->
+
+**6.** Lo que distingue al modelo en espiral de los demás es que:
+a) Entrega software funcionando más rápido
+b) Elimina la necesidad de documentar
+c) Cada ciclo identifica y reduce riesgos de forma explícita
+d) Solo sirve para proyectos chicos
+<!--Correcta: c-->
+
+**7.** Un prototipo desechable:
+a) Es la base sobre la que se construye el sistema de producción
+b) Sirve para aclarar requisitos y opciones de diseño, y luego se descarta
+c) Debe cumplir todos los requisitos no funcionales
+d) Reemplaza a la etapa de validación
+<!--Correcta: b-->
+
+**8.** "Tolerancia al cambio" significa:
+a) Aceptar cualquier pedido del cliente sin discutir
+b) Anticipar los cambios con prototipos para no tener que rehacer
+c) Diseñar el proceso de modo que incorporar un cambio cueste poco
+d) Posponer los cambios hasta la etapa de mantenimiento
+<!--Correcta: c. La opción b describe "evitar el cambio", que es la estrategia complementaria.-->
+
+----
+
+### Parte B — Casos para analizar
+<!-- .slide: style="font-size: 0.68em" -->
+
+**Caso 1.** Una empresa desarrolla el software que controla la dosis de un equipo de
+radioterapia. Debe aprobar auditorías antes de instalarse en un hospital.
+¿Qué modelo de proceso elegirías? Justificá con **dos razones** y mencioná **un riesgo**
+de tu elección.
+
+**Caso 2.** Tres personas quieren lanzar una app de reservas para peluquerías. Tienen seis
+meses de financiamiento y ninguna certeza de que alguien la vaya a usar.
+¿Qué modelo elegirías? ¿Usarías entrega incremental? Justificá.
+
+**Caso 3.** La facultad reemplaza su sistema de biblioteca, que debe integrarse con el
+sistema de alumnos que ya existe. Respondé: ¿qué reutilizarías?, ¿qué desarrollarías
+desde cero?, ¿qué riesgo tiene reutilizar en este caso?
+
+<!--
+Orientación de respuestas:
+Caso 1: dirigido por plan / cascada. Requisitos estables y fijados por normativa, necesidad de
+trazabilidad para auditar. Riesgo: si aparece un cambio tardío, es carísimo; se mitiga con
+prototipos tempranos de las partes menos conocidas.
+Caso 2: ágil con desarrollo y entrega incremental. Incertidumbre alta, hay que validar con
+usuarios antes de invertir. Sí a la entrega incremental: cada release usable devuelve
+información sobre si el negocio funciona.
+Caso 3: reutilizar un sistema de gestión bibliotecaria existente (catálogo, préstamos, ISBN);
+desarrollar propio el puente con el sistema de alumnos y las reglas de la facultad.
+Riesgo: que el producto elegido no permita la integración o imponga su propio modelo de datos.
+-->
 
 ---
 ### Actividades a realizar en grupo
