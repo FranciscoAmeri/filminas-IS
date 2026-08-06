@@ -6,27 +6,32 @@ on:
       - 'main'
   workflow_dispatch:
 
+# Permisos necesarios para publicar en Pages con el deploy nativo
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
+# Una sola publicacion a la vez; no cancela una que ya este corriendo
 concurrency:
-  group: pages-deploy
-  cancel-in-progress: true
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - name: Setup Node ⚙️
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
+
+      - name: Configure Pages 📄
+        uses: actions/configure-pages@v5
 
       - name: Install and Build 🔧
         run: |
@@ -35,9 +40,18 @@ jobs:
           cp slides/index.html public/index.html
           touch public/.nojekyll
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload artifact 📦
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: public
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v4
