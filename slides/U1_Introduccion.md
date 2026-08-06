@@ -741,7 +741,7 @@ Identificar qué atributo de calidad se ve más involucrado en cada caso (confia
 5. Una empresa pierde datos de clientes tras una caída inesperada del sistema y no tiene respaldo actualizado.
 6. Una app de mensajería implementa doble autenticación para ingresar desde un nuevo dispositivo.
 7. Una plataforma de streaming funciona bien, pero se desconecta cada vez que hay muchos usuarios conectados al mismo tiempo.
-8. En una empresa, los usuarios solo pueden acceder a las secciones del sistema correspondientes a su rol.
+8. En una empresa, los usuarios solo pueden acceder a las secciones del sistema correspondientes a su rol..
 
 <!--
 N°	Atributo	Justificación breve
