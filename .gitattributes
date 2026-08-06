@@ -1,0 +1,19 @@
+# Normaliza los fines de linea: LF en el repositorio, nativo en el working tree.
+# Evita que un checkout en Windows marque todos los archivos como modificados.
+* text=auto eol=lf
+
+# Archivos que deben conservar CRLF en Windows
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binarios: git no debe tocarlos
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

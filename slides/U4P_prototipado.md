@@ -67,7 +67,7 @@ Secuencia de Sketchs que muestran cómo se realiza una tarea.
 
 ---
 ## Ejercicio: Sketch
-<!-- .slide: data-background="images/interfazUsuario/sketch-fondo.jpg" style="font-size: 0.85em" -->
+<!-- .slide: data-background="images/interfazUsuario/sketch.jpg" style="font-size: 0.85em" -->
 Realice Sketchs formando un 'Thumbnail Skeths' de la interfaz de usuario de los sistemas en papel.
 Debe tener en cuenta:
 * ¿Qué opciones debe ofrecer al usuario?
@@ -226,7 +226,7 @@ Emplee algún programa para confeccionar Wireframes ó y generar un wireflow par
 * No especificar mensajes de error
 
 ---
-<!-- .slide: data-background="images/interfazUsuario/prototipado-de-paginas-web.jpg" -->
+<!-- .slide: data-background="images/interfazUsuario/wireframe.jpg" -->
 <h3 style="text-shadow: -1px -1px 1px #73a4f6, 1px 1px 1px #000, -1px 1px 1px #c1ebeb, 1px -1px 1px #000;">
 “Es mejor diseñar la experiencia del usuario que rectificarla.”</h3>
 

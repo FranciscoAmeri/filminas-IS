@@ -373,7 +373,7 @@ Permite copiar objetos existentes sin que el códugo dependa de sus clases.
 Permite asegurarnos de que una clase tenga una única instancia, a la vez que proporciona un punto de acceso global a
 dicha instancia.
 
-![Singleton](images/unidad7/5-singleton-mini.png )
+![Singleton](images/unidad7/5-singleton-mini.png)
 
 ---
 ### Estructural: 6. Bridge

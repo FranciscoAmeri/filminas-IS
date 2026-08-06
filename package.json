@@ -1,22 +1,23 @@
 {
-  "name": "filminas",
+  "name": "filminas-is",
   "version": "1.0.0",
-  "description": "",
+  "description": "Presentaciones de Ingeniería de Software (reveal-md)",
   "main": "index.js",
   "scripts": {
+    "start": "reveal-md slides -w",
     "build": "reveal-md slides --static public",
-    "deploy": "npm run build && gh-pages -d public -b master"
+    "deploy": "npm run build && gh-pages -d public -b gh-pages"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:UCC-LabCompu2/filminas.git"
+    "url": "git+https://github.com/FranciscoAmeri/filminas-IS.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/UBP-IngenieriaSoftware/filminas/issues"
+    "url": "https://github.com/FranciscoAmeri/filminas-IS/issues"
   },
-  "homepage": "https://ucc-labcompu2.github.io/filminas/",
+  "homepage": "https://franciscoameri.github.io/filminas-IS/",
   "dependencies": {
     "gh-pages": "^6.3.0",
     "reveal-md": "^6.1.4"

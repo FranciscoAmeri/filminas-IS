@@ -28,16 +28,20 @@ Created by <i class="fab fa-telegram"></i>
 <div class="grid-item">
 
 ### Procesos de Software
-* Definición
-* Descripciones
-* Plan y Procesos
-* Modelos
+* Definición y descripciones de proceso
+* Procesos dirigidos por plan y procesos ágiles
+* Modelos de proceso
   * Modelo de Cascada
   * Desarrollo Incremental
   * Orientado a Reutilización
-* Componentes de Software
-* Actividades de Proceso
-* Especificaciones de Software
+  * Modelo Evolutivo (Prototipado)
+  * Desarrollo en Espiral
+* Iteración de procesos
+  * Entrega incremental vs. desarrollo incremental
+* Actividades de proceso
+  * Especificación · Diseño e implementación · Validación · Evolución
+* El problema del cambio
+* Software prototipado
 </div>
 
 ---
@@ -150,7 +154,7 @@ Fases:
 ### Desarrollo incremental
 Especificación, desarrollo y validación se intercalan.
 
-Se aplica este tipo de modelo cuando los requerimientos están razonablemente claros desde el principio.
+Se aplica cuando se espera que los requerimientos evolucionen o se refinen durante el proyecto: cada incremento permite incorporar la retroalimentación del cliente sin rehacer todo el análisis previo.
 
 ----
 
@@ -168,7 +172,7 @@ Se aplica este tipo de modelo cuando los requerimientos están razonablemente cl
 ### Beneficios de desarrollo incremental
 <!-- .slide: style="font-size: 0.80em" -->
 * El costo de atender las necesidades cambiantes de los clientes se reduce.
-* La cantidad de análisis y la documentación que tiene hacerse de nuevo es mucho menor que la que se requiere con el modelo de cascada.
+* La cantidad de análisis y la documentación que hay que rehacer es mucho menor que la que se requiere con el modelo de cascada.
 * Es más fácil obtener retroalimentación de los clientes en el trabajo de desarrollo.
 * Los clientes pueden hacer comentarios sobre el avance del desarrollo del software y probar lo que se ha implementado.
 * Más rápida entrega y despliegue de software de utilidad para el cliente.
@@ -200,6 +204,8 @@ Una empresa desarrolla un sistema que controla la dosis de insulina de una bomba
 **Escenario 2: App para una startup**
 Un equipo de 4 personas lanza una nueva app para compartir recetas en comunidad. Quieren salir al mercado rápidamente y validar con usuarios reales antes de invertir más.
 
+----
+
 **Escenario 3: Sistema bancario de backend**
 Se va a reemplazar el sistema de liquidación de sueldos y cuentas corrientes de un banco nacional. El nuevo sistema debe integrarse con los existentes y cumplir requisitos legales estrictos.
 
@@ -207,6 +213,8 @@ Se va a reemplazar el sistema de liquidación de sueldos y cuentas corrientes de
 
 **Escenario 4: Plataforma educativa online**
 Una universidad quiere desarrollar su propia plataforma de clases virtuales. Saben lo básico que quieren, pero esperan hacer muchos ajustes según la experiencia del alumnado y el equipo docente.
+
+----
 
 **Escenario 5: Aplicación para automatizar invernaderos**
 Una empresa agroindustrial quiere monitorear temperatura y riego con sensores en tiempo real. No hay una solución previa, pero quieren ver resultados rápidos en campo.
@@ -283,19 +291,6 @@ La reutilización es ahora el enfoque estándar para la construcción de muchos 
 ----
 
 ### Ingeniería de software orientado a Reutilización
-
-El modelo se basa en la reutilización sistemática de código, en integrar componentes o sistemas pre-existentes.
-
-En este modelo se distinguen las siguientes etapas:
-1. Análisis de requerimientos
-2. Análisi de los componentes
-3. Modificación de requerimientos
-4. Configuración del sistema con la reutilización
-5. Desarrollo e integración
-
-----
-
-### Ingeniería de software orientado a Reutilización
 ![Software Orientado a Reutilización](images/unidad2/software-reutilizacion.jpg)
 
 
@@ -365,7 +360,7 @@ para obtener **retroalimentación** y **refinar** el producto.
 Enfoque donde cada etapa o ciclo se repite para refinar y mejorar un producto o proyecto.
 
 - **Entrega incremental:** se divide el proyecto en etapas que se van entregando gradualmente.
-- **Desarrollo en espiral:** se utilizan ciclos de planificación, diseño desarrollo, prueba y evaluación para gestionar los riesgos y las complejidades del proyecto.
+- **Desarrollo en espiral:** se utilizan ciclos de planificación, diseño, desarrollo, prueba y evaluación para gestionar los riesgos y las complejidades del proyecto.
 
 ----
 
@@ -547,7 +542,7 @@ Las cuatro actividades básicas del proceso son:
 3. Validación
 4. Evolución
 
-Estas activudades están organizadas de manera diferente según el proceso de desarrollo. 
+Estas actividades están organizadas de manera diferente según el proceso de desarrollo. 
 En el modelo de **cascada**, se organizan en **secuencia**, mientras que en el **desarrollo incremental** son **intercalados**.
 
 ---
@@ -697,7 +692,7 @@ Un prototipo se puede utilizar en:
 * Una aproximación más exacta a las necesidades reales de los usuarios.
 * Mejora de la calidad del diseño.
 * Mejora de la capacidad de mantenimiento.
-* Reduce del esfuerzo de desarrollo.
+* Reduce el esfuerzo de desarrollo.
 
 ----
 
@@ -715,7 +710,7 @@ Un prototipo se puede utilizar en:
 
 ### Prototipos desechables
 Los prototipos deben desecharse ya que no son una buena base para un sistema de producción:
-* Puede ser imposible para ajustar el sistema para cumplir con los requisitos no funcionales;
+* Puede ser imposible ajustar el sistema para cumplir con los requisitos no funcionales;
 * Los prototipos son normalmente indocumentados;
 * La estructura del prototipo se suele degradarse a través de un cambio rápido;
 * El prototipo probablemente no va a cumplir con los estándares de calidad normal de la organización.
@@ -730,30 +725,45 @@ Los prototipos deben desecharse ya que no son una buena base para un sistema de 
 
 ---
 ### Actividades a realizar en grupo
-En grupos de máximo 3 personas deberán investigar UNA de las siguientes metodologías, generar una presentación BREVE y mostrarla al curso (fecha 22/08)
 <!-- .slide: style="font-size: 0.75em" -->
-1. Cleanroom Software Engineering
-2. Kanban
-3. Adaptive Software Development
-4. Crystal
-5. Lean Software Development (Lsd)
-6. Feature Driven Development
-7. Devops
-8. Disciplined Agile Delivery (Dad)
-9. Scrumban
+En grupos de máximo 3 personas deberán investigar UNA de las siguientes metodologías, generar una presentación BREVE y mostrarla al curso.
+
+**Fecha de exposición:** _a confirmar por la cátedra_
+
+**A. Métodos ágiles**
+1. Kanban / Scrumban
+2. Feature Driven Development (FDD)
+3. Crystal
+4. Adaptive Software Development (ASD)
+5. Dynamic Systems Development Method (DSDM)
+6. Agile Modeling (AM)
 
 ----
 
 ### Actividades a realizar en grupo
-10. Dynamic Systems Development Method (Dsdm)
-11. Agile Unified Process (Aup)
-12. Safe (Scaled Agile Framework)
-13. Large-Scale Scrum (Less)
-14. Nexus
-15. Agile Modeling (Am)
-16. Openup (Open Unified Process)
+<!-- .slide: style="font-size: 0.75em" -->
+
+**B. Escalado ágil** — quien tome una debe comparar brevemente con las otras dos
+7. SAFe (Scaled Agile Framework)
+8. Large-Scale Scrum (LeSS)
+9. Nexus
+
+**C. Procesos unificados**
+10. Agile Unified Process (AUP)
+11. OpenUP (Open Unified Process)
+12. Disciplined Agile Delivery (DAD)
+
+----
+
+### Actividades a realizar en grupo
+<!-- .slide: style="font-size: 0.75em" -->
+
+**D. Enfoques de ingeniería y entrega**
+13. Cleanroom Software Engineering
+14. Lean Software Development (LSD)
+15. DevOps
+16. Rapid Application Development (RAD)
 17. Dual-Track Agile
-18. Rapid Application Development (Rad)
 
 ----
 
