@@ -67,6 +67,32 @@ especificación de un modelo de datos, el diseño de una interfaz de usuario, et
   * **Pre-y post-condiciones**, que son declaraciones que son verdaderas antes y después de una actividad de proceso se ha 
 promulgado o elaborado un producto.
 
+----
+
+### 💡 Ejercicio: Describir un proceso
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.80em" -->
+
+Tomen una actividad que ya conozcan: **la entrega de un trabajo práctico de esta materia**.
+Descríbanla como un proceso, completando los cuatro elementos:
+
+| Elemento | ¿Qué responde? |
+|---|---|
+| Actividades | ¿Qué pasos hay, y en qué orden? |
+| Productos | ¿Qué queda como resultado de cada paso? |
+| Roles | ¿Quién hace qué? |
+| Pre y post-condiciones | ¿Qué tiene que ser verdad antes y después de cada paso? |
+
+<!--
+Ejemplo de resolución:
+- Actividades: leer la consigna -> formar grupo -> repartir tareas -> desarrollar -> integrar -> revisar -> entregar.
+- Productos: acta de grupo, código, informe, presentación.
+- Roles: coordinador, desarrollador, redactor, expositor, docente (evaluador).
+- Pre-condición de "entregar": el informe está revisado y el repositorio compila.
+  Post-condición: la entrega quedó registrada antes de la fecha límite.
+Cierre: sin post-condiciones explícitas nadie sabe cuándo una actividad está "terminada".
+-->
+
 ---
 ### Proceso dirigido por Plan y procesos ágiles
 <!-- .slide: style="font-size: 0.90em" -->
@@ -127,16 +153,23 @@ sistema se desarrolla en varios lugares. En estas circunstancias el modelo de ca
 
 ----
 
-### Ejercicio
+### 💡 Ejercicio: ¿Dónde entra la cascada?
+<!-- .slide: class="exercise-slide" -->
 
 <img src="images/question.png" style="float: right">
 
-Piense que proyectos podrían desarrollarse empleando el **modelo de cascada**.
+Piense qué proyectos podrían desarrollarse empleando el **modelo de cascada**.
+
+<!--
+Pistas para guiar la discusión: sistemas con requisitos estables y bien conocidos,
+normativa estricta o certificaciones, software embebido en hardware, contratos con
+especificación cerrada, desarrollo distribuido en varias sedes.
+-->
 
 ----
 
-### Ejercicio
-
+### 💡 Ejercicio: Un proyecto completo en cascada
+<!-- .slide: class="exercise-slide" -->
 <!-- .slide: style="font-size: 0.80em" -->
 Diseñar una aplicación simple (ej: una calculadora, gestor de tareas o agenda de contactos) siguiendo todas las fases del modelo Waterfall.
 
@@ -190,10 +223,11 @@ Se gasta menos tiempo y dinero en la refactorización para mejorar el software, 
 
 ---
 
-### Ejercicio: ¿Ágil o por plan?
+### 💡 Ejercicio: ¿Ágil o por plan?
+<!-- .slide: class="exercise-slide" -->
 
-Evalua los siguientes escenarios y evalúa si conviene emplear un modelo: ágil, por plan, o híbrido?
-(Justifica con 2 o + razones).
+Analiza los siguientes escenarios y decide si conviene un enfoque **ágil**, **por plan** o **híbrido**.
+(Justifica con 2 razones o más).
 
 
 **Escenario 1: Software médico**
@@ -296,7 +330,8 @@ La reutilización es ahora el enfoque estándar para la construcción de muchos 
 
 ---
 
-### Ejercicio: ¿Desarrollo propio o reutilización?
+### 💡 Ejercicio: ¿Desarrollo propio o reutilización?
+<!-- .slide: class="exercise-slide" -->
 
 De cada uno de los siguientes escenario analiza:
 1. ¿Qué reutilizarías?
@@ -347,7 +382,8 @@ Generalmente se aplica este tipo de modelo cuando los requerimientos no están b
 
 ----
 
-### Ejercicio: Modelo Evolutivo
+### 💡 Ejercicio: Modelo Evolutivo
+<!-- .slide: class="exercise-slide" -->
 
 Supongamos que se desea desarrollar un software para la **gestión de tareas**.
 Desarrollo un Sketch sencillo (pizarron), y realice preguntas a su cliente (profe),
@@ -625,6 +661,26 @@ Las pruebas realizadas por el cliente para verificar que el sistema cumple con s
 ### Fases de prueba en un proceso de software
 ![Fases de pruebas](images/unidad2/validacion-de-software.jpg)
 
+----
+
+### 💡 Ejercicio: ¿Qué etapa de prueba es?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.85em" -->
+
+Clasifiquen cada situación en **prueba de componente**, **prueba del sistema** o **prueba de aceptación**:
+
+- Verificar que la función `calcularDescuento()` devuelve 0 si el carrito está vacío <!--Componente-->
+- El cliente prueba el circuito completo de compra antes de firmar la recepción <!--Aceptación-->
+- Comprobar que al confirmar un pago se descuenta el stock y se envía el mail <!--Sistema-->
+- Medir si la aplicación soporta 500 usuarios simultáneos <!--Sistema (propiedad emergente)-->
+- Probar una clase con datos de entrada inválidos <!--Componente-->
+- Validar que el reporte mensual cumple el formato que exige la normativa del cliente <!--Aceptación-->
+
+<!--
+Cierre: las propiedades emergentes (rendimiento, seguridad, fiabilidad) solo aparecen al
+integrar; por eso no se pueden detectar probando componentes por separado.
+-->
+
 ---
 #### Actividad 4: Evolución
 * El software es inherentemente flexible y puede cambiar.
@@ -676,6 +732,27 @@ evitar repetir el trabajo.
   * Esto implica alguna forma de desarrollo incremental. Los cambios propuestos pueden implementarse en incrementos que aún 
 no se han desarrollado. Sólo un único incremento (una pequeña parte del sistema) debe ser alterado para incorporar el cambio.
 
+----
+
+### 💡 Ejercicio: ¿Evitar o tolerar el cambio?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.85em" -->
+
+Para cada medida, indiquen si busca **evitar** el cambio (anticiparlo para no rehacer)
+o **tolerarlo** (abaratar el rehacer), y qué cuesta cada una:
+
+- Construir un prototipo de la interfaz antes de programarla <!--Evitar-->
+- Dividir el sistema en módulos independientes con interfaces claras <!--Tolerar-->
+- Hacer una demo al cliente al final de cada sprint <!--Tolerar (detecta el cambio temprano y lo absorbe)-->
+- Escribir un documento de requisitos detallado y hacerlo firmar <!--Evitar-->
+- Automatizar la batería de pruebas de regresión <!--Tolerar-->
+
+<!--
+Discusión: ninguna estrategia es gratis. Evitar el cambio cuesta tiempo por adelantado y
+falla si el cliente no sabe lo que quiere; tolerarlo cuesta esfuerzo de diseño y disciplina
+técnica sostenida. La mayoría de los procesos reales combinan las dos.
+-->
+
 ---
 ### Software Prototipado
 Un prototipo es una versión inicial de un sistema que se utiliza para demostrar conceptos y probar opciones de diseño.
@@ -714,6 +791,28 @@ Los prototipos deben desecharse ya que no son una buena base para un sistema de 
 * Los prototipos son normalmente indocumentados;
 * La estructura del prototipo se suele degradarse a través de un cambio rápido;
 * El prototipo probablemente no va a cumplir con los estándares de calidad normal de la organización.
+
+----
+
+### 💡 Ejercicio: ¿Se tira o se conserva?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.85em" -->
+
+Un equipo armó en tres días un prototipo funcionando de la app de turnos médicos:
+pantallas navegables, datos de prueba en memoria, sin login ni control de errores.
+El cliente lo aprobó y ahora pide "seguir a partir de eso" para no perder el trabajo hecho.
+
+1. ¿Qué argumentos daría el equipo para **desecharlo**?
+2. ¿Qué argumentos daría el cliente para **conservarlo**?
+3. ¿Qué partes del prototipo sí se pueden aprovechar aunque el código se tire?
+
+<!--
+3. Se aprovecha el conocimiento, no el código: los requisitos que quedaron claros,
+las decisiones de diseño de interfaz ya validadas, los flujos de pantalla y
+los casos de prueba que surgieron de probarlo con el cliente.
+Es la diferencia entre prototipado desechable y evolutivo: el desechable existe
+para aprender, no para producir código de producción.
+-->
 
 ----
 
