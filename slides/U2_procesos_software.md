@@ -947,7 +947,7 @@ Lo repasamos al inicio de la próxima clase.
 
 **1.** ¿Cuáles son las cuatro actividades fundamentales de todo proceso de software?
 a) Planificar, programar, probar, documentar
-b) Especificación, diseño e implementación, validación, evolución
+b) Especificación, diseño, validación, evolución
 c) Análisis, diseño, codificación, entrega
 d) Requisitos, prototipo, iteración, cierre
 <!--Correcta: b-->
@@ -955,7 +955,7 @@ d) Requisitos, prototipo, iteración, cierre
 **2.** El principal inconveniente del modelo de cascada es:
 a) Que no genera documentación
 b) Que no permite hacer pruebas
-c) La dificultad para acomodar cambios una vez iniciado el proceso
+c) La dificultad para acomodar cambios
 d) Que necesita equipos muy grandes
 <!--Correcta: c-->
 
@@ -967,7 +967,7 @@ d) No se puede planificar nada
 <!--Correcta: b-->
 
 **4.** Un problema típico del desarrollo incremental es:
-a) Que la estructura del sistema tiende a degradarse con cada incremento
+a) Que la estructura del sistema tiende a degradarse
 b) Que no admite cambios de requisitos
 c) Que exige congelar la especificación al inicio
 d) Que impide la retroalimentación del cliente
