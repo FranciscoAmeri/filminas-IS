@@ -788,26 +788,6 @@ el equipo está aislado del cliente y la organización, con todas las comunicaci
 * Al final del sprint, el trabajo realizado es revisado y se presenta a las partes interesadas. El siguiente ciclo de
 sprint comienza entonces
 
-----
-
-### Un sprint de dos semanas, en concreto
-<!-- .slide: style="font-size: 0.68em" -->
-
-Equipo de 4 personas desarrollando la app de turnos de un centro médico:
-
-| Momento | Qué pasa | Duración |
-|---|---|---|
-| Lunes semana 1 | **Planificación**: el cliente prioriza y el equipo elige qué entra | 2 h |
-| Todos los días | **Daily**: qué hice, qué voy a hacer, qué me traba | 15 min |
-| Durante el sprint | Desarrollo, integración continua, pruebas | — |
-| Viernes semana 2 | **Revisión**: se muestra funcionando al cliente | 1 h |
-| Viernes semana 2 | **Retrospectiva**: qué mejoramos como equipo | 1 h |
-
-**Lo que se comprometieron:** que el paciente pueda sacar un turno y recibir el mail de confirmación.
-
-**Lo que quedó afuera:** cancelar turnos, recordatorios por WhatsApp, panel del médico.
-No porque no importen, sino porque no entran. Eso vuelve al backlog y compite en la próxima planificación.
-
 ---
 ### Trabajo en equipo en Scrum
 <!-- .slide: style="font-size: 0.90em" -->
@@ -832,37 +812,6 @@ trabajo a corto plazo para hacer frente a ellos.**
 * Los clientes ven la entrega a tiempo y se obtiene retroalimentación sobre cómo funciona el producto.
 * Se genera confianza entre los clientes y los desarrolladores. Se crea una cultura positiva en la que
 todos esperan que el proyecto tenga éxito.
-
-----
-
-### 💡 Ejercicio: Planificar un sprint
-<!-- .slide: style="font-size: 0.68em" -->
-
-Equipo de 3 personas, sprint de 2 semanas, capacidad estimada: **20 puntos**.
-El cliente trae este backlog de una app de biblioteca:
-
-| # | Historia | Puntos |
-|---|---|---|
-| 1 | Buscar un libro por título o autor | 5 |
-| 2 | Reservar un libro disponible | 8 |
-| 3 | Ver mis préstamos activos | 3 |
-| 4 | Recibir mail cuando vence un préstamo | 5 |
-| 5 | Panel de estadísticas para el bibliotecario | 13 |
-| 6 | Login con usuario y contraseña | 5 |
-
-1. ¿Qué historias entran en el primer sprint? Justifiquen.
-2. ¿Qué hacen con la historia 5?
-3. A mitad de sprint el cliente pide agregar "reseñas de libros". ¿Qué responden?
-
-<!--
-1. Sin login no hay "mis préstamos" ni reservas asociadas a nadie: la 6 va primero aunque
-   el cliente no la haya priorizado. Combinación razonable: 6 + 1 + 2 = 18 puntos, o
-   6 + 1 + 3 + 4 = 18. Lo importante es que justifiquen dependencias, no que acierten.
-2. 13 puntos sobre una capacidad de 20 es demasiado para una sola historia: hay que
-   dividirla en historias más chicas, o dejarla para cuando el resto esté estable.
-3. El sprint no se altera. La historia entra al backlog y compite por prioridad en la
-   próxima planificación. Si es realmente urgente, se cancela el sprint (algo excepcional).
--->
 
 ---
 ### El Proceso Scrum
@@ -944,52 +893,6 @@ historia de uso de los procesos de ingeniería de sistemas convencionales.
 
 ---
 
-### Cierre: XP y Scrum, ¿compiten?
-<!-- .slide: style="font-size: 0.62em" -->
-
-<table border="1" cellpadding="6" cellspacing="0">
-  <thead>
-    <tr style="background-color: #f2f2f2;">
-      <th>Aspecto</th>
-      <th>Programación Extrema (XP)</th>
-      <th>Scrum</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Se ocupa de</td>
-      <td>Cómo se programa</td>
-      <td>Cómo se gestiona el desarrollo iterativo</td>
-    </tr>
-    <tr>
-      <td>Duración de la iteración</td>
-      <td>1 a 2 semanas</td>
-      <td>Sprint de 2 a 4 semanas</td>
-    </tr>
-    <tr>
-      <td>Los requisitos se expresan como</td>
-      <td>Historias de usuario divididas en tareas</td>
-      <td>Lista priorizada de trabajo pendiente</td>
-    </tr>
-    <tr>
-      <td>Prácticas que prescribe</td>
-      <td>Muchas y técnicas: TDD, pares, integración continua, refactorización, cliente en el sitio</td>
-      <td>Pocas y de gestión: reuniones diarias, revisión, rol facilitador</td>
-    </tr>
-    <tr>
-      <td>Cambios dentro de la iteración</td>
-      <td>Se admiten mientras la historia no haya empezado</td>
-      <td>El sprint no se altera</td>
-    </tr>
-  </tbody>
-</table>
-
-**No compiten: se complementan.** Scrum no dice nada sobre cómo escribir el código, y XP no
-dice mucho sobre cómo organizar al equipo. Muchos equipos usan Scrum para la gestión y las
-prácticas técnicas de XP para el día a día.
-
----
-
 ### 📝 Cuestionario para resolver
 <!-- .slide: style="font-size: 0.90em" -->
 
@@ -1045,12 +948,12 @@ c) Mejorar la estructura del código sin cambiar su comportamiento
 d) Reescribir el sistema desde cero
 <!--Correcta: c. Si cambia el comportamiento, no es refactorización.-->
 
-**6.** El rol del Scrum Master es:
-a) Asignar las tareas a cada desarrollador
-b) Decidir qué funcionalidades se construyen
-c) Facilitar, proteger al equipo de las distracciones externas y destrabar impedimentos
-d) Aprobar el código antes de integrarlo
-<!--Correcta: c-->
+**6.** La propiedad colectiva del código en XP significa que:
+a) El código es de dominio público
+b) Todos los desarrolladores trabajan en todas las áreas y asumen responsabilidad por todo el código
+c) Cada módulo tiene un dueño responsable de aprobarlo
+d) El cliente es dueño del código fuente
+<!--Correcta: b. Es lo que evita las "islas de conocimiento" y se apoya en la programación en pares.-->
 
 **7.** Un argumento en contra de aplicar métodos ágiles a un sistema grande y distribuido es:
 a) Que en esos sistemas no se pueden hacer pruebas
