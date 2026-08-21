@@ -56,6 +56,8 @@ Created by <i class="fab fa-telegram"></i>
   * Por función
 * Funciones de un sistema CASE
 * Herramientas en uso hoy
+* La IA generativa como herramienta CASE
+* De "CASE" a "toolchain"
 </div>
 
 ---
@@ -150,6 +152,27 @@ comparten el mismo proyecto y los mismos archivos.
 - **Modelos que nadie mantiene**: si los diagramas dejan de reflejar el código, estorban más de lo
   que ayudan.
 - **Funcionalidad limitada** frente a necesidades muy específicas de un proyecto.
+
+----
+
+### 💡 Ejercicio: ¿Conviene la herramienta?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.75em" -->
+
+En cada situación, decidan si **conviene o no** incorporar la herramienta, y **qué desventaja**
+de las vistas pesa más:
+
+1. Un equipo de 3 personas, con dos semanas de plazo, evalúa comprar una suite de modelado que
+   requiere una capacitación de 40 horas. <!--No conviene: curva de aprendizaje + costo. El plazo no permite amortizar la inversión.-->
+2. Una empresa con 200 desarrolladores quiere unificar cómo se documentan los sistemas. <!--Conviene: el costo se amortiza y el beneficio de la estandarización crece con el tamaño del equipo.-->
+3. Un estudio contable pide una herramienta que genere el código a partir de los diagramas, pero
+   su sistema tiene reglas fiscales muy particulares. <!--Riesgo de funcionalidad limitada: la generación automática rara vez cubre reglas de negocio específicas; probablemente haya que escribirlas a mano igual.-->
+4. Un equipo mantiene diagramas UML en una herramienta que nadie abre desde hace ocho meses. <!--No conviene sostenerla: modelos desactualizados estorban más de lo que ayudan. O se integran al flujo de trabajo, o se abandonan.-->
+
+<!--
+Cierre: la pregunta correcta nunca es "¿esta herramienta es buena?" sino "¿es buena para este
+equipo, este proyecto y este plazo?". El costo de una CASE no es la licencia: es el tiempo del equipo.
+-->
 
 ---
 
@@ -311,6 +334,27 @@ Se subdividen en:
 
 ----
 
+#### 6.b. Mantenimiento en producción
+<!-- .slide: style="font-size: 0.80em" -->
+
+La clasificación clásica se detiene en el código. Pero hoy buena parte del mantenimiento ocurre
+**con el sistema andando**, y hay tres familias de herramientas para eso:
+
+- **Observabilidad y monitoreo** — Registran qué pasa en producción: errores, tiempos de respuesta,
+  caídas. Permiten enterarse de un fallo antes de que lo reporte el usuario.
+  *Sentry, Grafana, Datadog, Prometheus.*
+- **Calidad de código** — Analizan el código de forma estática y bloquean la integración si no
+  cumple los umbrales acordados: complejidad, duplicación, cobertura de pruebas.
+  *SonarQube, ESLint, Checkstyle.*
+- **Seguridad de dependencias** — Avisan cuando una librería que usa el proyecto tiene una
+  vulnerabilidad conocida, y muchas veces proponen la actualización automáticamente.
+  *Dependabot, Snyk, npm audit.*
+
+Todas encajan en la definición de CASE: automatizan una actividad del proceso y brindan
+información sobre el software.
+
+----
+
 #### 7. Herramientas de gestión de proyectos
 Se centran en aspectos específicos de la gestión, en lugar de dar un soporte global. Con un conjunto
 adecuado se puede estimar esfuerzo, costo y duración, hacer un seguimiento continuo del proyecto y
@@ -424,9 +468,154 @@ Casi todo lo que usan a diario es una herramienta CASE, aunque nadie las llame a
 **Herramientas históricas:** *Rational Rose* fue la referencia en modelado UML durante los años 90
 y 2000, pero está discontinuada. Su lugar lo ocuparon Enterprise Architect y StarUML.
 
+---
+
+### La IA generativa como herramienta CASE
+<!-- .slide: style="font-size: 0.75em" -->
+
+Es la categoría más nueva y, en volumen de uso, ya la más extendida.
+
+Según la investigación de JetBrains de 2026, **el 90% de los desarrolladores profesionales usa
+agentes de IA para programar al menos una vez por semana**, y el 68% lo hace a diario. El 70% usa
+entre dos y cuatro de estas herramientas en paralelo.
+
+**Ejemplos:** GitHub Copilot, Claude Code, Cursor, Codex.
+
+Responden exactamente a la definición de CASE que vimos al principio: **automatizan actividades del
+proceso y brindan información sobre el software que se desarrolla.** La diferencia es en qué
+actividades.
+
+----
+
+### ¿Dónde encaja en la clasificación?
+<!-- .slide: style="font-size: 0.72em" -->
+
+| Función de la clasificación | Qué hace un asistente de IA |
+|---|---|
+| Análisis y diseño | Redacta y critica requerimientos, propone modelos |
+| Programación | Genera y completa código, explica código ajeno |
+| Integración y prueba | Escribe casos de prueba, detecta defectos |
+| Mantenimiento | Refactoriza, documenta código heredado, hace ingeniería inversa |
+| Soporte | Genera documentación técnica |
+
+**El problema:** cruza casi todas las categorías a la vez. La taxonomía Upper/Lower CASE fue
+pensada cuando cada herramienta hacía una cosa; una herramienta que atraviesa todo el ciclo de vida
+es, por definición, **I-CASE**, pero no se parece en nada a los I-CASE de los años 90.
+
+----
+
+### Límites y riesgos
+<!-- .slide: style="font-size: 0.78em" -->
+
+Se aplican las mismas desventajas que ya vimos, más algunas propias:
+
+- **Genera código plausible, no necesariamente correcto.** La verificación sigue siendo humana.
+- **Dependencia**: un equipo que no entiende el código que acepta no puede mantenerlo.
+- **Confidencialidad**: enviar código propietario a un servicio externo puede violar políticas de
+  la organización o contratos con el cliente.
+- **Consistencia**: no garantiza que dos soluciones generadas sigan el mismo criterio de diseño.
+
+**No reemplaza al criterio de ingeniería.** Es la razón por la que esta materia sigue existiendo.
+
+----
+
+### 💡 Ejercicio: La IA rompe la taxonomía
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.75em" -->
+
+1. Ubiquen un asistente de IA en las tres clasificaciones vistas: ¿Upper o Lower CASE?
+   ¿Toolkit, workbench o entorno integrado? ¿Qué función de las ocho?
+2. Si la respuesta a alguna de las tres es "depende" o "todas", ¿qué dice eso sobre la
+   clasificación?
+3. ¿Qué **desventaja** de las que vimos se agrava con estas herramientas y cuál se atenúa?
+
+<!--
+1. No entra limpio en ninguna: cubre desde requerimientos hasta mantenimiento (I-CASE por
+   cobertura), pero su integración depende de dónde esté embebido (dentro del IDE es workbench;
+   como agente autónomo se parece más a un entorno integrado).
+2. Que las taxonomías son herederas de su época. Clasificaban productos que hacían una cosa.
+   No es que la clasificación esté "mal": describe bien un panorama que cambió.
+3. Se agrava la dependencia y la funcionalidad limitada (el equipo pierde comprensión del código,
+   y la herramienta no conoce las reglas de negocio específicas). Se atenúan el costo de
+   adquisición y la curva de aprendizaje: hoy la barrera de entrada es casi nula.
+-->
+
 <!--https://quinterod.wordpress.com/wp-content/uploads/2015/09/herramientas-case.pdf-->
 <!--https://repositorio.utn.edu.ec/bitstream/123456789/1087/2/04%20ISC%20001-TESIS.pdf-->
 <!--https://marcochicaiza72.blogspot.com/p/herramientas-case.html-->
+
+---
+
+### 💡 Ejercicio: Ubicar una herramienta
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
+
+Para cada herramienta, indiquen **las tres cosas a la vez**: qué parte del ciclo de vida cubre
+(Upper / Lower / I-CASE), qué grado de integración tiene (toolkit / workbench / entorno integrado)
+y qué función cumple de las ocho vistas.
+
+| Herramienta | Ciclo de vida | Integración | Función |
+|---|---|---|---|
+| draw.io | | | |
+| Visual Studio Code | | | |
+| StarUML | | | |
+| Postman | | | |
+| GitHub | | | |
+| Jira | | | |
+
+<!--
+draw.io: Upper - toolkit - análisis y diseño.
+VS Code: Lower - workbench (editor + depurador + terminal + extensiones) - programación.
+StarUML: Upper - workbench (modela y genera código) - análisis y diseño.
+Postman: Lower - toolkit - integración y prueba.
+GitHub: transversal, se acerca a I-CASE - entorno integrado - soporte + gestión de proyectos.
+Jira: transversal - toolkit - gestión de proyectos.
+El punto del ejercicio: las tres clasificaciones son puntos de vista distintos sobre la misma
+herramienta, no cajones donde entra en uno solo.
+-->
+
+---
+
+### 💡 Ejercicio: Armar el entorno de un proyecto
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.75em" -->
+
+Son un equipo de **4 personas** que debe construir el sistema de turnos de un centro médico en
+**cuatro meses**, con **presupuesto cero** para licencias.
+
+1. Elijan las herramientas que usarían y ubiquen cada una en la función que cubre.
+2. ¿Qué fase del ciclo de vida les queda **sin herramienta**? ¿Es un problema?
+3. Justifiquen **una** herramienta que decidieron *no* usar aunque exista.
+
+<!--
+Lo que interesa evaluar:
+- Que cubran modelado, desarrollo, versionado, pruebas y gestión, no solo el IDE.
+- Que noten que presupuesto cero no es una limitación real hoy: casi todo el stack profesional
+  tiene alternativa libre o gratuita (VS Code, Git, GitHub, draw.io, StarUML, Postman, Jira free).
+- El punto 3 es el más formativo: descartar una herramienta por sobrecarga de proceso es una
+  decisión de ingeniería tan válida como adoptarla.
+-->
+
+---
+
+### De "CASE" a "toolchain"
+<!-- .slide: style="font-size: 0.75em" -->
+
+**Un aviso antes de terminar:** en un equipo de desarrollo nadie dice "voy a usar una herramienta
+CASE". El término es de la bibliografía académica y los años 80, y hoy está prácticamente en desuso
+en la industria.
+
+| Lo que dice la bibliografía | Lo que van a escuchar en un trabajo |
+|---|---|
+| Herramientas CASE | Herramientas, *tooling* |
+| Conjunto de herramientas CASE integradas | *Toolchain*, *stack* |
+| IPSE | Plataforma de desarrollo (GitHub, GitLab, Azure DevOps) |
+| Herramientas de integración y prueba | CI/CD |
+| Herramientas de mantenimiento | Observabilidad, calidad de código |
+| Repositorio | Control de versiones, monorepo |
+
+**El concepto no cambió, cambió el nombre.** Vale la pena conocer los dos: uno entra en el examen
+y en la bibliografía, el otro se usa todos los días.
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?
