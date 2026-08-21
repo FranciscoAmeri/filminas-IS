@@ -30,23 +30,32 @@ Created by <i class="fab fa-telegram"></i>
 <div class="grid-item">
 
 ### Ingeniería de Requerimientos
-* Definición
-* Que es un requerimiento?
-* Tipos de requerimiento
+* Definición y problemas
+* ¿Qué es un requerimiento?
+* Características de un buen requerimiento
+* Pirámide de requerimientos
 * Requerimientos del usuario y del sistema
 * Requerimientos funcionales y no funcionales
-* Requerimientos del MHC-PMS
-* Imprecisión de requerimientos
-* integridad y la coherencia
+* Imprecisión, integridad y coherencia
+* Clasificación de los no funcionales
+* Objetivos vs. requerimientos verificables
+* Métricas para requerimientos no funcionales
+* Requerimientos de dominio
 </div>
 <div class="grid-item">
 
-* Requerimientos no funcionales
-* Clasificación de Req No Func
-* Objetivos y Requerimientos
-* Requerimientos de usabilidad
-* Métricas para Req No Func
-* Requerimientos de Dominio
+* Documento de requerimientos (SRS)
+* Notaciones de especificación
+  * Lenguaje natural, estructurada y tabular
+* Proceso de ingeniería de requerimientos
+  * Obtención
+  * Análisis
+  * Especificación
+  * Validación
+  * Aceptación
+* Técnicas de elicitación
+  * Entrevistas, escenarios, casos de uso, etnografía
+* Gestión de requerimientos y de cambios
 </div>
 </div>
 
@@ -66,7 +75,7 @@ Proceso de descubrir, analizar, documentar y verificar los servicios que el sist
 
 ### ¿Cómo se expresa un requerimiento?
 
-La definicion de un requerimiento puede variar de una **declaración abstracta** de un servicio o de una **restricción** de sistema a una **especificación funcional** matemática detallada.
+La definición de un requerimiento puede variar de una **declaración abstracta** de un servicio o de una **restricción** de sistema a una **especificación funcional** matemática detallada.
 
 ----
 
@@ -93,7 +102,7 @@ de requerimientos para el sistema."
 
 ### Características de los Requerimientos
 
-![Característcas de los Requerimientos](images/unidad3/caracteristicas-requerimientos.png)
+![Características de los Requerimientos](images/unidad3/caracteristicas-requerimientos.png)
 
 <!--https://www.northware.mx/wp-content/uploads/2021/04/tecnicas-efectivas-para-la-toma-de-requerimientos.pdf-->
 
@@ -105,10 +114,11 @@ de requerimientos para el sistema."
 
 1. **Necesario:** Si se tiene alguna duda acerca de la necesidad del requerimiento, se pueden preguntar “¿Qué sería lo peor
 de no incluirlo?” Si no hay consecuencias es probable no sea necesario.
-2. **Completo:** Se consiera completo si no necesita ampliar detalles en su redacción, es decir, si se
+2. **Completo:** Se considera completo si no necesita ampliar detalles en su redacción, es decir, si se
 proporciona la información suficiente para su comprensión.
 3. **Consistente:** No es contradictorio con otro requerimiento.
-4. **Correcto:** Acuerdo entre dos partes. Contiene una sola idea.
+4. **Correcto:** Refleja fielmente una necesidad real del cliente, y ambas partes acuerdan que es así.
+5. **Atómico:** Contiene una sola idea. Si se pueden marcar dos cosas como cumplidas por separado, son dos requerimientos.
 
 ----
 
@@ -116,12 +126,12 @@ proporciona la información suficiente para su comprensión.
 
 <!-- .slide: style="font-size: 0.80em" -->
 
-5. **Factible:** Si es realizable dentro de presupuesto, del calendario y no hay otras restricciones. Si se tienen dudas, 
+6. **Factible:** Si es realizable dentro de presupuesto, del calendario y no hay otras restricciones. Si se tienen dudas, 
 hay que investigar, generar pruebas de concepto para comprender su complejidad. Si no es factible hay que revisar la visión del sistema y
 replantear el requerimiento
-6. **Modificable**
-7. **Priorizado:** Categorizar nos ayuda a saber el grado de necesidad del mismo: Esencial/Critico, Deseado, Opcional.
-8. **Verificable:** Debe ser comprobable. Si no lo es, ¿Cómo se sabe si se cumplió con él o no? Debe ser posible
+7. **Modificable:** Se puede cambiar sin que ello obligue a rehacer buena parte del documento. Exige que esté bien identificado y sin duplicaciones.
+8. **Priorizado:** Categorizar nos ayuda a saber el grado de necesidad del mismo: Esencial/Critico, Deseado, Opcional.
+9. **Verificable:** Debe ser comprobable. Si no lo es, ¿Cómo se sabe si se cumplió con él o no? Debe ser posible
 verificarlo ya sea por inspección, análisis de prueba o demostración. Cuando se escriba un requerimiento, se deberá de determinar
 los criterios de aceptación.
 
@@ -129,9 +139,9 @@ los criterios de aceptación.
 
 ### Características de los Requerimientos
 
-9. **Rastreable:** La especificación se debe organizar para que cada función del sistema se pueda rastrear hasta su conjunto
+10. **Rastreable:** La especificación se debe organizar para que cada función del sistema se pueda rastrear hasta su conjunto
 de requerimientos correspondiente. Facilita las pruebas y la validación del diseño.
-10. **Claro:** Fácil de leer y entender. Su redacción debe ser simple y clara.
+11. **Claro:** Fácil de leer y entender. Su redacción debe ser simple y clara.
 
 ---
 
@@ -144,7 +154,7 @@ de requerimientos correspondiente. Facilita las pruebas y la validación del dis
 ### Pirámide: Necesidades
 
 Necesidades de los Stakeholders. Están orientadas a oportunidades (problemas) de Negocio las cuales deben de ser cubiertas de forma satisfactoria. 
-Algunas de estas oportunidades general requerimientos del sistema.
+Algunas de estas oportunidades generan requerimientos del sistema.
 
 ----
 
@@ -152,15 +162,17 @@ Algunas de estas oportunidades general requerimientos del sistema.
 
 Características o Cualidades que los Stakeholders esperan como parte del comportamiento del sistema de Software.
 
-Están relacionados con la **calidad** del sistema: Fácilmente Modificable, Seguridad, Portabilidad, Confiabilidad, Fácil de probar, Usabilidad
-(Tiempo de Capacitación, Número de Slecciones, Número de Clics), Desempeño, Eficiencia (Tiempo Transacciones por segundo, Tiempo de Respuesta,
+Están relacionados con la **calidad** del sistema y son, en la práctica, los que después se
+escriben como **requerimientos no funcionales**: Fácilmente Modificable, Seguridad, Portabilidad, Confiabilidad, Fácil de probar, Usabilidad
+(Tiempo de Capacitación, Número de Selecciones, Número de Clics), Desempeño, Eficiencia (Tiempo Transacciones por segundo, Tiempo de Respuesta,
 Tiempo de Operaciones Completas), Espacio (Memoria Principal, Memoria Auxiliar, Caché), Escalabilidad.
 
 ----
 
 ### Pirámide: Requerimientos de Software
 
-Necesidades de los Stakeholders que requiere que el Sistema cumpla de manera Satisfactoria. 
+Es el nivel más concreto de la pirámide: la traducción de las necesidades y características
+anteriores en enunciados precisos y verificables.
 
 Definen las funciones que el sistema será capaz de realizar. Describen las transformaciones que el sistema realiza sobre las entradas para producir salidas.
 Describe el ¿Qué? y no el ¿Cómo? se deben hacer esas transformaciones. 
@@ -178,7 +190,12 @@ Describe el ¿Qué? y no el ¿Cómo? se deben hacer esas transformaciones.
 
 ---
 ### Ejemplo de Requerimientos
-<!-- .slide: style="font-size: 0.70em" -->
+<!-- .slide: style="font-size: 0.68em" -->
+
+> **MHC-PMS** (*Mental Health Care Patient Management System*): sistema de gestión de pacientes de
+> salud mental, usado como caso de estudio a lo largo de toda la unidad. Lo utilizan clínicas de
+> salud mental para registrar pacientes, consultas, tratamientos y medicación.
+
 Requerimiento **del usuario**:
 1. El MHC-PMS elaborará mensualmente informes administrativos que revelen
 el costo de los medicamentos prescritos por cada clínica durante ese mes.
@@ -227,10 +244,15 @@ en la lista de control de acceso administrativo.
   * Interpretación Desarrollador - buscar un nombre de paciente en una clínica individual. El usuario elige la clínica luego se realiza la búsqueda.
 
 ---
-### integridad y la coherencia de Requerimientos
-Los requerimientos deben ser a la vez completos y coherentes.
-* **Completo:** Deben incluir una descripción de todos los servicios requeridos.
-* **Coherente:** No debe haber conflictos o contradicciones en las descripciones de los servicios del sistema.
+### Integridad y coherencia de los requerimientos
+<!-- .slide: style="font-size: 0.90em" -->
+Estas dos propiedades se aplican al **conjunto** de requerimientos, no a cada uno por separado:
+* **Completo:** el documento incluye una descripción de todos los servicios requeridos.
+* **Coherente:** no hay conflictos ni contradicciones entre las descripciones de los servicios.
+
+**Ojo con la palabra "completo":** antes la usamos para un requerimiento individual (que su
+redacción no deje detalles sin explicar). Acá se refiere al documento entero (que no falte ningún
+requerimiento). Son dos cosas distintas.
 
 En la práctica, es difícil producir un documento de requisitos completo y consistente.
 
@@ -282,12 +304,16 @@ Los usuarios del sistema MHC-PMS deberán autenticarse usando su tarjeta de iden
 El sistema deberá aplicar las disposiciones de privacidad del paciente según lo establecido en HStan-03-2006-priv.
 
 ---
-### Ejemplo de requerimientos no funcionales sistema de bibliotecas LIBSYS
+### Ejemplo de requerimientos no funcionales: LIBSYS
 <!-- .slide: style="font-size: 0.80em" -->
+
+> **LIBSYS:** sistema de biblioteca universitaria que permite a los usuarios consultar y descargar
+> documentos. Es el otro caso de estudio clásico de la bibliografía.
+
 * Requerimiento del producto
   * La interfaz del usuario para LIBSYS deberá ser implementada como HTML simple sin marcos o applets.
 * Requerimiento organizativo
-  * El proceso de desarrollo del sistema y los documentos a entregar debe ajustarse al proceso y a los productos a entregar definifos en el STAN-95
+  * El proceso de desarrollo del sistema y los documentos a entregar debe ajustarse al proceso y a los productos a entregar definidos en el STAN-95
 * Requerimiento externo
   * El sistema no deberá revelar a sus operadores alguna información personal de los clientes excepto su nombre y número de referencia.
 
@@ -356,17 +382,19 @@ Siempre que sea posible, los requerimientos No Funcionales se deberán escribir 
 Para algunas metas, como la mantenibilidad, no hay métricas para usarse.
 
 ---
-### Requerimientos de dominio 
-* Restricciones en el sistema según el dominio de operación.
-* Se relacionan con el contexto específico en el que se utilizará el software. Pueden incluir leyes, reglamentos o estándares de la industria que la aplicación debe seguir.
-Ej. El software de contabilidad debe cumplir con las normas fiscales y financieras aplicables.
+### Requerimientos de dominio
+<!-- .slide: style="font-size: 0.90em" -->
+* Son restricciones que impone el **dominio de operación** del sistema, no el cliente.
+* Se relacionan con el contexto específico en el que se usará el software: leyes, reglamentos,
+  estándares de la industria o leyes físicas del propio dominio.
+* Pueden generar nuevos requisitos funcionales, imponer limitaciones sobre los existentes o
+  definir cálculos específicos.
+* **Si no se satisfacen, el sistema puede resultar inutilizable.**
 
----
-### Requerimientos del dominio
-* Dominio operacional del sistema impone requerimientos.
-  * Por ejemplo, un sistema de control de trenes tiene que tener en cuenta las características de frenado en diferentes condiciones climáticas.
-* Requerimientos de dominio generan nuevos requisitos funcionales, limitaciones sobre los requisitos existentes o definir cálculos específicos.
-* Si los requerimientos de dominio no están satisfechos, el sistema puede ser inutilizable.
+**Ejemplos:**
+* Un software de contabilidad debe cumplir con las normas fiscales y financieras aplicables.
+* Un sistema de control de trenes debe contemplar las características de frenado según las
+  distintas condiciones climáticas.
 
 ---
 ### Problemas de los requerimientos de dominio
@@ -394,68 +422,74 @@ Ej. El software de contabilidad debe cumplir con las normas fiscales y financier
 
 ### Ejercicio
 
-Clasificar los siguientes requerimientos en Funcionales y No Funcionales, con sus correspondientes Sub-Clasificaciones.
-Justificar las decisiones tomadas.
+Clasificar los siguientes requerimientos en **Funcionales** y **No Funcionales**, con sus
+correspondientes sub-clasificaciones (producto, organizacional o externo).
+**Justificar** cada decisión.
 
-1. El sistema debe ser capaz de procesar N transacciones por segundo.
-2. El sistema enviará un correo electrónico cuando se registre alguna de las siguientes transacciones: pedido de venta de cliente, despacho de mercancía al cliente, emisión de factura a cliente y registro de pago de cliente.
+<!--
+Las respuestas sugeridas están en comentarios junto a cada ítem.
+Varios admiten discusión: lo que se evalúa es la justificación, no la etiqueta.
+-->
 
-----
-
-### Ejercicio
-
-3. Toda funcionalidad debe responder al usuario en menos de 3 segundos.
-4. El sistema permitirá aprobar, cambiar o actualizar planes y cronogramas de proyecto.
-5. El sistema permitirá el envío automatizado de cartas de entrega de órdenes directamente al almacén.
-6. A cada orden se le debe asignar un identificador único, que será utilizado para identificarla en todos los procesos subsecuentes que se realicen sobre esta.
+1. El sistema debe ser capaz de procesar N transacciones por segundo. <!--NF - Producto (rendimiento). Fija una restricción cuantitativa sobre cómo debe comportarse el sistema, no un servicio.-->
+2. El sistema enviará un correo electrónico cuando se registre alguna de las siguientes transacciones: pedido de venta de cliente, despacho de mercancía al cliente, emisión de factura a cliente y registro de pago de cliente. <!--F. Describe un servicio concreto: enviar un correo ante determinados eventos.-->
 
 ----
 
 ### Ejercicio
-7. El sistema de Historia Clínica Electrónica debe cumplir con la legislación vigente relativa a la protección de datos médicos.
-8. El sistema debe cumplir con la accesibilidad para personas con discapacidad.
-9. Todas las comunicaciones entre servidores, aplicaciones y clientes del sistema deben ser encriptadas utilizando el algoritmo RSA.
-10. La tasa de errores cometidos por el usuario deberá ser menor al 5% de las transacciones totales ejecutadas por el sistema.
+
+3. Toda funcionalidad debe responder al usuario en menos de 3 segundos. <!--NF - Producto (rendimiento). Es transversal a todas las funcionalidades.-->
+4. El sistema permitirá aprobar, cambiar o actualizar planes y cronogramas de proyecto. <!--F. Servicios de aprobación y modificación de planes.-->
+5. El sistema permitirá el envío automatizado de cartas de entrega de órdenes directamente al almacén. <!--F. Servicio de envío automatizado de cartas.-->
+6. A cada orden se le debe asignar un identificador único, que será utilizado para identificarla en todos los procesos subsecuentes que se realicen sobre esta. <!--F. El sistema debe asignar el identificador; es un comportamiento que se puede probar.-->
 
 ----
 
 ### Ejercicio
-11. El software debe poder emitir los siguientes estados financieros: Balance general, Estado de ganancias y pérdidas, Estado de flujos de efectivo. Además, debe poder emitir un listado de mayor general y mayor analítico.
-12. El sistema debe poder operar de forma adecuada con 10.000 usuarios en sesiones concurrentes.
-13. Se debe permitir el registro de pedidos de compra con datos obligatorios incompletos, los cuales podrán completarse posteriormente modificando el pedido. Antes de poder aprobarse los datos del pedido deben estar completos.
+7. El sistema de Historia Clínica Electrónica debe cumplir con la legislación vigente relativa a la protección de datos médicos. <!--NF - Externo (legal). Surge de una obligación ajena al sistema y a su desarrollo.-->
+8. El sistema debe cumplir con la accesibilidad para personas con discapacidad. <!--NF - Producto (usabilidad/accesibilidad). Si la accesibilidad la exige una ley o norma, pasa a ser también externo.-->
+9. Todas las comunicaciones entre servidores, aplicaciones y clientes del sistema deben ser encriptadas utilizando el algoritmo RSA. <!--NF - Producto (seguridad). Fijar el algoritmo RSA es además una restricción de implementación.-->
+10. La tasa de errores cometidos por el usuario deberá ser menor al 5% de las transacciones totales ejecutadas por el sistema. <!--NF - Producto (usabilidad). Métrica verificable sobre la facilidad de uso.-->
 
 ----
 
 ### Ejercicio
-14. La aplicación web debe poseer un diseño “Responsive” para garantizar la adecuada visualización en todos los dispositivos (PC, Tablet, Smartphone).
-15. El sistema debe tener una disponibilidad del 99,99% de las veces en que un usuario intente acceder.
-16. El Motor de Base de Datos será Oracle 11g.
-17. Es necesario contar con una replicación constante de los datos en un servidor distinto al que usa (idealmente en un edificio distinto).
+11. El software debe poder emitir los siguientes estados financieros: Balance general, Estado de ganancias y pérdidas, Estado de flujos de efectivo. Además, debe poder emitir un listado de mayor general y mayor analítico. <!--F, con componente de dominio: qué es un balance general lo define la normativa contable, no el cliente.-->
+12. El sistema debe poder operar de forma adecuada con 10.000 usuarios en sesiones concurrentes. <!--NF - Producto (rendimiento/escalabilidad).-->
+13. Se debe permitir el registro de pedidos de compra con datos obligatorios incompletos, los cuales podrán completarse posteriormente modificando el pedido. Antes de poder aprobarse los datos del pedido deben estar completos. <!--F. Define reglas de negocio sobre el estado de un pedido y su aprobación.-->
 
 ----
 
 ### Ejercicio
-18. El uso del sistema debe ser intuitivo. El tiempo de aprendizaje para el uso del sistema de un usuario promedio debe ser menor a 30 minutos.
-19. El sistema debe proporcionar mensajes por cada transacción realizada (error, éxito, descargando…). Los mensajes deben ser informativos y orientados al usuario final.
-20. El sistema debe contar con manuales de usuario estructurados adecuadamente.
-21. El sistema debe registrar la información de los usuarios y los créditos que poseen.
+14. La aplicación web debe poseer un diseño “Responsive” para garantizar la adecuada visualización en todos los dispositivos (PC, Tablet, Smartphone). <!--NF - Producto (usabilidad/portabilidad).-->
+15. El sistema debe tener una disponibilidad del 99,99% de las veces en que un usuario intente acceder. <!--NF - Producto (fiabilidad: disponibilidad).-->
+16. El Motor de Base de Datos será Oracle 11g. <!--NF - Organizacional. Restricción de implementación impuesta por la organización.-->
+17. Es necesario contar con una replicación constante de los datos en un servidor distinto al que usa (idealmente en un edificio distinto). <!--NF - Producto (fiabilidad/recuperación ante desastres). También organizacional si responde a una política interna.-->
 
 ----
 
 ### Ejercicio
-22. El sistema debe contar con un sistema de soporte en línea.
-23. El sistema debe cumplir las disposiciones de la Ley Orgánica de Datos Personales.
-24. El tiempo para iniciar o reiniciar el sistema no podrá ser mayor a 2 horas, avisando previamente de esta maniobra.
-25. El promedio de duración de fallas no podrá ser mayor a 15 minutos.
-26. La probabilidad de falla no podrá ser mayor a 0,05.
+18. El uso del sistema debe ser intuitivo. El tiempo de aprendizaje para el uso del sistema de un usuario promedio debe ser menor a 30 minutos. <!--NF - Producto (usabilidad). Notar que la primera oración es un objetivo y la segunda lo vuelve verificable.-->
+19. El sistema debe proporcionar mensajes por cada transacción realizada (error, éxito, descargando…). Los mensajes deben ser informativos y orientados al usuario final. <!--Mixto: 'proporcionar mensajes por cada transacción' es funcional; 'informativos y orientados al usuario final' es NF de usabilidad. Buen caso para discutir la fusión de requerimientos.-->
+20. El sistema debe contar con manuales de usuario estructurados adecuadamente. <!--NF - Organizacional. Es un entregable del proceso de desarrollo, no una función del sistema.-->
+21. El sistema debe registrar la información de los usuarios y los créditos que poseen. <!--F. Servicio de registro de usuarios y créditos.-->
 
 ----
 
 ### Ejercicio
-27. El sistema debe permitir que los usuarios registrados compren créditos y proporcionar las herramientas para que los mismos paguen.
-28. La interfaz debe estar optimizada para el funcionamiento en Chrome, Safari y Firefox.
-29. Los pedidos de compra que excedan los montos establecidos en el flujo de liberaciones de pedidos configurados, deberán pasar por las aprobaciones establecidas en dicho flujo de aprobación.
-30. El Backend debe ser desarrollado en Java.
+22. El sistema debe contar con un sistema de soporte en línea. <!--NF - Organizacional (servicio de soporte asociado al producto). Discutible: si el soporte es un módulo del sistema, sería funcional.-->
+23. El sistema debe cumplir las disposiciones de la Ley Orgánica de Datos Personales. <!--NF - Externo (legal).-->
+24. El tiempo para iniciar o reiniciar el sistema no podrá ser mayor a 2 horas, avisando previamente de esta maniobra. <!--NF - Producto (robustez: tiempo de reinicio tras fallo).-->
+25. El promedio de duración de fallas no podrá ser mayor a 15 minutos. <!--NF - Producto (fiabilidad: tiempo medio de reparación).-->
+26. La probabilidad de falla no podrá ser mayor a 0,05. <!--NF - Producto (fiabilidad: probabilidad de fallo).-->
+
+----
+
+### Ejercicio
+27. El sistema debe permitir que los usuarios registrados compren créditos y proporcionar las herramientas para que los mismos paguen. <!--F. Servicios de compra de créditos y pago.-->
+28. La interfaz debe estar optimizada para el funcionamiento en Chrome, Safari y Firefox. <!--NF - Producto (portabilidad/compatibilidad).-->
+29. Los pedidos de compra que excedan los montos establecidos en el flujo de liberaciones de pedidos configurados, deberán pasar por las aprobaciones establecidas en dicho flujo de aprobación. <!--F, con componente de dominio: el flujo de aprobaciones es una regla de negocio de la organización.-->
+30. El Backend debe ser desarrollado en Java. <!--NF - Organizacional. Restricción sobre la tecnología de desarrollo.-->
 
 ---
 ### Documento de requerimientos de software
@@ -472,7 +506,7 @@ Justificar las decisiones tomadas.
 ---
 ### Métodos agiles y requerimientos
 * Muchos métodos ágiles argumentan que la producción de un documento de requisitos es una pérdida de tiempo porque los requisitos cambian rápidamente.
-* El documento es, por tanto, siempre actualizado.
+* El documento, por lo tanto, **está siempre desactualizado**.
 * Métodos como XP utilizan requisitos expresados como "historias de usuario”
 * Esto es práctico para ciertos sistemas, pero problemático para los sistemas que requieren una gran cantidad de
 análisis previo a la entrega (por ejemplo, sistemas críticos) o sistemas desarrollados por varios equipos.
@@ -489,7 +523,7 @@ análisis previo a la entrega (por ejemplo, sistemas críticos) o sistemas desar
 ### [Documento de Requerimientos](https://dspmuranchi.ac.in/pdf/Blog/srs_template-ieee.pdf)
 * La información contenida en el documento de requerimientos depende del tipo de sistema y el enfoque de desarrollo utilizado.
 * Los sistemas desarrollados por incrementos, por lo general, tienen menos detalle en el documento de requerimientos.
-* Las Normas para documentos de requerimientos estan especificadas por el estándar IEEE. En su mayoría son aplicables a los requisitos para los grandes proyectos de ingeniería de sistemas.
+* Las normas para documentos de requerimientos están especificadas por el estándar IEEE. En su mayoría son aplicables a los requisitos para los grandes proyectos de ingeniería de sistemas.
 
 ---
 
@@ -519,7 +553,7 @@ análisis previo a la entrega (por ejemplo, sistemas críticos) o sistemas desar
 </tr>
 <tr>
 <td>Definición de requerimientos de usuario</td>
-<td>Se describe los servicios proporcionados por el usuario. Los requisitos <strong>no funcionales</strong> también deben ser incluidos. Esta descripción puede usar el lenguaje natural, diagramas u otras anotaciones que sean comprensibles para los clientes. Las normas de productos y de procesos que deben seguirse deben especificarse.</td>
+<td>Se describen los servicios proporcionados al usuario. Los requisitos <strong>no funcionales</strong> también deben ser incluidos. Esta descripción puede usar el lenguaje natural, diagramas u otras anotaciones que sean comprensibles para los clientes. Las normas de productos y de procesos que deben seguirse deben especificarse.</td>
 </tr>
 <tr>
 <td>Arquitectura del sistema</td>
@@ -544,14 +578,14 @@ análisis previo a la entrega (por ejemplo, sistemas críticos) o sistemas desar
 <tbody>
 <tr>
 <td>Especificación de requerimientos del sistema</td>
-<td>Describir los requisitos funcionales y no funcionales en más detalle. Describir interfaces para otros sistemas pueden ser definidos.</td>
+<td>Describir los requisitos funcionales y no funcionales en más detalle. También pueden definirse aquí las interfaces con otros sistemas.</td>
 </tr>
 <tr>
 <td>Modelos del sistema</td>
 <td>Incluir modelos gráficos del sistema que muestran las relaciones entre los componentes del sistema y el sistema y su entorno. Ejemplos: modelos de objetos, modelos de flujo de datos, modelos de datos semánticos.</td>
 </tr>
 <tr>
-<td>Sistema de evaluación</td>
+<td>Evolución del sistema</td>
 <td>Describir los supuestos fundamentales en que se basa el sistema, y cualquier cambio previsto debido a la evolución del hardware y cambios en las necesidades de los usuarios. Ayudar a evitar las decisiones de diseño que limitarían los probables cambios futuros en el sistema.</td>
 </tr>
 <tr>
@@ -569,7 +603,7 @@ análisis previo a la entrega (por ejemplo, sistemas críticos) o sistemas desar
 ---
 ### Especificación de requerimientos
 <!-- .slide: style="font-size: 0.90em" -->
-* El proceso de escribir los requerimientos del sistema del usuario y en un documento de requisitos.
+* Es el proceso de escribir los requerimientos del usuario y los del sistema en un documento de requisitos.
 * Los requerimientos de usuario tienen que ser comprensibles por los usuarios finales y los clientes quienes no tienen una formación técnica.
 * Los requerimientos del sistema son requerimientos más detallados y pueden incluir más información técnica.
 * Los requerimientos pueden ser parte de un contrato para el desarrollo del sistema 
@@ -591,7 +625,7 @@ análisis previo a la entrega (por ejemplo, sistemas críticos) o sistemas desar
 <tbody>
 <tr>
 <td>Lenguaje natural</td>
-<td>Emplea oraciones numeradas, donde cada una expresar un requerimiento.</td>
+<td>Emplea oraciones numeradas, donde cada una expresa un requerimiento.</td>
 </tr>
 <tr>
 <td>Lenguaje natural Estructurado</td>
@@ -645,16 +679,18 @@ la consecuencia de un requisito reglamentario.
 ### Requerimientos de bomba de insulina
 <!-- .slide: style="font-size: 0.80em" -->
 3.2 El sistema deberá medir el azúcar en la sangre cada 10
-minutos y administrar la insulina si es necesario. Los cambios
-en el azúcar en la sangre son relativamente lentas lo que la
-medición más frecuente podría llevar a valores
-peligrosamente bajos de azúcar; una medición menos
-frecuente podría llevar a niveles peligrosamente altos de azúcar.)
+minutos y administrar la insulina si es necesario.
+*(Justificación: los cambios en el nivel de azúcar en sangre son
+relativamente lentos, por lo que medir con más frecuencia podría
+llevar a administrar insulina de más y provocar valores
+peligrosamente bajos; medir con menos frecuencia podría dejar
+pasar niveles peligrosamente altos.)*
 
-3.6 El sistema deberá ejecutar una rutina de prueba
-automática cada minuto. Una rutina de autocomprobación
-puede descubrir problemas de hardware y/o software y
-alertar al usuario sobre el hecho de la operación anormal
+3.6 El sistema deberá ejecutar una rutina de autocomprobación
+cada minuto.
+*(Justificación: una rutina de autocomprobación puede detectar
+problemas de hardware o de software y alertar al usuario de que
+el equipo está operando de forma anormal.)*
 
 ---
 ### Problemas con el lenguaje natural
@@ -694,10 +730,10 @@ escritura de requerimientos del sistema de negocios.
 * Se utiliza para complementar el lenguaje natural.
 * Es particularmente útil cuando se tiene que definir una
 serie de posibles cursos de acción alternativos.
-* Por ejemplo, el sistema la de bomba de insulina basa
-sus cálculos de la tasa de cambio del nivel de azúcar en la
+* Por ejemplo, el sistema de la bomba de insulina basa
+sus cálculos en la tasa de cambio del nivel de azúcar en la
 sangre y la especificación tabular explica cómo realizar el
-calculo para los diferentes escenarios.
+cálculo para los diferentes escenarios.
 
 ---
 
@@ -768,7 +804,7 @@ es una consultoría la que presta el servicio al cliente)
 ----
 
 ### 1. Obtención de Requerimientos
-Posteriormente se preparan las entrevistas. Para las mismas se recomenda:
+Posteriormente se preparan las entrevistas. Para las mismas se recomienda:
 1. Obtener información sobre el dominio del problema y el sistema actual.
 2. Preparar y realizar las sesiones de elicitación/negociación
 3. Identificar/revisar los requisitos funcionales
@@ -828,7 +864,7 @@ orígenes o destinos de la información que consumirá o producirá el sistema a
 Identificar los casos de uso (requerimiento funcional) asociados a los actores para obtener un listado de requerimientos 
 que se va a desarrollar.
 
-Re-analizar los requerimientos ambiguos para hablarlos con el cliente y lleguar a una definición clara de los mismos.
+Re-analizar los requerimientos ambiguos para hablarlos con el cliente y llegar a una definición clara de los mismos.
 
 ----
 
@@ -886,16 +922,21 @@ Es un "pasar en limpio" el análisis realizado previamente aplicando técnicas y
 
 ---
 
-### 4. Verificación de Requerimientos
-La validación es la etapa final de la IR. Su objetivo es que los analistas
-se aseguren que los requerimientos especificados son los que realmente quiere el cliente, que estén **completos** y sean **consistentes**.
+### 4. Validación de Requerimientos
+<!-- .slide: style="font-size: 0.90em" -->
+El objetivo es que los analistas se aseguren de que los requerimientos especificados son los que
+realmente quiere el cliente, y que estén **completos** y sean **consistentes**.
 
-Además de cumplir con todas las características que distinguen un buen requerimiento, la revisión ayuda a asegurarse que no se haya
-omitido ningún requerimiento.
+Además de comprobar que cada requerimiento cumpla con las características de un buen requerimiento,
+la revisión ayuda a detectar los que se hayan omitido.
+
+**Verificación y validación no son lo mismo:**
+* **Verificar** es comprobar que el documento está bien construido: sin ambigüedades, sin contradicciones, sin huecos. *¿Está bien escrito?*
+* **Validar** es comprobar que describe el sistema que el cliente realmente necesita. *¿Es lo correcto?*
 
 ----
 
-### 4. Verificación de Requerimientos
+### 4. Validación de Requerimientos
 Se recomienda seleccionar varios revisores de diferentes disciplinas puede ser un analista, arquitecto, o
 incluso un ingeniero de SW que tenga conocimiento de los estándares de documentación de la organización. 
 
@@ -905,18 +946,18 @@ Lo que se debe hacer es realizar revisiones al documento, aplicarles pruebas de 
 
 ----
 
-### 4. Verificación de Requerimientos
+### 4. Validación de Requerimientos
 <!-- .slide: style="font-size: 0.70em" -->
 Ejemplo de puntos a revisar en los documentos obtenidos:
 - ¿Están incluidas todas las funcionalidades requeridas por el cliente? (completa).
 - ¿Existen conflictos en los requerimientos? (consistencia)
 - ¿Tiene alguno de los requerimientos más de una interpretación? (no ambigua)
-- ¿Esta cada requerimiento claramente representado? (entendible)
-- ¿Puede ser los requerimientos implementados con la tecnología y presupuesto disponible? (factible)
+- ¿Está cada requerimiento claramente representado? (entendible)
+- ¿Pueden implementarse los requerimientos con la tecnología y el presupuesto disponibles? (factible)
 - ¿Está la especificación escrita en un lenguaje apropiado? (clara)
 - ¿Existe facilidad para hacer cambios en los requerimientos? (modificable)
 - ¿Está claramente definido el origen de cada requerimiento? (rastreable)
-- ¿Pueden ser los Requerimientos ser sometidos a pruebas cuantitativas? (verificable) 
+- ¿Pueden someterse los requerimientos a pruebas cuantitativas? (verificable) 
 
 ----
 
@@ -944,13 +985,13 @@ problemas en una etapa temprana.
 
 ### 5. Aceptación de Requerimientos
 <!-- .slide: style="font-size: 0.85em" -->
-Este es un proceso los analistas involucrados se reúnen con el cliente y comienzan a dar una revisión formal al documento. 
+Este es un proceso en el que los analistas involucrados se reúnen con el cliente y comienzan a dar una revisión formal al documento. 
 Comienzan a leer y explicar cada requerimiento, incluso se pueden
 apoyar en prototipos en papel para que quede más claro el funcionamiento.
 
 El objetivo es que todos estén en el mismo entendido de lo que se realizará para cada requerimiento. 
 Si todos están de acuerdo se hace la aceptación/aprobación de la especificación de requerimientos, se realiza un compromiso formal de
-que lo contenga la Especificación será lo que se construya y se pide al cliente una aprobación formal vía correo electrónico o una firma sobre el
+que lo que contenga la Especificación será lo que se construya y se pide al cliente una aprobación formal vía correo electrónico o una firma sobre el
 documento físico.
 
 ---
@@ -995,9 +1036,9 @@ atención al paciente.
 * Los gerentes de salud que obtienen información de
 gestión del sistema.
 * Personal de registros médicos que son responsables de
-asegurar que la información del sistema se pueden
-mantener y preservados, y que los procedimientos de
-mantenimiento de registros han sido ejecutadas
+asegurar que la información del sistema se pueda
+mantener y preservar, y que los procedimientos de
+mantenimiento de registros se hayan ejecutado
 correctamente.
 
 ---
@@ -1020,13 +1061,18 @@ correctamente.
 
 ---
 
-Algunas técnicas son más efectivas en algunas etapas de análisis de requerimientos que en otras:
+### Qué técnica sirve en cada etapa
+<!-- .slide: style="font-size: 0.75em" -->
+
+Algunas técnicas son más efectivas en unas etapas que en otras. La tabla incluye, además de las
+técnicas de obtención vistas antes, otras de **análisis** (DOFA, cadena de valor, diagrama de
+Ishikawa, QFD) que se usan para ordenar y priorizar lo ya recolectado.
 
 <table>
   <thead>
     <tr>
-      <th>Herramientas</th>
-      <th>Extracción</th>
+      <th>Técnica</th>
+      <th>Obtención</th>
       <th>Análisis</th>
       <th>Especificación</th>
       <th>Validación</th>
@@ -1039,7 +1085,7 @@ Algunas técnicas son más efectivas en algunas etapas de análisis de requerimi
     <tr><td>Lluvia de Ideas</td><td>X</td><td></td><td></td><td></td></tr>
     <tr><td>Arqueología de documentos</td><td>X</td><td></td><td></td><td></td></tr>
     <tr><td>Observación</td><td>X</td><td></td><td></td><td></td></tr>
-    <tr><td>Prototipo no funcional</td><td></td><td></td><td>X</td><td></td></tr>
+    <tr><td>Prototipo no funcional</td><td>X</td><td></td><td>X</td><td>X</td></tr>
     <tr><td>Prototipo Funcional</td><td>X</td><td></td><td>X</td><td>X</td></tr>
     <tr><td>Análisis DOFA</td><td></td><td>X</td><td></td><td></td></tr>
     <tr><td>Cadena de Valor</td><td></td><td>X</td><td></td><td></td></tr>
@@ -1047,7 +1093,7 @@ Algunas técnicas son más efectivas en algunas etapas de análisis de requerimi
     <tr><td>Diagrama de Pescado</td><td></td><td>X</td><td></td><td></td></tr>
     <tr><td>Glosario</td><td>X</td><td></td><td>X</td><td>X</td></tr>
     <tr><td>Diagrama de actividad</td><td></td><td></td><td>X</td><td></td></tr>
-    <tr><td>Casos de Uso</td><td>X</td><td></td><td>X</td><td></td></tr>
+    <tr><td>Casos de Uso</td><td>X</td><td>X</td><td>X</td><td>X</td></tr>
     <tr><td>Casa de Calidad o QFD</td><td></td><td></td><td></td><td>X</td></tr>
     <tr><td>Lista de Verificación</td><td></td><td></td><td></td><td>X</td></tr>
   </tbody>
@@ -1122,7 +1168,7 @@ Piense al menos 3 preguntas cerradas y 3 preguntas abiertas sobre los requerimie
 - Esta técnica es efectiva cuando se requiere obtener información rápidamente de varias personas al tiempo.
 - Se deben realizar con una agenda previa, identificando los participantes.
 - Se puede utilizar un material común sobre el cual enfocar la atención y conversar, por ejemplo una presentación con un desglose del proceso que se está estudiando o un flujograma.
-- En las mesas de trabajó se podrá hacer uso de otras técnicas como por ejemplo las entrevistas y cuestionarios.
+- En las mesas de trabajo se podrá hacer uso de otras técnicas como por ejemplo las entrevistas y cuestionarios.
 
 ---
 ### Escenarios
@@ -1175,7 +1221,7 @@ falta de información puede significar que el tratamiento no sea efectivo.
 Esto debe ser firmado y entregado al paciente.
 
 **OTRAS ACTIVIDADES:**
-* Registro podrá ser consultado , pero no editado por
+* El registro podrá ser consultado, pero no editado, por
 el resto del personal mientras se introduce información.
 
 **ESTADO DEL SISTEMA A COMPLETAR:**
@@ -1191,13 +1237,13 @@ Piensa en 3 escenarios de uso, cada uno desde el punto de vista de un usuario/ro
 
 ---
 ### Casos de uso
-* Casos de uso son una técnica basado de escenario en UML que
-permiten identificar a los actores en una interacción y que describen
+* Los casos de uso son una técnica de UML basada en escenarios que
+permite identificar a los actores en una interacción y que describen
 la interacción misma.
 * Un conjunto de casos de uso debe describir todas las posibles
 interacciones con el sistema.
-* Modelo gráfico de alto nivel complementado con una descripción
-más detallada de cuadro.
+* Modelo gráfico de alto nivel, complementado con una descripción
+más detallada en forma de tabla.
 * Los diagramas de secuencia se pueden utilizar para agregar el
 detalle a los casos de uso, mostrando la secuencia de procesamiento
 de eventos en el sistema.
@@ -1270,7 +1316,8 @@ adquisición de requerimientos.
 - Es una sesión de trabajo estructurada orientada para obtener la mayor cantidad de ideas posibles.
 - Se recomienda limitar el tiempo, utilizar ayudas visuales y designar un facilitador.
 - Se deben tener reglas, por ejemplo los criterios para evaluar ideas y asignarles un puntaje, no permitir las críticas a las ideas y limitar el tiempo de discusión.
-- En una primera fase, se deben identificar la mayor cantidad de ideas, para luego evaluarlas. - Todas las ideas deben ser consideradas y deben limitarse que una idea se le ahogue o critique antes de tener tiempo de desarrollarla.
+- En una primera fase se identifica la mayor cantidad de ideas posible, y recién después se evalúan.
+- Todas las ideas deben ser consideradas: hay que evitar que una idea se descarte o se critique antes de darle tiempo a desarrollarse.
 
 ---
 
@@ -1289,7 +1336,7 @@ requerimientos individuales y sus vínculos con
 requerimientos dependientes para evaluar el impacto de
 los cambios.
 * Es necesario establecer un proceso formal para las
-propuestas de cambio y su vinculacion con los
+propuestas de cambio y su vinculación con los
 requisitos del sistema.
 
 ---
@@ -1298,7 +1345,7 @@ requisitos del sistema.
 * El entorno empresarial del sistema siempre cambia
 después de la instalación:
 
-Nuevo hardware, interconeccion con otros sistemas, las prioridades de
+Nuevo hardware, interconexión con otros sistemas, las prioridades de
 negocio pueden cambiar (con los consiguientes cambios en el apoyo al
 sistema es necesario), nueva legislación y los reglamentos etc.
 
@@ -1320,8 +1367,8 @@ diferentes necesidades y prioridades que pueden ser
 conflictivas o contradictorias.
   * Los requerimientos finales del sistema son inevitablemente un
 compromiso entre ellos y, con la experiencia, a menudo se
-descubre que el saldo de la ayuda dada a los diferentes usuarios
-tiene que ser cambiado.
+descubre que el equilibrio del soporte brindado a los distintos usuarios
+tiene que ajustarse.
 
 ---
 ### Evolución de los requerimientos
@@ -1333,7 +1380,7 @@ tiene que ser cambiado.
 * Establece el nivel de detalle de la gestión de requerimientos que se requiere.
 * Decisiones de gestión requerimientos:
   * **La identificación de requerimientos:** Cada requerimiento debe ser
-identificada de modo que pueda ser una referencia cruzada con otros requerimientos.
+identificado de modo que pueda referenciarse de forma cruzada con otros requerimientos.
   * **Proceso de gestión de cambios:** Este es el conjunto de actividades
 que evalúan el impacto y el costo de los cambios.
   * **Políticas de trazabilidad:** Estas políticas definen las relaciones entre
@@ -1352,8 +1399,8 @@ hojas de cálculo y hasta sistemas de bases de datos simples
 se realimenta al solicitante al que pidió el cambio quién puede responder con requerimientos más específicos cambiar la
 propuesta, o si decide retirar la solicitud.
   * **Análisis del cambio y cálculo de costos**
-    * El efecto del cambio propuesto se evaluó a través de la información de trazabilidad y el conocimiento general de 
-los requerimientos del sistema. Una vez completado este de análisis, se toma la decisión de si se debe o no proceder con 
+    * El efecto del cambio propuesto se evalúa a través de la información de trazabilidad y el conocimiento general de 
+los requerimientos del sistema. Una vez completado este análisis, se toma la decisión de si se debe o no proceder con 
 el cambio de requerimientos.
   * **Implementación del cambio**
     * El documento de requerimientos y, en su caso, el diseño e implementación del sistema, se modifican. Lo ideal sería 
