@@ -40,20 +40,26 @@ Created by <i class="fab fa-telegram"></i>
     padding: 20px;
     text-align: left !important;
 }
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
 </style>
 ## Temario
 <div class="grid-container2">
 <div class="grid-item">
 
-### Requerimientos de Software
+### El documento SRS
+* El estándar
 * Historial de Cambios
 * **Introducción**
 * Propósito
 * Alcance
 * Personal Involucrado
 * Definiciones, Acrónimos y Abreviaturas
-* Referencias
-* Resumen
+* Referencias y Resumen
 </div>
 <div class="grid-item">
 
@@ -67,40 +73,57 @@ Created by <i class="fab fa-telegram"></i>
 * Interfaces Externas
 * Requerimientos Funcionales
 * Requerimientos No Funcionales
+* **Ejercicios**
+
+*Cada sección se acompaña con el ejemplo
+de un mismo caso: SIGETUR, el sistema de
+turnos de un centro médico.*
 </div>
 </div>
 
 ---
+
+### ¿De dónde sale esta estructura?
+<!-- .slide: style="font-size: 0.85em" -->
+
+La plantilla que vamos a recorrer es la del estándar **IEEE 830 — *Recommended Practice for
+Software Requirements Specifications***, publicado en 1998. Es la estructura de SRS más difundida
+y la que se sigue usando en la mayoría de las cátedras y de las consultoras.
+
+**Está formalmente reemplazado por ISO/IEC/IEEE 29148**, que integra los requerimientos de sistema
+y de software en un marco único y contempla desarrollos iterativos. En la práctica, la estructura
+de secciones sigue siendo casi la misma.
+
+**Lo importante:** la plantilla es un *checklist para no olvidarse de nada*, no un formulario a
+completar por obligación. Un SRS de tres páginas bien escrito vale más que uno de cincuenta con
+todas las secciones rellenadas.
+
+---
 ## Historial de Cambios
-<!-- .slide: style="font-size: 0.75em" -->
-Permite realizar un seguimiento de las modificaciones, ediciones y revisiones que se han realizado en un archivo a lo 
-largo del tiempo. Es útil en entornos de colaboración, y tiene varios propósitos:
-1. **Control de versiones:** Permite llevar un registro de las diferentes versiones de un documento a medida que se 
-realizan modificaciones. Esto facilita la identificación de quién hizo cada cambio, cuándo se realizó y qué cambios 
-específicos se hicieron en cada revisión. Esto es esencial para rastrear la evolución del documento y asegurarse de 
-que se conserve un registro completo de las ediciones.
-2. **Colaboración:** Ayuda a evitar conflictos y a mantener una visión clara de quién contribuyó con qué. Permite a 
-los colaboradores revisar las ediciones de los demás y aprobar o rechazar los cambios propuestos. Esto facilita el 
-trabajo en equipo y la comunicación entre colaboradores.
+<!-- .slide: style="font-size: 0.85em" -->
+
+Registra las modificaciones que sufre el documento a lo largo del tiempo. Sirve para cuatro cosas:
+
+* **Control de versiones** — quién cambió qué y cuándo.
+* **Colaboración** — evita que dos personas trabajen sobre versiones distintas.
+* **Recuperación** — permite volver a una versión anterior.
+* **Auditoría** — deja traza para cumplimiento legal o regulatorio.
+
+Es especialmente importante en un SRS porque el documento **suele formar parte del contrato**:
+hay que poder demostrar qué se acordó y en qué momento.
 
 ----
 
-<!-- .slide: style="font-size: 0.75em" -->
-3. **Seguridad y recuperación:** Si se comete un error o se necesita volver a una versión anterior del documento, el 
-historial de cambios permite restaurar una versión anterior del archivo. Esto puede ser útil para deshacer cambios no 
-deseados o para recuperar información que se haya eliminado por accidente.
-4. **Auditoría y cumplimiento:** Permite realizar auditorías y demostrar el cumplimiento de regulaciones. Proporciona 
-una traza detallada de todas las modificaciones realizadas en un documento a lo largo del tiempo, lo que puede ser 
-necesario para propósitos legales o regulatorios.
-5. **Mejora de la calidad:** Al revisar el historial de cambios, los autores y revisores pueden aprender de las 
-ediciones anteriores y mejorar gradualmente la calidad del documento. Esto permite una retroalimentación continua y la 
-posibilidad de corregir errores y deficiencias con el tiempo.
+### Historial de Cambios: cómo se ve
 
-----
+| Versión | Fecha | Autor | Descripción del cambio |
+|---|---|---|---|
+| 1.0 | 12/03/2026 | F. Ameri | Versión inicial aprobada por el cliente |
+| 1.1 | 27/03/2026 | F. Ameri | Se agrega RF-12 (recordatorio por WhatsApp) a pedido de recepción |
+| 1.2 | 05/04/2026 | M. Suárez | Se corrige RNF-03: la disponibilidad pasa de 99% a 99,5% |
+| 2.0 | 20/04/2026 | F. Ameri | Se excluye del alcance la facturación electrónica |
 
-El historial de cambios es una herramienta fundamental en la gestión de documentos que proporciona transparencia, 
-control y seguridad en el proceso de edición y revisión. Facilita la colaboración y asegura que un documento evolucione 
-de manera controlada y documentada.
+Una tabla de cuatro columnas. Nada más que eso.
 
 ---
 ## Sección 1: Introducción
@@ -113,166 +136,101 @@ de manera controlada y documentada.
 
 ---
 ### Propósito
-<!-- .slide: style="font-size: 0.75em" -->
-Se refiere a su razón de existir y guía el contenido, el formato y el enfoque del mismo. Se debe considerar:
-1. **Objetivo claro:** ¿Qué se espera lograr con este documento? ¿Qué información se quiere comunicar o qué acción se 
-desea impulsar? El objetivo ayuda a mantener el enfoque y la relevancia del documento.
-2. **Audiencia objetivo:** Identificar a quiénes está dirigido el documento. Puede ser un grupo específico de personas, 
-como empleados, clientes, inversores, estudiantes, o el público en general. Comprender las necesidades, intereses y 
-nivel de conocimiento de la audiencia ayuda a adaptar el contenido y el tono del documento para que sea efectivo.
-3. **Mensaje clave:** Determine cuál es el mensaje o la información más importante que se debe transmitir. Esto puede 
-incluir datos clave, recomendaciones, instrucciones o cualquier otro contenido esencial.
+<!-- .slide: style="font-size: 0.85em" -->
 
-----
+Responde tres preguntas, en pocos párrafos:
 
-<!-- .slide: style="font-size: 0.75em" -->
-4. **Acción deseada:** Si el documento busca impulsar una acción específica por parte de la audiencia es importante 
-destacar cuál es y proporcionar la información necesaria para que pueda llevarla a cabo.
-5. **Beneficios y valor:** Explique cómo la información contenida en el documento beneficia a la audiencia. ¿Qué valor 
-agrega? Comunicar los beneficios puede motivar a la audiencia a prestar atención al documento y tomar medidas. 
-6. **Contexto y antecedentes:** Permite comprender el contenido del documento. 
-7. **Tono y estilo:** El tono y el estilo de redacción deben estar alineados con el propósito del documento y la 
-audiencia objetivo.
-8. **Estructura y formato**: Deben estar diseñados de manera coherente con su propósito. Esto incluye la organización de 
-secciones, el uso de gráficos, tablas o imágenes, y la elección de la tipografía y los colores.
+1. **¿Qué documenta este SRS?** Qué producto o qué parte del producto especifica.
+2. **¿Para quién está escrito?** Clientes y usuarios, el equipo de desarrollo, los testers, el
+   área legal. Cada uno lee secciones distintas.
+3. **¿Qué se espera que hagan con él?** Aprobarlo, diseñar a partir de él, derivar casos de prueba.
 
-----
+**Ejemplo:**
 
-Definir claramente el propósito de un documento es esencial para crear un contenido efectivo y relevante. Esto 
-garantiza que el documento cumpla con sus objetivos y llegue de manera efectiva a la audiencia deseada. Además, 
-proporciona una base sólida para la planificación, redacción y revisión del documento.
+> Este documento especifica los requerimientos del Sistema de Gestión de Turnos (SIGETUR) para el
+> Centro Médico Norte. Está dirigido al equipo de desarrollo, que lo usará como base de diseño;
+> al personal de recepción y a la dirección del centro, que deben validarlo; y al equipo de
+> pruebas, que derivará de él los casos de prueba de aceptación.
 
 ---
-<!-- .slide: style="font-size: 0.75em" -->
 ### Alcance
-El alcance es una parte fundamental de la planificación, ya que define los límites y las dimensiones del proyecto, 
-establece lo que se incluirá y lo que quedará fuera, y proporciona una visión general de los objetivos y metas del mismo. 
+<!-- .slide: style="font-size: 0.80em" -->
 
-Los componentes clave del alcance de un proyecto de desarrollo de software:
-* **Nombre del producto:** Es la identificación principal del proyecto y lo distingue de otros productos o proyectos. 
-Este nombre debe ser descriptivo y fácil de recordar para que todos los interesados puedan referirse al proyecto de 
-manera coherente.
-* **Funcionalidades incluidas:** Se debe especificar qué funcionalidades o características se incluirán en el producto 
-de software. Estas funciones deben estar directamente relacionadas con los objetivos y necesidades del cliente o usuario 
-final.
+Define **los límites del producto**: qué se va a construir y qué no.
 
-----
-
-<!-- .slide: style="font-size: 0.90em" -->
-* **Funcionalidades excluidas:** Se recomienda definir lo que el producto de software no hará. Ayuda a evitar 
-expectativas no cumplidas.
-* **Beneficios y valor:** Describe los beneficios que el software aportará a los usuarios 
-finales y a la organización. ¿Cómo mejorará la eficiencia, la productividad o la experiencia del usuario? ¿Qué valor 
-agregado proporcionará en comparación con soluciones existentes o competidores?
-* **Objetivos y metas:**  Esto podría incluir plazos específicos, métricas de rendimiento, metas de adopción por parte 
-de los usuarios o cualquier otro indicador relevante. Los objetivos deben ser cuantificables y alcanzables.
+* **Nombre del producto** — identificación clara, para que todos se refieran a lo mismo.
+* **Funcionalidades incluidas** — qué hará el software.
+* **Funcionalidades excluidas** — qué **no** hará. Tan importante como lo anterior: es lo que
+  evita las expectativas incumplidas.
+* **Beneficios y objetivos** — qué mejora aporta, con metas medibles cuando sea posible.
+* **Restricciones conocidas** — presupuesto, plazo, recursos.
 
 ----
 
-<!-- .slide: style="font-size: 0.90em" -->
-* **Requisitos no funcionales:**  Como por ejemplo el rendimiento, la seguridad, la escalabilidad y la usabilidad. 
-Estos requisitos son esenciales para garantizar que el producto cumpla con los estándares de calidad y rendimiento esperados.
-* **Restricciones y limitaciones:** situaciones que pueda afectar al proyecto, como restricciones presupuestarias, de 
-recursos o de tiempo. Estas definiciones ayudarán a establecer expectativas realistas. 
-* **Aprobación y aceptación:** El alcance del proyecto debe ser aprobado por todas las partes interesadas relevantes, 
-incluidos los patrocinadores, los clientes y el equipo de desarrollo. Esto garantiza que todas las partes tengan una 
-comprensión común y acordada del alcance del proyecto.
+### Alcance: cómo se ve
+<!-- .slide: style="font-size: 0.78em" -->
 
-----
+> **Producto:** SIGETUR — Sistema de Gestión de Turnos.
+>
+> **Incluye:** solicitud y cancelación de turnos por parte del paciente vía web; gestión de la
+> agenda de cada profesional; recordatorio automático por correo 24 horas antes; reportes de
+> ausentismo para la dirección.
+>
+> **No incluye:** historia clínica, facturación, obras sociales, ni aplicación móvil nativa.
+> Estas funciones quedan fuera de esta versión y podrán abordarse en etapas posteriores.
+>
+> **Objetivo:** reducir el ausentismo a turnos del 22% actual a menos del 12% en los primeros
+> seis meses de operación.
 
-Definir el alcance de un proyecto de desarrollo de software es un paso crucial en su planificación y 
-ejecución. Un alcance bien definido proporciona una base sólida para la gestión eficaz del proyecto, ayuda a evitar 
-problemas de alcance y garantiza que todas las partes interesadas estén alineadas en cuanto a lo que se espera del 
-proyecto y lo que no se espera.
+**Notar el objetivo:** tiene un número de partida, uno de llegada y un plazo. Un alcance que dice
+"mejorar la atención al paciente" no se puede verificar ni aprobar.
 
 ---
 ### Personal Involucrado
-El personal involucrado en un proyecto de desarrollo de software desempeña roles específicos y tiene responsabilidades 
-definidas. Mantener un registro de esta información es fundamental para una gestión eficaz del proyecto y para 
-garantizar una comunicación fluida y una colaboración exitosa entre los miembros del equipo. 
+<!-- .slide: style="font-size: 0.85em" -->
 
-----
+Deja registrado **quién es quién** en el proyecto: para saber a quién preguntarle, y sobre todo
+**quién tiene autoridad para aprobar un requerimiento**.
 
-<!-- .slide: style="font-size: 0.70em" -->
-Algunos campos que se pueden completar:
-* **Nombre:** Ayuda a identificar a cada miembro del equipo y facilita la comunicación y la colaboración.
-* **Rol:** Cada miembro del equipo desempeña un rol específico en el proyecto. Los roles pueden incluir, entre otros, analistas de negocios, desarrolladores de software, diseñadores de interfaz de usuario (UI/UX), testers, gerentes de proyecto, arquitectos de software y administradores de bases de datos. Es importante definir claramente el rol de cada persona para que sepan qué se espera de ellos.
-* **Responsabilidades:** Enumerar las responsabilidades específicas que se les asignan. Esto ayuda a comprender sus 
-tareas y contribuciones en el proyecto. 
-* **Contacto:** Suele incluir direcciones de correo electrónico, números de teléfono y cualquier otra información 
-relevante para la comunicación eficaz. También es útil incluir información sobre la disponibilidad de cada persona y los 
-mejores momentos para contactarlos.
+Campos habituales: nombre, rol, responsabilidades y datos de contacto. Si el equipo es distribuido,
+conviene sumar disponibilidad horaria.
 
-----
-
-<!-- .slide: style="font-size: 0.80em" -->
-Otra información útil...
-* **Experiencia y habilidades:**  Experiencia previa y las habilidades específicas de cada miembro del equipo. Esto 
-puede ayudar a la asignación de tareas y a garantizar que se aproveche al máximo el conjunto de habilidades del equipo.
-* **Horarios y disponibilidad:** Suele ser importante en proyectos que involucran equipos distribuidos o colaboradores 
-con diferentes husos horarios.
-* **Expectativas de comunicación:** Suelen listarse las reuniones regulares, herramientas de colaboración, informes de 
-estado, etc.
-* **Formación y desarrollo:** Si se requieren habilidades específicas para el proyecto, es importante documentar 
-cualquier formación o desarrollo adicional que se deba proporcionar a los miembros del equipo para cumplir con sus 
-responsabilidades.
-
-----
-
-Mantener un registro detallado del personal involucrado en el desarrollo de software es esencial para una gestión 
-efectiva del proyecto. Esto asegura que cada miembro del equipo comprenda su rol y responsabilidades, facilita la 
-comunicación y la colaboración, y ayuda a garantizar que el proyecto se desarrolle de manera eficiente y se alcancen los 
-objetivos establecidos.
+| Nombre | Rol | Responsabilidad | Contacto |
+|---|---|---|---|
+| Dra. L. Pereyra | Directora médica | Aprueba el alcance y los requerimientos | lpereyra@... |
+| M. Gómez | Jefa de recepción | Referente funcional del proceso de turnos | mgomez@... |
+| F. Ameri | Analista funcional | Releva, redacta y mantiene el SRS | fameri@... |
+| Equipo de desarrollo | Desarrollo | Diseña e implementa | dev@... |
 
 ---
-<!-- .slide: style="font-size: 0.80em" -->
 ### Definiciones, Acrónimos y Abreviaturas
-Esta sección es fundamental para garantizar la comprensión precisa del contenido del documento.
+<!-- .slide: style="font-size: 0.82em" -->
 
-* **Definición:** Es una explicación precisa y clara de lo que significa una palabra, término o concepto. Ayuda a 
-comprender el significado de la palabra en cuestión.
-* **Acrónimo:** Es una palabra formada tomando las letras iniciales de una serie de palabras y usándolas juntas como una 
-nueva palabra.
-* **Abreviatura:** Es una forma corta de una palabra o frase que se crea mediante la omisión de una o más letras o sílabas.
+Un SRS lo leen personas de dos mundos: el del **negocio** y el **técnico**. Esta sección evita que
+cada uno entienda algo distinto por la misma palabra.
 
-----
+Se ordena alfabéticamente, y cada acrónimo se expande la primera vez que aparece en el texto.
 
-La importancia de esta sección radica en:
-* **Claridad y Comprensión:** Garantizar que los lectores del documento comprendan completamente los términos, acrónimos 
-y abreviaturas utilizados a lo largo del texto. Al proporcionar definiciones claras y explicaciones para estas palabras 
-y siglas, se reduce la posibilidad de malentendidos y confusiones.
-* **Reducción de Ambigüedades:** Al definir con precisión los términos y las abreviaturas, se elimina la ambigüedad y se 
-asegura que todos los lectores tengan la misma interpretación de los conceptos clave.
+| Término | Definición |
+|---|---|
+| Ausentismo | Turno confirmado al que el paciente no se presenta ni cancela |
+| Profesional | Médico o especialista con agenda propia dentro del sistema |
+| SIGETUR | Sistema de Gestión de Turnos, objeto de este documento |
+| Sobreturno | Turno asignado por fuera de los horarios regulares de la agenda |
+| SRS | *Software Requirements Specification* |
 
-----
-
-<!-- .slide: style="font-size: 0.70em" -->
-* **Facilita la Referencia Cruzada:** Cuando un documento hace referencia a otros documentos, estándares o recursos 
-externos, es importante incluir abreviaturas y acrónimos relacionados. Esto facilita la referencia cruzada y ayuda a los 
-lectores a encontrar y comprender los recursos mencionados.
-* **Ahorra Espacio:** En documentos extensos, el uso de abreviaturas puede ayudar a ahorrar espacio y a mantener el 
-documento conciso. 
-* **Mantenimiento y Actualización:** A medida que se desarrolla un proyecto o se actualiza un documento, es posible que 
-surjan nuevos términos o acrónimos. Esta sección también sirve como un lugar para agregar definiciones y mantener el 
-documento actualizado con el tiempo.
-* **Formato y Organización:** La sección se organiza en orden alfabético para facilitar la búsqueda. Cada término se 
-presenta junto con su significado o explicación. Los acrónimos y las abreviaturas se enumeran en orden alfabético y se 
-expanden la primera vez que se utilizan en el texto.
-
-----
-
-La sección de "Definiciones, Acrónimos y Abreviaturas" en un documento es una herramienta valiosa para garantizar la 
-claridad, la precisión y la comprensión en la comunicación escrita. Ayuda a los lectores a navegar por el contenido de 
-manera efectiva y evita malentendidos.
+**El caso típico:** "turno" no significa lo mismo para recepción que para el desarrollador. Esta
+tabla es donde se resuelve esa diferencia, y no en una reunión seis semanas después.
 
 ---
-### Referencias
-Este apartado lista las referencias a todos los documentos complementarios que se mencionan en el cuerpo del documento.
+### Referencias y Resumen
+<!-- .slide: style="font-size: 0.90em" -->
 
----
-### Resumen
-Es una descripción breve de la información expuesta y de cómo esta se organiza en el documento.
-Suele listar las secciones.
+**Referencias** — Lista los documentos complementarios mencionados en el cuerpo del SRS: normativa
+aplicable, manuales de sistemas con los que hay que integrarse, actas de reunión, contratos.
+
+**Resumen** — Una descripción breve de cómo está organizado el resto del documento. Le dice al
+lector qué va a encontrar en cada sección y cuál le interesa a él.
 
 ---
 ## Sección 2: Descripción General
@@ -284,37 +242,79 @@ Suele listar las secciones.
 
 ---
 ### Descripción General
-Esta sección describe cuáles son los factores que afectan al producto de software a desarrollar y a sus requerimientos.
+Esta sección describe cuáles son los factores que afectan al producto de software a desarrollar y
+a sus requerimientos.
+
+Es el **contexto**: todavía no se enumeran requerimientos, se explica el escenario donde el
+sistema va a vivir.
 
 ---
 ### Perspectiva del Producto
-Este apartado detalla cuál es la relación del producto de software a desarrollar con otros sistemas, en tanto que si lo 
-desarrollado forma parte de un sistema más grande, describe cómo los requerimientos de ese sistema se relacionan con el 
-que se está desarrollando. En ambos casos, se detallan las interfaces necesarias para llevar adelante la comunicación 
-del producto de software.
+<!-- .slide: style="font-size: 0.85em" -->
+
+Detalla la relación del producto con **otros sistemas**. Si forma parte de un sistema mayor,
+describe cómo se relacionan sus requerimientos con los del conjunto. En cualquier caso, se
+detallan las interfaces necesarias para la comunicación.
+
+> **Ejemplo:** SIGETUR es un sistema nuevo e independiente, pero debe integrarse con el padrón de
+> profesionales del sistema administrativo existente (SISADM), del que toma las agendas y las
+> especialidades. No reemplaza a SISADM ni escribe sobre él: solo lo consulta.
 
 ---
 ### Funciones del Producto
-Es el resumen de las funcionalidades más importantes que el producto de software a desarrollar debe cumplir. En 
-ocasiones se utiliza un diagrama de caso de uso en esta sección.
+<!-- .slide: style="font-size: 0.85em" -->
+
+Resumen de las funcionalidades más importantes. Es una vista de alto nivel, no la lista detallada
+de requerimientos (esa va en la Sección 3). Suele acompañarse con un diagrama de casos de uso.
+
+> **Ejemplo:** el sistema permitirá que un paciente solicite y cancele turnos, que un profesional
+> consulte y bloquee su agenda, que recepción gestione turnos presenciales y sobreturnos, y que la
+> dirección obtenga reportes de ocupación y ausentismo.
 
 ---
 ### Características de los Usuarios
-Esta sección establece las cualidades que deben poseer los usuarios para utiliza el producto de software a desarrollar.
+<!-- .slide: style="font-size: 0.72em" -->
+
+Establece las cualidades que deben poseer los usuarios para utilizar el producto. Sirve para
+dimensionar cuánta capacitación hace falta y qué tan simple tiene que ser la interfaz.
 
 | Tipo de Usuario | Formación | Habilidades | Actividades |
-|-----------------|-----------|-------------|-------------|
+|---|---|---|---|
+| Paciente | Ninguna | Uso básico de web o celular; puede ser adulto mayor con poca experiencia digital | Solicita y cancela turnos |
+| Recepcionista | Secundario completo | Uso fluido de sistemas de gestión; capacitación de 4 h | Gestiona turnos, sobreturnos y reprogramaciones |
+| Profesional | Universitario | Uso básico; poco tiempo disponible para capacitarse | Consulta y bloquea su agenda |
+| Dirección | Universitario | Lectura de reportes | Consulta indicadores de ocupación y ausentismo |
+
+**Por qué importa:** la fila del paciente es la que justifica el requerimiento de accesibilidad.
+Sin esta tabla, ese requerimiento parece un capricho.
 
 ---
 ### Restricciones
-Este apartado señala las limitaciones a las que puede estar sujeto el desarrollo del producto; por ejemplo, políticas 
-gubernamentales, limitaciones de hardware, protocolos de comunicación, consideraciones referentes a la seguridad, 
-etc.
+<!-- .slide: style="font-size: 0.85em" -->
+
+Limitaciones a las que está sujeto el desarrollo: políticas gubernamentales, limitaciones de
+hardware, protocolos de comunicación, consideraciones de seguridad, plazos, tecnologías impuestas.
+
+> **Ejemplo:** el sistema debe alojarse en el servidor propio del centro médico, que corre Linux
+> con PostgreSQL. Debe cumplir con la Ley 25.326 de Protección de Datos Personales. El desarrollo
+> no puede superar los cuatro meses porque debe estar operativo antes de la temporada de invierno.
 
 ---
 ### Supuestos y Dependencias
-Las dependencias de terceros en puntos determinados del proceso de desarrollo o la asunción de que una funcionalidad
-determinada será provista por la base de datos y no por el producto de software.
+<!-- .slide: style="font-size: 0.85em" -->
+
+Los **supuestos** son cosas que damos por ciertas y que, si resultan falsas, invalidan parte de los
+requerimientos. Las **dependencias** son factores externos fuera del control del equipo.
+
+> **Supuestos:** se asume que todos los pacientes registrados tienen una dirección de correo
+> válida, y que la validación de identidad la resuelve el sistema administrativo existente y no
+> SIGETUR.
+>
+> **Dependencias:** el envío de correos depende del servicio contratado por el centro médico. El
+> acceso al padrón de profesionales depende de que el proveedor de SISADM habilite su API.
+
+**Escribirlos sirve para dos cosas:** dejar por escrito de qué no se hace cargo el equipo, y tener
+una lista de riesgos lista para revisar.
 
 ---
 ## Sección 3: Requerimientos Específicos
@@ -324,99 +324,194 @@ determinada será provista por la base de datos y no por el producto de software
 
 ---
 ### Requerimientos Específicos
-Esta es la sección más extensa e importante del documento. Describe todos los requerimientos del sistema, con un nivel 
-suficiente de detalle de modo que estos puedan ser utilizados, por un lado, para diseñar el sistema, de forma tal que 
-satisfaga estos mismos requerimientos y, por el otro, para que los testers los puedan utilizar como base para las 
-pruebas funcionales.
+<!-- .slide: style="font-size: 0.85em" -->
+
+Es la sección **más extensa e importante** del documento. Describe todos los requerimientos con
+suficiente nivel de detalle como para que sirvan a la vez para dos cosas:
+
+* que el equipo **diseñe** el sistema a partir de ellos, y
+* que los testers deriven de ellos los **casos de prueba**.
+
+Ese doble uso es el criterio para saber si un requerimiento está lo bastante detallado:
+**si no se puede escribir una prueba que lo verifique, todavía no está terminado.**
 
 ---
 ### Interfaces Externas
-<!-- .slide: style="font-size: 0.80em" -->
-Se definen todas las entradas y las salidas que el producto de software debe soportar. En esta sección se definen los 
-requerimientos de:
-* **Interfaces de Usuario:** por ejemplo, el cliente puede haber solicitado la utilización de cierta plantilla o 
-combinación de colores.
-* **Interfaces Hardware:** características lógicas entre el producto software y el hardware. Por ejemplo, la utilización 
-de un puerto serie para poder realizar ciertas funciones.
-* **Interfaces Software:** si el producto software debe comunicarse con otros sistemas, se describen las interfaces 
-(contenido y formato) que se utilizarán y los protocolos.
+<!-- .slide: style="font-size: 0.78em" -->
+
+Se definen todas las entradas y salidas que el producto debe soportar:
+
+* **Interfaces de usuario** — por ejemplo, el cliente puede haber solicitado cierta plantilla o
+  combinación de colores institucionales.
+* **Interfaces de hardware** — características lógicas entre el software y el hardware. Por
+  ejemplo, el uso de un lector de código de barras o de un puerto serie.
+* **Interfaces de software** — si hay que comunicarse con otros sistemas: contenido, formato y
+  protocolo.
+
+**Una aclaración necesaria:** en la unidad anterior vimos que el SRS dice *qué* y no *cómo*.
+¿No es contradictorio fijar acá los colores o el puerto serie? No: esas decisiones **no las está
+tomando el equipo de desarrollo, las impone el cliente o el entorno**. Cuando una decisión técnica
+viene dada desde afuera, deja de ser diseño y pasa a ser un requerimiento.
 
 ---
 ### Requerimientos Funcionales
-<!-- .slide: style="font-size: 0.70em" -->
-Son aquellos que satisfacen las acciones elementales que tienen lugar en el producto de software a desarrollar. Para 
-describir en forma correcta estas acciones, estas comienzan con: “El sistema deberá...”.
+<!-- .slide: style="font-size: 0.80em" -->
+
+Describen las acciones que el sistema debe realizar. Se redactan empezando por
+**"El sistema deberá..."**.
+
+Al describirlos hay que cubrir:
+
 * Comprobación de validez de las entradas
 * Secuencia exacta de operaciones
-* Respuesta a situaciones anormales (desbordamientos, comunicaciones, recuperación de errores)
-* Parámetros Generación de salidas
-* Relaciones entre entradas y salidas (secuencias de entradas y salidas, fórmulas 	para la conversión de información)
-* Especificación de los requisitos lógicos para la información que será almacenada en base de datos (tipo de información, 
-requerido)
+* Respuesta a situaciones anormales (desbordamientos, fallos de comunicación, recuperación de errores)
+* Parámetros
+* Generación de salidas
+* Relaciones entre entradas y salidas (secuencias, fórmulas de conversión)
+* Requisitos lógicos de la información que se almacenará en la base de datos
 
----
+----
+
+### Cómo se escribe uno, en concreto
+<!-- .slide: style="font-size: 0.62em" -->
+
+> **RF-07 — Cancelación de turno por el paciente**
+>
+> **Descripción:** El sistema deberá permitir que un paciente cancele un turno propio a través de
+> la web.
+>
+> **Entradas:** identificador del turno, identificador del paciente autenticado.
+>
+> **Precondición:** el turno existe, está en estado *Confirmado* y faltan más de 24 horas para su
+> inicio.
+>
+> **Proceso:** el sistema verifica la precondición, cambia el estado del turno a *Cancelado*,
+> libera la franja horaria en la agenda del profesional y registra la operación en la bitácora.
+>
+> **Salidas:** confirmación en pantalla y correo de aviso al paciente.
+>
+> **Postcondición:** la franja queda disponible para otro paciente.
+>
+> **Excepción:** si faltan menos de 24 horas, el sistema rechaza la cancelación y muestra el
+> mensaje indicando que debe comunicarse telefónicamente con recepción.
+>
+> **Prioridad:** Alta · **Origen:** entrevista con la jefa de recepción, 12/03/2026
+
+**Fijate qué permite esto:** de la precondición y la excepción salen dos casos de prueba, casi sin
+pensar. Ese es el estándar al que hay que llegar.
+
+----
+
 ![Tabla efectos](images/unidad3/tabla_efecto.jpg)
 
 ---
 ### Requerimientos No Funcionales
-Esta sección detalla todos los requerimientos no funcionales que deben estar presentes en el producto software a 
-desarrollar, por ejemplo: performance, seguridad, disponibilidad, mantenibilidad, portabilidad, etc.
+<!-- .slide: style="font-size: 0.90em" -->
+
+También llamados **atributos de calidad** o **criterios de calidad**. Definen **cómo** debe
+comportarse el sistema, en lugar de **qué** debe hacer.
+
+No son secundarios: si no se cumplen, el sistema puede resultar inutilizable aunque todas sus
+funciones estén implementadas.
 
 ----
 
-Los Requerimientos No Funcionales, también conocidos como **atributos de calidad** o **criterios de calidad**, son 
-aspectos fundamentales que definen cómo debe comportarse un sistema de software en lugar de qué debe hacer. 
+### Los más habituales
+<!-- .slide: style="font-size: 0.72em" -->
 
-Estos elementos son esenciales para garantizar que el producto final cumpla con las expectativas de los usuarios y las 
-necesidades del negocio. 
-
-----
-
-<!-- .slide: style="font-size: 0.80em" -->
-Algunos de los Requerimientos No Funcionales comunes:
-* **Performance:** Se refiere a la capacidad del software para realizar sus funciones de manera eficiente, en términos 
-de velocidad y capacidad de respuesta. Los aspectos de rendimiento incluyen el tiempo de carga de la aplicación, la 
-velocidad de procesamiento de datos y la gestión eficiente de recursos como la memoria y la CPU.
-* **Seguridad:** Es un factor crítico para proteger los datos y garantizar que el sistema no sea vulnerable a amenazas 
-externas o internas. Los requerimientos de seguridad pueden incluir la autenticación de usuarios, el control de acceso, 
-la encriptación de datos y la prevención de ataques cibernéticos.
-
-----
-
-<!-- .slide: style="font-size: 0.80em" -->
-* **Disponibilidad:** Se refiere a la capacidad del software para estar disponible y en funcionamiento cuando los 
-usuarios lo necesitan. La alta disponibilidad implica minimizar el tiempo de inactividad no planificado y garantizar 
-que el sistema sea resistente a fallos.
-* **Mantenibilidad:** Se relaciona con la facilidad de mantener y mejorar el software con el tiempo. 
-Esto incluye la legibilidad del código, la documentación adecuada, la modularidad y la capacidad de realizar cambios sin 
-causar efectos secundarios no deseados.
-* **Portabilidad:** Se refiere a la capacidad del software para ejecutarse en diferentes plataformas y entornos sin 
-necesidad de modificaciones significativas. Esto puede incluir sistemas operativos, bases de datos, navegadores web y dispositivos.
+* **Performance** — Capacidad de responder con eficiencia: tiempo de carga, velocidad de
+  procesamiento, uso de memoria y CPU.
+* **Seguridad** — Autenticación, control de acceso, encriptación, prevención de ataques.
+* **Disponibilidad** — Que el sistema esté operativo cuando se lo necesita; minimizar el tiempo de
+  inactividad no planificado.
+* **Mantenibilidad** — Facilidad para modificar y mejorar el software: legibilidad, documentación,
+  modularidad.
+* **Portabilidad** — Capacidad de ejecutarse en distintas plataformas sin cambios significativos.
+* **Escalabilidad** — Absorber un aumento de carga sin degradarse.
+* **Usabilidad** — Facilidad de uso, navegación intuitiva, eficiencia del usuario.
+* **Cumplimiento normativo** — Regulaciones aplicables al dominio.
+* **Eficiencia de recursos** — Consumo de energía, ancho de banda, almacenamiento.
 
 ----
 
-<!-- .slide: style="font-size: 0.80em" -->
-* **Escalabilidad:** Se refiere a la capacidad del software para adaptarse a un aumento en la carga de trabajo sin una 
-degradación significativa del rendimiento. Esto es esencial para garantizar que el sistema pueda crecer con la demanda 
-sin necesidad de una reescritura importante.
-* **Usabilidad:** Es un aspecto importante de la experiencia del usuario. Implica la facilidad de uso, la navegación 
-intuitiva y la capacidad de los usuarios para completar sus tareas de manera eficiente.
+### El error más común: no medirlos
+<!-- .slide: style="font-size: 0.75em" -->
 
-----
+| Mal escrito | Bien escrito |
+|---|---|
+| El sistema debe ser rápido | El 95% de las búsquedas de turno deberá responder en menos de 2 segundos con 200 usuarios concurrentes |
+| El sistema debe ser fácil de usar | Un recepcionista sin experiencia previa deberá completar la carga de un turno en menos de 90 segundos tras 4 horas de capacitación |
+| El sistema debe ser seguro | Las contraseñas deberán almacenarse con hash bcrypt; la sesión deberá expirar tras 15 minutos de inactividad |
+| El sistema debe estar siempre disponible | La disponibilidad mensual no deberá ser inferior al 99,5% en el horario de 07:00 a 21:00 |
 
-<!-- .slide: style="font-size: 0.80em" -->
-* **Cumplimiento normativo:** Algunas aplicaciones deben cumplir con regulaciones y estándares específicos, como GDPR 
-para la privacidad de datos o HIPAA para la salud. Los requerimientos de cumplimiento normativo aseguran que el software 
-cumpla con estas regulaciones.
-* **Eficiencia en el uso de recursos:** Se refiere a la optimización de recursos como el consumo de energía, 
-el ancho de banda de red o el espacio de almacenamiento.
+**La columna izquierda no son requerimientos, son *objetivos*.** Sirven para comunicar la
+intención, pero no se pueden verificar. Todo requerimiento no funcional necesita una métrica, un
+valor y una condición de medición.
 
-----
+---
 
-Estos son solo algunos ejemplos de Requerimientos No Funcionales que deben ser considerados al desarrollar un producto 
-de software. La identificación y gestión adecuada de estos requerimientos son esenciales para garantizar que el software 
-cumpla con las expectativas del cliente y las necesidades del negocio, además de proporcionar una experiencia de usuario 
-sólida y confiable.
+### 💡 Ejercicio: Convertir objetivos en requerimientos
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.78em" -->
+
+Reescriban cada objetivo como un requerimiento no funcional **verificable**. Necesitan una
+métrica, un valor y una condición de medición.
+
+1. "El sistema tiene que ser confiable." <!--Ej: la tasa de fallos no deberá superar 1 cada 1000 operaciones; el tiempo medio de recuperación tras un fallo no deberá superar los 15 minutos.-->
+2. "Los reportes tienen que salir rápido." <!--Ej: el reporte mensual de ausentismo deberá generarse en menos de 10 s para un volumen de hasta 20.000 turnos.-->
+3. "La app debe andar bien en el celular." <!--Ej: la interfaz deberá ser usable en pantallas desde 320 px de ancho, y la carga inicial no deberá superar los 3 s en una conexión 4G.-->
+4. "El sistema debe ser accesible para adultos mayores." <!--Ej: deberá cumplir WCAG 2.1 nivel AA; el tamaño mínimo de fuente será 16 px y el contraste mínimo 4.5:1.-->
+
+<!--
+Cierre: notar que para escribir la versión verificable hace falta información que el objetivo no
+tiene (¿cuántos turnos? ¿qué conexión? ¿qué norma?). Por eso este ejercicio, en la vida real,
+termina en otra reunión con el cliente. Ese es el aprendizaje.
+-->
+
+---
+
+### 💡 Ejercicio: Detectar la sección
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
+
+¿En qué sección del SRS va cada una de estas frases?
+
+1. "El centro médico ya tiene contratado el servicio de correo con un proveedor externo." <!--Supuestos y Dependencias-->
+2. "El sistema deberá enviar un recordatorio 24 horas antes del turno." <!--Requerimientos Funcionales-->
+3. "No se incluirá la gestión de obras sociales." <!--Alcance (funcionalidades excluidas)-->
+4. "Sobreturno: turno asignado fuera de los horarios regulares de la agenda." <!--Definiciones, Acrónimos y Abreviaturas-->
+5. "La base de datos debe ser PostgreSQL porque es la que ya usa el centro." <!--Restricciones-->
+6. "Los recepcionistas tienen secundario completo y usan sistemas de gestión a diario." <!--Características de los Usuarios-->
+7. "El sistema consulta el padrón de profesionales de SISADM mediante su API REST." <!--Perspectiva del Producto, y el detalle del formato y protocolo en Interfaces Externas-->
+8. "La disponibilidad no deberá ser inferior al 99,5% mensual." <!--Requerimientos No Funcionales-->
+
+<!--
+La 7 es la interesante: puede ir en dos lados y está bien que así sea. En Perspectiva del Producto
+se explica la relación entre sistemas; en Interfaces Externas se detalla el contrato técnico.
+-->
+
+---
+
+### 💡 Ejercicio: Escribir un requerimiento completo
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.78em" -->
+
+Tomen esta frase suelta de una reunión con el cliente:
+
+> *"Necesitamos que recepción pueda meter un sobreturno cuando llega alguien urgente."*
+
+Escríbanla como un requerimiento funcional completo, con el formato de RF-07: descripción,
+entradas, precondición, proceso, salidas, postcondición, excepciones, prioridad y origen.
+
+Después respondan: **¿cuántas preguntas nuevas al cliente les generó el ejercicio?**
+
+<!--
+Preguntas que deberían aparecer: ¿quién puede autorizar un sobreturno? ¿hay un máximo por día o
+por profesional? ¿qué pasa si el profesional ya se fue? ¿se le avisa? ¿cuenta para las
+estadísticas de ocupación? ¿el paciente recibe confirmación?
+El punto del ejercicio: una frase de diez palabras esconde seis decisiones sin tomar. Redactar el
+requerimiento con formato completo es lo que las hace visibles.
+-->
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?
