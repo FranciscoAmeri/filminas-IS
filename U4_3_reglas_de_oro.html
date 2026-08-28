@@ -41,15 +41,21 @@ Created by <i class="fab fa-telegram"></i>
     padding: 20px;
     text-align: left !important;
 }
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
 </style>
 ## Temario
 <div class="grid-container2">
 <div class="grid-item">
 
 ### Usabilidad
-* **8 reglas de oro de Schneiderman**
+* **8 reglas de oro de Shneiderman**
   1. Consistencia
-  2. Permitir que lo usuarios frecuentes usen atajos
+  2. Permitir que los usuarios frecuentes usen atajos
   3. Retroalimentación informativa
   4. Diseñar textos de diálogo para cerrar procesos
   5. Manejo de errores
@@ -62,7 +68,7 @@ Created by <i class="fab fa-telegram"></i>
 
 * **10 Principios Heurísticos de Nielsen**
   1. Visibilidad del estado del sistema
-  2. Consistencia entre el sistema y el mundo real
+  2. Coincidencia entre el sistema y el mundo real
   3. Control y libertad del usuario
   4. Consistencia y estándares
   5. Prevención de errores
@@ -71,13 +77,19 @@ Created by <i class="fab fa-telegram"></i>
   8. Diseño estético y minimalista
   9. Ayudar a reconocer, diagnosticar y recuperarse de errores
   10. Ayuda y documentación
+  *(+3 agregados por Pierotti)*
 
+</div>
 </div>
 
 ---
-### 8 Reglas de oro de Scheneiderman
+### 8 Reglas de oro de Shneiderman
+<!-- .slide: style="font-size: 0.90em" -->
+Formuladas por **Ben Shneiderman** en *Designing the User Interface* (1986). Son principios de
+diseño: guían **cómo construir** la interfaz.
+
 1. Consistencia
-2. Permitir que lo usuarios frecuentes usen atajos
+2. Permitir que los usuarios frecuentes usen atajos
 3. Retroalimentación informativa
 4. Diseñar textos de diálogo para cerrar procesos
 5. Manejo de errores
@@ -95,32 +107,32 @@ Eso le permite a los usuarios predecir el comportamiento de la interfaz y realiz
 La consistencia favorece el aprendizaje, la eficiencia y la satisfacción del usuario.
 
 ---
-### 2. Permitir que lo usuarios frecuentes usen atajos
+### 2. Permitir que los usuarios frecuentes usen atajos
 Con el constante uso de un producto o servicio, se demandan formas más rápidas para realizar las tareas. Como ejemplo,
 secuencias del teclado para copiar, pegar, etc. mientras el usuario va adquiriendo experiencia, pueden navegar y 
 utilizar la interfaz más rápido y sin esfuerzo.
 
 ---
 ### 3. Retroalimentación informativa
-Los usuarios deben saber en donde están y que es lo que está pasando todo el tiempo. Cada acción, debe tener una 
+Los usuarios deben saber dónde están y qué es lo que está pasando en todo momento. Cada acción debe tener una 
 retroalimentación legible y razonable. Un mal ejemplo son los mensajes de alerta que muestran códigos de error 
 incomprensibles para el usuario.
 
 ---
 ### 4. Diseñar textos de diálogo para cerrar procesos
-Los usuario deben saber cual ha sido el resultado de sus acciones o actos. Por ejemplo, los cuando se completa una 
-transacción en línea es necesario que sea informado todo lo relativo a la operación apenas concluida.
+Los usuarios deben saber cuál ha sido el resultado de sus acciones. Por ejemplo, cuando se completa una 
+transacción en línea es necesario informar todo lo relativo a la operación apenas concluida.
 
 ---
 ### 5. Manejo de errores
-Ofrecer una forma sencilla de corregir errores. Los sistemas deben diseñarse para evitar que los usuarios comentan de
+Ofrecer una forma sencilla de corregir errores. Los sistemas deben diseñarse para evitar que los usuarios cometan
 errores, pero, cuando esto suceda, deben recibir una solución simple para resolverlo. Por ejemplo, si hay campos 
-obligatorios en un formulario, pueden resaltarse para mejorar la identificacion.
+obligatorios en un formulario, pueden resaltarse para mejorar su identificación.
 
 ---
 ### 6. Permitir deshacer operaciones
 Se deben ofrecer formas obvias y sencillas de retroceder o revertir acciones. Esto debe de permitirse en varios puntos, 
-ya sea después de una acción, una captura de datos o una secuencias de acciones. “Esta función libera ansiedad, como el
+ya sea después de una acción, una captura de datos o una secuencia de acciones. “Esta función libera ansiedad, como el
 usuario se da cuenta que el error puede corregirse, le da el valor para explorar opciones, funciones o características 
 desconocidas”.
 
@@ -132,13 +144,18 @@ control de los eventos que ocurren en el espacio digital.
 ---
 ### 8. Reducir la carga de memoria a corto plazo
 La atención humana es limitada. La interfaz debe ser lo más sencilla posible y con una jerarquía de información evidente. 
-Eligir reconocimiento en vez de recuerdo. Reconocer es más fácil que recordar, el reconocimiento incluye claves que 
+Elegir el reconocimiento por encima del recuerdo. Reconocer es más fácil que recordar, el reconocimiento incluye claves que 
 ayudan a recordar objetos almacenados en la memoria.
 
 ---
-### 10 PRINCIPIOS HEURÍSTICOS DE NIELSEN
+### 10 Principios Heurísticos de Nielsen
+<!-- .slide: style="font-size: 0.90em" -->
+Publicados por **Jakob Nielsen** en 1994, a partir de un trabajo previo con Rolf Molich. A
+diferencia de las reglas de Shneiderman, nacieron como herramienta de **evaluación**: sirven para
+inspeccionar una interfaz ya existente y encontrarle problemas.
+
 1. Visibilidad del estado del sistema
-2. Consistencia entre el sistema y el mundo real
+2. Coincidencia entre el sistema y el mundo real
 3. Control y libertad del usuario
 4. Consistencia y estándares
 5. Prevención de errores
@@ -167,14 +184,14 @@ apropiada en un tiempo razonable.
   1. **Barras de proceso:** Indican cómo avanza la subida de un archivo.
   2. **Mensajes:** Confirman que "el formulario se ha enviado correctamente".
   3. **Animaciones:** Indican que algo está siendo procesado sin incidencias.
-  4. **Breadcrums:** Muestran dónde nos encontramos dentro de la web.
+  4. **Breadcrumbs:** Muestran dónde nos encontramos dentro de la web.
 
 ----
 
 ![Pantalla cargando Datos](images/unidad4/pantalla_carga.avif)
 
 ---
-### 2. Consistencia entre el sistema y el mundo real
+### 2. Coincidencia entre el sistema y el mundo real
 El sistema debe hablar en el lenguaje del usuario, con palabras, frases y conceptos familiares para él. Utilizar 
 convenciones del mundo real, haciendo que la información aparezca en un orden natural y lógico.
 
@@ -190,7 +207,7 @@ Relación entre el sistema y el mundo real:
 
 ---
 ### 3. Control y libertad del usuario
-Es frecuente que los usuarios elijan funcionalidades por error y necesitan un modo fácil para resolver la situación. Es 
+Es frecuente que los usuarios elijan funcionalidades por error y necesiten un modo fácil de resolver la situación. Es 
 importante ofrecer soporte para deshacer y rehacer acciones.
 
 ----
@@ -204,7 +221,7 @@ claramente marcada para dejar el estado no deseado al que accedieron, sin tener 
 
 ---
 ### 4. Consistencia y estándares
-Los usuarios no deben tener que preguntarse si las diversas palabras, situaciones, o acciones significan las misma cosa. 
+Los usuarios no deben tener que preguntarse si las diversas palabras, situaciones o acciones significan la misma cosa. 
 Que se sigan las normas y convenciones de la plataforma sobre la que está implementando el sistema.
 
 ----
@@ -212,8 +229,8 @@ Que se sigan las normas y convenciones de la plataforma sobre la que está imple
 <!-- .slide: style="font-size: 0.85em" -->
 ### Ejemplo:
 Consistencia y estándares:
-* Los usuarios no deberían cuestionarse las acciones, situaciones o palabras diferentes significan en realidad la misma
-  cosa.
+* Los usuarios no deberían tener que preguntarse si acciones, situaciones o palabras diferentes significan en realidad
+  la misma cosa.
 * Ejemplos:
   * Un menú que funciona de manera diferente en distintas partes de la web.
   * Usar distintos diseños para la misma cosa en distintos apartados (forma, color).
@@ -276,8 +293,8 @@ información importante, disminuyendo su visibilidad relativa.
 * Si un contenido no es necesario no debería colocarse en la página.
 * El diseño del sistema no debe "recargarse".
 * El usuario busca sites limpios y que carguen rápido.
-* Se deben eliminar todo lo que se considere innecesario y que no aporta valor a lo que se quiere decir.
-* La mejor forma de recordar este principio de usabilidad es con el acrónimo *KISS, Keep It Simple Stupid.*
+* Se debe eliminar todo lo que se considere innecesario y que no aporta valor a lo que se quiere decir.
+* La mejor forma de recordar este principio de usabilidad es con el acrónimo *KISS: Keep It Simple, Stupid.*
 
 ---
 ### 9. Ayudar a reconocer, diagnosticar y recuperarse de errores
@@ -294,7 +311,7 @@ buscar y no se vaya de la web.
 ---
 ### 10. Ayuda y documentación
 Aunque es mejor que se pueda usar el sistema sin documentación, es necesario proveer al usuario de ayuda y documentación. 
-Esta tiene que ser fácil de buscar y entender, centrada en la tareas del usuario, con información de las etapas a 
+Esta tiene que ser fácil de buscar y entender, centrada en las tareas del usuario, con información de las etapas a 
 realizar y no muy extensa.
 
 ----
@@ -305,9 +322,14 @@ Algunas páginas incluyen:
 * El icono de la interrogación cerca de algunas opciones
 
 ---
-### Agregados por PIEROTTI
+### Los 3 agregados por Pierotti
+<!-- .slide: style="font-size: 0.90em" -->
+**Deniese Pierotti**, de Xerox Corporation, publicó en 1995 *Heuristic Evaluation — A System
+Checklist*, que extiende las heurísticas de Nielsen para usarlas como lista de verificación
+detallada. De ahí salen estas tres:
+
 11. Habilidades
-12. Interacción placentera respetuosa
+12. Interacción placentera y respetuosa
 13. Privacidad
 
 ---
@@ -324,7 +346,7 @@ experiencia.
 
 ---
 ### 12. Interacción placentera respetuosa
-Las interacciones de los usuario con el sistema deben favorecer su calidad de vida, presentando un diseño estético, en
+Las interacciones del usuario con el sistema deben favorecer su calidad de vida, presentando un diseño estético, en
 donde los valores artísticos se igualen a los funcionales.
 
 ----
@@ -344,6 +366,117 @@ pertenece a los clientes del usuario.
 - Permitir al usuario decidir qué información comparte (por ejemplo, configuraciones de visibilidad o permisos granulares).
 - Uso de cifrado, autenticación de dos factores, y cierre automático de sesión en entornos sensibles.
 - En plataformas de análisis o encuestas, ocultar datos personales para proteger la identidad de los participantes.
+
+---
+
+### Shneiderman y Nielsen: ¿18 cosas distintas?
+<!-- .slide: style="font-size: 0.60em" -->
+
+No. Siete de las ocho reglas de Shneiderman tienen equivalente directo en Nielsen. **Son unas once
+ideas, no dieciocho.**
+
+| Regla de Shneiderman | Heurística de Nielsen |
+|---|---|
+| 1. Consistencia | 4. Consistencia y estándares |
+| 2. Atajos para usuarios frecuentes | 7. Flexibilidad y eficiencia de uso |
+| 3. Retroalimentación informativa | 1. Visibilidad del estado del sistema |
+| 4. Diálogos que cierran procesos | 1. Visibilidad del estado del sistema |
+| 5. Manejo de errores | 5. Prevención + 9. Recuperación de errores |
+| 6. Permitir deshacer | 3. Control y libertad del usuario |
+| 7. Sensación de control | 3. Control y libertad del usuario |
+| 8. Reducir la carga de memoria | 6. Reconocer es mejor que recordar |
+| *(no cubierta)* | 2. Coincidencia con el mundo real |
+| *(no cubierta)* | 8. Diseño estético y minimalista |
+| *(no cubierta)* | 10. Ayuda y documentación |
+
+**La diferencia real es para qué sirve cada lista:** Shneiderman escribió principios para
+**diseñar**; Nielsen, una herramienta para **evaluar** lo ya diseñado. Por eso las suyas están
+redactadas como algo que se puede verificar.
+
+---
+
+### Cómo se hace una evaluación heurística
+<!-- .slide: style="font-size: 0.72em" -->
+
+Tener los principios no alcanza: hay un método.
+
+1. **Elegir el conjunto de heurísticas** con el que se va a evaluar (las 10 de Nielsen, las 13 con
+   los agregados de Pierotti, o una lista adaptada al dominio).
+2. **Convocar de 3 a 5 evaluadores.** Nielsen midió que un solo evaluador encuentra alrededor del
+   35% de los problemas, mientras que cinco llegan al 75%. Menos de tres deja demasiado afuera;
+   más de cinco casi no agrega hallazgos nuevos.
+3. **Cada evaluador recorre la interfaz por separado**, al menos dos veces: la primera para
+   familiarizarse con el flujo, la segunda para inspeccionar en detalle.
+4. **Registrar cada problema** indicando qué heurística viola, en qué pantalla y con qué severidad.
+5. **Consolidar y priorizar** los hallazgos entre todos.
+
+**Por qué por separado:** si evalúan juntos, el primero que habla condiciona al resto y se pierden
+los hallazgos independientes. Recién se comparten los resultados al final.
+
+----
+
+### Escala de severidad
+<!-- .slide: style="font-size: 0.80em" -->
+
+| Valor | Significado | Qué hacer |
+|---|---|---|
+| **0** | No es un problema de usabilidad | Nada |
+| **1** | Cosmético | Arreglar solo si sobra tiempo |
+| **2** | Menor | Baja prioridad |
+| **3** | Mayor | Alta prioridad: hay que arreglarlo |
+| **4** | Catastrófico | Imperativo arreglarlo antes de lanzar |
+
+La severidad combina tres factores: **frecuencia** con la que aparece el problema, **impacto** que
+tiene cuando aparece, y **persistencia** (si el usuario lo aprende a sortear o lo sufre siempre).
+
+---
+
+### 💡 Ejercicio: ¿Qué heurística se está violando?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.65em" -->
+
+Para cada situación, indiquen **qué heurística de Nielsen** se incumple y **qué severidad** le
+pondrían de 0 a 4:
+
+1. Al hacer clic en "Guardar" la pantalla queda igual y no pasa nada visible durante 8 segundos. <!--1. Visibilidad del estado. Severidad 3: el usuario vuelve a hacer clic y puede duplicar el registro.-->
+2. El botón "Eliminar cuenta" está al lado de "Guardar", del mismo color y tamaño. <!--5. Prevención de errores. Severidad 4: la acción es destructiva e irreversible.-->
+3. El mensaje de error dice: `SQLSTATE[23000] Integrity constraint violation`. <!--9. Ayudar a reconocer y recuperarse de errores, y 2. Coincidencia con el mundo real. Severidad 3.-->
+4. El botón se llama "Continuar" en el carrito, "Siguiente" en el envío y "Avanzar" en el pago. <!--4. Consistencia y estándares. Severidad 2.-->
+5. En un formulario de 5 pasos, para volver al anterior hay que empezar de cero. <!--3. Control y libertad del usuario. Severidad 4: el usuario abandona.-->
+6. La app muestra un código de 8 dígitos en una pantalla y lo pide en la siguiente. <!--6. Reconocer es mejor que recordar. Severidad 3.-->
+7. La pantalla de inicio tiene 14 banners y el buscador queda al final de todo. <!--8. Diseño estético y minimalista. Severidad 3.-->
+8. Un operador que carga 200 pedidos por día necesita 6 clics para cada uno, sin atajos. <!--7. Flexibilidad y eficiencia de uso. Severidad 3: para el usuario frecuente es crítico, para el ocasional es irrelevante.-->
+9. El sistema llama "entidad de facturación" a lo que el usuario llama "cliente". <!--2. Coincidencia entre el sistema y el mundo real. Severidad 2.-->
+
+<!--
+Discusión de cierre: la severidad no depende solo del problema, depende de quién lo sufre y cuántas
+veces. El caso 8 es el más claro: la misma interfaz es aceptable para uno y catastrófica para otro.
+-->
+
+---
+
+### 💡 Ejercicio: Evaluación heurística real
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
+
+En grupos de 3, elijan **un sitio o aplicación de uso real** — el campus virtual, la web de
+inscripción a materias, la app del banco, un e-commerce.
+
+1. Cada integrante recorre la interfaz **por separado** y completa esta planilla:
+
+| # | Pantalla | Problema observado | Heurística violada | Severidad |
+|---|---|---|---|---|
+| | | | | |
+
+2. Recién después, junten los hallazgos y armen una tabla consolidada, ordenada por severidad.
+3. Respondan: **¿cuántos problemas encontró uno solo de ustedes y ninguno de los otros dos?**
+
+<!--
+El punto 3 es el que demuestra empíricamente lo que dice la teoría: cada evaluador ve cosas que
+los demás no ven, y por eso hacen falta entre 3 y 5. Si los hallazgos individuales se solapan
+demasiado, probablemente evaluaron juntos o se pusieron de acuerdo antes.
+Pedir que entreguen la tabla consolidada: es el entregable real de una evaluación heurística.
+-->
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?
