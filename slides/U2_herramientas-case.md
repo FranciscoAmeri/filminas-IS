@@ -446,7 +446,7 @@ Casi todo lo que usan a diario es una herramienta CASE, aunque nadie las llame a
 | Pruebas | JUnit, Jest, Selenium, Postman |
 | Integración y despliegue | GitHub Actions, Jenkins, Docker |
 | Gestión del proyecto | Jira, Trello, Azure DevOps |
-| Diseño de interfaz | Figma, Adobe XD |
+| Diseño de interfaz | Figma, Penpot, Balsamiq |
 | Documentación | Swagger / OpenAPI, Javadoc, Doxygen |
 
 **Herramientas históricas:** *Rational Rose* fue la referencia en modelado UML durante los años 90

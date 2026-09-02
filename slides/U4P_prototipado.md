@@ -19,7 +19,7 @@ Incluyen elementos como menús, ventanas, contenido gráfico, cursor, etc.
 ---
 ## Proceso de Diseño de Interfaz de Usuario
 Proceso iterativo donde los usuarios interactúan con los diseñadores y prototipados de la interfaz para decidir las 
-características, organización, apariencia y funcionamiento de la interfaz de usurio del sistema.
+características, organización, apariencia y funcionamiento de la interfaz de usuario del sistema.
 
 ---
 ## Proceso de Diseño de Interfaz de Usuario
@@ -27,25 +27,26 @@ características, organización, apariencia y funcionamiento de la interfaz de u
 ![Proceso Diseño UI](images/interfazUsuario/procesoDiseñoUI.png)
 
 ---
-## Tipos de Prototipo
-<!-- .slide: style="font-size: 0.85em" -->
-* Baja Fidelidad: Conjunto de dibujos que representan cómo estarán organizados los elementos en las páginas en aspectos 
-generales, sin entrar en detalle.
-  * Sketch
-  * Wireframe
-  * StoryBoard
-* Alta Fidelidad: Se representan aspectos más precisos. Sirven para detallar el proceso interactivo de una o varias tareas.
-  * Mockup
-  * Prototipo
+## Las técnicas, ordenadas por fidelidad
+<!-- .slide: style="font-size: 0.80em" -->
 
----
-## Tipos de Diseño
-* Sketch
-* Thumbnail Sketches
-* Wireframe
-* StoryBoard
-* Mockup
-* Prototipo
+La **fidelidad** es cuánto se parece el prototipo al producto final. Se avanza de menor a mayor,
+y en cada paso se decide algo distinto.
+
+**Baja fidelidad** — dibujos que muestran cómo se organizan los elementos, sin entrar en detalle:
+
+* **Sketch** — una pantalla, a mano alzada
+* **Thumbnail Sketches** — una secuencia de sketches que recorre una tarea
+* **Wireframe** — la misma idea, pero estructurada y hecha con herramienta
+* **StoryBoard / Wireflow** — una secuencia de wireframes que recorre una tarea
+
+**Alta fidelidad** — se representan aspectos más precisos, para detallar el proceso interactivo:
+
+* **Mockup** — se ve como el producto final, pero no se puede usar
+* **Prototipo** — se ve **y se navega** como el producto final
+
+**La regla:** subir de fidelidad recién cuando lo anterior ya está validado. Un mockup lindo de una
+pantalla equivocada es trabajo tirado.
 
 ---
 ## Sketch
@@ -63,12 +64,12 @@ generales, sin entrar en detalle.
 ## Thumbnail Sketches
 Secuencia de Sketchs que muestran cómo se realiza una tarea.
 
-![Thubnail Sketch](images/interfazUsuario/thumbnail_sketch.jpg)
+![Thumbnail Sketch](images/interfazUsuario/thumbnail_sketch.jpg)
 
 ---
-## Ejercicio: Sketch
+## 💡 Ejercicio: Sketch
 <!-- .slide: data-background="images/interfazUsuario/sketch.jpg" style="font-size: 0.85em" -->
-Realice Sketchs formando un 'Thumbnail Skeths' de la interfaz de usuario de los sistemas en papel.
+Realice sketches formando un 'Thumbnail Sketch' de la interfaz de usuario de los sistemas en papel.
 Debe tener en cuenta:
 * ¿Qué opciones debe ofrecer al usuario?
 * ¿Qué campos hay para ingresar datos?
@@ -125,61 +126,78 @@ Secuencia de wireframes que muestran cómo se realiza una tarea.
 
 ---
 ## Prototipo
-* La calidad pueda variar entre media y alta
+* La calidad puede variar entre media y alta
 * Representación navegable del producto final
 * Simula la interacción interfaz de usuario
-* Permitir que el usuario:
-  * Experimente interactuando con la interfaz y contenido del proyecto
+* Permite que el usuario:
+  * Experimente interactuando con la interfaz y el contenido del proyecto
   * Pruebe las principales interacciones de una manera similar al producto final
 * El entregable es un HTML, PPT, Animación o formato navegable.
 
 ---
+## ¿Por qué prototipar?
+<!-- .slide: style="font-size: 0.78em" -->
+
+**Sobre la comunicación**
+* El cliente **ve** cómo va a ser la aplicación, en lugar de leerla descrita en un documento.
+* Evita malentendidos entre el equipo y el cliente.
+* El equipo y el cliente se concentran en contenido e interacción, y no en el diseño visual.
+
+**Sobre los requerimientos**
+* Es un método intuitivo para identificar características y requerimientos.
+* Ayuda a detectar inconsistencias y funcionalidad faltante.
+* Mejora la calidad y la completitud de las especificaciones funcionales.
+* Define el recorrido del usuario (*workflow*).
+
+**Sobre el costo**
+* El diseño se modifica con facilidad y rapidez, mientras cambiarlo todavía es barato.
+* Se evitan modificaciones posteriores, mucho más costosas con la aplicación ya implementada.
+* Permite hacer pruebas de usabilidad con usuarios en etapas tempranas.
+
+**En una frase:** prototipar mueve los errores hacia adelante en el tiempo, que es donde
+cuestan poco.
+
+---
+## Proceso de prototipado de la IU
 <!-- .slide: style="font-size: 0.85em" -->
-## Utilización de Técnicas de Diseño
-#### Ventajas:
-* Definir funcionalidades del proyecto
-* Mejora la comunicación entre el equipo de desarrollo y los usuarios 
-* Definir el recorrido del usuario (work flow)
-* Permite mostrar al usuario el sistema y recibir un feedback temprano
-* Método intuitivo para identificar características y requerimientos
-* Mejoran la calidad y la completitud de las especificaciones funcionales del sistema. 
 
----
-## Ventajas del Pre-Diseño
-* El equipo y el cliente se centran en el diseño de contenidos e interacción y no en el diseño visual.
-* El cliente ve y comprende cómo será la aplicación, mucho mejor que si se ofrece descrita en un documento.
-* Evita malentendidos entre el equipo de desarrollo y el cliente.
-* Ayuda a especificar los requerimientos y a detectar inconsistencias o falta de funcionalidad.
-* Complemento para el análisis.
+El prototipado avanza en dos grandes momentos, que se corresponden con las técnicas anteriores:
 
----
-## Ventajas del Pre-Diseño
-* Se puede modificar el diseño con facilidad y rapidez.
-* Se evitan modificaciones posteriores mucho más costosas cuando la aplicación ya está implementada.
-* Se reduce costo y tiempo.
+1. **Prototipo en papel** *(baja fidelidad: sketches y wireframes)* — maquetas de las pantallas.
+   Barato, rápido y descartable. Sirve para discutir estructura y flujo con el cliente.
+2. **Prototipo automatizado** *(alta fidelidad: mockups y prototipos navegables)* — permite al
+   usuario **interactuar**, y por lo tanto realizar pruebas y simulación de tareas reales.
 
----
-## Ventajas del Pre-Diseño
-* Permite realizar pruebas de usabilidad, como test con usuarios, en etapas tempranas del proyecto.
-* Se detectan y solucionan los problemas antes de comenzar su implementación.
-* El resultado son aplicaciones web más fáciles de entender, de usar y se ajustan mejor a las necesidades de los usuarios.
-
----
-## Proceso de Prototipado de la IU
-1. **Prototipo en papel:** Maquetas de los diseños de pantalla
-2. **Prototipo Automatizado:** Permite al usuario realizar pruebas y simulación
+El paso de uno a otro no es automático: se hace cuando el flujo dejó de cambiar en cada reunión.
     
 ---
 ## Comparación
 
 ![Comparacion: Prototipo vs Mockup](images/interfazUsuario/comparacion.png)
 
+----
+
+### Las técnicas de un vistazo
+<!-- .slide: style="font-size: 0.58em" -->
+
+| Técnica | Fidelidad | Entregable | ¿Para qué sirve? | Con qué se hace |
+|---|---|---|---|---|
+| **Sketch** | Muy baja | Dibujo en papel | Explorar ideas rápido y descartarlas sin costo | Lápiz y papel |
+| **Thumbnail Sketches** | Muy baja | Secuencia de dibujos | Contar cómo se recorre una tarea | Lápiz y papel |
+| **Wireframe** | Baja | Imagen estática | Acordar estructura, contenido y jerarquía | Figma, Balsamiq, draw.io |
+| **StoryBoard / Wireflow** | Baja | Secuencia de imágenes | Validar el flujo entre pantallas | Figma, draw.io |
+| **Mockup** | Media/alta | Imagen estática | Acordar el aspecto visual final | Figma, Penpot |
+| **Prototipo** | Media/alta | HTML o archivo navegable | Probar la interacción con usuarios reales | Figma, Penpot, código |
+
+**Lo que las diferencia no es el detalle del dibujo, es la pregunta que responden.** Un wireframe
+responde "¿está toda la información?"; un prototipo responde "¿la gente puede usarlo?".
+
 ---
 ## Antes de dibujar...
 * Realizar entrevistas con el cliente y el equipo de desarrollo para definir los requisitos, los objetivos y el público objetivo.    
 * Analizar la web actual (si existe): problemas de usabilidad y accesibilidad, estadísticas de acceso, test con usuarios y encuestas.
 * Benchmarking, estudio comparativo de la competencia.
-* Definir de la arquitectura de informacón y mapa web.
+* Definir la arquitectura de información y el mapa del sitio.
 
 ---
 ## Evaluación de la Interfaz
@@ -207,23 +225,33 @@ Es parte del proceso de verificación y validación de los sistemas software.
 ![Ejemplo Wireframe](images/interfazUsuario/ejemploWireframe.png)
 
 ---
-## Ejercicio: Wireframe
-<!-- .slide: style="font-size: 0.80em" -->
-Emplee algún programa para confeccionar Wireframes ó y generar un wireflow para los sistemas de la GTP.
+## 💡 Ejercicio: Wireframe
+<!-- .slide: style="font-size: 0.75em" -->
+Usen alguna de estas herramientas para confeccionar los **wireframes** y armar un **wireflow** del
+sistema del trabajo práctico grupal.
 
 [![Figma](images/interfazUsuario/figma.png)](https://www.figma.com/)
-[![AdobeXD](images/interfazUsuario/adobeXD.png)](https://www.adobe.com/la/products/xd/pricing/individual.html)
 [![Mockups Icon](images/interfazUsuario/mockUps-icon.png)](https://moqups.com/)
 [![NinjaMocks](images/interfazUsuario/ninjamock-icon.png)](https://ninjamock.com/Designer/NewWorkplace/WebProject/napkin/0/Page1)
 [![Pencil](images/interfazUsuario/pencil-icon.png)](https://pencil.evolus.vn/)
-![Draw.io](images/interfazUsuario/drive_drawio.png) 
+![Draw.io](images/interfazUsuario/drive_drawio.png)
+
+Otras opciones gratuitas: [Penpot](https://penpot.app/) (libre y open source),
+[Balsamiq](https://balsamiq.com/) y [Excalidraw](https://excalidraw.com/).
+
+<!--
+Adobe XD salía en esta lista. Adobe dejó de venderlo en junio de 2023 y desde entonces está en
+modo mantenimiento: no recibe funciones nuevas y solo sigue disponible para suscriptores de
+Creative Cloud existentes. Se puede mencionar como herramienta legada, pero no conviene que un
+alumno empiece a aprenderla hoy.
+-->
 
 ---
 #### Errores comunes al crear un Wireframe para nuestro proyecto web
-* No indicar campos obligatorios
-* No describir el flow normal (que botón o link me lleva a donde)
-* Texto que indique cuál es la finalidad de la página
-* No especificar mensajes de error
+* No indicar los campos obligatorios
+* No describir el flujo normal (qué botón o enlace lleva a dónde)
+* **No incluir** un texto que indique cuál es la finalidad de la página
+* No especificar los mensajes de error
 
 ---
 <!-- .slide: data-background="images/interfazUsuario/wireframe.jpg" -->
