@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guía de estudio — Unidades 1 y 2 | Ingeniería de Software</title>
+<link rel="icon" type="image/x-icon" href="../images/ingenieria-soft.png" />
+<style>
+  :root { --bg:#fdf6e3; --fg:#073642; --acc:#268bd2; --muted:#657b83; --box:#eee8d5; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    font-size: 17px; line-height: 1.6;
+    max-width: 820px; margin: 0 auto; padding: 40px 24px 80px;
+  }
+  h1 { font-size: 2em; margin-bottom: 0; }
+  h2 { color: var(--acc); border-bottom: 2px solid var(--box); padding-bottom: 6px; margin-top: 2em; }
+  h3 { color: var(--muted); margin-top: 1.8em; text-transform: uppercase; font-size: 0.95em; letter-spacing: 0.05em; }
+  hr { border: 0; border-top: 1px solid #d5cdb6; margin: 2.5em 0; }
+  ol > li { margin-bottom: 1.1em; }
+  blockquote { background: var(--box); border-left: 4px solid var(--acc); margin: 1.5em 0; padding: 12px 18px; }
+  code { background: var(--box); padding: 1px 5px; border-radius: 3px; }
+  strong { color: #002b36; }
+  a { color: var(--acc); }
+  .volver { display: inline-block; margin-bottom: 24px; font-size: 0.9em; }
+  @media print {
+    body { max-width: none; font-size: 11pt; padding: 0; }
+    .volver, .noprint { display: none; }
+    h2 { page-break-after: avoid; }
+    li { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<a class="volver" href="../index.html">&larr; Volver al índice</a>
+<h1 id="ingenieria-de-software-guia-de-estudio">Ingeniería de Software — Guía de estudio</h1>
+<h2 id="unidades-1-y-2">Unidades 1 y 2</h2>
+<p><strong>Unidad 1:</strong> Introducción a la Ingeniería de Software
+<strong>Unidad 2:</strong> Procesos de Software · Herramientas CASE</p>
+<hr />
+<h3 id="como-usar-esta-guia">Cómo usar esta guía</h3>
+<p>Son 50 preguntas para trabajar por tu cuenta antes del parcial. No están ordenadas por
+dificultad: están ordenadas por tema, siguiendo las filminas.</p>
+<ul>
+<li>Las preguntas marcadas con <strong>(C)</strong> son <strong>conceptuales</strong>: se responden con lo visto en clase.</li>
+<li>Las marcadas con <strong>(A)</strong> son de <strong>aplicación</strong>: hay que decidir algo y justificarlo.</li>
+<li>Las marcadas con <strong>(I)</strong> son <strong>integradoras</strong>: cruzan más de un tema o más de una unidad.</li>
+</ul>
+<p>Al final hay respuestas orientativas. <strong>Usalas después de intentar cada pregunta</strong>, no antes:
+el valor de la guía está en el intento, no en la lectura.</p>
+<hr />
+<h2 id="unidad-1-introduccion-a-la-ingenieria-de-software">Unidad 1 — Introducción a la Ingeniería de Software</h2>
+<h3 id="el-software-y-la-disciplina">El software y la disciplina</h3>
+<ol>
+<li>
+<p><strong>(C)</strong> ¿Qué es el software? Nombrá las dos características que lo distinguen de un producto
+   físico.</p>
+</li>
+<li>
+<p><strong>(C)</strong> Definí ingeniería de software. ¿Por qué se la considera una <strong>disciplina de
+   ingeniería</strong> y no solamente programación?</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿Cuál es la diferencia entre ciencias de la computación, ingeniería de software e
+   ingeniería de sistemas?</p>
+</li>
+<li>
+<p><strong>(C)</strong> Enumerá cuatro razones por las que la ingeniería de software es importante.</p>
+</li>
+<li>
+<p><strong>(A)</strong> <em>"Para un proyecto chico no hace falta ingeniería de software, alcanza con programar
+   bien."</em> ¿Estás de acuerdo? Justificá con al menos dos argumentos.</p>
+</li>
+</ol>
+<h3 id="errores-de-software">Errores de software</h3>
+<ol start="6">
+<li>
+<p><strong>(C)</strong> ¿Por qué a los errores de software se les dice <em>bugs</em>? ¿Quién y en qué año dio origen
+   al término?</p>
+</li>
+<li>
+<p><strong>(C)</strong> El Ariane 5 explotó por reutilizar código del Ariane 4. ¿Cuál fue exactamente el
+   error técnico?</p>
+</li>
+<li>
+<p><strong>(I)</strong> El caso Ariane 5 aparece en la Unidad 1 como ejemplo de error, y en la Unidad 2 la
+   reutilización se presenta como un <strong>modelo de proceso ventajoso</strong>. ¿Se contradicen? ¿Qué
+   lección deja el Ariane 5 sobre los límites de la reutilización?</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿Qué falló en el Therac-25 y por qué el problema no se detectaba desde la interfaz?</p>
+</li>
+<li>
+<p><strong>(C)</strong> El Mars Climate Orbiter se perdió por un error de unidades. ¿En qué etapa del
+    proceso debería haberse detectado ese problema?</p>
+</li>
+<li>
+<p><strong>(A)</strong> Knight Capital perdió 460 millones de dólares en 45 minutos. Identificá <strong>tres</strong>
+    fallas distintas en su proceso, no en su código.</p>
+</li>
+<li>
+<p><strong>(A)</strong> Ordená los cuatro casos vistos según el tipo de daño (humano, económico, científico)
+    y explicá cuál te parece más grave y por qué.</p>
+</li>
+</ol>
+<h3 id="costos-y-productos">Costos y productos</h3>
+<ol start="13">
+<li>
+<p><strong>(C)</strong> ¿Qué cuesta más: desarrollar el software o mantenerlo? Aproximadamente, ¿qué
+    porcentaje del ciclo total representa el mantenimiento?</p>
+</li>
+<li>
+<p><strong>(A)</strong> Si el mantenimiento se lleva la mayor parte del costo, ¿qué decisiones tomarías
+    <strong>durante el desarrollo</strong> para reducirlo?</p>
+</li>
+<li>
+<p><strong>(C)</strong> Diferenciá producto <strong>genérico</strong> de producto <strong>personalizado</strong>, y explicá quién es
+    dueño de la especificación en cada caso.</p>
+</li>
+<li>
+<p><strong>(A)</strong> Clasificá en genérico o personalizado y justificá los dudosos: Excel · una app de
+    turnos para una veterinaria de barrio · Moodle · Moodle adaptado para una universidad ·
+    Spotify · el sistema de reservas de una aerolínea.</p>
+</li>
+<li>
+<p><strong>(I)</strong> ¿Por qué la distinción entre producto genérico y personalizado influye en el
+    <strong>modelo de proceso</strong> que conviene elegir? (Pensalo con lo visto en la Unidad 2.)</p>
+</li>
+</ol>
+<h3 id="diversidad-y-tipos-de-sistemas">Diversidad y tipos de sistemas</h3>
+<ol start="18">
+<li>
+<p><strong>(C)</strong> <em>"No existe un conjunto universal de técnicas aplicable a todo el software."</em>
+    Explicá esta afirmación con dos ejemplos de tipos de sistema opuestos.</p>
+</li>
+<li>
+<p><strong>(C)</strong> Nombrá los ocho tipos de aplicaciones vistos y dá un ejemplo concreto de cada uno.</p>
+</li>
+<li>
+<p><strong>(A)</strong> Un sistema de semáforos inteligentes de una ciudad, ¿en qué tipo o tipos de
+    aplicación encaja? ¿Por qué puede pertenecer a más de uno?</p>
+</li>
+</ol>
+<h3 id="actividades-y-atributos">Actividades y atributos</h3>
+<ol start="21">
+<li>
+<p><strong>(C)</strong> Nombrá las cuatro actividades del proceso de desarrollo y describí brevemente cada
+    una.</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿Cuáles son los cuatro atributos esenciales de un buen software?</p>
+</li>
+<li>
+<p><strong>(A)</strong> Identificá qué atributo esencial está en juego en cada caso:
+    a) Una app de transferencias duplica pagos ocasionalmente.
+    b) Un sistema de facturación incorpora nuevas reglas impositivas sin rehacer nada.
+    c) Una plataforma educativa no se adapta a celulares y los alumnos la evitan.
+    d) Una web de inscripción consume pocos recursos del navegador.</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿Cuál es la diferencia entre los <strong>atributos esenciales</strong> del software y los
+    <strong>atributos de calidad del diseño</strong>?</p>
+</li>
+<li>
+<p><strong>(A)</strong> Identificá el atributo de calidad involucrado: confiabilidad, disponibilidad,
+    seguridad o protección.
+    a) Un sistema de turnos hospitalario queda caído tres horas.
+    b) Un comercio electrónico cifra los datos de tarjeta antes de enviarlos.
+    c) Los usuarios solo acceden a las secciones que corresponden a su rol.
+    d) Una empresa pierde datos por una caída y no tiene respaldo actualizado.</p>
+</li>
+</ol>
+<hr />
+<h2 id="unidad-2-procesos-de-software">Unidad 2 — Procesos de Software</h2>
+<h3 id="que-es-un-proceso">Qué es un proceso</h3>
+<ol start="26">
+<li>
+<p><strong>(C)</strong> ¿Qué es un proceso de software? ¿Y un modelo de proceso?</p>
+</li>
+<li>
+<p><strong>(C)</strong> Además de las actividades, ¿qué otros tres elementos puede incluir la descripción de
+    un proceso?</p>
+</li>
+<li>
+<p><strong>(C)</strong> Diferenciá desarrollo <strong>dirigido por plan</strong> de desarrollo <strong>ágil</strong>. ¿Por qué se dice
+    que en la práctica la mayoría de los procesos combina los dos?</p>
+</li>
+<li>
+<p><strong>(I)</strong> Las cuatro actividades fundamentales están presentes en todos los modelos de
+    proceso. Entonces, ¿qué es exactamente lo que cambia de un modelo a otro?</p>
+</li>
+</ol>
+<h3 id="los-modelos">Los modelos</h3>
+<ol start="30">
+<li>
+<p><strong>(C)</strong> Nombrá las cinco fases del modelo de cascada y su principal inconveniente.</p>
+</li>
+<li>
+<p><strong>(A)</strong> ¿En qué situaciones conviene el modelo de cascada, a pesar de que tolera mal el
+    cambio? Dá dos razones y un ejemplo de dominio.</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿Qué caracteriza al desarrollo incremental? Mencioná dos beneficios y dos problemas.</p>
+</li>
+<li>
+<p><strong>(C)</strong> Explicá la diferencia entre <strong>desarrollo incremental</strong> y <strong>entrega incremental</strong>,
+    con un ejemplo de cada uno.</p>
+</li>
+<li>
+<p><strong>(C)</strong> Enumerá las cinco etapas de la ingeniería de software orientada a reutilización.
+    ¿Cuál de ellas no existe en ningún otro modelo, y por qué es llamativa?</p>
+</li>
+<li>
+<p><strong>(A)</strong> ¿Cuál es el costo oculto de la reutilización? Relacionalo con un caso donde el
+    cliente no pueda obtener exactamente lo que pidió.</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿Cuándo conviene el modelo evolutivo? ¿Cuáles son sus cuatro fases?</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿En qué se divide cada ciclo del modelo en espiral? ¿Qué lo distingue de los demás
+    modelos iterativos?</p>
+</li>
+<li>
+<p><strong>(I)</strong> Tanto el modelo evolutivo como el espiral son iterativos. ¿Cuál es la diferencia
+    entre iterar para <strong>descubrir requisitos</strong> e iterar para <strong>reducir riesgos</strong>? Dá un proyecto
+    donde sirva uno y no el otro.</p>
+</li>
+</ol>
+<h3 id="actividades-del-proceso">Actividades del proceso</h3>
+<ol start="39">
+<li>
+<p><strong>(C)</strong> ¿Qué comprende la actividad de especificación de requerimientos? Nombrá sus cuatro
+    sub-actividades.</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿Cuáles son las tres etapas de prueba dentro de la validación, y quién realiza cada
+    una?</p>
+</li>
+<li>
+<p><strong>(A)</strong> Clasificá cada tarea en la actividad que corresponde: especificación, diseño e
+    implementación, validación o evolución.
+    a) Definir la arquitectura del sistema.
+    b) Corregir un bug reportado tras el lanzamiento.
+    c) Escribir casos de prueba para un módulo.
+    d) Hacer un prototipo para validar una idea con el cliente.</p>
+</li>
+</ol>
+<h3 id="el-cambio-y-el-prototipado">El cambio y el prototipado</h3>
+<ol start="42">
+<li>
+<p><strong>(C)</strong> ¿Cuáles son las dos estrategias para reducir los costos de rehacer? Dá un ejemplo de
+    cada una.</p>
+</li>
+<li>
+<p><strong>(A)</strong> Un equipo invierte tres semanas en un prototipo antes de programar y además trabaja
+    en incrementos. ¿Qué estrategia aplica en cada caso? ¿Cuánto cuesta cada una?</p>
+</li>
+<li>
+<p><strong>(C)</strong> ¿Por qué los prototipos desechables no sirven como base de un sistema de producción?
+    Dá tres razones.</p>
+</li>
+<li>
+<p><strong>(A)</strong> Si el código de un prototipo desechable se tira, ¿qué se lleva el equipo de ese
+    trabajo? ¿Cómo se lo justificarías a un cliente que ve que "tiraron todo"?</p>
+</li>
+</ol>
+<h3 id="herramientas-case">Herramientas CASE</h3>
+<ol start="46">
+<li>
+<p><strong>(C)</strong> ¿Qué significa CASE y qué es una herramienta CASE? Nombrá tres actividades que
+    automatizan.</p>
+</li>
+<li>
+<p><strong>(C)</strong> Explicá las tres clasificaciones de herramientas CASE. ¿Por qué no son alternativas
+    entre sí?</p>
+</li>
+<li>
+<p><strong>(A)</strong> Ubicá <strong>GitHub</strong> en las tres clasificaciones. ¿Qué dificultad encontraste, y qué te
+    dice eso sobre las taxonomías?</p>
+</li>
+<li>
+<p><strong>(I)</strong> Uno de los objetivos de las herramientas CASE es estandarizar la documentación, y el
+    Manifiesto Ágil valora el software funcionando por sobre la documentación extensiva.
+    ¿Se contradicen? ¿Puede un equipo ágil usar herramientas CASE?</p>
+</li>
+<li>
+<p><strong>(I)</strong> ¿Cambia el conjunto de herramientas según el modelo de proceso elegido? Compará el
+    <em>toolchain</em> de un equipo que trabaja en cascada sobre un sistema regulado con el de un
+    equipo que hace entrega incremental de una app de consumo.</p>
+</li>
+</ol>
+<h2 id="-">---</h2>
+<h1 id="respuestas-orientativas">Respuestas orientativas</h1>
+<blockquote>
+<p>Son <strong>orientativas</strong>: en las preguntas de aplicación e integradoras se evalúa la
+justificación, no la coincidencia literal con este texto.</p>
+</blockquote>
+<h2 id="unidad-1">Unidad 1</h2>
+<p><strong>1.</strong> Conjunto de instrucciones, programas y datos que permiten a un dispositivo realizar
+tareas específicas. Lo distinguen que es <strong>intangible</strong> y que está compuesto por <strong>código</strong>
+interpretable o ejecutable por una máquina.</p>
+<p><strong>2.</strong> Disciplina que se enfoca en el diseño, desarrollo, prueba, implementación y mantenimiento
+de sistemas de software de alta calidad, aplicando de manera sistemática principios, teorías,
+métodos y herramientas. Es ingeniería porque usa teorías y métodos adecuados para resolver
+problemas <strong>teniendo en cuenta las limitaciones financieras y de organización</strong>, y porque abarca
+todos los aspectos de la producción de software, no solo el proceso técnico: también gestión de
+proyectos, herramientas y métodos.</p>
+<p><strong>3.</strong> Ciencias de la computación: teoría y fundamentos (algoritmos, estructuras de datos,
+complejidad). Ingeniería de software: todos los aspectos de la producción de software, desde la
+especificación hasta el mantenimiento posterior al uso. Ingeniería de sistemas: desarrollo
+completo de sistemas basados en computadoras, integrando hardware, software y procesos.</p>
+<p><strong>4.</strong> La economía de muchos países depende del software; cada vez más sistemas son controlados
+por software; a largo plazo es más barato planificar bien que refactorizar continuamente; el
+gasto en software es una fracción significativa del PBI; los errores pueden ser muy caros.</p>
+<p><strong>5.</strong> Argumentos en contra de la afirmación: la mayor parte del costo aparece <strong>después</strong> de la
+entrega (corregir lo que ya está en uso), y eso no depende del tamaño inicial; los proyectos
+chicos crecen, y lo que se ahorró al principio se paga después; sin proceso no hay forma de
+saber si el software cumple lo que se pidió. A favor, con matices: el nivel de formalidad debe
+ser proporcional al proyecto — nadie escribe un SRS de 50 páginas para un script. La respuesta
+completa distingue <strong>hacer ingeniería</strong> de <strong>hacer burocracia</strong>.</p>
+<p><strong>6.</strong> Por la polilla (<em>bug</em>) que Grace Hopper encontró en 1947 entre los relés de la Mark II,
+computadora electromecánica de Harvard, cuando investigaba las fallas del equipo.</p>
+<p><strong>7.</strong> Se reutilizó código del Ariane 4 que asignaba el valor de una variable de <strong>64 bits a una
+de 16 bits</strong>. En el Ariane 4 los valores nunca superaban el rango de 16 bits (−32.768 a 32.767);
+en el Ariane 5, con otra trayectoria, sí lo superaron. Costo: 1.000 millones de dólares.</p>
+<p><strong>8.</strong> No se contradicen. La reutilización sigue siendo válida y es hoy el enfoque estándar; lo
+que muestra el Ariane 5 es que <strong>un componente reutilizado hereda los supuestos del contexto
+para el que fue escrito</strong>. El código era correcto para el Ariane 4. Reutilizar exige verificar
+que los supuestos del componente siguen valiendo en el nuevo entorno, y eso es exactamente lo que
+la etapa de "análisis de componentes" del modelo de reutilización debería cubrir.</p>
+<p><strong>9.</strong> Un problema de <strong>control de concurrencia</strong> entre rutinas que se ejecutaban en paralelo —una
+<em>race condition</em>. La interfaz indicaba que todo estaba bien mientras los pacientes recibían
+125 veces más radiación de la indicada. Murieron al menos cinco personas.</p>
+<p><strong>10.</strong> En la <strong>validación</strong>, y antes aún en la <strong>especificación</strong>: los requisitos del sistema
+establecían que todo el software debía usar el sistema métrico decimal, y el software de control
+en Tierra usaba el anglosajón. Era un incumplimiento de un requisito ya especificado, que las
+pruebas de integración debieron detectar.</p>
+<p><strong>11.</strong> Tres fallas de proceso: se desplegó una versión nueva <strong>sin actualizar la configuración</strong>
+del algoritmo; el sistema quedó corriendo en <strong>modo test</strong>, con las restricciones de seguridad
+desactivadas; y no hubo un mecanismo de detección o corte automático que frenara las operaciones
+—cuatro millones en 45 minutos— antes de que el daño fuera irreversible. Ninguna de las tres es
+un error de programación: son fallas de gestión de la configuración y del despliegue.</p>
+<p><strong>12.</strong> Therac-25 es el más grave: daño humano irreversible, cinco muertes. Ariane 5 y Knight
+Capital son económicos (1.000 y 460 millones). Mars Climate Orbiter combina pérdida económica y
+científica. Se acepta cualquier orden bien argumentado, siempre que se sostenga que el daño
+humano no es conmensurable con el económico.</p>
+<p><strong>13.</strong> Cuesta más el <strong>mantenimiento</strong>. Ronda el <strong>67%</strong> del costo total del ciclo. Además, el
+costo del software suele superar al del hardware, y en sistemas de larga vida el mantenimiento
+supera ampliamente al desarrollo.</p>
+<p><strong>14.</strong> Escribir código legible y modular, documentar lo necesario, cubrir con pruebas
+automatizadas, mantener la estructura mediante refactorización, elegir tecnologías con soporte a
+largo plazo y evitar dependencias que se puedan discontinuar. Todo eso es "pagar por adelantado"
+para abaratar el 67% que viene después.</p>
+<p><strong>15.</strong> <strong>Genérico</strong>: se comercializa a cualquier cliente (software de gráficos, CAD,
+herramientas de gestión). <strong>Personalizado</strong>: lo encarga un cliente específico para sus propias
+necesidades (control de tráfico aéreo, sistemas de monitoreo). La diferencia clave es <strong>de quién
+es la especificación</strong>: en el genérico es del desarrollador, que decide los cambios; en el
+personalizado es del cliente, que decide.</p>
+<p><strong>16.</strong> Genéricos: Excel, Moodle, Spotify. Personalizados: la app de la veterinaria, el sistema
+de reservas de la aerolínea. <strong>Los dudosos son los interesantes</strong>: Moodle adaptado para una
+universidad es un producto genérico <strong>personalizado</strong> — se reutiliza la base y se desarrolla la
+integración; es exactamente el modelo de reutilización de la Unidad 2. Spotify es genérico, pero
+la especificación es del desarrollador y el usuario no puede pedir cambios, lo cual se nota.</p>
+<p><strong>17.</strong> Porque determina <strong>quién controla los requisitos</strong>. En un producto personalizado el
+cliente decide y puede cambiar de opinión, lo que favorece enfoques incrementales o evolutivos con
+participación del cliente. En un producto genérico la especificación la controla el desarrollador,
+que puede planificar versiones y no depende de la disponibilidad de un cliente. Y en el caso de
+Moodle adaptado, el modelo natural es el orientado a reutilización.</p>
+<p><strong>18.</strong> Los métodos y herramientas dependen del tipo de aplicación, de los requisitos del cliente
+y de la experiencia del equipo. Ejemplo: los <strong>juegos</strong> conviene diseñarlos con una serie de
+prototipos, porque lo que se busca —que sea divertido— no se puede especificar por anticipado; los
+<strong>sistemas críticos de control de seguridad</strong> requieren una especificación completa y analizable
+antes de construir. Ningún método es mejor que otro en abstracto.</p>
+<p><strong>19.</strong> Autónomas (un editor de texto local); basadas en transacciones interactivas (home banking,
+cualquier aplicación web); embebidos o de control (el software de un microondas o un ABS); de
+procesamiento por lotes (liquidación de sueldos, facturación mensual); de entretenimiento (un
+videojuego); de modelado y simulación (simulador de vuelo, modelo climático); de adquisición de
+datos (una estación meteorológica con sensores); de sistemas (una plataforma que integra varios
+sistemas existentes).</p>
+<p><strong>20.</strong> Encaja en varios a la vez: es <strong>embebido o de control</strong> (gestiona dispositivos de
+hardware), de <strong>adquisición de datos</strong> (sensores de tránsito), y visto en conjunto es un
+<strong>sistema de sistemas</strong> (integra el control de cada cruce con un centro de monitoreo). Que
+pertenezca a más de una categoría no es un error de clasificación: los sistemas reales combinan
+tipos, y cada tipo aporta requisitos distintos.</p>
+<p><strong>21.</strong> <strong>Especificación</strong> (clientes e ingenieros definen qué debe hacer el software y sus
+restricciones); <strong>desarrollo</strong> (diseño y programación); <strong>validación</strong> (verificar que cumple los
+requisitos); <strong>evolución</strong> (adaptación a nuevos requerimientos del cliente o del mercado).</p>
+<p><strong>22.</strong> Mantenimiento, confiabilidad y seguridad, eficiencia, aceptabilidad.</p>
+<p><strong>23.</strong> a) Confiabilidad. b) Mantenimiento. c) Aceptabilidad. d) Eficiencia.</p>
+<p><strong>24.</strong> Los <strong>esenciales</strong> están ligados a la experiencia del usuario y a lo que se espera del
+software terminado. Los <strong>de calidad del diseño</strong> se relacionan con la estructura interna del
+sistema, y facilitan su evolución, mantenimiento y escalabilidad. Los primeros se juzgan desde
+afuera; los segundos, desde adentro.</p>
+<p><strong>25.</strong> a) Disponibilidad. b) Seguridad. c) Protección. d) Confiabilidad.</p>
+<h2 id="unidad-2">Unidad 2</h2>
+<p><strong>26.</strong> Un <strong>proceso de software</strong> es un conjunto estructurado de actividades necesarias para
+desarrollar un sistema de software. Un <strong>modelo de proceso</strong> es una representación abstracta de
+un proceso, presentado desde una perspectiva particular.</p>
+<p><strong>27.</strong> <strong>Productos</strong> (los resultados de cada actividad), <strong>roles</strong> (las responsabilidades de las
+personas involucradas) y <strong>pre y post-condiciones</strong> (lo que es verdadero antes y después de que
+una actividad se haya realizado o se haya elaborado un producto).</p>
+<p><strong>28.</strong> En el <strong>dirigido por plan</strong>, todas las actividades se planifican con antelación y el
+progreso se mide contra ese plan. En el <strong>ágil</strong>, la planificación es gradual y es más fácil
+cambiar el proceso para reflejar requisitos cambiantes. Se combinan porque casi ningún proyecto
+real es puro: hasta el más ágil planifica arquitectura y presupuesto, y hasta el más planificado
+ajusta sobre la marcha. No hay procesos correctos o incorrectos.</p>
+<p><strong>29.</strong> No cambia <strong>qué</strong> se hace: cambia <strong>cuándo y cuántas veces</strong>. En cascada las cuatro
+actividades van en secuencia y una sola vez; en incremental se intercalan y se repiten en cada
+incremento; en espiral se repiten organizadas alrededor del riesgo. Lo que define a un modelo es
+el <strong>ordenamiento</strong> de las actividades.</p>
+<p><strong>30.</strong> Análisis y definición de requerimientos; diseño del sistema y del software;
+implementación y prueba de unidades; integración y prueba del sistema; operación y mantenimiento.
+Su principal inconveniente es la <strong>dificultad para acomodar cambios</strong> una vez iniciado el
+proceso, porque en principio cada fase debe completarse antes de pasar a la siguiente.</p>
+<p><strong>31.</strong> Conviene cuando los <strong>requisitos son estables y bien entendidos</strong>, y cuando existe
+<strong>regulación externa</strong> que exige trazabilidad documento por documento. También ayuda a coordinar
+proyectos grandes desarrollados en varias sedes. Dominios típicos: aviónica, dispositivos
+médicos, señalización ferroviaria, control industrial.</p>
+<p><strong>32.</strong> Especificación, desarrollo y validación se <strong>intercalan</strong>; el sistema se desarrolla en
+incrementos sucesivos. Beneficios: se reduce el costo de atender necesidades cambiantes; hay
+menos análisis y documentación que rehacer; el cliente da feedback sobre lo implementado; hay
+entrega más rápida de software útil. Problemas: el proceso <strong>no es visible</strong> (los gerentes
+necesitan entregas regulares para medir progreso) y la <strong>estructura del sistema tiende a
+degradarse</strong> a medida que se agregan incrementos, porque se invierte poco en refactorizar.</p>
+<p><strong>33.</strong> El <strong>desarrollo</strong> incremental describe cómo se <strong>construye</strong> el producto: en piezas
+manejables, que pueden ser internas y no visibles para el cliente (por ejemplo, primero la base de
+datos y la API sin interfaz). La <strong>entrega</strong> incremental describe cómo se <strong>libera</strong> al usuario:
+cada incremento ya funciona por sí solo y aporta valor (por ejemplo, se libera el registro de
+usuarios, después la gestión de perfiles). Se puede hacer desarrollo incremental sin entregar
+nada hasta el final.</p>
+<p><strong>34.</strong> Análisis de requerimientos; análisis de los componentes; <strong>modificación de
+requerimientos</strong>; configuración del sistema con la reutilización; desarrollo e integración. La
+tercera etapa no existe en ningún otro modelo, y es llamativa porque es el único proceso donde
+<strong>los requisitos se ajustan a la solución disponible</strong>, y no al revés.</p>
+<p><strong>35.</strong> El sistema <strong>hereda las limitaciones de cada componente</strong>. Si la plataforma elegida no
+permite algo, el requisito se negocia con el cliente o se paga muy caro implementarlo por fuera.
+Ejemplo: una tienda online armada sobre una plataforma de e-commerce que no soporta el esquema de
+descuentos por volumen que la empresa usa desde hace años.</p>
+<p><strong>36.</strong> Conviene cuando los requerimientos <strong>no están bien definidos desde el principio</strong>. Fases:
+desarrollo de un prototipo inicial; retroalimentación del usuario; refinamiento del prototipo; y
+repetición del ciclo hasta llegar al producto final.</p>
+<p><strong>37.</strong> Cada ciclo se divide en cuatro sectores: establecimiento de objetivos; <strong>valoración y
+reducción del riesgo</strong>; desarrollo y validación; y planeación. Lo distingue que la iteración está
+organizada alrededor del <strong>riesgo</strong>: cada vuelta identifica y mitiga un riesgo concreto, en lugar
+de simplemente agregar funcionalidad.</p>
+<p><strong>38.</strong> El <strong>evolutivo</strong> itera porque no se sabe <strong>qué</strong> construir; el motor de cada ciclo es el
+feedback del usuario sobre un prototipo. El <strong>espiral</strong> itera porque hay <strong>riesgos</strong> que despejar;
+el motor es el análisis de riesgo, y puede haber ciclos sin nada visible para el usuario. Sirve el
+evolutivo y no el espiral en una app municipal donde nadie sabe qué quiere y el riesgo técnico es
+bajo. Sirve el espiral y no el evolutivo al migrar historias clínicas de papel: se sabe
+perfectamente qué construir, pero puede fallar la migración de datos, la adopción o la
+conectividad.</p>
+<p><strong>39.</strong> Es el proceso de establecer qué servicios son necesarios y cuáles son las restricciones de
+funcionamiento y desarrollo del sistema. Sub-actividades: <strong>estudio de factibilidad</strong>
+(¿es técnica y financieramente viable?); <strong>obtención y análisis</strong> de requerimientos (¿qué esperan
+los distintos actores?); <strong>especificación</strong> (definirlos en detalle); y <strong>validación</strong> (comprobar
+su validez).</p>
+<p><strong>40.</strong> <strong>Pruebas de desarrollo o de componente</strong>: los componentes individuales se prueban de
+forma independiente, y las hace el equipo de desarrollo. <strong>Pruebas del sistema</strong>: se prueba el
+sistema como un todo, con foco en las propiedades emergentes; las hace el equipo. <strong>Pruebas de
+aceptación</strong>: las realiza el <strong>cliente</strong>, para verificar que el sistema cumple con sus
+necesidades.</p>
+<p><strong>41.</strong> a) Diseño e implementación. b) Evolución. c) Validación. d) Especificación de
+requerimientos.</p>
+<p><strong>42.</strong> <strong>Evitar el cambio</strong>: el proceso incluye actividades que anticipan posibles cambios para
+no repetir trabajo — por ejemplo, desarrollar un prototipo para mostrarle al cliente las
+características clave antes de programar. <strong>Tolerancia al cambio</strong>: el proceso se diseña para que
+los cambios cuesten poco — por ejemplo, desarrollo incremental, donde solo hay que alterar un
+incremento para incorporar el cambio.</p>
+<p><strong>43.</strong> El prototipo es <strong>evitar</strong> el cambio; trabajar en incrementos es <strong>tolerarlo</strong>. No son
+excluyentes y los procesos reales combinan las dos. Costos: evitar cuesta tiempo por adelantado y
+falla si el cliente no sabe lo que quiere; tolerar cuesta disciplina técnica sostenida
+—refactorización, pruebas automatizadas— que los equipos suelen abandonar justo cuando están
+apurados.</p>
+<p><strong>44.</strong> Puede ser imposible ajustarlo para cumplir los requisitos no funcionales; normalmente
+está indocumentado; su estructura se degrada por el cambio rápido; y difícilmente cumple con los
+estándares de calidad de la organización.</p>
+<p><strong>45.</strong> Se lleva <strong>conocimiento</strong>, no código: requisitos que quedaron claros, decisiones de
+interfaz ya validadas, flujos de pantalla, casos de prueba que surgieron al probarlo, y la lista
+de cosas que el cliente creía querer y resultó que no. La justificación: el prototipo no es el
+producto, es el instrumento para saber qué producto construir. Tirarlo es más barato que
+descubrir el error después de haber construido el sistema de producción.</p>
+<p><strong>46.</strong> <em>Computer-Aided Software Engineering</em>: ingeniería de software asistida por computadora.
+Son aplicaciones que ayudan a desarrollar software automatizando tareas del proceso y brindando
+información sobre el sistema. Automatizan, entre otras cosas: el desarrollo de modelos gráficos,
+la generación de código a partir de esos modelos, la producción de interfaces de usuario, la
+depuración y la traducción entre versiones de un lenguaje.</p>
+<p><strong>47.</strong> Por <strong>cobertura del ciclo de vida</strong> (Upper CASE, Lower CASE, I-CASE); por <strong>grado de
+integración</strong> (toolkit, workbench, IPSE); y por <strong>función</strong> (planificación, análisis y diseño,
+programación, integración y prueba, prototipos, mantenimiento, gestión de proyectos, soporte). No
+son alternativas porque responden a preguntas distintas: qué fases cubre, qué tan acopladas están
+entre sí, y qué tarea concreta resuelven. Una misma herramienta se ubica en las tres a la vez.</p>
+<p><strong>48.</strong> Por cobertura se acerca a <strong>I-CASE</strong>, porque va de la gestión del trabajo al despliegue,
+aunque no hace análisis ni diseño. Por integración es un <strong>entorno integrado</strong>, heredero del
+IPSE. Por función cruza tres: soporte, gestión de proyectos, e integración y prueba. La dificultad
+es que <strong>ninguna casilla le queda bien</strong>, y eso muestra que las taxonomías describen el panorama
+de su época: no están mal, están fechadas.</p>
+<p><strong>49.</strong> No se contradicen. El Manifiesto no dice "no documentar": dice qué <strong>priorizar cuando hay
+que elegir</strong>. Un equipo ágil documenta, pero documenta lo que se usa. Además, la mayoría de las
+herramientas que usa un equipo ágil <strong>son</strong> herramientas CASE: el IDE, el control de versiones, la
+integración continua, las pruebas automatizadas, el gestor de tareas. Lo que evitan no son las
+herramientas, sino la documentación que nadie lee.</p>
+<p><strong>50.</strong> El <strong>núcleo es el mismo</strong>: los dos usan IDE, control de versiones y pruebas. Lo que cambia
+es dónde se concentra el esfuerzo. La cascada regulada carga en documentación, trazabilidad de
+requisitos, gestión de la configuración y verificación formal, porque un auditor necesita ver el
+rastro de cada requisito hasta su prueba. La entrega incremental carga en integración continua,
+despliegue automatizado, observabilidad y feedback en producción. Conclusión: el proceso no
+determina <strong>qué</strong> herramientas se usan, sino <strong>dónde</strong> se pone el esfuerzo.</p>
+</body>
+</html>

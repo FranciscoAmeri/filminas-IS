@@ -114,10 +114,6 @@
         <a class="practico" href="U2_herramientas-case.html"
           >Herramientas CASE</a
         >
-        <br />
-        <a href="U2_repaso_integrador.html">
-          Unidad 2: Repaso integrador (Procesos + CASE)
-        </a>
       </div>
       <div class="grid-item">
         <img src="images/indice/u2_icono.png" />
@@ -153,6 +149,16 @@
         <a class="practico" href="U4P_prototipado.html">
           Diseño y Prototipado
         </a>
+        <br />
+        <a href="U2_repaso_integrador.html">
+          Repaso integrador: Procesos y Herramientas CASE
+        </a>
+        <br />
+        <a
+          class="practico"
+          href="guias/U1-U2_guia_de_estudio.html"
+          >Guía de estudio: Unidades 1 y 2 (50 preguntas)</a
+        >
       </div>
       <div class="grid-item">
         <img src="images/indice/u3_icono.png" />
@@ -235,5 +241,41 @@
         <a href="Ejercicios.html">Ejercicios</a> <br />
       </div>
     </div>
+
+    <script>
+      /*
+        Los enlaces de este índice apuntan a .html porque así se llaman los
+        archivos en el sitio compilado (npm run build / npm run preview).
+
+        El servidor de desarrollo (npm start, puerto 1948) sirve las filminas
+        con extensión .md, así que ahí los .html no existen y reveal-md muestra
+        su listado de archivos. Este script detecta ese caso y reescribe los
+        enlaces al vuelo, para que el índice funcione en los dos entornos.
+      */
+      (function () {
+        if (location.port !== "1948") return;
+
+        var aviso = document.createElement("div");
+        aviso.textContent =
+          "Modo desarrollo (npm start): los enlaces apuntan a los .md. " +
+          "Para ver el sitio como lo verá el alumno, usá npm run preview.";
+        aviso.style.cssText =
+          "background:#eee8d5;border-left:4px solid #b58900;padding:10px 14px;" +
+          "margin-bottom:20px;font-size:16px;color:#657b83;";
+        document.body.insertBefore(aviso, document.body.firstChild);
+
+        var enlaces = document.querySelectorAll('a[href$=".html"]');
+        for (var i = 0; i < enlaces.length; i++) {
+          var href = enlaces[i].getAttribute("href");
+          if (/^https?:/i.test(href)) continue;
+
+          /* Los archivos en subcarpetas (guias/) son HTML de verdad y el
+             servidor de desarrollo los sirve tal cual: no hay que tocarlos. */
+          if (href.indexOf("/") !== -1) continue;
+
+          enlaces[i].setAttribute("href", href.replace(/\.html$/, ".md"));
+        }
+      })();
+    </script>
   </body>
 </html>

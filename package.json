@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "reveal-md slides -w",
-    "build": "reveal-md slides --static public",
+    "preview": "npm run build && node -e \"require('fs').copyFileSync('slides/index.html','public/index.html')\" && npx --yes serve public",
+    "build": "reveal-md slides --static public && node -e \"require('fs').cpSync('slides/guias','public/guias',{recursive:true})\"",
     "deploy": "npm run build && node -e \"require('fs').copyFileSync('slides/index.html','public/index.html')\" && gh-pages -d public -b gh-pages"
   },
   "repository": {
