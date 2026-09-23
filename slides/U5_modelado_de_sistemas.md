@@ -24,6 +24,19 @@ Created by <i class="fab fa-telegram"></i>
     padding: 20px;
     text-align: left !important;
 }
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.fuente {
+  border-top: 2px solid rgba(121, 177, 217, 0.6);
+  padding-top: 8px;
+  margin-top: 14px;
+  font-size: 0.78em;
+}
 </style>
 ## Temario
 <div class="grid-container2">
@@ -33,6 +46,7 @@ Created by <i class="fab fa-telegram"></i>
 * Modelos de Sistemas
 * Perspectivas del Sistema
 * Tipos de Diagramas UML
+* Qué diagrama usar para qué
 * Uso de modelos gráficos
 * Modelos de Contexto
 * Límites del sistema
@@ -109,18 +123,26 @@ a los eventos.
 ### Ejemplo:
 ````java
 package codemodel;
+
 public class Guitarist extends Person implements MusicPlayer {
+
     Guitar favoriteGuitar;
-      public Guitarist (String name) {super(name);}
-            //A couple of local methods for accessing the class's properties
-      public void setInstrument(Instrument instrument) {
-            if(instrument instanceof Guitar){
-                this.favoriteGuitar = (Guiter) instrument;
-            } else {
-                System.out.println("I'm not playing that thing!");
-            }
-      }
-      public Instrument getInstrument() {return this.favoriteGuitar;}
+
+    public Guitarist(String name) { super(name); }
+
+    public void setInstrument(Instrument instrument) {
+        if (instrument instanceof Guitar) {
+            this.favoriteGuitar = (Guitar) instrument;
+        } else {
+            System.out.println("I'm not playing that thing!");
+        }
+    }
+
+    public Instrument getInstrument() { return this.favoriteGuitar; }
+
+    public void play() { /* implementa MusicPlayer */ }
+
+    public static void main(String[] args) { }
 }
 ````
 * Representa sólo la lógica e ignora el resto
@@ -128,7 +150,7 @@ public class Guitarist extends Person implements MusicPlayer {
 * No facilita la reutilización ni la comunicación
 
 ---
-````cookie
+````text
 Guitarist es una clase que contiene seis miembros: 1 estático y 5
 no estáticos. Guitarist usa, y por lo tanto necesita, una instancia 
 de Guitar; Sin embargo, dado que esto podría compartirse con otras 
@@ -162,7 +184,7 @@ parámetros y su tipo de retorno es nulo.
 ### UML
 * Siglas de "Unified Modeling Language".
 * Lenguaje de modelado estándar para modelado orientado a objetos.
-* Tiene numerosos tipos de diagramas, pero en la gran mayoría de sistemas se usan solo 5.
+* Define 14 tipos de diagramas, pero en la gran mayoría de sistemas se usan solo **5**.
 * UML puede usarse para visualizar, especificar, construir y documentar los artefactos de un sistema de software
 
 ![Logo UML](images/unidad5/logo-UML.png)
@@ -186,6 +208,18 @@ totalidad el sistema que va a desarrollarse. Los diagramas, para facilitar la co
 información, pueden tener partes que se entienden de distintas maneras o, incluso, pueden tener conceptos que no 
 pueden ser representados por ningún diagrama.
 
+----
+
+### ¿Con qué se dibujan?
+<!-- .slide: style="font-size: 0.85em" -->
+
+* **StarUML** — específica de UML, valida el modelo y genera código. Es la que usamos en la materia.
+* **Draw.io / Lucidchart** — de propósito general: dibujan rápido, pero no entienden UML ni avisan si el modelo es inconsistente.
+* **PlantUML** — el diagrama se escribe como texto y se versiona junto al código, así que no queda desactualizado.
+
+**La diferencia que importa:** una herramienta que *entiende* UML detecta errores de consistencia;
+una que solo *dibuja*, no. Con la segunda el diagrama puede estar mal y verse bien.
+
 ---
 
 ![Clasificación de los diagramas UML](images/unidad5/clasificacion-diagramas.png)
@@ -198,34 +232,33 @@ pueden ser representados por ningún diagrama.
 <div class="grid-container2">
 <div class="grid-item">
 
-### Diagramas de Estructura 
+### Diagramas de Estructura
 
-1.Diagrama de clases
-2.Diagrama de Objetos
-3.Diagrama de Componentes
-4.Diagrama de Estructura Compuesta
-
-5.Diagrama de Despliegue
-
-6.Diagrama de Paquetes
+1. Diagrama de Clases
+2. Diagrama de Objetos
+3. Diagrama de Componentes
+4. Diagrama de Estructura Compuesta
+5. Diagrama de Despliegue
+6. Diagrama de Paquetes
+7. Diagrama de Perfiles
 
 </div>
 <div class="grid-item">
 
-### Diaramas de Comportamiento
+### Diagramas de Comportamiento
 
-7.Diagrama de Actividad
-8.Diagrama de Casos de Uso
-9.Diagrama de Máquinas de Estado
+8. Diagrama de Actividad
+9. Diagrama de Casos de Uso
+10. Diagrama de Máquinas de Estado
+11. Diagrama de Secuencia
+12. Diagrama de Comunicaciones
+13. Diagrama de Tiempo
+14. Diagrama de Descripción de Interacción
 
-10.Diagrama de Secuencia
-
-11.Diagrama de Comunicaciones
-
-12.Diagrama de Tiempo
-
-13.Diagrama de Descripción de Interacción
 </div></div>
+
+**UML 2.5 define 14 diagramas: 7 de estructura y 7 de comportamiento.**
+Los cuatro últimos de comportamiento son, en rigor, **diagramas de interacción**.
 
 ----
 
@@ -238,12 +271,65 @@ pueden ser representados por ningún diagrama.
 * **Diagramas de clases:** Muestran las clases de objetos en el sistema y las asociaciones entre estas clases.
 * **Diagramas de estado:** Muestran cómo el sistema reacciona a los acontecimientos internos y externos.
 
+----
+
+### Cada perspectiva tiene su diagrama
+<!-- .slide: style="font-size: 0.70em" -->
+
+Al principio vimos cuatro perspectivas del sistema. **Así se conectan con los cinco diagramas:**
+
+| Perspectiva | ¿Qué modela? | Diagrama |
+|---|---|---|
+| **Externa** | El contexto: qué queda dentro y fuera del sistema | Modelo de contexto |
+| **De interacción** | Cómo se comunican el sistema y su entorno, o sus componentes entre sí | Casos de uso · Secuencia |
+| **Estructural** | Cómo se organiza el sistema y los datos que procesa | Clases |
+| **Conductual** | Cómo responde el sistema a estímulos: datos o eventos | Actividad (datos) · Estado (eventos) |
+
+**No se elige un diagrama porque sí:** se elige la perspectiva desde la que hace falta mirar el
+sistema, y esa perspectiva determina el diagrama.
+
+----
+
+### ¿Qué diagrama responde qué pregunta?
+<!-- .slide: style="font-size: 0.70em" -->
+
+| Si necesitás saber… | Usá |
+|---|---|
+| ¿Dónde termina mi sistema y empieza otro? | **Modelo de contexto** |
+| ¿Quién usa el sistema y para qué? | **Casos de uso** |
+| ¿En qué orden se llaman los objetos para resolver una tarea? | **Secuencia** |
+| ¿Qué entidades existen y cómo se relacionan? | **Clases** |
+| ¿Cuál es el flujo de trabajo, con sus decisiones y ramas? | **Actividad** |
+| ¿En qué estados puede estar esto y qué lo hace cambiar? | **Máquina de estado** |
+
+**Un mismo sistema necesita varios.** Ninguno lo describe entero: cada uno responde una
+pregunta distinta, y por eso el modelado es siempre un conjunto de vistas.
+
+----
+
+### 💡 Ejercicio: ¿Qué diagrama usarías?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.68em" -->
+
+Para cada necesidad, elegí **un** diagrama y justificá en una línea:
+
+1. Hay que decidir si la facturación la resuelve nuestro sistema o el sistema contable que ya existe. <!--Modelo de contexto: define los límites del sistema.-->
+2. El cliente quiere ver de un vistazo todo lo que podrá hacer cada tipo de usuario. <!--Casos de uso.-->
+3. Un pedido puede estar pendiente, pagado, en preparación, enviado o cancelado, y no todas las transiciones son válidas. <!--Máquina de estado.-->
+4. Hay que documentar qué objetos intervienen, en qué orden, cuando alguien saca un turno. <!--Diagrama de secuencia.-->
+5. Necesitamos saber qué datos guarda el sistema y cómo se vinculan entre sí. <!--Diagrama de clases.-->
+6. El equipo discute si la aprobación de un pedido va antes o después del control de stock. <!--Diagrama de actividad: modela el flujo del proceso de negocio.-->
+
+<!--
+Cierre: en el 1 y el 6 la respuesta se confunde seguido. El de contexto responde "¿esto es
+parte de mi sistema?"; el de actividad responde "¿en qué orden ocurren las cosas?".
+-->
+
 ---
 ### El uso de modelos gráficos
 * Como una forma de facilitar el debate sobre un sistema
-* Como una manera de documentar un modelo de sistema debe ser una representación exacta del sistema, pero no
-tiene que ser completa.
-* Como una descripción detallada del sistema en ese caso debe ser correcta y completa.
+* Como una manera de **documentar** el sistema: el modelo debe ser una representación exacta, pero no tiene que ser completa.
+* Como una **descripción detallada** del sistema: en ese caso sí debe ser correcta y completa.
 
 ---
 ### Modelos de contexto
@@ -258,19 +344,24 @@ encuentra fuera de los límites del sistema.
 * Los límites del sistema se establecen para definir lo que está dentro y lo que está fuera del sistema, muestran otros
 sistemas que se utilizan o dependen del sistema que está siendo desarrollado.
 * La posición de los límites del sistema tiene un efecto profundo en los requisitos del sistema.
-* La definición del límite del sistema es fundamental Si los límites del sistema aumentan y/o disminuyen cambia la
+* La definición del límite del sistema es fundamental: si los límites aumentan o disminuyen, cambia la
 carga de trabajo de las diferentes partes de una organización.
 
 ----
 
 #### El contexto del MHC-PMS
+<!-- .slide: style="font-size: 0.85em" -->
+
+> **MHC-PMS** (*Mental Health Care Patient Management System*): sistema de gestión de pacientes
+> de salud mental. Es el caso de estudio que se usa en todos los ejemplos de esta unidad.
+
 ![Ejemplo de Diagrama de Contexto](images/unidad5/diagrama_contexto_mhc-pms.jpg)
 
 ---
 
 ### Perspectiva del proceso
-* Los modelos de contexto, simplemente muestran los otros sistemas en ambiente, no cómo se utiliza el sistema
-que está siendo desarrollado en ese entorno.
+* Los modelos de contexto simplemente muestran los otros sistemas del ambiente, no cómo se utiliza en ese
+entorno el sistema que está siendo desarrollado.
 * Los modelos de proceso revelan cómo se utiliza el sistema en desarrollo en los procesos de negocio
 * Diagramas de actividades de UML se pueden utilizar para definir los modelos de procesos de negocio.
 
@@ -283,10 +374,10 @@ que está siendo desarrollado en ese entorno.
 ### Modelos de interacción
 <!-- .slide: style="font-size: 0.90em" -->
 * El modelado de la interacción de usuario es importante ya que ayuda a identificar las necesidades de los usuarios.
-* El modelado de interaccion de sistema a sistema resalta los problemas de comunicación que puedan surgir.
+* El modelado de interacción de sistema a sistema resalta los problemas de comunicación que puedan surgir.
 * El modelo de interacción de componentes ayuda a comprender si la estructura del sistema propuesto es
 adecuada para ofrecer el rendimiento y la fiabilidad del sistema necesario.
-* Los **diagramas de casos** y **diagramas de secuencia** se pueden utilizar para el modelado de la interacción.
+* Los **diagramas de casos de uso** y los **diagramas de secuencia** se pueden utilizar para el modelado de la interacción.
 
 ---
 ### Modelado de casos de uso
@@ -294,22 +385,14 @@ adecuada para ofrecer el rendimiento y la fiabilidad del sistema necesario.
 * Especifica un comportamiento deseado del sistema.
 * Representa los requisitos funcionales del sistema.
 * Describe qué hace el sistema, no cómo lo hace.
-Un caso de uso especifica un conjunto de secuencias de acciones, incluyendo variantes, que el sistema puede ejecutar y que produce un resultado observable de valor para un particular actor.
+* Cada caso de uso es una **tarea discreta** que implica interacción externa con el sistema, y sus **actores** pueden ser personas u otros sistemas.
+* Se documenta en dos niveles: una **representación esquemática** para la visión general, y una **textual** para el detalle.
 
-----
+<div class="fuente">
 
-### Modelado de casos de uso
+📎 **La notación completa está en [Práctico: Casos de Uso](U5P_2_UML_casos_de_uso.html)** — acá solo vemos para qué sirve.
 
-* Cada caso de uso representa una tarea discreta que implica la interacción externa con un sistema.
-* Los actores de un caso de uso pueden ser personas u otros sistemas.
-* Representación esquemática para proporcionar una visión general de los casos de uso.
-* Representación textual para proporcionar una visión detallada.
-
-----
-
-### Uso de datos de transferencia de caso
-Un caso de uso en el MHC-PMS:
-![Un caso de uso en el MHC-PMS](images/unidad5/ejemplo_1_caso_de_uso.jpg)
+</div>
 
 ----
 
@@ -331,10 +414,11 @@ trazada verticalmente a partir de estos.
 ### Diagrama de secuencia para Ver la información del paciente
 ![Diagrama de secuencia: Ver información del paciente](images/unidad5/diagrama_secuencia.jpg)
 
-----
+<div class="fuente">
 
-#### Diagrama de secuencia para la transferencia de datos
-![Diagrama de secuencia: Transferencia de datos](images/unidad5/diagrama_secuencia_transferencia_datos.jpg)
+📎 **La notación completa está en [Práctico: Diagrama de Secuencia](U5P_4_UML_diagramas_secuencia.html)** — acá solo vemos para qué sirve.
+
+</div>
 
 ---
 ### Modelos estructurales
@@ -352,57 +436,77 @@ clases de un sistema y las asociaciones entre estas clases.
 
 ----
 
-### Clases UML y asociación
-![Clases UML y asociación](images/unidad5/UML_y_asociacion.jpg)
-
-----
-
 ### Las clases y asociaciones en el MHC-PMS
 ![Clases y asociaciones en el MHC-PMS](images/unidad5/clases_asociaciones_MHC-PMS.jpg)
 
+<div class="fuente">
+
+📎 **La notación completa está en [Práctico: Diagrama de Clases](U5P_3_UML_diagrama_clase.html)** — acá solo vemos para qué sirve.
+
+</div>
+
 ----
 
-### La clase de consulta
-![La clase de consulta](images/unidad5/clase_de_consulta.jpg)
+### 💡 Ejercicio: Del enunciado al modelo
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.70em" -->
+
+> *"La biblioteca de la facultad presta libros a estudiantes y docentes. Cada préstamo lo
+> registra un bibliotecario, tiene una fecha de retiro y una de devolución, y alcanza a un
+> único ejemplar. Un mismo título puede tener varios ejemplares. Los docentes pueden llevarse
+> hasta cinco libros; los estudiantes, dos."*
+
+1. Identificá los **actores** y al menos tres **casos de uso**.
+2. Identificá las **clases candidatas** y sus **asociaciones**, con las multiplicidades.
+3. ¿Dónde ubicarías la regla de los cinco libros y los dos libros? ¿Es una clase, un atributo
+   o algo que no se representa en el diagrama de clases?
+
+<!--
+1. Actores: Estudiante, Docente, Bibliotecario. Casos de uso: registrar préstamo, devolver
+   ejemplar, consultar disponibilidad, registrar socio.
+2. Clases: Socio (con Estudiante y Docente como especializaciones), Préstamo, Ejemplar, Título.
+   Un Título tiene muchos Ejemplares (1..*); un Préstamo alcanza un único Ejemplar (1); un
+   Socio puede tener varios Préstamos (0..*).
+3. Es el punto interesante. El límite distinto por tipo de socio se resuelve con
+   generalización: un atributo "máximo de préstamos" en Socio, con valor distinto en cada
+   subclase. La REGLA de que no se puede exceder ese máximo es una restricción de
+   comportamiento: no se ve en el diagrama de clases. Ahí es donde el modelo estructural
+   muestra su límite y hace falta otra vista.
+-->
 
 ---
 ### Generalización
 * La generalización es una técnica que utilizamos para gestionar la complejidad.
 * En lugar de definir las características detalladas de cada entidad, ponemos estas características en las clases
 más generales (animales, coches, casas, etc).
-* Esto nos permite inferir que los diferentes miembros de estas clases tienen algunas características comunes. 
-
-----
-
-### Generalización
-<!-- .slide: style="font-size: 0.90em" -->
-* En los sistemas de modelado, a menudo es útil examinar las clases de un sistema para ver si hay posibilidades de
-generalización.
-* En lenguajes orientados a objetos, la generalización se realiza utilizando los mecanismos de herencia.
-* En una generalización, los atributos y las operaciones asociadas a las clases de nivel superior también están
-asociadas a las clases de menor nivel.
-* Las clases de nivel inferior son subclases que heredan los atributos y operaciones de sus superclases. Estas
-clases de nivel inferior son más especificas y pueden añadir atributos y operaciones.
+* Esto nos permite inferir que los diferentes miembros de estas clases tienen algunas características comunes.
+* En lenguajes orientados a objetos se implementa con **herencia**: las subclases heredan los atributos y
+  operaciones de sus superclases, y pueden agregar los suyos propios.
 
 ----
 
 ### Una jerarquía de generalización
 ![Una jerarquía de generalización](images/unidad5/jerarquia_de_generalizacion.jpg)
 
-----
+<div class="fuente">
 
-### Una jerarquía de generalización con caracteristicas agregadas
-![Generalización con caracteristicas agregadas](images/unidad5/jeneralizacion_caracteristicas_agregadas.jpg)
+📎 **La notación completa está en [Práctico: Diagrama de Clases](U5P_3_UML_diagrama_clase.html)** — acá solo vemos para qué sirve.
+
+</div>
 
 ---
 ### Agregación
-* Un modelo de agregación muestra cómo las clases se componen de otras clases.
-* Los modelos de agregación son similares a la parte de la relación en los modelos de datos semánticos.
+<!-- .slide: style="font-size: 0.85em" -->
+Un modelo de agregación muestra cómo unas clases **se componen** de otras. Es la relación
+"parte de": equivale a la relación de parte en los modelos de datos semánticos.
 
-----
-
-### Agregación
 ![Agregacion](images/unidad5/agregacion.jpg)
+
+<div class="fuente">
+
+📎 **La notación completa está en [Práctico: Diagrama de Clases (agregación vs. composición)](U5P_3_UML_diagrama_clase.html)** — acá solo vemos para qué sirve.
+
+</div>
 
 ---
 
@@ -445,7 +549,7 @@ procesamiento de extremo a extremo en un sistema.
 ---
 ### Modelos de máquina de Estado
 * Estos modelan el comportamiento del sistema en respuesta a eventos externos e internos.
-* Muestran las respuestas del sistema a los estímulos tan a menudo se utilizan para el modelado de sistemas de tiempo real.
+* Muestran las respuestas del sistema a los estímulos, por lo que se utilizan a menudo para modelar sistemas de tiempo real.
 * Modelos de máquinas de estado muestran los estados del sistema como nodos y eventos como arcos entre estos
 nodos. Cuando ocurre un evento, el sistema pasa de un estado a otro.
 
@@ -495,15 +599,15 @@ nodos. Cuando ocurre un evento, el sistema pasa de un estado a otro.
 </tr>
 <tr>
 <td style="text-align:left">Deshabilitar</td>
-<td style="text-align:left">El funcionamiento del horno está deshabilitado por seguridad. Luz interior del horno está encendido. La pantalla muestra &quot;No está listo&#39;.</td>
+<td style="text-align:left">El funcionamiento del horno está deshabilitado por seguridad. Luz interior del horno está encendido. La pantalla muestra &#39;No está listo&#39;.</td>
 </tr>
 <tr>
 <td style="text-align:left">Habilitado</td>
-<td style="text-align:left">Se habilita el funcionamiento del horno. Luz interior del horno está apagado. La pantalla muestra &quot;Listo para cocinar&#39;.</td>
+<td style="text-align:left">Se habilita el funcionamiento del horno. Luz interior del horno está apagado. La pantalla muestra &#39;Listo para cocinar&#39;.</td>
 </tr>
 <tr>
-<td style="text-align:left">Operacion</td>
-<td style="text-align:left">Horno en funcionamiento. Luz interior del horno está encendido. La pantalla muestra la cuenta atrás del temporizador. Al término de la cocción, el zumbador suena durante cinco segundos. La luz del horno está encendido. La pantalla muestra &#39;Cocinando completa &quot;, mientras</td>
+<td style="text-align:left">Operación</td>
+<td style="text-align:left">Horno en funcionamiento. La luz interior está encendida. La pantalla muestra la cuenta atrás del temporizador. Al término de la cocción, el zumbador suena durante cinco segundos y la pantalla muestra &#39;Cocción completa&#39; mientras la puerta siga cerrada.</td>
 </tr>
 </tbody>
 </table>
@@ -572,6 +676,32 @@ nodos. Cuando ocurre un evento, el sistema pasa de un estado a otro.
 ### El funcionamiento del horno de microondas
 ![Funcionamiento Microondas](images/unidad5/funcionamiento_microondas.jpg)
 
+----
+
+### 💡 Ejercicio: Modelar una máquina de estados
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
+
+Modelá el ciclo de vida de un **pedido en una tienda online**.
+
+1. Listá los **estados** posibles del pedido.
+2. Listá los **eventos** que provocan cada transición.
+3. Dibujá el diagrama de máquina de estados.
+4. Respondé: ¿hay algún estado del que no se pueda salir? ¿Y alguno al que se pueda llegar por
+   más de un camino?
+
+<!--
+Estados típicos: Pendiente de pago · Pagado · En preparación · Enviado · Entregado ·
+Cancelado · Devuelto.
+Eventos: confirmar pago, rechazar pago, preparar, despachar, confirmar entrega, cancelar,
+solicitar devolución.
+4. "Entregado" y "Cancelado" son estados finales: no se sale de ellos (salvo que se modele
+la devolución, y ahí Entregado deja de ser final). A "Cancelado" se llega desde varios
+estados distintos, y esa es la pregunta que hace pensar: ¿se puede cancelar un pedido ya
+enviado? La respuesta es una decisión de negocio, no de modelado — y el diagrama la hace
+visible, que es justamente para lo que sirve.
+-->
+
 ---
 ### Ingeniería dirigida por modelos
 <!-- .slide: style="font-size: 0.90em" -->
@@ -598,7 +728,7 @@ El método de MDA recomienda la producción de tres tipos de modelo de sistema
 abstracto:
 - **Modelo Independiente de Computación (CIM):** Modela las importantes abstracciones de dominio usadas en el sistema.
 - **Modelo Independiente de Plataforma (PIM):** Modela la operación del sistema sin referencia a su implementación.
-- **Modelos específicos de plataforma (PSM)**
+- **Modelo Específico de Plataforma (PSM):** Traduce el PIM a una plataforma concreta. De un mismo PIM pueden derivarse varios PSM, uno por cada tecnología de destino.
 
 ----
 

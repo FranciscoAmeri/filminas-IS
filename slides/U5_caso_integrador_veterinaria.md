@@ -1,0 +1,398 @@
+---
+title: Caso integrador - Clínica Veterinaria
+theme: solarized
+slideNumber: true
+---
+
+# Ingeniería de Software
+## Un sistema, tres vistas
+### Caso integrador: clínica veterinaria
+Created by <i class="fab fa-telegram"></i>
+[edme88]("https://t.me/edme88")
+
+---
+<!-- .slide: style="font-size: 0.80em" -->
+<style>
+.grid-container2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 0.8em;
+    text-align: left !important;
+}
+
+.grid-item {
+    border: 3px solid rgba(121, 177, 217, 0.8);
+    padding: 20px;
+    text-align: left !important;
+}
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.fuente {
+  border-top: 2px solid rgba(121, 177, 217, 0.6);
+  padding-top: 8px;
+  margin-top: 14px;
+  font-size: 0.78em;
+}
+</style>
+
+## De qué se trata esta clase
+
+Hasta acá vimos los diagramas **de a uno**. Acá modelamos **un mismo sistema** con varios, para ver
+que ninguno lo describe entero y que cada uno responde una pregunta distinta.
+
+<div class="grid-item">
+
+**Vista 1 — Casos de uso:** ¿quién usa el sistema y para qué?
+**Vista 2 — Clases:** ¿qué entidades existen y cómo se relacionan?
+**Vista 3 — Secuencia:** ¿en qué orden colaboran los objetos?
+
+</div>
+
+**La notación de cada diagrama no se ve acá:** está en los prácticos. Esta clase es sobre cómo se
+combinan.
+
+---
+
+### El sistema: una clínica veterinaria
+<!-- .slide: style="font-size: 0.55em" -->
+
+Diseñar una aplicación que gestione los trámites de una clínica veterinaria:
+
+* Se deben almacenar los datos de contacto de los clientes: nombre, apellidos, DNI, fecha de nacimiento, teléfono o email.
+* Se debe almacenar la información de las mascotas. Cada cliente puede tener más de una mascota; una mascota pertenece a un único cliente.
+* Es posible cambiar el dueño de una mascota por otro.
+* Estos datos son introducidos y gestionados por los **auxiliares**.
+* Al dar de alta un nuevo animal, se comprobará en el registro del REIAC (Red Española de Identificación de Animales de
+  Compañía) si el animal está correctamente dado de alta. Este proceso únicamente se hará en animales que tengan la
+  obligación de estar identificados.
+* Para toda consulta debe registrarse: tiempo de consulta, profesional, animal tratado, importe, resolución, recetas.
+* Si el animal queda internado, el cliente podrá acceder a su estado en tiempo real y podrá comunicarse con una cámara
+  para ver su situación actual. **La gestión de estas cámaras no corresponde al sistema.**
+* Las recetas y otros documentos relacionados con el servicio se incluirán en un gestor de contenidos que **ya está en
+  funcionamiento** en la clínica.
+* El cliente podrá realizar el pago mediante la aplicación. Si el pago tarda más de una semana se efectuará un recargo
+  sobre el precio inicial.
+* El cliente podrá obtener un histórico de todas las consultas realizadas para sus mascotas.
+
+----
+
+### Antes de dibujar: leer el enunciado
+<!-- .slide: style="font-size: 0.80em" -->
+
+Dos frases del enunciado **no describen funcionalidad, describen los límites del sistema**:
+
+* *"La gestión de estas cámaras no corresponde al sistema."*
+* *"…un gestor de contenidos que ya está en funcionamiento en la clínica."*
+
+Son sistemas externos con los que hay que integrarse, no cosas para construir. Si se leen rápido,
+terminan como casos de uso que nadie pidió.
+
+**Primera tarea de todo modelado:** separar lo que el sistema hace de lo que hay a su alrededor.
+
+---
+
+## Vista 1
+### Casos de uso — ¿quién lo usa y para qué?
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+El enunciado menciona tres actores: **auxiliar**, **cliente** y **veterinario**. Cada uno ve un
+sistema distinto.
+
+Por eso el modelo se arma **un diagrama por actor**: así se controla que ningún rol quede sin
+funciones y que ninguna función quede sin dueño.
+
+<div class="fuente">
+
+📎 **La notación —actores, relaciones, include y extend— está en
+[Práctico: Casos de Uso](U5P_2_UML_casos_de_uso.html)**
+
+</div>
+
+----
+
+### Actor: Auxiliar
+![Diagrama de casos de uso del actor Auxiliar](images/unidad5/DCU_auxiliar.gif)
+
+----
+
+### Actor: Cliente
+![Diagrama de casos de uso del actor Cliente](images/unidad5/DCU_cliente.gif)
+
+----
+
+### Actor: Veterinario
+![Diagrama de casos de uso del actor Veterinario](images/unidad5/DCU_Veterinario.gif)
+
+----
+
+### 💡 Ejercicio: Leer los tres diagramas juntos
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.78em" -->
+
+1. ¿Hay algún caso de uso que aparezca en **más de un** diagrama? ¿Qué significa eso?
+2. Buscá en el enunciado una funcionalidad que **no** esté en ninguno de los tres diagramas.
+3. El pago con recargo después de una semana, ¿es un caso de uso o es una regla de negocio dentro
+   de uno? Justificá.
+
+<!--
+1. Si un caso de uso aparece con dos actores, es una función compartida: se dibuja una vez con
+   los dos actores conectados, no dos veces.
+2. La verificación en el REIAC suele quedar afuera, y es interesante porque no la dispara un
+   actor humano sino el propio sistema al dar de alta un animal.
+3. Es una regla de negocio dentro del caso de uso "Pagar consulta". El diagrama de casos de uso
+   no muestra reglas: muestra qué se puede hacer, no bajo qué condiciones. Ese es su límite.
+-->
+
+---
+
+## Del diagrama al texto
+### El diagrama solo no alcanza
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+Un caso de uso dibujado dice **que existe**. No dice qué pasa adentro, ni qué puede salir mal.
+
+Por eso cada caso de uso se acompaña de una descripción textual:
+
+<div class="grid-item">
+
+Identificador y nombre · Versión · Autores · Objetivos asociados · Requisitos asociados ·
+Descripción · **Precondición** · **Secuencia normal** · **Postcondición** · **Excepciones** ·
+Importancia · Urgencia · Comentarios
+
+</div>
+
+De la **precondición** y las **excepciones** salen los casos de prueba. Por eso son los campos que
+más importan.
+
+----
+
+<!-- .slide: style="font-size: 0.40em" -->
+<table>
+<thead>
+<tr>
+<th style="text-align:left">RF-01</th>
+<th style="text-align:left">Acceso Aplicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Versión</td>
+<td style="text-align:left">Versión 1.0</td>
+</tr>
+<tr>
+<td style="text-align:left">Autores</td>
+<td style="text-align:left">Agustina Aliciardi</td>
+</tr>
+<tr>
+<td style="text-align:left">Objetivos Asociados</td>
+<td style="text-align:left">OBJ-01: Acceso Controlado a la Aplicación Software</td>
+</tr>
+<tr>
+<td style="text-align:left">Requisitos asociados</td>
+<td style="text-align:left">RI-01: Información de los Usuarios.</td>
+</tr>
+<tr>
+<td style="text-align:left">Descripción</td>
+<td style="text-align:left">El sistema deberá comportarse como se describe en el siguiente caso de uso cuando un usuario decida acceder a la aplicación.</td>
+</tr>
+<tr>
+<td style="text-align:left">Precondición</td>
+<td style="text-align:left">El usuario tiene que disponer de un nombre de usuario y una contraseña para poder acceder y deberá tener el acceso habilitado.</td>
+</tr>
+<tr>
+<td style="text-align:left">Secuencia normal</td>
+<td style="text-align:left">1. El usuario solicita al sistema entrar en la aplicación.</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">2. El sistema solicita al usuario que introduzca el nombre de usuario y su contraseña.</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">3. El usuario introduce su nombre y su contraseña.</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">4. El sistema comprueba los datos introducidos.</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">5. Si los datos son correctos el sistema muestra la página de inicio de la aplicación.</td>
+</tr>
+<tr>
+<td style="text-align:left">Excepciones</td>
+<td style="text-align:left">5. Si el nombre de usuario no es correcto, el sistema muestra un mensaje. Ir al paso 2.</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">5. Si la contraseña no es correcta, el sistema muestra un mensaje. Ir al paso 2.</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">5. Si el sistema no tiene el acceso habilitado a la aplicación, se muestra un mensaje. Ir al paso 2.</td>
+</tr>
+<tr>
+<td style="text-align:left">Postcondición</td>
+<td style="text-align:left">Si el nombre de usuario y la contraseña son correctos accede a la pantalla de inicio de la aplicación</td>
+</tr>
+<tr>
+<td style="text-align:left">Importancia</td>
+<td style="text-align:left">Vital</td>
+</tr>
+<tr>
+<td style="text-align:left">Urgencia</td>
+<td style="text-align:left">Inmediatamente</td>
+</tr>
+<tr>
+<td style="text-align:left">Comentarios</td>
+<td style="text-align:left">Ninguno</td>
+</tr>
+</tbody>
+</table>
+
+----
+
+### Los no funcionales también se documentan
+<!-- .slide: style="font-size: 0.55em" -->
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <caption>RNF-01 – Entorno de Explotación</caption>
+  <tbody>
+    <tr><th scope="row">Versión</th><td>Versión 1.0</td></tr>
+    <tr><th scope="row">Autores</th><td>Juan Pérez</td></tr>
+    <tr><th scope="row">Objetivos asociados</th><td>OBJ-05: Funcionamiento óptimo por usuario estándar</td></tr>
+    <tr><th scope="row">Descripción</th><td>El sistema deberá funcionar sin ningún tipo de limitación en equipos con procesador de 2,4 GHz, 1 GB de RAM y al menos 6 GB de disco.</td></tr>
+    <tr><th scope="row">Importancia</th><td>Vital</td></tr>
+    <tr><th scope="row">Urgencia</th><td>Inmediata</td></tr>
+    <tr><th scope="row">Estabilidad</th><td>Alta</td></tr>
+    <tr><th scope="row">Comentario</th><td>Ninguno</td></tr>
+  </tbody>
+</table>
+
+**Notar:** este requisito **no aparece en ningún diagrama**. Los no funcionales no se dibujan, se
+escriben. Es otra cosa que el modelo gráfico no puede mostrar.
+
+---
+
+## Vista 2
+### Clases — ¿qué entidades hay y cómo se relacionan?
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+Del mismo enunciado, ahora mirando los **sustantivos**: cliente, mascota, consulta, profesional,
+receta, pago.
+
+La vista de casos de uso decía **qué se puede hacer**. Esta dice **sobre qué se hace**.
+
+<div class="fuente">
+
+📎 **La notación —atributos, visibilidad, multiplicidad, asociación, agregación, composición y
+herencia— está en [Práctico: Diagrama de Clases](U5P_3_UML_diagrama_clase.html)**
+
+</div>
+
+----
+
+### Diagrama de clases de la veterinaria
+![Diagrama de Clases Veterinaria](images/unidad5/diagrama_clases_veterinaria.png)
+
+----
+
+### 💡 Ejercicio: Contrastar las dos vistas
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.78em" -->
+
+1. Tomá un caso de uso del diagrama del **auxiliar** y señalá **qué clases** participan en él.
+2. ¿Hay alguna clase en el diagrama que **no** aparezca en ningún caso de uso? ¿Es un error?
+3. El enunciado dice que *"es posible cambiar el dueño de una mascota por otro"*. ¿Eso se ve en el
+   diagrama de clases? ¿Y en el de casos de uso?
+
+<!--
+1. Por ejemplo "Alta de mascota" toca Cliente y Mascota. El ejercicio entrena la trazabilidad
+   entre vistas, que es lo que se pierde cuando los diagramas se dibujan por separado.
+2. Puede haberla y no necesariamente es un error: hay clases de soporte que no son visibles
+   desde ninguna funcionalidad. Pero es una señal para revisar: o falta un caso de uso, o
+   sobra la clase.
+3. En el de clases se ve la POSIBILIDAD: la multiplicidad de la asociación Cliente–Mascota
+   permite reasignar. En el de casos de uso se ve la ACCIÓN: debe existir un caso de uso
+   "Cambiar dueño". Ninguna de las dos vistas lo dice sola: una da la estructura, la otra el
+   comportamiento.
+-->
+
+---
+
+## Vista 3
+### Secuencia — ¿en qué orden colaboran?
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+Las dos vistas anteriores son **estáticas**: dicen qué se puede hacer y con qué entidades, pero no
+en qué orden ocurren las cosas ni quién le pide qué a quién.
+
+Para eso está el diagrama de secuencia: toma **un** caso de uso y muestra la conversación entre los
+objetos que lo resuelven.
+
+<div class="fuente">
+
+📎 **La notación —líneas de vida, mensajes, fragmentos combinados— está en
+[Práctico: Diagrama de Secuencia](U5P_4_UML_diagramas_secuencia.html)**
+
+</div>
+
+----
+
+### 💡 Ejercicio: La vista que falta
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.78em" -->
+
+El caso de la veterinaria tiene la vista de casos de uso y la de clases. **Falta la de secuencia.**
+
+Elegí el caso de uso **"Registrar una consulta"** y dibujá su diagrama de secuencia, usando las
+clases del diagrama anterior como participantes.
+
+1. ¿Quién inicia la interacción?
+2. ¿Qué objetos participan y en qué orden se llaman?
+3. ¿Qué pasa si el animal no está registrado en el REIAC? Modelá esa alternativa.
+
+<!--
+Lo que interesa evaluar: que los participantes del diagrama de secuencia sean clases que
+existen en el diagrama de clases. Si aparece un objeto que no está en el modelo estructural,
+o falta una clase o sobra un objeto: las vistas tienen que ser consistentes entre sí, y esa
+verificación cruzada es justamente lo que una herramienta CASE que entiende UML hace sola.
+El punto 3 obliga a usar un fragmento combinado alt, que se ve en el práctico.
+-->
+
+---
+
+## Las tres vistas, juntas
+<!-- .slide: style="font-size: 0.72em" -->
+
+| Vista | Pregunta que responde | Qué **no** muestra |
+|---|---|---|
+| **Casos de uso** | ¿Quién usa el sistema y para qué? | Las reglas de negocio, el orden, los datos |
+| **Clases** | ¿Qué entidades existen y cómo se relacionan? | El comportamiento y las restricciones dinámicas |
+| **Secuencia** | ¿En qué orden colaboran los objetos? | La estructura completa y el resto de los escenarios |
+
+**Ninguna alcanza sola, y las tres juntas tampoco son el sistema completo.** Los requisitos no
+funcionales, por ejemplo, no entran en ninguna.
+
+Por eso el modelado es siempre un **conjunto de vistas parciales y consistentes entre sí**, y la
+consistencia hay que sostenerla a mano o con una herramienta que la verifique.
+
+<div class="fuente">
+
+📎 [Perspectivas y diagramas](U5_modelado_de_sistemas.html#/10/2) ·
+[Qué diagrama responde qué pregunta](U5_modelado_de_sistemas.html#/10/3)
+
+</div>
+
+---
+## ¿Dudas, Preguntas, Comentarios?
+![DUDAS](images/pregunta.gif)
