@@ -26,311 +26,467 @@ Created by <i class="fab fa-telegram"></i>
 [edme88]("https://t.me/edme88")
 
 ---
-### Workflow de Análisis
-Ayuda a definir y especificar el sistema a ser construido. En esta fase se analizan, refinan y estructuran los requisitos 
-con el fin de llegar a una mayor comprensión de los mismos.
+<!-- .slide: style="font-size: 0.75em" -->
+<style>
+.grid-item {
+    border: 3px solid rgba(121, 177, 217, 0.8);
+    padding: 20px;
+    text-align: left !important;
+}
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.avanzado {
+  border-left: 4px solid #93a1a1;
+  padding-left: 14px;
+  font-size: 0.86em;
+  color: #586e75;
+}
+</style>
+
+## Recorrido
+
+<div class="grid-item">
+
+1. **Antes de dibujar** — de dónde salen las clases
+2. **La clase** — anatomía y visibilidad
+3. **Las relaciones** — asociación, agregación, composición, herencia
+4. **Herencia y polimorfismo**
+5. **Dependencias y paquetes** *(referencia)*
+6. **Ejercicio integrador**
+
+</div>
+
+Los bloques 1 a 4 son los que se usan en el trabajo práctico. El 5 es material de consulta.
 
 ---
-### Workflow de Análisis
-* Crean modelos que capturan el comportamiento deseado del sistema (Se solapa con los requerimientos)
-* Van de la mano con los requerimientos, los clarifica y los completa.
-* Se dejan los detalles para el diseño.
 
----
-### Worflow de Análisis: Características
-* El limite entre el análisis y diseño es difuso
-* Generan dos artefactos claves:
-  * Clases de análisis: Modelan conceptos claves del dominio
-  * Realizaciones de casos de Uso: Muestran cómo las instancias de análisis pueden interactuar para realizar el comportamiento del sistema.
+## 1 · Antes de dibujar
+### El workflow de análisis
 
----
-* Solo deben crearse clases relacionadas al dominio y no al diseño de la solución (ejemplo: “Clase de Comunicaciones, ControladorBD, ServicioHTTP”)
-* Decisiones de implementación es parte del “Diseño e Implementación”.
+<!-- .slide: style="font-size: 0.80em" -->
 
----
+Ayuda a definir y especificar el sistema a construir: se **analizan, refinan y estructuran los
+requisitos** para llegar a una mayor comprensión de los mismos.
+
+* Crea modelos que capturan el comportamiento deseado del sistema, y por eso **se solapa con los
+  requerimientos**: los clarifica y los completa.
+* Los detalles se dejan para el diseño. El límite entre análisis y diseño es difuso.
+* Genera dos artefactos clave: las **clases de análisis**, que modelan conceptos del dominio, y
+  las **realizaciones de casos de uso**, que muestran cómo esas clases interactúan.
+
+**Solo se crean clases del dominio, no de la solución.** `ControladorBD` o `ServicioHTTP` son
+decisiones de implementación: van en diseño, no acá.
+
+----
+
 ### Reglas para el análisis
-<!-- .slide: style="font-size: 0.90em" -->
-* Siempre se habla en términos del negocio.
-* Los modelos deben “contar una historia” (Si el diagrama no aclara comportamiento no sirve)
-* Concentrarse en la idea general (No en detalles de implementación)
-* Distinguir el “Dominio del Problema” del “Dominio de la Solución”
-* Siempre minimizar el acoplamiento
-* Explorar la herencias si parece haber una jerarquía natural de abstracciones
-* Siempre pregúntense si el modelo es de utilidad para otros (Costo vs. Beneficio)
+<!-- .slide: style="font-size: 0.85em" -->
+
+* Siempre se habla **en términos del negocio**.
+* Los modelos deben "contar una historia": si el diagrama no aclara comportamiento, no sirve.
+* Concentrarse en la idea general, no en detalles de implementación.
+* Distinguir el **dominio del problema** del **dominio de la solución**.
+* Minimizar el acoplamiento.
+* Explorar la herencia si parece haber una jerarquía natural de abstracciones.
+* Preguntarse siempre si el modelo le sirve a alguien más. Costo contra beneficio.
+
+----
+
+### ¿Qué hace buena a una clase de análisis?
+<!-- .slide: style="font-size: 0.82em" -->
+
+* Su **nombre refleja su intención** y se mapea con un concepto del dominio (Cliente, Producto, Cuenta).
+* Tiene un conjunto de **responsabilidades bien definidas** — el contrato de la clase con quienes la usan.
+* **Alta cohesión** y **bajo acoplamiento**.
+
+**Reglas prácticas:** de 3 a 5 responsabilidades por clase · ninguna clase permanece sola, todas
+colaboran · cuidado con las clases omnipotentes y con los árboles de herencia muy profundos ·
+encontrar el equilibrio entre muchas clases chicas y pocas enormes es difícil, y es parte del oficio.
 
 ---
-## CLASES DE ANÁLISIS
-* Representan una abstracción en el dominio del problema
-* Deberían mapearse con conceptos de negocio del mundo real (Cliente, producto, cuenta).
-* Se intentan clarificar los conceptos, se aclara el dominio
-* Las clases de análisis pueden resultar en 1 o más clases de diseño
+
+## 1 · Antes de dibujar
+### ¿Cómo se encuentran las clases?
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+**No existe un algoritmo.** Hay tres técnicas probadas que llevan a "una buena respuesta", y se
+usan combinadas:
+
+1. Análisis **nombre / verbo**
+2. Análisis **CRC**
+3. **Estereotipos RUP**
+
+----
+
+### Técnica 1: Nombre / Verbo
+<!-- .slide: style="font-size: 0.85em" -->
+
+Análisis directo del texto que describe el dominio:
+
+| En el texto | Se convierte en |
+|---|---|
+| Nombres y frases nominales | **Clases** y **atributos** |
+| Verbos y frases verbales | **Responsabilidades** |
+
+**Es peligroso si el dominio está mal definido:** un enunciado ambiguo produce un modelo ambiguo.
+No reemplaza a entender el negocio, lo sistematiza.
+
+----
+
+### Técnica 2: Análisis CRC
+<!-- .slide: style="font-size: 0.85em" -->
+
+**C**lase · **R**esponsabilidad · **C**olaboradores. Se trabaja con post-its divididos en tres
+compartimentos, en dos fases:
+
+1. **Tormenta de ideas:** recopilar información sin filtrar.
+2. **Análisis:** depurar, agrupar y descartar.
+
+Complementa al análisis nombre/verbo: este saca los candidatos del texto, el CRC los pone a
+trabajar juntos y revela cuáles sobran.
+
+----
+
+### Técnica 3: Estereotipos RUP
+<!-- .slide: style="font-size: 0.72em" -->
+
+RUP propone clasificar toda clase de análisis en tres tipos:
+
+| Estereotipo | Qué modela | Ejemplos |
+|---|---|---|
+| **«boundary»** | El **límite** del sistema: media con los actores externos | Interfaz de usuario, de sistema, de dispositivo |
+| **«control»** | El **comportamiento** específico de un caso de uso; coordina | Gestor de reservas, procesador de pago |
+| **«entity»** | La **información persistente**: obtiene y establece valores | Cliente, Dirección, Producto |
+
+**Para qué sirve:** si al terminar el modelo no hay ninguna clase de alguno de los tres tipos,
+falta algo. Las entity sin boundary no se pueden usar; las boundary sin control terminan con
+lógica de negocio en la pantalla.
+
+**Otras fuentes de clases:** objetos físicos (avión, hotel) · el papeleo (recibos, facturas) ·
+interfaces con el exterior · entidades conceptuales que justifiquen su existencia (CuentaBancaria).
+
+----
+
+### 💡 Ejercicio: Encontrar las clases
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.75em" -->
+
+> *"El club registra a sus socios con nombre, DNI y categoría. Cada socio puede inscribirse en
+> varias actividades, y cada actividad tiene un profesor a cargo, un cupo máximo y un horario.
+> La recepcionista registra las inscripciones y cobra la cuota mensual."*
+
+1. Aplicá **nombre/verbo**: subrayá los sustantivos y los verbos, y armá la lista de clases
+   candidatas y responsabilidades.
+2. Clasificá cada clase candidata según los **estereotipos RUP**.
+3. ¿Qué sustantivos del texto **no** deberían ser clases? Justificá.
+
+<!--
+1. Clases candidatas: Socio, Actividad, Profesor, Inscripción, Cuota. Responsabilidades:
+   registrar, inscribirse, cobrar.
+2. Casi todas son entity. "Recepcionista" NO es una clase: es un actor, va en el diagrama de
+   casos de uso. Falta una control, por ejemplo GestorDeInscripciones, que coordine verificar
+   el cupo y crear la inscripción.
+3. Nombre, DNI, categoría, cupo máximo y horario son ATRIBUTOS, no clases: no tienen
+   comportamiento ni identidad propia. El error típico es convertir todo sustantivo en clase.
+   "Inscripción" sí es clase aunque suene a acción, porque tiene datos propios (fecha) y
+   vincula a Socio con Actividad.
+-->
 
 ---
-### Anatomía de una Clase de Análisis
-* Presentan atributos de muy “alto nivel”
-* Las operaciones de la clase de análisis especifican en, en “alto nivel”, los servicios claves que debe ofrecer.
-* Se evitan detalles de implementación
-* Se capturan ideas principales, de “alto nivel”.
+
+## 2 · La clase
+### Anatomía
+
+<!-- .slide: style="font-size: 0.80em" -->
+
+Una clase define un grupo de objetos que comparten características, condiciones y significado.
+Se dibuja con **tres compartimentos**: nombre, atributos y operaciones.
+
+![Clase](images/unidad5/clase_ej.jpg) ![Clase Ejemplo](images/unidad5/clase_ejemplo.jpg)
+
+En análisis los atributos y las operaciones son de **alto nivel**: se capturan las ideas
+principales y se evitan los detalles de implementación.
+
+----
+
+### Visibilidad
+<!-- .slide: style="font-size: 0.85em" -->
+
+| Símbolo | Nivel | Quién puede acceder |
+|---|---|---|
+| **+** | Pública | Cualquier parte de la aplicación |
+| **−** | Privada | Únicamente la misma clase |
+| **#** | Protegida | La misma clase y las que heredan de ella |
+
+Además del nombre, los atributos, las operaciones y la visibilidad, una clase puede llevar
+**estereotipos** y **valores etiquetados**, que complementan el lenguaje.
 
 ---
-### Datos mínimos de una clase de análisis
-* Nombre
-* Atributos
-* Operaciones
-* Visibilidad (público, privado, protegido)
-* Estereotipos (Ayudan a complementar el lenguaje)
-* Valores etiquetados
 
----
-### ¿Qué hace una buena clase de Análisis?
-* Su nombre refleja su intención
-* Modela un elemento específico del dominio del problema
-* Se mapea con el dominio del problema
-* Tiene un conjunto de responsabilidades (Contrato u obligación de una clase con sus “Clientes”) bien definidas
-* Alta cohesión
-* Bajo acoplamiento (clases dependen lo menos posible entre sí.)
+## 3 · Las relaciones
+### Qué son
 
----
-### Reglas generales
-* De 3 a 5 responsabilidades por clase
-* Ninguna clase permanece sola (deben trabajar en conjunto con otras).
-* Tenga cuidado con muchas clases pequeñas y muy grandes, es difícil encontrar el equilibrio.
-* Cuidado con clases omnipotentes
-* Evite arboles de herencia muy profundos.
+<!-- .slide: style="font-size: 0.80em" -->
 
----
-### Encontrar Clases
-* No existe un algoritmo sencillo para encontrar clases de análisis correctas.
-* Existen técnicas probadas y testeadas que llevan hacia “una buena respuesta”.
-  * Encontrar clases al utilizar análisis nombre/verbo
-  * Encontrar clases al utilizar análisis CRC
-  * Encontrar clases al utilizar los estereotipos RUP
+Una relación es una **conexión significativa** entre elementos del modelo: es la forma en que UML
+los vincula. Se dibujan con una línea que une las clases.
 
----
-### Nombre/Verbo
-* Técnica que permite inferir clases de análisis
-* Se basa en el análisis de textos
-* Análisis directo del lenguaje dominio del problema
-* Peligroso si el dominio está mal definido
-* Mapea:
-  * Nombres y frases nominales -> Clases y Atributos
-  * Verbos o frases verbales -> Responsabilidades
+![Relaciones](images/unidad5/clases_relaciones.jpg)
 
----
-### Análisis CRC
-* CRC= Clase, Responsabilidad, Colaboradores
-* Emplea el como herramienta los “post-it”
-* Se divide en tres compartimentos
-* Se puede emplear como un complemento del análisis nombre/verbo.
-* Se divide en dos fases
-  * Fase 1: Tormenta de ideas: Recopilar información
-  * Fase 2: Analizar información
+**Vínculo vs. asociación:** en ejecución, los *objetos* colaboran mediante **vínculos**, que son
+dinámicos y se ven en el diagrama de objetos. La **asociación** es la relación entre las *clases*:
+es la que se dibuja acá.
 
----
-### Estereotipos RUP - Rational Unified Process
-* Se consideran tres tipos de clases
-* Es empleada como complemento de las otras
-* Existen tres estereotipos definidos por RUP
-  * **boundary**: Clase mediadora entre el sistema y su entorno
-  * **control**: Una clase que encapsula comportamiento especifico de caso de uso
-  * **entity**: Una clase que se utiliza para modelar información persistente sobre algo
+----
 
----
-### Clases Boundary
-* Estas clases existen en el límite del sistema
-* Se comunican con los actores externos
-* Existen 3 tipos de clases Boundary
-  * Clases de interfaz de usuario (Actor persona)
-  * Clases de interfaz de sistema (Actor sistema)
-  * Clases de interfaz de dispositivo (Actor dispositivo)
+### Lo que una relación puede llevar
+<!-- .slide: style="font-size: 0.78em" -->
 
----
-### Clases Control
-* Son clases controladoras
-* Se encargan de la coordinación del comportamiento del sistema
-* Útil cuando el comportamiento no se puede repartir simplemente entre los otros estereotipos.
+* **Nombre** — frase verbal que indica la acción del origen sobre el destino.
+  *Ejemplo: Empresa **emplea** Persona.*
+* **Roles** — el papel que desempeña cada extremo. *Ejemplo: empleador — empleado.*
+* **Multiplicidad** — cuántos objetos participan. Se escribe como `mínimo..máximo`, con `*` o `n`
+  para "cualquier cantidad".
+* **Navegabilidad** — se indica con una punta de flecha, y muestra que desde un objeto de la clase
+  origen se puede llegar al destino. Permite **minimizar el acoplamiento**; a nivel de código se
+  traduce en que el origen tiene una referencia al destino, es decir, un atributo.
 
----
-### Clases entidad
-* Modelan información sobre algo
-* Tienen comportamiento sencillo y acotado
-* Se limitan a obtener y establecer valores
-* Ejemplos clase Dirección, clase Persona
-* Proporcionan y aceptan información de clases límite.
-* A menudo son persistentes, íntimamente relacionadas con el modelo de datos.
+**Son complementos: si no suman al entendimiento, no se agregan.**
 
----
-### Otras técnicas
-Fuentes potenciales de clases de análisis:
-* Objetos físicos ejemplo: Avión, gente, y hoteles, etc
-* El papeleo. Recibos, facturas, etc.
-* Las interfaces conocidas con el mundo exterior. pantallas, teclados, etc
-* Entidades conceptuales que justifiquen a nivel de
-abstracción cohesiva su creación “CuentaBancaria”, “ProgramaFidelidad”
+----
 
----
-### Relaciones
-* Conexiones significativas entre elementos de modelado
-* Es la forma en que UML conecta elementos
-  * Casos de Uso y Actores
-  * Entre Casos de Uso
-  * Entre Actores
+### Los cuatro tipos de relación
+<!-- .slide: style="font-size: 0.85em" -->
 
----
-### Vínculos
-* En un programa OO, tenemos Objetos que colaboran para dar una cierta funcionalidad.
-* Las relaciones entre objetos se conocen como “vínculos”, estos son dinámicos.
-* Es posible verlos en los “Diagramas de Objetos”
-* Muestra objetos y sus relaciones (vínculos) en un punto en el tiempo.
+<div class="grid-item">
 
----
-### Asociaciones
-* Son relaciones entre clases
-* Análogo a los vínculos (conectan clases)
-* A nivel de análisis, las asociaciones son “básicas”.
-* Las asociaciones “avanzadas” se ven en durante el diseño.
+**Asociación** — dependencia semántica, la más común
+**Agregación** — "tiene un", las partes sobreviven al todo
+**Composición** — "está compuesto de", las partes mueren con el todo
+**Herencia** — "es un"
 
----
-### Atributos de las relaciones
-* Las relaciones pueden tener asociadas:
-  * Nombre
-  * Roles
-  * Multiplicidad
-  * Navegabilidad
-* Sirven como complementos, y deben aclarar el diagrama.
-* Si no suma al entendimiento, no se debería agregar.
+</div>
 
----
-### Nombres
-* Frases verbales, indican acción del objeto fuente sobre el objeto destino.
-* Ejemplo: Empresa ”emplea” Persona
-* Roles que los objetos instancias desempeñan cuando los objetos se vinculan.
-* Ejemplo: “empleador”- “empleado”
+Las tres primeras se distinguen por el **rombo**; la cuarta, por el triángulo.
 
----
-### Multiplicidad
-* Restricción que sirve para especificar cuantos objetos pueden participar en una relación determinada.
-* Se especifica cómo una lista de intervalos por coma:
-  * mínimo… máximo - Deben ser enteros, o expresiones equivalentes
+----
 
----
-### Navegabilidad
-* Nos muestra que es posible pasar desde un objeto de la clase fuente a uno o más objetos de la clase destino.
-* Permite minimizar el acoplamiento entre clases
-* Se indica con la punta de flecha en la asociación
-* A nivel de lenguaje, el objeto fuente, tiene una “referencia” al objeto destino. Comúnmente se traducen a atributos
+### Asociación
+<!-- .slide: style="font-size: 0.85em" -->
 
----
-### Casos especiales
-Clases de asociación:
-* Sirven para acomodar atributos de las relaciones  entre relaciones “muchos a muchos”.
-* Ejemplo: Empresa-Persona (Sueldo)
+La más común. Representa una **dependencia semántica** y se dibuja con una simple línea continua.
 
-Asociaciones cualificadas:
-* Reduce una asociación “n a muchos” a una “n- a 1”
-* Ilustra como navegar hasta objetos específicos
-* Se agrega un “calificador”
+*Una mascota pertenece a una persona.*
 
----
-### Dependencias
-* Indica una relación entre dos o más elementos
-* Un cambio en un elemento (proveedor) puede afectar a otro elemento (cliente)
-* “El cliente depende del proveedor”
-* Ejemplo: Puede pasar un objeto de una clase como un parámetro a una operación de otra clase.
+![Persona-Mascota](images/unidad5/persona_mascota.jpg)
 
----
-### Tipos de dependencias
-Existen tres tipos básicos de dependencias:
-* Uso
-* Abstracción
-* Permiso
+----
 
----
-### De Uso
-El cliente utiliza alguno de los servicios del proveedor para implementar su propio comportamiento.
+### Agregación
+<!-- .slide: style="font-size: 0.85em" -->
 
-Tipos:
-* **use**: El cliente hace uso del proveedor
-* **call**: La operación cliente invoca la del proveedor
-* **parameter**: El proveedor es un paraemtro de la operación cliente
-* **send**: El cliente es una operación que envía el proveedor
+Relación jerárquica que indica un objeto y **las partes que lo componen**. La parte **tiene
+existencia en sí misma**: si el todo desaparece, la parte sigue existiendo.
 
----
-### De abstracción
-Modelan dependencias entre elementos con diferentes niveles de abstracción:
+Se dibuja con un **rombo vacío** del lado de la clase que contiene.
 
----
-### De abstracción: Tipos
-* **trace**: Sirven para indicar que el proveedor y el cliente son conceptualmente lo mismo, pero están en diferentes modelos.
-* **substitute**: El cliente se puede sustituir por el proveedor en tiempo de ejecución. Se deben ajustar contratos e interfaces.
-* **refine**: Permite especificar dependencias dentro del mismo modelo.
-* **derive**: Permite mostrar que un elemento se puede derivar de otro.
+![Agregación](images/unidad5/mesas_tablas.jpg)
 
----
-### De permiso
-Dan la posibilidad que un elemento acceda a otro.
+----
 
-Tipos:
-* **access**: Permite que un paquete acceda a los contenidos públicos de otro
-* **import**: Fusiona el espacio de nombres del proveedor, con el del cliente
-* **permit**: “Violación de la encapsulación en forma controlada”. Se acceden a todo el elemento proveedor sin tener en cuenta la visibilidad.
+### Composición
+<!-- .slide: style="font-size: 0.85em" -->
 
----
-# Herencia y Polimorfismo
+La misma idea, pero **más fuerte**: cuando el contenedor desaparece, desaparecen todos los
+contenidos. Las partes **no tienen sentido por sí mismas** y comparten el tiempo de vida del todo.
 
----
-### Generalización
-* Es la relación entre un elemento mas general y uno más específico
-* Obedecen el principio de sustitución
-  * “Se puede emplear el elemento más específico en cualquier lugar que se espere el elemento más general sin romper el sistema”
-* Debemos tener en cuenta los “niveles de abstracción” (Jaguar-Camión)
+Se dibuja con un **rombo relleno**.
 
----
+![Composicion](images/unidad5/composicion.jpg)
+
+----
+
+### Agregación vs. composición
+<!-- .slide: style="font-size: 0.75em" -->
+
+Es la distinción que más se confunde. **La pregunta que las separa: si borro el todo, ¿la parte
+sigue teniendo sentido?**
+
+| | Agregación | Composición |
+|---|---|---|
+| Rombo | Vacío ◇ | Relleno ◆ |
+| Tiempo de vida | Independiente | Compartido |
+| Si se borra el todo | La parte sobrevive | La parte se borra |
+| Ejemplo | Un equipo **tiene** jugadores: si se disuelve el equipo, los jugadores existen | Una factura **está compuesta de** ítems: sin la factura, el ítem no significa nada |
+
+**En la duda, usá asociación.** Un modelo con una asociación simple bien puesta es mejor que uno
+con un rombo mal elegido.
+
+----
+
 ### Herencia
-* En una jerarquía de generalización, implícitamente se indica que las subclases “heredan” todas las características de sus
-súper clases.
-* Estas también pueden añadir nuevas características y anular operaciones
+<!-- .slide: style="font-size: 0.85em" -->
+
+Permite que una clase (**hija** o subclase) reciba los atributos y métodos de otra (**padre** o
+superclase), y que además agregue los suyos propios o anule operaciones.
+
+Se usa en relaciones **"es un"**.
+
+![Herencia](images/unidad5/herencia.jpg)
+
+----
+
+### 💡 Ejercicio: ¿Qué relación es?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.75em" -->
+
+Para cada par, indicá qué relación corresponde y justificá con la pregunta del tiempo de vida:
+
+1. Pedido — ÍtemDePedido <!--Composición: sin el pedido el ítem no significa nada.-->
+2. Universidad — Docente <!--Agregación o asociación: el docente existe fuera de la universidad y puede trabajar en varias.-->
+3. Vehículo — Automóvil <!--Herencia: un automóvil ES un vehículo.-->
+4. Cliente — Dirección <!--Depende del dominio, y esa es la gracia: si la dirección se guarda solo para ese cliente, composición; si es un catálogo de direcciones reutilizable, asociación.-->
+5. Casa — Habitación <!--Composición: demolida la casa, la habitación no existe.-->
+6. Playlist — Canción <!--Agregación: borrar la playlist no borra las canciones.-->
+
+<!--
+El 4 es el que hay que discutir: no tiene una respuesta única. Sirve para mostrar que el tipo de
+relación no sale del par de palabras sino de las reglas del dominio, y que por eso hay que
+preguntarle al cliente en lugar de adivinar.
+-->
+
+----
+
+### Casos especiales
+<!-- .slide: style="font-size: 0.85em" -->
+
+**Clases de asociación** — Acomodan atributos que no pertenecen a ninguna de las dos clases sino a
+la relación misma, en asociaciones "muchos a muchos".
+*Ejemplo: Empresa — Persona, y el sueldo, que es del vínculo entre ambas.*
+
+**Asociaciones cualificadas** — Reducen una asociación "n a muchos" a una "n a 1" agregando un
+**calificador**, e ilustran cómo navegar hasta un objeto específico.
 
 ---
-### Operaciones y clases abstractas
-* Son clases que no podemos “instanciar”
-* Operaciones que no podemos “invocar”
-* Existen cuando preferiríamos diferir la implementación de una operacion a una subclase
-  * Ejemplo: Operación dibujarFigura() de la clase “Figura”
+
+## 4 · Herencia y polimorfismo
+
+<!-- .slide: style="font-size: 0.80em" -->
+
+**Generalización** es la relación entre un elemento más general y uno más específico. Obedece al
+**principio de sustitución**:
+
+> Se puede usar el elemento más específico en cualquier lugar donde se espere el más general, sin
+> romper el sistema.
+
+Hay que cuidar los **niveles de abstracción**: Jaguar y Camión pueden ser ambos vehículos, pero
+meterlos en la misma jerarquía rara vez ayuda.
+
+**Herencia** es cómo se implementa: en una jerarquía de generalización, las subclases heredan
+implícitamente todas las características de sus superclases.
+
+----
+
+### Clases abstractas y polimorfismo
+<!-- .slide: style="font-size: 0.85em" -->
+
+**Clases y operaciones abstractas** — No se pueden instanciar ni invocar. Existen cuando conviene
+**diferir la implementación a una subclase**.
+*Ejemplo: la operación `dibujarFigura()` en la clase `Figura`.*
+
+**Polimorfismo** — Literalmente, "muchas formas". Una operación es polimórfica cuando tiene varias
+implementaciones posibles, y cuál se ejecuta depende del objeto concreto.
+
+Las dos cosas van juntas: `Figura.dibujarFigura()` es abstracta justamente para que cada subclase
+—círculo, cuadrado— la implemente a su manera.
 
 ---
-### Polimorfismo
-* Polimorfismo significa “muchas formas”
-* Son operaciones que tienen varias implementaciones posibles
-* Una operación puede tener “muchas formas”, por lo que se considera una operación polimórfica
+
+## 5 · Referencia
+### Dependencias
+
+<!-- .slide: style="font-size: 0.72em" -->
+
+Una **dependencia** indica que un cambio en un elemento (el **proveedor**) puede afectar a otro
+(el **cliente**). *Ejemplo: pasar un objeto de una clase como parámetro a una operación de otra.*
+
+<div class="avanzado">
+
+Hay tres tipos básicos, cada uno con sus variantes. **Se usan en modelos de especificación
+detallada, no en el análisis del trabajo práctico:**
+
+* **De uso** — el cliente usa servicios del proveedor: `use` · `call` · `parameter` · `send`
+* **De abstracción** — vinculan elementos con distinto nivel de abstracción: `trace` (son lo mismo
+  en modelos distintos) · `substitute` · `refine` · `derive`
+* **De permiso** — habilitan el acceso: `access` · `import` · `permit`
+
+</div>
+
+**Lo que hay que retener:** una dependencia es la relación **más débil** de todas. Si dos clases
+solo se rozan, es una dependencia; si una guarda una referencia a la otra, ya es una asociación.
+
+----
+
+### Paquetes
+<!-- .slide: style="font-size: 0.78em" -->
+
+Un **paquete** es un elemento de agrupación: un contenedor lógico para organizar elementos del
+modelo y diagramas, con su propio **espacio de nombres**.
+
+* Los paquetes de análisis contienen **casos de uso**, **clases de análisis** y **realizaciones de
+  casos de uso**.
+* Todo elemento tiene visibilidad: **(+)** pública o **(−)** privada.
+* Se pueden **anidar**, definir **dependencias** entre ellos y **generalizarlos**.
+
+**Regla:** evitar las dependencias cíclicas. Si aparecen, hay dos salidas — fusionar los paquetes
+o dividirlos de otra manera.
 
 ---
-# PAQUETES DE ANALISIS
+
+### 💡 Ejercicio integrador
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.74em" -->
+
+> *"Una biblioteca presta ejemplares a socios. De cada título se guarda ISBN, autor y editorial, y
+> puede haber varios ejemplares del mismo título. Cada préstamo registra la fecha de retiro, la de
+> devolución y el bibliotecario que lo autorizó. Los socios pueden ser estudiantes o docentes;
+> los docentes pueden llevarse más ejemplares."*
+
+Dibujá el diagrama de clases completo, con:
+
+1. Las clases y sus atributos principales.
+2. Las **multiplicidades** de cada asociación.
+3. Al menos una **herencia** y una relación de **composición o agregación**, justificando cuál elegiste.
+4. La **navegabilidad**, donde aporte.
+
+<!--
+Clases: Título, Ejemplar, Socio (con Estudiante y Docente como subclases), Préstamo, Bibliotecario.
+Título 1 — 1..* Ejemplar: composición defendible (sin el título, el ejemplar no significa nada) o
+agregación; lo que importa es que justifiquen.
+Préstamo asocia un Ejemplar (1) con un Socio (1) y un Bibliotecario (1); un Socio tiene 0..*
+Préstamos.
+Herencia: Socio → Estudiante / Docente, con el máximo de préstamos como atributo que cambia.
+Errores esperables: hacer de "fecha de devolución" una clase; olvidar que Préstamo es una clase y
+no solo una asociación; poner al bibliotecario como actor en lugar de clase.
+-->
 
 ---
-### ¿Qué es un paquete?
-* Un paquete es un elemento de agrupación de UML
-* Es un contenedor para elementos de modelo
-* Todo paquete tiene su espacio de nombres
-* Permite organizar elementos de modelo y diagramas en grupos.
-* Mecanismo lógico de agrupación
 
----
-* Sintaxis sencilla
-* Los paquetes de análisis deben contener:
-  * UC
-  * Clases de análisis
-  * Realizaciones de Casos de Uso
-* Todo elemento tiene una visibilidad
-  * (+): Pública
-  * (-): Privada
+### Antes de entregar, revisá
+<!-- .slide: style="font-size: 0.78em" -->
 
----
-* Definen un espacio de nombres
-* Es posible anidar paquetes (se puede dibujar de dos maneras)
-* Se pueden definir dependencias entre paquetes (similar a las dependencias entre clases)
-* Se pueden generalizar
-* Se deben evitar dependencias cíclicas (dos alternativas, fusionar o dividir)
+* ¿Los **nombres** son del negocio y no de la implementación?
+* ¿Cada clase tiene entre **3 y 5 responsabilidades** y ninguna quedó suelta?
+* ¿Todas las asociaciones tienen **multiplicidad**?
+* ¿Los rombos están bien elegidos? *Si borro el todo, ¿la parte sigue teniendo sentido?*
+* ¿Hay al menos una clase de cada **estereotipo RUP**, o falta algo?
+* ¿El diagrama **cuenta una historia** o es una lista de cajas?
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?
