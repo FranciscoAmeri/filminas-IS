@@ -66,6 +66,17 @@ requisitos** para llegar a una mayor comprensión de los mismos.
 **Solo se crean clases del dominio, no de la solución.** `ControladorBD` o `ServicioHTTP` son
 decisiones de implementación: van en diseño, no acá.
 
+<div class="grid-item">
+
+**Ejemplo.** Del requerimiento *"el comprador elige butacas y quedan reservadas 10 minutos"*:
+
+**Análisis** → `Funcion`, `Butaca`, `Compra`. Qué conceptos existen y qué regla los gobierna.
+**Diseño** → `ReservaScheduler`, `ButacaRepository`, `RedisLock`. Cómo se implementa esa regla.
+
+Las de abajo no van en el diagrama de clases de análisis: **el cliente no sabe qué es un Redis**.
+
+</div>
+
 ----
 
 ### Reglas para el análisis
@@ -81,6 +92,22 @@ decisiones de implementación: van en diseño, no acá.
 
 ----
 
+### Las reglas, con ejemplos
+<!-- .slide: style="font-size: 0.68em" -->
+
+| Regla | Así **no** | Así **sí** |
+|---|---|---|
+| Hablar del negocio | `ButacaDTO`, `TablaButacas` | `Butaca` |
+| Contar una historia | `Compra` y `Entrada` dibujadas sin unir | `Compra` ◆— `Entrada` **1..\*** |
+| Problema ≠ solución | `ConexionPasarela` en el modelo de análisis | La pasarela es un **actor externo** |
+| Minimizar acoplamiento | `Butaca` conoce al `Comprador` | `Butaca` no sabe quién la compró: lo sabe `Entrada` |
+| Herencia solo si es natural | `Butaca` hereda de `Entrada` | Son cosas distintas: se **asocian**, no se heredan |
+
+El último es el error más común: se usa la herencia porque *"se parecen"* o porque comparten
+atributos. La herencia se usa cuando **B es un tipo de A** y puede reemplazarlo en cualquier lado.
+
+----
+
 ### ¿Qué hace buena a una clase de análisis?
 <!-- .slide: style="font-size: 0.82em" -->
 
@@ -91,6 +118,22 @@ decisiones de implementación: van en diseño, no acá.
 **Reglas prácticas:** de 3 a 5 responsabilidades por clase · ninguna clase permanece sola, todas
 colaboran · cuidado con las clases omnipotentes y con los árboles de herencia muy profundos ·
 encontrar el equilibrio entre muchas clases chicas y pocas enormes es difícil, y es parte del oficio.
+
+----
+
+### Una buena y una mala, lado a lado
+<!-- .slide: style="font-size: 0.72em" -->
+
+| | ✅ `Compra` | ❌ `GestorDelSistema` |
+|---|---|---|
+| **Nombre** | Es un concepto que el cliente nombra | No existe en el negocio |
+| **Responsabilidades** | 4: reservar butacas · calcular el total · confirmar tras el pago · liberar la reserva vencida | 27, y creciendo |
+| **Cohesión** | Todo lo que hace es sobre *una* compra | Nada tiene que ver con nada |
+| **Acoplamiento** | Colabora con `Butaca`, `Tarifa`, `Entrada` | Conoce a todas las clases del sistema |
+
+**Nombres que son una señal de alarma:** `Datos`, `Info`, `Manager`, `Helper`, `Utils`,
+`ProcesadorGeneral`. Si no podés nombrar la clase con una palabra del negocio, todavía no
+entendiste qué es — o no es una sola clase.
 
 ---
 
@@ -105,6 +148,16 @@ usan combinadas:
 1. Análisis **nombre / verbo**
 2. Análisis **CRC**
 3. **Estereotipos RUP**
+
+Vamos a aplicar las tres **al mismo texto**, para ver qué agrega cada una:
+
+<div class="grid-item">
+
+*"El organizador programa una función de un evento en una sala y fija el precio de cada sector.
+El comprador elige butacas libres, las reserva y paga con tarjeta. El sistema emite una entrada
+con código QR por cada butaca y se la envía por mail."*
+
+</div>
 
 ----
 
@@ -123,6 +176,30 @@ No reemplaza a entender el negocio, lo sistematiza.
 
 ----
 
+### Técnica 1 aplicada
+<!-- .slide: style="font-size: 0.62em" -->
+
+**Sustantivos del texto** → organizador · función · evento · sala · precio · sector · comprador ·
+butaca · tarjeta · sistema · entrada · código QR · mail
+
+| Candidato | Veredicto | Por qué |
+|---|---|---|
+| Función, Evento, Sala, Sector, Butaca, Entrada | **Clase** | Tienen identidad propia y se los cuenta de a uno |
+| Precio | **Atributo** de `Tarifa` | Es un valor, no tiene comportamiento |
+| Código QR | **Atributo** de `Entrada` | Ídem: nunca existe suelto |
+| Organizador, Comprador | **Actor** *(y además clase)* | En casos de uso son actores; en el modelo son `Usuario` |
+| Tarjeta, mail | **Nada** | Pertenecen a la pasarela y al servicio de mailing: **fuera del sistema** |
+| Sistema | **Nada** | Es el sistema entero, no una clase adentro de él |
+
+**Verbos** → programar · fijar · elegir · reservar · pagar · emitir · enviar. Cada uno es una
+**responsabilidad** que hay que asignarle a alguien: *¿quién reserva?* `Compra`. *¿quién emite?*
+`Compra`, creando `Entrada`.
+
+**Lo que la técnica no encontró:** `Compra` y `Tarifa` no aparecen como sustantivos en el texto,
+y las dos son necesarias. Por eso una técnica sola no alcanza.
+
+----
+
 ### Técnica 2: Análisis CRC
 <!-- .slide: style="font-size: 0.85em" -->
 
@@ -134,6 +211,43 @@ compartimentos, en dos fases:
 
 Complementa al análisis nombre/verbo: este saca los candidatos del texto, el CRC los pone a
 trabajar juntos y revela cuáles sobran.
+
+----
+
+### Técnica 2 aplicada: las fichas
+<!-- .slide: style="font-size: 0.60em" -->
+
+<table>
+<thead><tr><th style="width:18%">Clase</th><th style="width:50%">Responsabilidades</th><th>Colaboradores</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>Compra</strong></td>
+  <td>Reservar butacas por 10 minutos<br>Calcular el total<br>Confirmar tras el pago<br>Liberar la reserva vencida</td>
+  <td>Butaca · Tarifa · Entrada</td>
+</tr>
+<tr>
+  <td><strong>Funcion</strong></td>
+  <td>Conocer fecha, hora y sala<br>Informar qué butacas están libres<br>Publicarse</td>
+  <td>Sala · Butaca · Tarifa</td>
+</tr>
+<tr>
+  <td><strong>Butaca</strong></td>
+  <td>Conocer su fila y número<br>Informar si está libre</td>
+  <td>Sector</td>
+</tr>
+<tr>
+  <td><strong>Tarifa</strong></td>
+  <td>Dar el precio de un sector en una función<br>Aplicar el descuento vigente</td>
+  <td>Sector · Funcion</td>
+</tr>
+</tbody>
+</table>
+
+**Lo que revelan las fichas, y el texto no:**
+
+* `Tarifa` **apareció acá**, no en el nombre/verbo. Surgió al preguntar *"¿quién sabe el precio?"* — no puede ser `Sector`, porque el precio cambia en cada función.
+* Una ficha **sin colaboradores** es sospechosa: o está aislada de verdad, o no entendiste qué hace.
+* Una ficha con **diez responsabilidades** hay que partirla. Es el `GestorDelSistema` naciendo.
 
 ----
 
@@ -154,6 +268,25 @@ lógica de negocio en la pantalla.
 
 **Otras fuentes de clases:** objetos físicos (avión, hotel) · el papeleo (recibos, facturas) ·
 interfaces con el exterior · entidades conceptuales que justifiquen su existencia (CuentaBancaria).
+
+----
+
+### Técnica 3 aplicada
+<!-- .slide: style="font-size: 0.70em" -->
+
+| Estereotipo | En la ticketera |
+|---|---|
+| **«boundary»** | `MapaDeSalaUI` (donde el comprador clickea las butacas) · `AdaptadorPasarela` · `AdaptadorMailing` |
+| **«control»** | `GestorDeCompra` — coordina verificar la reserva, chequear el límite de 6, pedir el pago y emitir las entradas |
+| **«entity»** | `Evento` · `Funcion` · `Sala` · `Sector` · `Butaca` · `Compra` · `Entrada` · `Tarifa` |
+
+**El diagnóstico que da la técnica:** nuestro modelo del dominio es **casi todo entity**. Eso no
+es un error —en análisis del dominio es lo esperable— pero avisa dos cosas:
+
+* Falta una **control** que sostenga la lógica de "Comprar entradas". Sin ella, esa lógica termina
+  repartida entre `Compra` y la pantalla, y en la pantalla no se puede probar.
+* Cada integración externa necesita su **boundary**. Son las clases que hay que poder reemplazar
+  por una falsa para testear sin cobrarle a nadie la tarjeta.
 
 ----
 

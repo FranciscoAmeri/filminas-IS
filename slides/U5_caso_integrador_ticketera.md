@@ -1,0 +1,691 @@
+---
+title: Caso integrador - Portal de venta de entradas
+theme: solarized
+slideNumber: true
+---
+
+# Ingeniería de Software
+## Un sistema, tres vistas
+### Caso integrador: portal de venta de entradas
+Created by <i class="fab fa-telegram"></i>
+[edme88]("https://t.me/edme88")
+
+---
+<!-- .slide: style="font-size: 0.80em" -->
+<style>
+.grid-item {
+    border: 3px solid rgba(121, 177, 217, 0.8);
+    padding: 20px;
+    text-align: left !important;
+}
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.fuente {
+  border-top: 2px solid rgba(121, 177, 217, 0.6);
+  padding-top: 8px;
+  margin-top: 14px;
+  font-size: 0.78em;
+}
+
+.uml svg { width: 100%; height: auto; max-height: 76vh; }
+</style>
+
+## De qué se trata esta clase
+
+Hasta acá vimos los diagramas **de a uno**. Acá modelamos **un mismo sistema** con varios, para ver
+que ninguno lo describe entero y que cada uno responde una pregunta distinta.
+
+<div class="grid-item">
+
+**Vista 1 — Casos de uso:** ¿quién usa el sistema y para qué?
+**Vista 2 — Clases:** ¿qué entidades existen y cómo se relacionan?
+**Vista 3 — Secuencia:** ¿en qué orden colaboran los objetos?
+
+</div>
+
+**La notación de cada diagrama no se ve acá:** está en los prácticos. Esta clase es sobre cómo se
+combinan.
+
+---
+
+### El sistema: un portal de venta de entradas
+<!-- .slide: style="font-size: 0.50em" -->
+
+Diseñar una plataforma de venta de entradas para espectáculos, con un **backoffice** de
+administración y un **portal público** de compra.
+
+**Backoffice**
+
+* El **administrador** da de alta las **salas**: nombre, dirección y su mapa de sala. Cada sala se divide en **sectores** (platea, pullman, campo). Un sector puede ser **numerado** —con filas y butacas— o **sin numerar**, y en ese caso solo tiene un cupo.
+* El **organizador** (la productora) crea los **eventos** y programa sus **funciones**. Un evento puede tener varias funciones; cada función se realiza en **una sola sala**, en una fecha y hora determinadas.
+* Para cada función, el organizador define el **precio de cada sector** y puede cargar **descuentos** con fecha de vigencia. Una función no se vende hasta que el organizador la **publica**.
+* Tanto el administrador como el organizador pueden consultar los **reportes de venta**.
+
+**Portal del comprador**
+
+* El **comprador** busca eventos por nombre, fecha o categoría, elige una función y ve el mapa de la sala con las butacas disponibles.
+* Al seleccionar butacas, estas quedan **reservadas durante 10 minutos**. Si la compra no se completa en ese plazo, se liberan automáticamente.
+* Cada comprador puede adquirir como máximo **6 entradas por función**.
+* El pago se realiza con tarjeta a través de una **pasarela de pagos externa**. **La validación de la tarjeta y el manejo de los medios de pago no corresponden al sistema.**
+* Confirmada la compra, el comprador recibe sus entradas con un **código QR**. El envío de correos se hace con el **servicio de mailing que la empresa ya tiene contratado**.
+* El comprador puede consultar su historial de compras y solicitar la **devolución** hasta 48 horas antes de la función.
+* En la puerta de la sala, el **controlador de acceso** escanea el QR y el sistema marca la entrada como usada. Un QR ya usado, o de otra función, se rechaza.
+
+----
+
+### Antes de dibujar: leer el enunciado
+<!-- .slide: style="font-size: 0.80em" -->
+
+Dos frases del enunciado **no describen funcionalidad, describen los límites del sistema**:
+
+* *"La validación de la tarjeta y el manejo de los medios de pago no corresponden al sistema."*
+* *"…el servicio de mailing que la empresa ya tiene contratado."*
+
+Son sistemas externos con los que hay que **integrarse**, no cosas para construir. Si se leen
+rápido, terminan como casos de uso que nadie pidió — y como clases que nadie va a implementar.
+
+**Primera tarea de todo modelado:** separar lo que el sistema hace de lo que hay a su alrededor.
+
+---
+
+## Vista 1
+### Casos de uso — ¿quién lo usa y para qué?
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+El enunciado menciona cuatro actores: **administrador**, **organizador**, **comprador** y
+**controlador de acceso**. Cada uno ve un sistema distinto.
+
+Por eso el modelo se arma **un diagrama por actor**: así se controla que ningún rol quede sin
+funciones y que ninguna función quede sin dueño.
+
+<div class="fuente">
+
+📎 **La notación —actores, relaciones, include y extend— está en
+[Práctico: Casos de Uso](U5P_2_UML_casos_de_uso.html)**
+
+</div>
+
+----
+
+### Actor: Administrador
+<div class="uml">
+<svg viewBox="0 0 950 470" xmlns="http://www.w3.org/2000/svg" font-family="Source Sans Pro, Helvetica, sans-serif" fill="#073642">
+  <rect x="195" y="20" width="715" height="420" fill="none" stroke="#586e75" stroke-width="2"/>
+  <text x="552" y="45" text-anchor="middle" font-size="16" fill="#586e75">Backoffice</text>
+
+  <g transform="translate(85,120)" stroke="#073642" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <circle cx="0" cy="0" r="15"/>
+    <line x1="0" y1="15" x2="0" y2="58"/>
+    <line x1="-28" y1="30" x2="28" y2="30"/>
+    <line x1="0" y1="58" x2="-24" y2="95"/>
+    <line x1="0" y1="58" x2="24" y2="95"/>
+  </g>
+  <text x="85" y="245" text-anchor="middle" font-size="17" font-weight="bold">Administrador</text>
+
+  <g stroke="#268bd2" stroke-width="2" fill="#eee8d5">
+    <ellipse cx="552" cy="100" rx="175" ry="28"/>
+    <ellipse cx="552" cy="175" rx="175" ry="28"/>
+    <ellipse cx="552" cy="250" rx="175" ry="28"/>
+    <ellipse cx="552" cy="325" rx="175" ry="28"/>
+    <ellipse cx="552" cy="400" rx="175" ry="28"/>
+  </g>
+  <g font-size="17" text-anchor="middle">
+    <text x="552" y="106">Gestionar salas</text>
+    <text x="552" y="181">Definir sectores de una sala</text>
+    <text x="552" y="256">Cargar el mapa de butacas</text>
+    <text x="552" y="331">Gestionar usuarios del backoffice</text>
+    <text x="552" y="406">Consultar reportes de venta</text>
+  </g>
+
+  <g stroke="#073642" stroke-width="2">
+    <line x1="113" y1="160" x2="377" y2="100"/>
+    <line x1="113" y1="160" x2="377" y2="175"/>
+    <line x1="113" y1="160" x2="377" y2="250"/>
+    <line x1="113" y1="160" x2="377" y2="325"/>
+    <line x1="113" y1="160" x2="377" y2="400"/>
+  </g>
+</svg>
+</div>
+
+----
+
+### Actor: Organizador
+<div class="uml">
+<svg viewBox="0 0 950 545" xmlns="http://www.w3.org/2000/svg" font-family="Source Sans Pro, Helvetica, sans-serif" fill="#073642">
+  <rect x="195" y="20" width="715" height="495" fill="none" stroke="#586e75" stroke-width="2"/>
+  <text x="552" y="45" text-anchor="middle" font-size="16" fill="#586e75">Backoffice</text>
+
+  <g transform="translate(85,150)" stroke="#073642" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <circle cx="0" cy="0" r="15"/>
+    <line x1="0" y1="15" x2="0" y2="58"/>
+    <line x1="-28" y1="30" x2="28" y2="30"/>
+    <line x1="0" y1="58" x2="-24" y2="95"/>
+    <line x1="0" y1="58" x2="24" y2="95"/>
+  </g>
+  <text x="85" y="275" text-anchor="middle" font-size="17" font-weight="bold">Organizador</text>
+
+  <g stroke="#268bd2" stroke-width="2" fill="#eee8d5">
+    <ellipse cx="552" cy="95" rx="175" ry="28"/>
+    <ellipse cx="552" cy="170" rx="175" ry="28"/>
+    <ellipse cx="552" cy="245" rx="175" ry="28"/>
+    <ellipse cx="552" cy="320" rx="175" ry="28"/>
+    <ellipse cx="552" cy="395" rx="175" ry="28"/>
+    <ellipse cx="552" cy="470" rx="175" ry="28"/>
+  </g>
+  <g font-size="17" text-anchor="middle">
+    <text x="552" y="101">Crear evento</text>
+    <text x="552" y="176">Programar función</text>
+    <text x="552" y="251">Definir precios por sector</text>
+    <text x="552" y="326">Cargar descuentos</text>
+    <text x="552" y="401">Publicar / despublicar función</text>
+    <text x="552" y="476">Consultar reportes de venta</text>
+  </g>
+
+  <g stroke="#073642" stroke-width="2">
+    <line x1="113" y1="190" x2="377" y2="95"/>
+    <line x1="113" y1="190" x2="377" y2="170"/>
+    <line x1="113" y1="190" x2="377" y2="245"/>
+    <line x1="113" y1="190" x2="377" y2="320"/>
+    <line x1="113" y1="190" x2="377" y2="395"/>
+    <line x1="113" y1="190" x2="377" y2="470"/>
+  </g>
+</svg>
+</div>
+
+----
+
+### Actor: Comprador
+<div class="uml">
+<svg viewBox="0 0 1120 570" xmlns="http://www.w3.org/2000/svg" font-family="Source Sans Pro, Helvetica, sans-serif" fill="#073642">
+  <defs>
+    <marker id="flechaDCU" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8" fill="none" stroke="#586e75" stroke-width="1.6"/>
+    </marker>
+  </defs>
+
+  <rect x="190" y="20" width="660" height="500" fill="none" stroke="#586e75" stroke-width="2"/>
+  <text x="520" y="45" text-anchor="middle" font-size="16" fill="#586e75">Portal de venta</text>
+
+  <g transform="translate(80,150)" stroke="#073642" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <circle cx="0" cy="0" r="15"/>
+    <line x1="0" y1="15" x2="0" y2="58"/>
+    <line x1="-28" y1="30" x2="28" y2="30"/>
+    <line x1="0" y1="58" x2="-24" y2="95"/>
+    <line x1="0" y1="58" x2="24" y2="95"/>
+  </g>
+  <text x="80" y="275" text-anchor="middle" font-size="17" font-weight="bold">Comprador</text>
+
+  <g transform="translate(1010,230)" stroke="#073642" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <circle cx="0" cy="0" r="15"/>
+    <line x1="0" y1="15" x2="0" y2="58"/>
+    <line x1="-28" y1="30" x2="28" y2="30"/>
+    <line x1="0" y1="58" x2="-24" y2="95"/>
+    <line x1="0" y1="58" x2="24" y2="95"/>
+  </g>
+  <text x="1010" y="355" text-anchor="middle" font-size="15" fill="#586e75">&#171;externo&#187;</text>
+  <text x="1010" y="374" text-anchor="middle" font-size="17" font-weight="bold">Pasarela de pagos</text>
+
+  <g stroke="#268bd2" stroke-width="2" fill="#eee8d5">
+    <ellipse cx="520" cy="95" rx="170" ry="28"/>
+    <ellipse cx="520" cy="170" rx="170" ry="28"/>
+    <ellipse cx="520" cy="255" rx="170" ry="28"/>
+    <ellipse cx="520" cy="350" rx="170" ry="28"/>
+    <ellipse cx="520" cy="425" rx="170" ry="28"/>
+    <ellipse cx="520" cy="490" rx="170" ry="28"/>
+  </g>
+  <g font-size="17" text-anchor="middle">
+    <text x="520" y="101">Buscar eventos</text>
+    <text x="520" y="176">Seleccionar butacas</text>
+    <text x="520" y="261">Comprar entradas</text>
+    <text x="520" y="356">Registrar el pago</text>
+    <text x="520" y="431">Consultar historial de compras</text>
+    <text x="520" y="496">Solicitar devolución</text>
+  </g>
+
+  <g stroke="#073642" stroke-width="2">
+    <line x1="108" y1="190" x2="350" y2="95"/>
+    <line x1="108" y1="190" x2="350" y2="170"/>
+    <line x1="108" y1="190" x2="350" y2="255"/>
+    <line x1="108" y1="190" x2="350" y2="425"/>
+    <line x1="108" y1="190" x2="350" y2="490"/>
+  </g>
+
+  <line x1="520" y1="283" x2="520" y2="322" stroke="#586e75" stroke-width="1.8"
+        stroke-dasharray="7,5" marker-end="url(#flechaDCU)"/>
+  <text x="532" y="308" font-size="15" fill="#586e75">&#171;include&#187;</text>
+
+  <line x1="690" y1="340" x2="982" y2="270" stroke="#073642" stroke-width="2"/>
+</svg>
+</div>
+
+----
+
+### 💡 Ejercicio: Leer los tres diagramas juntos
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.76em" -->
+
+1. ¿Hay algún caso de uso que aparezca en **más de un** diagrama? ¿Qué significa eso y cómo se
+   dibuja bien?
+2. Del enunciado quedó **un actor sin diagrama**. ¿Cuál es, y qué casos de uso tendría?
+3. La reserva de 10 minutos y el límite de 6 entradas por función, ¿son casos de uso o son reglas
+   de negocio dentro de uno? Justificá.
+4. ¿Por qué *Pasarela de pagos* está **fuera** del rectángulo?
+
+<!--
+1. "Consultar reportes de venta" está en Administrador y en Organizador. Es una función
+   compartida: se dibuja UNA vez con los dos actores conectados, no dos veces. Si se duplica,
+   después aparece implementada dos veces.
+2. El controlador de acceso: "Escanear entrada" y, si se quiere, "Consultar aforo ingresado".
+   Es el actor que más se olvida porque no está ni en el backoffice ni en el portal.
+3. Son reglas de negocio dentro de "Seleccionar butacas" y "Comprar entradas". El diagrama de
+   casos de uso muestra QUE se puede hacer, no BAJO QUE CONDICIONES. Ese es su límite, y por eso
+   hace falta la descripción textual de la slide siguiente.
+4. Porque es un sistema externo: el enunciado dice explícitamente que no lo construimos. Es un
+   actor secundario, no un usuario. Lo mismo valdría para el servicio de mailing.
+-->
+
+---
+
+## Del diagrama al texto
+### El diagrama solo no alcanza
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+Un caso de uso dibujado dice **que existe**. No dice qué pasa adentro, ni qué puede salir mal.
+
+Por eso cada caso de uso se acompaña de una descripción textual:
+
+<div class="grid-item">
+
+Identificador y nombre · Versión · Autores · Objetivos asociados · Requisitos asociados ·
+Descripción · **Precondición** · **Secuencia normal** · **Postcondición** · **Excepciones** ·
+Importancia · Urgencia · Comentarios
+
+</div>
+
+De la **precondición** y las **excepciones** salen los casos de prueba. Por eso son los campos que
+más importan.
+
+----
+
+<!-- .slide: style="font-size: 0.38em" -->
+<table>
+<thead>
+<tr>
+<th style="text-align:left">RF-04</th>
+<th style="text-align:left">Comprar entradas</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="text-align:left">Versión</td><td style="text-align:left">Versión 1.0</td></tr>
+<tr><td style="text-align:left">Autores</td><td style="text-align:left">Agustina Aliciardi</td></tr>
+<tr><td style="text-align:left">Objetivos asociados</td><td style="text-align:left">OBJ-02: Venta de entradas en línea</td></tr>
+<tr><td style="text-align:left">Requisitos asociados</td><td style="text-align:left">RI-03: Información de funciones y butacas · RI-05: Información de compras</td></tr>
+<tr><td style="text-align:left">Descripción</td><td style="text-align:left">El sistema deberá comportarse como se describe en el siguiente caso de uso cuando un comprador confirme la compra de las butacas que seleccionó.</td></tr>
+<tr><td style="text-align:left">Precondición</td><td style="text-align:left">El comprador está autenticado, la función está publicada y tiene butacas reservadas a su nombre con la reserva vigente.</td></tr>
+<tr><td style="text-align:left">Secuencia normal</td><td style="text-align:left">1. El comprador solicita confirmar la compra.</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left">2. El sistema verifica que la reserva siga vigente y que no se supere el límite de 6 entradas por función.</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left">3. El sistema calcula el total aplicando los descuentos vigentes y lo muestra.</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left">4. El comprador confirma y el sistema solicita el pago a la pasarela externa.</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left">5. La pasarela informa que el pago fue aprobado.</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left">6. El sistema marca las butacas como vendidas, genera una entrada con código QR por butaca y solicita su envío por correo.</td></tr>
+<tr><td style="text-align:left">Excepciones</td><td style="text-align:left">2. Si la reserva venció, el sistema libera las butacas, informa al comprador y vuelve a la selección.</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left">2. Si se supera el límite de 6 entradas, el sistema informa el motivo y no continúa.</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left">5. Si la pasarela rechaza el pago, el sistema mantiene la reserva por el tiempo restante y permite reintentar.</td></tr>
+<tr><td style="text-align:left"></td><td style="text-align:left">5. Si la pasarela no responde, el sistema deja la compra en estado pendiente y no vende las butacas.</td></tr>
+<tr><td style="text-align:left">Postcondición</td><td style="text-align:left">Existe una compra pagada, las butacas quedan vendidas y se emitió una entrada con QR único por cada una.</td></tr>
+<tr><td style="text-align:left">Importancia</td><td style="text-align:left">Vital</td></tr>
+<tr><td style="text-align:left">Urgencia</td><td style="text-align:left">Inmediatamente</td></tr>
+<tr><td style="text-align:left">Comentarios</td><td style="text-align:left">Ninguno</td></tr>
+</tbody>
+</table>
+
+----
+
+### Los no funcionales también se documentan
+<!-- .slide: style="font-size: 0.55em" -->
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <caption>RNF-02 – Rendimiento en preventa</caption>
+  <tbody>
+    <tr><th scope="row">Versión</th><td>Versión 1.0</td></tr>
+    <tr><th scope="row">Autores</th><td>Juan Pérez</td></tr>
+    <tr><th scope="row">Objetivos asociados</th><td>OBJ-02: Venta de entradas en línea</td></tr>
+    <tr><th scope="row">Descripción</th><td>El sistema deberá sostener 5.000 compradores concurrentes durante los primeros 10 minutos de una preventa, con un tiempo de respuesta menor a 3 segundos en la búsqueda de eventos y en la selección de butacas.</td></tr>
+    <tr><th scope="row">Importancia</th><td>Vital</td></tr>
+    <tr><th scope="row">Urgencia</th><td>Inmediata</td></tr>
+    <tr><th scope="row">Estabilidad</th><td>Alta</td></tr>
+    <tr><th scope="row">Comentario</th><td>Es el requisito que define la arquitectura: sin él, el diseño sería otro.</td></tr>
+  </tbody>
+</table>
+
+**Notar:** este requisito **no aparece en ningún diagrama**. Los no funcionales no se dibujan, se
+escriben. Es otra cosa que el modelo gráfico no puede mostrar.
+
+---
+
+## Vista 2
+### Clases — ¿qué entidades hay y cómo se relacionan?
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+Del mismo enunciado, ahora mirando los **sustantivos**: evento, función, sala, sector, butaca,
+compra, entrada, comprador.
+
+La vista de casos de uso decía **qué se puede hacer**. Esta dice **sobre qué se hace**.
+
+<div class="fuente">
+
+📎 **La notación —atributos, visibilidad, multiplicidad, asociación, agregación, composición y
+herencia— está en [Práctico: Diagrama de Clases](U5P_3_UML_diagrama_clase.html)**
+
+</div>
+
+----
+
+### El modelo del dominio
+<div class="uml">
+<svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" font-family="Source Sans Pro, Helvetica, sans-serif" fill="#073642">
+  <defs>
+    <marker id="flechaCl" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+      <path d="M0,0 L11,4.5 L0,9" fill="none" stroke="#073642" stroke-width="1.6"/>
+    </marker>
+  </defs>
+
+  <!-- Evento -->
+  <g><rect x="30" y="20" width="190" height="72" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="30" y1="48" x2="220" y2="48" stroke="#268bd2" stroke-width="2"/>
+  <text x="125" y="40" text-anchor="middle" font-size="16" font-weight="bold">Evento</text>
+  <text x="38" y="66" font-size="13">- nombre: String</text>
+  <text x="38" y="84" font-size="13">- categoria: Categoria</text></g>
+
+  <!-- Funcion -->
+  <g><rect x="30" y="150" width="190" height="105" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="30" y1="178" x2="220" y2="178" stroke="#268bd2" stroke-width="2"/>
+  <line x1="30" y1="218" x2="220" y2="218" stroke="#268bd2" stroke-width="2"/>
+  <text x="125" y="170" text-anchor="middle" font-size="16" font-weight="bold">Funcion</text>
+  <text x="38" y="196" font-size="13">- fechaHora: DateTime</text>
+  <text x="38" y="212" font-size="13">- estado: EstadoFuncion</text>
+  <text x="38" y="236" font-size="13">+ publicar()</text>
+  <text x="38" y="251" font-size="13">+ butacasDisponibles()</text></g>
+
+  <!-- Comprador -->
+  <g><rect x="30" y="530" width="190" height="88" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="30" y1="558" x2="220" y2="558" stroke="#268bd2" stroke-width="2"/>
+  <text x="125" y="550" text-anchor="middle" font-size="16" font-weight="bold">Comprador</text>
+  <text x="38" y="576" font-size="13">- nombre: String</text>
+  <text x="38" y="592" font-size="13">- email: String</text>
+  <text x="38" y="608" font-size="13">- dni: String</text></g>
+
+  <!-- Tarifa -->
+  <g><rect x="390" y="20" width="200" height="85" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="390" y1="48" x2="590" y2="48" stroke="#268bd2" stroke-width="2"/>
+  <text x="490" y="40" text-anchor="middle" font-size="16" font-weight="bold">Tarifa</text>
+  <text x="398" y="66" font-size="13">- precio: Decimal</text>
+  <text x="398" y="82" font-size="13">- vigenciaDesde: Date</text>
+  <text x="398" y="98" font-size="13">- descuento: Decimal</text></g>
+
+  <!-- Compra -->
+  <g><rect x="390" y="190" width="200" height="105" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="390" y1="218" x2="590" y2="218" stroke="#268bd2" stroke-width="2"/>
+  <line x1="390" y1="258" x2="590" y2="258" stroke="#268bd2" stroke-width="2"/>
+  <text x="490" y="210" text-anchor="middle" font-size="16" font-weight="bold">Compra</text>
+  <text x="398" y="236" font-size="13">- fecha: DateTime</text>
+  <text x="398" y="252" font-size="13">- estado: EstadoCompra</text>
+  <text x="398" y="276" font-size="13">+ total(): Decimal</text>
+  <text x="398" y="291" font-size="13">+ liberarReserva()</text></g>
+
+  <!-- Entrada -->
+  <g><rect x="390" y="360" width="200" height="105" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="390" y1="388" x2="590" y2="388" stroke="#268bd2" stroke-width="2"/>
+  <line x1="390" y1="428" x2="590" y2="428" stroke="#268bd2" stroke-width="2"/>
+  <text x="490" y="380" text-anchor="middle" font-size="16" font-weight="bold">Entrada</text>
+  <text x="398" y="406" font-size="13">- codigoQR: String</text>
+  <text x="398" y="422" font-size="13">- usada: boolean</text>
+  <text x="398" y="446" font-size="13">+ validar(): boolean</text>
+  <text x="398" y="461" font-size="13">+ marcarUsada()</text></g>
+
+  <!-- Sala -->
+  <g><rect x="770" y="20" width="200" height="72" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="770" y1="48" x2="970" y2="48" stroke="#268bd2" stroke-width="2"/>
+  <text x="870" y="40" text-anchor="middle" font-size="16" font-weight="bold">Sala</text>
+  <text x="778" y="66" font-size="13">- nombre: String</text>
+  <text x="778" y="84" font-size="13">- direccion: String</text></g>
+
+  <!-- Sector -->
+  <g><rect x="770" y="170" width="200" height="75" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="770" y1="198" x2="970" y2="198" stroke="#268bd2" stroke-width="2"/>
+  <text x="870" y="190" text-anchor="middle" font-size="16" font-weight="bold">Sector</text>
+  <text x="778" y="216" font-size="13">- nombre: String</text>
+  <text x="778" y="232" font-size="13">- numerado: boolean</text></g>
+
+  <!-- Butaca -->
+  <g><rect x="770" y="325" width="200" height="75" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="770" y1="353" x2="970" y2="353" stroke="#268bd2" stroke-width="2"/>
+  <text x="870" y="345" text-anchor="middle" font-size="16" font-weight="bold">Butaca</text>
+  <text x="778" y="371" font-size="13">- fila: String</text>
+  <text x="778" y="387" font-size="13">- numero: int</text></g>
+
+  <g stroke="#073642" stroke-width="2" fill="none">
+    <!-- Evento composicion Funcion -->
+    <path d="M125,92 l9,11 l-9,11 l-9,-11 z" fill="#073642"/>
+    <line x1="125" y1="114" x2="125" y2="150"/>
+    <!-- Compra composicion Entrada -->
+    <path d="M490,295 l9,11 l-9,11 l-9,-11 z" fill="#073642"/>
+    <line x1="490" y1="317" x2="490" y2="360"/>
+    <!-- Sala composicion Sector -->
+    <path d="M870,92 l9,11 l-9,11 l-9,-11 z" fill="#073642"/>
+    <line x1="870" y1="114" x2="870" y2="170"/>
+    <!-- Sector composicion Butaca -->
+    <path d="M870,245 l9,11 l-9,11 l-9,-11 z" fill="#073642"/>
+    <line x1="870" y1="267" x2="870" y2="325"/>
+    <!-- Funcion - Sala -->
+    <polyline points="220,165 700,165 700,55 770,55"/>
+    <!-- Funcion - Tarifa -->
+    <polyline points="220,195 300,195 300,62 390,62"/>
+    <!-- Tarifa - Sector -->
+    <polyline points="590,90 730,90 730,207 770,207"/>
+    <!-- Comprador - Compra -->
+    <polyline points="220,572 310,572 310,242 390,242"/>
+    <!-- Entrada - Funcion -->
+    <polyline points="420,465 420,500 125,500 125,255"/>
+    <!-- Entrada - Butaca -->
+    <polyline points="590,412 680,412 680,362 770,362"/>
+  </g>
+
+  <g font-size="13" fill="#586e75">
+    <text x="134" y="108">1</text><text x="134" y="146">1..*</text>
+    <text x="499" y="311">1</text><text x="499" y="357">1..*</text>
+    <text x="879" y="108">1</text><text x="879" y="166">1..*</text>
+    <text x="879" y="261">1</text><text x="879" y="321">0..*</text>
+    <text x="228" y="158">0..*</text><text x="742" y="48">1</text>
+    <text x="228" y="188">1</text><text x="352" y="58">1..*</text>
+    <text x="598" y="84">0..*</text><text x="742" y="200">1</text>
+    <text x="228" y="565">1</text><text x="352" y="236">0..*</text>
+    <text x="428" y="492">0..*</text><text x="134" y="272">1</text>
+    <text x="598" y="406">0..*</text><text x="742" y="355">1</text>
+  </g>
+</svg>
+</div>
+
+----
+
+### Los usuarios: una jerarquía aparte
+<div class="uml">
+<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" font-family="Source Sans Pro, Helvetica, sans-serif" fill="#073642">
+  <defs>
+    <marker id="herenciaTk" markerWidth="16" markerHeight="14" refX="15" refY="7" orient="auto">
+      <path d="M0,0 L15,7 L0,14 z" fill="#fdf6e3" stroke="#073642" stroke-width="1.6"/>
+    </marker>
+  </defs>
+
+  <g><rect x="380" y="20" width="240" height="100" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+  <line x1="380" y1="52" x2="620" y2="52" stroke="#268bd2" stroke-width="2"/>
+  <line x1="380" y1="112" x2="620" y2="112" stroke="#268bd2" stroke-width="2"/>
+  <text x="500" y="36" text-anchor="middle" font-size="17" font-weight="bold" font-style="italic">Usuario</text>
+  <text x="500" y="49" text-anchor="middle" font-size="12" fill="#586e75">{abstract}</text>
+  <text x="388" y="70" font-size="13">- email: String</text>
+  <text x="388" y="86" font-size="13">- password: Hash</text>
+  <text x="388" y="102" font-size="13">- activo: boolean</text>
+  <text x="388" y="126" font-size="13">+ autenticar(): boolean</text></g>
+
+  <g stroke="#073642" stroke-width="2" fill="none">
+    <line x1="120" y1="260" x2="120" y2="215"/>
+    <line x1="373" y1="260" x2="373" y2="215"/>
+    <line x1="627" y1="260" x2="627" y2="215"/>
+    <line x1="880" y1="260" x2="880" y2="215"/>
+    <line x1="120" y1="215" x2="880" y2="215"/>
+  </g>
+  <line x1="500" y1="215" x2="500" y2="138" stroke="#073642" stroke-width="2" marker-end="url(#herenciaTk)"/>
+
+  <g>
+    <rect x="20" y="260" width="200" height="95" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+    <line x1="20" y1="288" x2="220" y2="288" stroke="#268bd2" stroke-width="2"/>
+    <text x="120" y="280" text-anchor="middle" font-size="15" font-weight="bold">Administrador</text>
+    <text x="28" y="308" font-size="12.5">+ altaSala()</text>
+    <text x="28" y="325" font-size="12.5">+ definirSectores()</text>
+    <text x="28" y="342" font-size="12.5">+ gestionarUsuarios()</text>
+  </g>
+  <g>
+    <rect x="273" y="260" width="200" height="95" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+    <line x1="273" y1="288" x2="473" y2="288" stroke="#268bd2" stroke-width="2"/>
+    <text x="373" y="280" text-anchor="middle" font-size="15" font-weight="bold">Organizador</text>
+    <text x="281" y="308" font-size="12.5">- productora: String</text>
+    <text x="281" y="325" font-size="12.5">+ crearEvento()</text>
+    <text x="281" y="342" font-size="12.5">+ publicarFuncion()</text>
+  </g>
+  <g>
+    <rect x="527" y="260" width="200" height="95" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+    <line x1="527" y1="288" x2="727" y2="288" stroke="#268bd2" stroke-width="2"/>
+    <text x="627" y="280" text-anchor="middle" font-size="15" font-weight="bold">Comprador</text>
+    <text x="535" y="308" font-size="12.5">- dni: String</text>
+    <text x="535" y="325" font-size="12.5">+ comprar()</text>
+    <text x="535" y="342" font-size="12.5">+ solicitarDevolucion()</text>
+  </g>
+  <g>
+    <rect x="780" y="260" width="200" height="95" rx="4" fill="#eee8d5" stroke="#268bd2" stroke-width="2"/>
+    <line x1="780" y1="288" x2="980" y2="288" stroke="#268bd2" stroke-width="2"/>
+    <text x="880" y="280" text-anchor="middle" font-size="15" font-weight="bold">ControladorAcceso</text>
+    <text x="788" y="308" font-size="12.5">- puntoAcceso: String</text>
+    <text x="788" y="325" font-size="12.5">+ escanearQR()</text>
+  </g>
+</svg>
+</div>
+
+**El modelo completo no entra en una pantalla.** Partirlo en vistas —dominio y usuarios— es
+legítimo y es lo que hacen los paquetes.
+
+----
+
+### 💡 Ejercicio: Contrastar las dos vistas
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.74em" -->
+
+1. Tomá el caso de uso **"Seleccionar butacas"** del comprador y señalá **qué clases** participan.
+2. ¿Hay alguna clase que **no** aparezca en ningún caso de uso? ¿Es un error?
+3. La **reserva de 10 minutos**: ¿dónde vive en el modelo de clases? ¿Se ve en el diagrama?
+4. ¿Por qué `Sector` ◆— `Butaca` es una **composición** y `Funcion` — `Sala` una **asociación**?
+5. Un sector sin numerar no tiene butacas. ¿Está contemplado en el diagrama? ¿Dónde se ve?
+
+<!--
+1. Funcion, Sala, Sector, Butaca y Tarifa (para mostrar el precio). Ninguna clase de Compra
+   todavía: la compra recién aparece al confirmar. El ejercicio entrena la trazabilidad entre
+   vistas, que es lo que se pierde cuando los diagramas se dibujan por separado.
+2. Tarifa casi no aparece: la usan "Definir precios" del organizador y el cálculo del total.
+   No es error; es una clase de soporte. Pero es señal para revisar: o falta un caso de uso,
+   o sobra la clase.
+3. No se ve. Como mucho se intuye en EstadoCompra (reservada / pagada / vencida) y en
+   liberarReserva(). Que la reserva dure 10 minutos y que se libere sola es COMPORTAMIENTO
+   TEMPORAL: no lo muestra ni el de clases ni el de casos de uso. Hace falta un diagrama de
+   estados o uno de secuencia. Este es el punto central de la clase.
+4. Una butaca no existe fuera de su sector: si se borra el sector, se borran sus butacas
+   (composicion, ciclo de vida compartido). Una sala existe antes y despues de la funcion, y
+   la misma sala se usa en muchas funciones (asociacion).
+5. Si: la multiplicidad de Sector a Butaca es 0..*, y el atributo numerado: boolean distingue
+   los dos casos. Es un buen ejemplo de una regla del enunciado que SI se puede expresar en el
+   diagrama de clases, a diferencia de la del punto 3.
+-->
+
+---
+
+## Vista 3
+### Secuencia — ¿en qué orden colaboran?
+
+<!-- .slide: style="font-size: 0.85em" -->
+
+Las dos vistas anteriores son **estáticas**: dicen qué se puede hacer y con qué entidades, pero no
+en qué orden ocurren las cosas ni quién le pide qué a quién.
+
+Para eso está el diagrama de secuencia: toma **un** caso de uso y muestra la conversación entre los
+objetos que lo resuelven.
+
+<div class="fuente">
+
+📎 **La notación —líneas de vida, mensajes, fragmentos combinados— está en
+[Práctico: Diagrama de Secuencia](U5P_4_UML_diagramas_secuencia.html)**
+
+</div>
+
+----
+
+### 💡 Ejercicio: La vista que falta
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.74em" -->
+
+El caso tiene la vista de casos de uso y la de clases. **Falta la de secuencia.**
+
+Dibujá el diagrama de secuencia de **"Comprar entradas"** (RF-04), usando como participantes las
+clases del modelo de dominio y la **Pasarela de pagos** como actor externo.
+
+1. ¿Quién inicia la interacción y qué objetos participan?
+2. Modelá la verificación de que la **reserva siga vigente** y el **límite de 6 entradas**.
+3. Modelá las tres salidas posibles del pago: aprobado, rechazado, sin respuesta.
+4. Al confirmar, el sistema **registra la venta y envía el mail en paralelo**. ¿Cómo se modela eso?
+
+<!--
+Lo que interesa evaluar:
+- Que los participantes sean clases que existen en el modelo de dominio. Si aparece un objeto
+  que no esta en el modelo estructural, o falta una clase o sobra un objeto. Las vistas tienen
+  que ser consistentes entre si, y esa verificacion cruzada es lo que una herramienta CASE que
+  entiende UML hace sola.
+- Punto 2 y 3: obligan a usar fragmentos combinados alt/opt.
+- Punto 4: se modela con un fragmento par, y es el mismo paralelismo que en el diagrama de
+  actividad se dibuja con fork/join. Buen momento para mostrar que dos diagramas distintos
+  expresan la misma idea con notaciones distintas.
+- El servicio de mailing y la pasarela son participantes EXTERNOS: se dibujan como lineas de
+  vida, pero no se modela lo que pasa adentro de ellos.
+-->
+
+---
+
+## Las tres vistas, juntas
+<!-- .slide: style="font-size: 0.70em" -->
+
+| Vista | Pregunta que responde | Qué **no** muestra |
+|---|---|---|
+| **Casos de uso** | ¿Quién usa el sistema y para qué? | Las reglas de negocio, el orden, los datos |
+| **Clases** | ¿Qué entidades existen y cómo se relacionan? | El comportamiento y las restricciones dinámicas |
+| **Secuencia** | ¿En qué orden colaboran los objetos? | La estructura completa y el resto de los escenarios |
+
+**Ninguna alcanza sola, y las tres juntas tampoco son el sistema completo.** La reserva de 10
+minutos no está en ninguna, y los 5.000 usuarios concurrentes tampoco.
+
+Por eso el modelado es siempre un **conjunto de vistas parciales y consistentes entre sí**, y la
+consistencia hay que sostenerla a mano o con una herramienta que la verifique.
+
+<div class="fuente">
+
+📎 [Perspectivas y diagramas](U5_modelado_de_sistemas.html#/10/2) ·
+[Qué diagrama responde qué pregunta](U5_modelado_de_sistemas.html#/10/3)
+
+</div>
+
+---
+## ¿Dudas, Preguntas, Comentarios?
+![DUDAS](images/pregunta.gif)
