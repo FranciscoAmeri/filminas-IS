@@ -504,7 +504,7 @@ Un modelo de agregación muestra cómo unas clases **se componen** de otras. Es 
 
 <div class="fuente">
 
-📎 **La notación completa está en [Práctico: Diagrama de Clases (agregación vs. composición)](U5P_3_UML_diagrama_clase.html)** — acá solo vemos para qué sirve.
+📎 **La notación completa está en [Práctico: Diagrama de Clases — agregación vs. composición](U5P_3_UML_diagrama_clase.html#/5/6)** — acá solo vemos para qué sirve.
 
 </div>
 
