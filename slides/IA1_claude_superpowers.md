@@ -1,0 +1,437 @@
+---
+title: Claude y Superpowers
+theme: solarized
+slideNumber: true
+---
+
+#### Ingeniería de Software
+# Claude y Superpowers
+#### Agentes de IA aplicados al proceso de software
+Created by <i class="fab fa-telegram"></i>
+[edme88]("https://t.me/edme88")
+
+---
+<!-- .slide: style="font-size: 0.75em" -->
+<style>
+.grid-item {
+    border: 3px solid rgba(121, 177, 217, 0.8);
+    padding: 20px;
+    text-align: left !important;
+}
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.fuente {
+  border-top: 2px solid rgba(121, 177, 217, 0.6);
+  padding-top: 8px;
+  margin-top: 14px;
+  font-size: 0.80em;
+}
+
+.alerta {
+  border-left: 5px solid #b58900;
+  padding-left: 14px;
+  text-align: left !important;
+}
+
+.term {
+  background: rgba(121, 177, 217, 0.18);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+</style>
+
+## Recorrido
+
+<div class="grid-item">
+
+1. **Modelo, agente y herramientas** — el vocabulario
+2. **Claude** — qué es y dónde se usa
+3. **Skills y plugins** — proceso empaquetado
+4. **Superpowers** — un proceso de software impuesto
+5. **Práctica** — instalarlo y correr un flujo
+6. **Mirarlo con ojo crítico**
+
+</div>
+
+**La tesis de la clase:** una *skill* no es magia, es **un procedimiento escrito**. Y escribir
+procedimientos repetibles es exactamente de lo que viene hablando toda la materia.
+
+---
+
+## 1 · El vocabulario
+### Modelo, agente y herramientas
+
+<!-- .slide: style="font-size: 0.80em" -->
+
+Tres palabras que se usan como sinónimos y no lo son:
+
+<div class="grid-item">
+
+**Modelo (LLM)** — predice texto. Entra texto, sale texto. No hace nada más.
+
+**Herramientas (tools)** — funciones que el modelo puede pedir que se ejecuten: leer un archivo,
+correr un comando, consultar una API.
+
+**Agente** — un modelo **en un bucle**, con herramientas y un objetivo. Decide, actúa, mira el
+resultado y vuelve a decidir, hasta terminar o rendirse.
+
+</div>
+
+**Lo que hace la diferencia no es el modelo, es el bucle.** El mismo modelo que te sugiere una
+línea de código, metido en un bucle con acceso al repositorio, puede recorrer un proyecto entero.
+
+----
+
+### Autocompletado vs. agente
+<!-- .slide: style="font-size: 0.72em" -->
+
+| | Autocompletado | Agente |
+|---|---|---|
+| **Qué ve** | El archivo abierto | El repositorio, la consola, los tests |
+| **Qué hace** | Propone el próximo fragmento | Lee, edita varios archivos, ejecuta, corrige |
+| **Quién decide los pasos** | Vos | El agente, dentro de los límites que le pongas |
+| **Unidad de trabajo** | Una línea | Una tarea |
+| **El riesgo** | Aceptar una línea mala | Que haga 40 cambios en la dirección equivocada |
+
+El segundo riesgo es cualitativamente distinto, y es el que justifica toda esta clase:
+**cuanta más autonomía, más importa el proceso.**
+
+---
+
+## 2 · Claude
+
+<!-- .slide: style="font-size: 0.78em" -->
+
+Claude es la familia de modelos de **Anthropic**. Al momento de esta clase los modelos vigentes son
+**Claude Fable 5**, **Claude Opus 5.5**, **Claude Sonnet 5** y **Claude Haiku 4.5**, que se
+diferencian en capacidad, velocidad y costo.
+
+El mismo modelo se usa desde productos muy distintos:
+
+<div class="grid-item">
+
+**Chat** — web, móvil y aplicación de escritorio
+**API / Claude Platform** — para integrarlo en un sistema propio
+**Claude Code** — agente de programación en la terminal
+**Claude in Chrome · Claude in Excel** — agentes dentro del navegador y de la planilla
+**Cowork** — agente de escritorio para tareas de archivos y automatización
+
+</div>
+
+Para esta clase nos interesa **Claude Code**, porque es donde el proceso de software se vuelve
+visible.
+
+----
+
+### Claude Code
+<!-- .slide: style="font-size: 0.78em" -->
+
+Es un agente que corre en la **terminal**, dentro de tu proyecto. Con tu permiso puede:
+
+* leer y escribir archivos del repositorio,
+* ejecutar comandos (compilar, correr los tests, `git`),
+* buscar en la web y leer documentación,
+* y hacer *commits*.
+
+<div class="alerta">
+
+**El punto que importa como ingenieros:** nada de eso garantiza que el resultado sea bueno. Un
+agente rápido sin método produce deuda técnica rápido. Lo que falta es **proceso** — y ahí entran
+las *skills*.
+
+</div>
+
+---
+
+## 3 · Skills y plugins
+### Proceso empaquetado
+
+<!-- .slide: style="font-size: 0.72em" -->
+
+| Concepto | Qué es | Analogía en la materia |
+|---|---|---|
+| <span class="term">Skill</span> | Un archivo **Markdown** con conocimiento, un procedimiento o instrucciones. Claude la carga cuando el caso aplica, o se la invoca con `/nombre` | Un **estándar** o una **plantilla** de la cátedra |
+| <span class="term">Agent</span> | Un sub-agente con su propio rol y sus propias herramientas | Delegar en un rol del equipo |
+| <span class="term">Hook</span> | Código que se dispara ante un evento (antes de un commit, al editar un archivo) | Un **control automático** del proceso |
+| <span class="term">MCP server</span> | Un conector a un sistema externo (Jira, Drive, una base) | Una **integración** |
+| <span class="term">Plugin</span> | Un paquete que agrupa skills, agents, hooks y MCP servers, y se instala como una unidad | Un **framework de proceso** |
+| <span class="term">Marketplace</span> | Un catálogo de plugins, versionado en un repositorio git | Un **repositorio de componentes** |
+
+----
+
+### Una skill es proceso escrito
+<!-- .slide: style="font-size: 0.80em" -->
+
+Una skill es, literalmente, un `.md` con un título, una descripción de **cuándo usarla** y los
+pasos a seguir. Nada más.
+
+Eso significa tres cosas que nos tocan de cerca:
+
+<div class="grid-item">
+
+1. **Es legible y auditable.** Podés abrirla y discutir si el procedimiento está bien.
+2. **Es versionable.** Vive en un repositorio, con historial y revisiones: **gestión de la
+   configuración** aplicada al proceso mismo.
+3. **Es reutilizable.** Lo que una persona del equipo hace bien, se escribe una vez y lo hacen todos.
+
+</div>
+
+**Es la vieja idea de la ingeniería de software:** si un procedimiento depende de que alguien se
+acuerde, no es un proceso. Es una costumbre.
+
+----
+
+### Los comandos que hay que conocer
+<!-- .slide: style="font-size: 0.70em" -->
+
+| Para | Comando |
+|---|---|
+| Abrir el panel de plugins | `/plugin` |
+| Instalar uno del catálogo oficial | `/plugin install <nombre>@claude-plugins-official` |
+| Agregar otro catálogo | `/plugin marketplace add <owner>/<repo>` |
+| Listar lo instalado | `claude plugin list` *(desde la terminal)* |
+| Recargar tras instalar | `/reload-plugins` |
+
+Al instalar hay que elegir un **alcance**, y la decisión es de configuración, no de gusto:
+
+* **user** — para vos, en todos tus proyectos
+* **project** — para todo el equipo; la entrada se **commitea** en `.claude/settings.json`
+* **local** — para vos, solo en este repositorio
+
+<div class="fuente">
+
+📎 Documentación: [Install and manage plugins](https://code.claude.com/docs/en/discover-plugins) ·
+[Plugins overview](https://docs.claude.com/en/docs/claude-code/plugins)
+
+</div>
+
+---
+
+## 4 · Superpowers
+
+<!-- .slide: style="font-size: 0.80em" -->
+
+Plugin creado por **Jesse Vincent**, de licencia **MIT**, distribuido en el marketplace oficial de
+Anthropic.
+
+No agrega capacidades nuevas al modelo. Hace algo distinto y más interesante:
+**le impone un proceso de desarrollo.**
+
+<div class="grid-item">
+
+**Primero** entiende el problema y escribe un diseño.
+**Después** convierte el diseño en un plan de tareas verificables.
+**Recién entonces** escribe código, con TDD y revisión entre tareas.
+
+</div>
+
+Dicho de otro modo: toma un agente que tiende a tirarse de cabeza a codificar y lo obliga a
+**analizar, diseñar y planificar antes**.
+
+----
+
+### El ciclo de vida, skill por skill
+<!-- .slide: style="font-size: 0.62em" -->
+
+| Etapa del proceso | Módulo de la materia | Skill |
+|---|---|---|
+| Elicitación y análisis | II — Requisitos | `brainstorming` |
+| Especificación | II — Requisitos | el **spec** que deja escrito en `docs/` |
+| Planificación | IV — Gestión de proyectos | `writing-plans` |
+| Implementación | III — Diseño | `executing-plans` · `subagent-driven-development` |
+| Pruebas | V — Calidad | `test-driven-development` · `verification-before-completion` |
+| Revisión técnica | V — Calidad | `requesting-code-review` · `receiving-code-review` |
+| Depuración | V — Mantenimiento | `systematic-debugging` |
+| Gestión de la configuración | V — Configuración | `using-git-worktrees` · `finishing-a-development-branch` |
+
+**Mirá la columna del medio.** No es casualidad: el plugin es una implementación de un proceso de
+desarrollo clásico. **Todo lo que vimos en el año está en esa tabla.**
+
+----
+
+### La regla central: el *hard gate*
+<!-- .slide: style="font-size: 0.76em" -->
+
+La skill de `brainstorming` clasifica cualquier pedido en uno de tres caminos, y cada uno exige una
+aprobación distinta **antes** de tocar código:
+
+| Camino | Cuándo | Qué hay que aprobar primero |
+|---|---|---|
+| **Spike** | Una pregunta de factibilidad: *"¿se puede…?"* | La pregunta y la prueba, en 2 o 3 oraciones |
+| **Bounded** | Un cambio acotado sobre código que **ya existe** | Un diseño corto, conversado |
+| **Architectural** | Proyecto nuevo o cambio estructural | Un **spec escrito** y después un **plan escrito** |
+
+Y la regla que lo sostiene: **ante la duda entre dos caminos, se toma el más pesado**, y la
+clasificación solo puede subir, nunca bajar.
+
+**Por qué esto es lo más valioso del plugin:** es la respuesta de ingeniería al problema del
+agente autónomo. No se trata de que escriba mejor código, sino de que **no escriba código
+todavía**.
+
+----
+
+### Lo que esto previene
+<!-- .slide: style="font-size: 0.72em" -->
+
+| Sin proceso | Con el gate |
+|---|---|
+| *"Hacé un sistema de reservas"* → 2.000 líneas en una dirección que no era | Se discute el alcance primero y se aprueba un diseño de media página |
+| Se arregla el síntoma del bug | `systematic-debugging` prohíbe el fix sin causa raíz |
+| *"Listo, funciona"* sin haberlo corrido | `verification-before-completion` exige **evidencia antes de la afirmación** |
+| Tests escritos después, si hay tiempo | `test-driven-development` impone rojo → verde → refactor |
+| Todo en `main` | `using-git-worktrees` aísla el trabajo |
+
+La frase que resume la filosofía del plugin: **evidencia antes de afirmaciones.** Es la misma idea
+que la verificación y validación del Módulo V.
+
+---
+
+## 5 · Práctica
+### Instalación
+
+<!-- .slide: style="font-size: 0.72em" -->
+
+**Requisitos:** Node.js, `git`, y una cuenta de Claude.
+
+```bash
+# 1. Instalar Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# 2. Entrar al proyecto y arrancar
+cd mi-proyecto
+claude
+```
+
+Ya dentro de la sesión:
+
+```text
+/plugin install superpowers@claude-plugins-official
+```
+
+Se abre el panel con el detalle del plugin: **leelo antes de aceptar** — ahí dice qué skills,
+agentes y hooks agrega, y cuánto contexto consume. Elegís el alcance y, si lo pide,
+`/reload-plugins`.
+
+**Verificación:** escribí `/` y buscá las entradas `superpowers:`. Si aparecen, quedó activo.
+
+----
+
+### El flujo, con un ejemplo de la materia
+<!-- .slide: style="font-size: 0.66em" -->
+
+Supongamos que el pedido es *"agregar al portal de entradas la devolución hasta 48 horas antes"*.
+
+<div class="grid-item">
+
+**1 · `/superpowers:brainstorming`** → clasifica el pedido. Hay código existente y el cambio es
+acotado: **bounded**. Pregunta de a una: ¿la devolución es total o parcial? ¿Qué pasa con las
+butacas? ¿Quién la autoriza?
+
+**2 ·** Presenta un **diseño corto** y **se detiene**. No escribe nada hasta que digas que sí.
+
+**3 · `writing-plans`** *(si fuera architectural)* → convierte el diseño en tareas verificables.
+
+**4 · `test-driven-development`** → escribe primero el test que falla: *"una devolución pedida a
+47 horas se rechaza"*.
+
+**5 · `requesting-code-review`** → un sub-agente revisa y clasifica los hallazgos por severidad.
+
+**6 · `finishing-a-development-branch`** → cierra la rama.
+
+</div>
+
+**Lo que hay que notar:** entre el paso 1 y el paso 4 **no se escribió una sola línea de código**.
+
+---
+
+### 💡 Ejercicio: Clasificar los pedidos
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
+
+Para cada pedido, decidí si es **spike**, **bounded** o **architectural**, y qué habría que
+aprobar antes de escribir código:
+
+1. *"Corregir el mensaje de error cuando el QR ya fue usado."*
+2. *"¿Se podría leer el QR con la cámara del celular sin instalar una app?"*
+3. *"Agregar un módulo de abonos para varias funciones."*
+4. *"Cambiar el límite de 6 entradas a 4."*
+5. *"Migrar el portal a microservicios."*
+
+<!--
+1. Bounded. El flujo existe, se lee y se cambia. Diseño corto en el chat.
+2. Spike. Es una pregunta de factibilidad: la salida es una respuesta, no codigo. Lo que se
+   construya queda etiquetado como descartable.
+3. Architectural. Toca el modelo de dominio (que es un abono: compra, entrada o entidad nueva),
+   los precios y la devolucion. Spec escrito y despues plan escrito.
+4. Trampa. Parece trivial, y por eso es el caso mas interesante: si el 6 esta hardcodeado en un
+   solo lugar es bounded; si esta repetido en tres capas, la complejidad oculta SUBE el camino y
+   hay que parar y decirlo. La regla es que la clasificacion solo sube.
+5. Architectural, y ademas demasiado grande para un solo spec: hay que descomponerlo en
+   sub-proyectos antes de disenar nada.
+-->
+
+---
+
+## 6 · Con ojo crítico
+<!-- .slide: style="font-size: 0.70em" -->
+
+<div class="alerta">
+
+**No verifica por vos.** Puede decir que los tests pasan sin haberlos corrido. Por eso existe
+`verification-before-completion`, y por eso **vos** mirás la salida de los comandos.
+
+**Puede alucinar.** Inventa APIs, funciones y citas con total seguridad. Todo dato verificable hay
+que verificarlo.
+
+**El contexto cuesta.** Cada plugin suma tokens a cada mensaje. El panel muestra el costo: hay que
+elegir, no instalar todo.
+
+**La responsabilidad profesional no se delega.** Firmás vos. Un agente no es un coautor al que se
+le pueda atribuir un defecto.
+
+**Datos de terceros y credenciales, nunca.** Es un sistema externo: aplican las mismas reglas que
+para cualquier integración.
+
+</div>
+
+----
+
+### Lo que sí cambia
+<!-- .slide: style="font-size: 0.78em" -->
+
+No es que el ingeniero deje de hacer falta. Cambia **dónde** está su valor:
+
+<div class="grid-item">
+
+**Baja de valor** — escribir el código rutinario, recordar la sintaxis, el *boilerplate*.
+
+**Sube de valor** — saber qué hay que construir, **decidir la arquitectura**, revisar
+críticamente, y **reconocer cuándo el resultado está mal**.
+
+</div>
+
+Fijate que las tres que suben son análisis, diseño y verificación. Es decir: **esta materia**.
+
+Para revisar críticamente lo que produce un agente, hay que saber UML, hay que saber qué es una
+composición y hay que saber qué es un caso de prueba. Si no, no hay revisión: hay aceptación.
+
+---
+
+### Antes de usarlo en un trabajo, revisá
+<!-- .slide: style="font-size: 0.76em" -->
+
+* ¿Entendés **el problema** mejor que el agente? Si no, no estás en condiciones de aprobar su diseño.
+* ¿**Leíste** el diseño y el plan antes de decir que sí, o apretaste *enter*?
+* ¿**Corriste** los tests vos mismo y viste la salida?
+* ¿Podés **explicar** cada decisión del código como si la hubieras tomado vos? *(Porque la tomaste: la aprobaste.)*
+* ¿Está claro en el repositorio **qué se generó con asistencia**?
+* ¿Hay datos sensibles o de terceros en lo que le pasaste?
+
+---
+## ¿Dudas, Preguntas, Comentarios?
+![DUDAS](images/pregunta.gif)

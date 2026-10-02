@@ -20,6 +20,7 @@ Created by <i class="fab fa-telegram"></i>
 ![Icono](images/indice/u4_icono.png)
 ![Icono](images/indice/u5_icono.png)
 ![Icono](images/indice/ejercicios.png)
+![Icono](images/indice/ia_icono.svg)
 ![Icono](images/ingenieria-soft.png)
 
 ![Icono](images/ejercicios/problema.png)
