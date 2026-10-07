@@ -54,7 +54,8 @@ Created by <i class="fab fa-telegram"></i>
 3. **Skills y plugins** — proceso empaquetado
 4. **Superpowers** — un proceso de software impuesto
 5. **Práctica** — instalarlo y correr un flujo
-6. **Mirarlo con ojo crítico**
+6. **Artifacts** — publicar, persistir y hostear
+7. **Mirarlo con ojo crítico**
 
 </div>
 
@@ -206,7 +207,8 @@ Al instalar hay que elegir un **alcance**, y la decisión es de configuración, 
 <div class="fuente">
 
 📎 Documentación: [Install and manage plugins](https://code.claude.com/docs/en/discover-plugins) ·
-[Plugins overview](https://docs.claude.com/en/docs/claude-code/plugins)
+[Plugins overview](https://docs.claude.com/en/docs/claude-code/plugins) ·
+[Artifacts](https://code.claude.com/docs/en/artifacts)
 
 </div>
 
@@ -377,7 +379,194 @@ aprobar antes de escribir código:
 
 ---
 
-## 6 · Con ojo crítico
+## 6 · Artifacts
+### Del agente a una página publicada
+
+<!-- .slide: style="font-size: 0.78em" -->
+
+Un **artifact** es una página web interactiva que el agente **publica** desde la sesión a una URL
+en claude.ai. Se abre en el navegador y **se actualiza en el lugar** mientras la sesión sigue.
+
+Sirve cuando el texto de la terminal es el medio equivocado: un tablero, un diff anotado, varias
+alternativas de diseño lado a lado, una checklist que se va completando sola.
+
+<div class="alerta">
+
+**Lo que un artifact no es: un despliegue.** Es una **captura de trabajo** — una sola página
+autocontenida, sin backend y sin rutas. Para una herramienta interna de verdad, hosting propio.
+
+</div>
+
+----
+
+### Cómo funciona por dentro
+<!-- .slide: style="font-size: 0.64em" -->
+
+El agente escribe un archivo `.html`, `.htm` o `.md`. Claude Code lo **envuelve en un documento
+HTML** y lo sirve bajo una **Content Security Policy estricta**, desde un origen aislado
+(`*.claudeusercontent.com`) **distinto** del de claude.ai.
+
+Esa CSP es la que define qué puede hacer la página:
+
+| Restricción | Efecto concreto |
+|---|---|
+| **Pedidos externos** | Tipografías solo de Google Fonts. Scripts solo de **5 CDN** (cdnjs, unpkg, Tailwind, jQuery, jsDelivr). **Imágenes externas bloqueadas.** `fetch`, XHR y WebSocket solo al propio origen |
+| **Sin backend** | Página estática. **No puede autenticar visitantes** |
+| **Una sola página** | Los enlaces relativos **no resuelven**: no hay nada desplegado al lado |
+| **Descargas** | La página no puede iniciar una descarga por su cuenta |
+| **Tamaño** | La página renderizada, máximo **16 MiB** |
+
+<div class="alerta">
+
+**Leelo como ingeniero:** la CSP es un **requisito no funcional** que determina el diseño. Por eso
+el agente *inlinea* todo el CSS y el JS y mete las imágenes como `data:` URI. No es una decisión
+de estilo — **es la arquitectura la que la impone.**
+
+</div>
+
+----
+
+### El despliegue y las versiones
+<!-- .slide: style="font-size: 0.74em" -->
+
+<div class="grid-item">
+
+1. El agente escribe el archivo y lo **publica**. Imprime la URL y abre el navegador.
+2. **Cada publicación es una versión.** Desde el control *Share* elegís cuál ve el visitante.
+3. Actualizar = **republicar a la misma URL**. Quien la tenga abierta lo ve en el lugar.
+4. Nace **privado**. Se comparte dentro de la organización o públicamente; en Team y Enterprise el
+   compartido público lo habilita un *Owner*.
+5. `/artifacts` lista los propios y los compartidos con vos.
+
+</div>
+
+**Gestión de la configuración, aplicada:** versionado, control de acceso por audiencia, registro de
+auditoría y política de retención. Es el Módulo V funcionando sobre una página web.
+
+----
+
+### ¿Dónde viven los datos?
+<!-- .slide: style="font-size: 0.62em" -->
+
+La pregunta tiene **tres respuestas distintas** que se confunden todo el tiempo:
+
+| Qué | Dónde vive | Quién lo ve | Cuánto dura |
+|---|---|---|---|
+| **El contenido de la página** | Infraestructura de Anthropic, **versionado** | Según la audiencia que elegiste | Hasta que la borres o venza la retención |
+| **Los datos que muestra** | *(a)* **embebidos** en el HTML al publicar — una foto del momento<br>*(b)* traídos **en vivo** por conectores MCP al abrirla | *(a)* todos ven lo mismo<br>*(b)* cada uno ve lo suyo | *(a)* congelados<br>*(b)* se refrescan |
+| **Lo que escribe el visitante** | El **navegador del visitante** | Solo él | Puede desaparecer |
+
+<div class="alerta">
+
+**No hay base de datos.** Si dos visitantes tienen que ver lo mismo que uno de ellos cargó,
+**un artifact no alcanza.** Ese es el límite, y es arquitectónico, no una función que falte.
+
+</div>
+
+----
+
+### Los conectores: autorización delegada
+<!-- .slide: style="font-size: 0.70em" -->
+
+Una página estática no puede hacer `fetch` a cualquier host — la CSP lo prohíbe. Entonces, ¿cómo
+trae datos en vivo? **No los trae ella: los pide a claude.ai, que hace la llamada.**
+
+Y acá está lo interesante como diseño de seguridad:
+
+<div class="grid-item">
+
+* La llamada corre con **la cuenta del que mira**, no la del que publicó.
+* Dos personas abren el mismo tablero y **pueden ver datos distintos**.
+* El visitante **aprueba el acceso** la primera vez.
+* **La página nunca ve las credenciales.** claude.ai hace la llamada por ella.
+* El que publica **declara** qué conectores puede usar la página, y no puede salirse de ahí.
+
+</div>
+
+Es el patrón de **autorización delegada con declaración previa de permisos**: el mismo problema que
+resuelven OAuth o los *scopes* de una API. Vale la pena mirarlo porque es un ejemplo real y chico.
+
+----
+
+### 💡 Hostearlo vos mismo: tres niveles
+<!-- .slide: style="font-size: 0.60em" -->
+
+**Nivel 1 — Sitio estático.** La página **ya es** un HTML autocontenido. Lo bajás y lo subís a
+cualquier hosting estático. **Ya sabés hacerlo: es exactamente lo que hacemos con estas filminas.**
+
+```bash
+cp mi_artifact.html docs/index.html
+git add . && git commit -m "publicar" && git push
+# GitHub -> Settings -> Pages -> Source: la rama
+```
+
+Sirve igual Cloudflare Pages, Netlify, Vercel o un `nginx` propio.
+
+| Ganás | Perdés |
+|---|---|
+| Tu dominio · sin CSP ajena · imágenes y librerías de donde quieras · varias rutas y varias páginas | **Los conectores MCP dejan de funcionar** (esas llamadas las hacía claude.ai) · el versionado y el control de acceso · el visor |
+
+**Nivel 2 — Persistencia real.** Para que lo que carga un visitante lo vea otro hace falta
+**backend**: un *backend-as-a-service* (Supabase, Firebase) o uno propio con su base.
+
+**Nivel 3 — Autenticación.** Cloudflare Access, Netlify Identity o un *proxy* con OAuth adelante.
+
+<div class="alerta">
+
+**El salto del nivel 1 al 2 no es un detalle de implementación: es un cambio de arquitectura.**
+Pasás de una página a un sistema cliente-servidor, con autenticación, autorización, validación del
+lado del servidor y migraciones de datos.
+
+</div>
+
+----
+
+### Artifact o hosting propio
+<!-- .slide: style="font-size: 0.66em" -->
+
+| | **Artifact** | **Hosting propio** |
+|---|---|---|
+| Tiempo hasta publicar | Segundos, desde la sesión | Minutos u horas |
+| Dominio | De claude.ai | El tuyo |
+| Backend y base de datos | No | Sí |
+| Autenticación propia | No | Sí |
+| Versionado y control de acceso | Incluido | Lo armás vos |
+| Datos en vivo | Conectores del **visitante** | Tu API |
+| Mantenimiento | Casi nulo | Tuyo |
+
+**La regla para decidir:** **artifact para comunicar, hosting propio para operar.** Si el objetivo
+es que alguien *mire algo y decida*, artifact. Si el objetivo es que alguien *trabaje ahí todos los
+días*, hosting propio.
+
+----
+
+### 💡 Ejercicio: ¿Artifact o hosting propio?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.70em" -->
+
+Para cada caso, decidí qué corresponde y **justificá con una restricción concreta**:
+
+1. Mostrarle al cliente tres propuestas de pantalla para que elija una.
+2. Que la recepcionista del club cargue las inscripciones todos los días.
+3. Un tablero del estado de los tests que el equipo mira en la reunión diaria.
+4. El sitio público del portal de entradas, con la compra incluida.
+5. Un informe del avance del TP para entregar a la cátedra.
+
+<!--
+1. Artifact. Es comunicar para decidir, y se descarta despues. Perfecto.
+2. Hosting propio. Los datos tienen que persistir y ser compartidos: no hay backend en un
+   artifact. Es el limite duro.
+3. Artifact, y es el mejor caso de conector MCP: cada uno lo abre con su cuenta y se refresca
+   solo. Ojo que si alguien no tiene el conector, ve la pagina sin la parte viva.
+4. Hosting propio, sin discusion: necesita autenticacion, pagos, multiples rutas y un dominio
+   propio. Un artifact no puede autenticar visitantes.
+5. Artifact. Una pagina, se comparte por link, versionada. Y si la catedra la quiere en PDF,
+   se exporta.
+-->
+
+---
+
+## 7 · Con ojo crítico
 <!-- .slide: style="font-size: 0.70em" -->
 
 <div class="alerta">

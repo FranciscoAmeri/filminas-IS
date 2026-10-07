@@ -10,7 +10,7 @@ Created by <i class="fab fa-telegram"></i>
 [edme88]("https://t.me/edme88")
 
 ---
-<!-- .slide: style="font-size: 0.75em" -->
+  <!-- .slide: style="font-size: 0.75em" -->
 <style>
 .grid-item {
     border: 3px solid rgba(121, 177, 217, 0.8);
