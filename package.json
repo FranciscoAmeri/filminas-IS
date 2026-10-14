@@ -6,8 +6,7 @@
   "scripts": {
     "start": "reveal-md slides -w",
     "preview": "npm run build && node -e \"require('fs').copyFileSync('slides/index.html','public/index.html')\" && npx --yes serve public",
-    "build": "reveal-md slides --static public && node -e \"require('fs').cpSync('slides/guias','public/guias',{recursive:true})\"",
-    "deploy": "npm run build && node -e \"require('fs').copyFileSync('slides/index.html','public/index.html')\" && gh-pages -d public -b gh-pages"
+    "build": "reveal-md slides --static public && node -e \"require('fs').cpSync('slides/guias','public/guias',{recursive:true})\""
   },
   "repository": {
     "type": "git",
