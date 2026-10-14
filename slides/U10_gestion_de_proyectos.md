@@ -8,6 +8,7 @@ slideNumber: true
 # Gestión de Proyectos
 Created by <i class="fab fa-telegram"></i>
 [edme88]("https://t.me/edme88")
+Edit by F.A <!-- compelta aca con mi github -->
 
 ---
 <!-- .slide: style="font-size: 0.60em" -->
@@ -56,6 +57,25 @@ Created by <i class="fab fa-telegram"></i>
       color: #155724;
       font-weight: bold;
   }
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.fuente {
+  border-top: 2px solid rgba(121, 177, 217, 0.6);
+  padding-top: 8px;
+  margin-top: 14px;
+  font-size: 0.80em;
+}
+
+.alerta {
+  border-left: 5px solid #b58900;
+  padding-left: 14px;
+  text-align: left !important;
+}
 </style>
 
 # Ingeniería de Software
@@ -113,9 +133,9 @@ requisitos específicos, contemplando limitaciones de tiempo, costos y recursos.
 
 ---
 ### GESTIÓN DE PROYECTOS DE SOFTWARE
-* Actividades que aseguran que el software sera entregado en el tiempo justo y estara de acuerdo
+* Actividades que aseguran que el software será entregado en el tiempo justo y estará de acuerdo
 con los requerimientos del cliente.
-* Es necesario porque el desarrollo estara siempre sujeto a las limitaciones de costos y tiempos de la empresa
+* Es necesario porque el desarrollo estará siempre sujeto a las limitaciones de costos y tiempos de la empresa
 
 ---
 ![Administración de Proyecto](images/unidad10/proyecto-administracion.jpg)
@@ -138,6 +158,26 @@ Siguiendo una metodología:
 * Se asegura la calidad del producto final
 * Se asegura el cumplimiento de los tiempos establecidos
 * Se asegura la utilización de los recursos limitados definidos
+
+----
+
+### Los marcos de referencia hoy
+<!-- .slide: style="font-size: 0.72em" -->
+
+| Marco | Qué es | Estado 2026 |
+|---|---|---|
+| **PMBOK Guide** (PMI) | El cuerpo de conocimiento más difundido | **8.ª edición**, publicada a fines de 2025. Reduce los principios de 12 a **6**, mantiene **7 dominios de desempeño**, reintroduce los grupos de proceso como **áreas de enfoque** y agrega por primera vez un **apéndice sobre IA** |
+| **ISO 21502** | Norma internacional de dirección de proyectos | Vigente. PMBOK 8 se alinea con ella: el eje pasa a ser la **generación de valor** |
+| **Scrum / Kanban** | Marcos de trabajo ágiles | Dominantes en software. Ver [Desarrollo Ágil](U4_1_desarrollo_agil.html) y [Scrum: Práctico](U4P_scrum_jira.html) |
+| **CMMI** | Modelo de madurez de procesos | **v3.0** desde 2023. Desde 2024 solo se evalúa con v3.0, e incorpora seguridad, gestión de datos y trabajo remoto |
+
+<div class="alerta">
+
+**El cambio de fondo de PMBOK 7 y 8:** se dejó de describir el proyecto como una secuencia de
+procesos a ejecutar y se pasó a **principios y dominios de desempeño**. La razón es que ninguna
+secuencia única sirve para todos los proyectos: en software conviven lo predictivo y lo ágil.
+
+</div>
 
 ---
 ![Fases del Proyecto](images/unidad10/fases-del-proyecto.jpg)
@@ -189,7 +229,7 @@ el contrato del proyecto debería concederse a una organización o un equipo par
 
 ---
 ### GESTIÓN DEL RIESGO
-Un riesgo es la posibilidad de que una circustancia adversa se pueda presentar.
+Un riesgo es la posibilidad de que una circunstancia adversa se pueda presentar.
 1. **Riesgos del proyecto:** alteran el calendario o los recursos del proyecto.
 2. **Riesgos del producto:** afectan la calidad o el rendimiento del software a desarrollar.
 3. **Riesgos empresariales:** afectan a la organización que desarrolla o adquiere el software.
@@ -211,7 +251,7 @@ minimizar sus efectos sobre el proyecto.
 | Cambio de requerimientos                  | Proyecto y producto    | Habrá mayor cantidad de cambios a los requerimientos que los anticipados.                         |
 | Demoras en la especificación              | Proyecto y producto    | Especificaciones de interfaces esenciales no están disponibles a tiempo.                          |
 | Subestimación del tamaño                  | Proyecto y producto    | Se subestimó el tamaño del sistema.                                                               |
-| Bajo rendimiento de las herramientas CASE | Empresa                | La tecnología subyacente sobre la cual se construye el sistema se sustituye con nueva tecnología. |
+| Obsolescencia tecnológica | Empresa                | La tecnología subyacente sobre la cual se construye el sistema se sustituye con nueva tecnología. |
 | Competencia de productos                  | Empresa                | Un producto competitivo se comercializa antes de que el sistema está completo.                    |
 -->
 <table>
@@ -254,7 +294,7 @@ minimizar sus efectos sobre el proyecto.
 <td style="text-align:left">Se subestimó el tamaño del sistema.</td>
 </tr>
 <tr>
-<td style="text-align:left">Bajo rendimiento de las herramientas CASE</td>
+<td style="text-align:left">Obsolescencia tecnológica</td>
 <td style="text-align:left">Empresa</td>
 <td style="text-align:left">La tecnología subyacente sobre la cual se construye el sistema se sustituye con nueva tecnología.</td>
 </tr>
@@ -296,7 +336,7 @@ que se usa para desarrollar el sistema.
 |:----------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Tecnología      | La base de datos que se usa en el sistema no puede procesar tantas transacciones por segundo como se esperaba. (1) <br> Los componentes de software de reutilización contienen defectos que haen que no puedan reutilizarse como se planeó. (2) |
 | Personal        | Es imposible reclutar personal con las habilidades requeridas. (3) <br> El personal clave está enfermo e indispuesto en momentos críticos. (4) <br> No está disponible la capacitación requerida para el personal. (5)                          |
-| De organización | La organización se reestructura de modo que diferentes adminsitraciones son responsables del proyecto. (6) <br> Problemas financieron de la organización fuerzan reducciones en el presupuesto del proyecto. (7)                                |
+| De organización | La organización se reestructura de modo que diferentes administraciones son responsables del proyecto. (6) <br> Problemas financieros de la organización fuerzan reducciones en el presupuesto del proyecto. (7)                                |
 | Herramientas    | El código elaborado por las herramientas de generación de código de software es ineficiente. (8) <br> Las herramientas de software no pueden trabajar en una forma integrada. (9)                                                               |
 | Requerimientos  | Se proponen cambios a los requerimientos que demandan mayor trabajo de rediseño. (10) <br> Los clientes no entienden las repercusiones de los cambios a los requerimientos. (11)                                                                |
 | Estimación      | Se subestima el tiempo requerido para desarrollar el software. (12) <br> Se subestima la tasa de reparación de defectos. (13) <br> Se subestima el tamaño del software. (14)                                                                    |
@@ -319,7 +359,7 @@ que se usa para desarrollar el sistema.
 </tr>
 <tr>
 <td style="text-align:left">De organización</td>
-<td style="text-align:left">La organización se reestructura de modo que diferentes adminsitraciones son responsables del proyecto. (6) <br> Problemas financieron de la organización fuerzan reducciones en el presupuesto del proyecto. (7)</td>
+<td style="text-align:left">La organización se reestructura de modo que diferentes administraciones son responsables del proyecto. (6) <br> Problemas financieros de la organización fuerzan reducciones en el presupuesto del proyecto. (7)</td>
 </tr>
 <tr>
 <td style="text-align:left">Herramientas</td>
@@ -337,6 +377,32 @@ que se usa para desarrollar el sistema.
 </table>
 
 ---
+### Riesgos que el libro no trae
+<!-- .slide: style="font-size: 0.64em" -->
+
+La taxonomía de arriba es de **2011**. Un proyecto de 2026 tiene además estas categorías, y son
+las que más seguido aparecen en los postmortems:
+
+| Tipo | Riesgo concreto | Caso real |
+|---|---|---|
+| **Cadena de suministro** | Una dependencia de terceros queda comprometida o deja de mantenerse | `xz-utils` (2024): una puerta trasera en una librería de compresión usada por medio mundo |
+| **Proveedor de nube** | Caída de una región, cambio de precios, bloqueo de cuenta | Toda caída de una región mayor arrastra miles de sistemas |
+| **Regulatorio** | Cambia la normativa de datos personales, accesibilidad o IA | Reglamento europeo de IA; accesibilidad obligatoria desde 2025 en la UE |
+| **IA generativa** | Código asistido por IA con defectos, licencias dudosas o filtración de datos | Deuda técnica generada más rápido de lo que se revisa |
+| **Seguridad** | Vulnerabilidad explotada antes del parche | Dependencias desactualizadas son el vector más común |
+| **Escala** | El sistema funciona en pruebas y cae en producción con carga real | El riesgo central de una preventa de entradas |
+| **Dato** | Pérdida, corrupción o migración fallida | Un backup que nunca se probó restaurar |
+
+<div class="alerta">
+
+**Por qué importa el encuadre:** los riesgos de Sommerville son casi todos **internos** al equipo.
+Los de esta tabla son **externos** y en su mayoría no se pueden evitar, solo mitigar y monitorear.
+Eso cambia la estrategia: de *evitación* a *contingencia*.
+
+</div>
+
+----
+
 ### 2. ANÁLISIS DEL RIESGO
 Para cada riesgo identificado estimar la probabilidad de ocurrencia y gravedad en caso de ocurrir.
 * La probabilidad del riesgo puede valorarse como muy baja (< 10%), baja (del 10 al 25%), moderada
@@ -614,8 +680,8 @@ decidir si este riesgo se vuelve más o menos probable.
 ### MOTIVACIÓN DEL PERSONAL
 * Un rol importante del administrador es motivar al personal.
 * Organizar el trabajo y el entorno laboral para alentar a las personas a trabajar mejor. 
-  * Si las personas no estan motivadas, no desarrollaran su trabajo apropiadamente. 
-  * Hay diferentes tipos de motivacion basada en 
+  * Si las personas no están motivadas, no desarrollarán su trabajo apropiadamente. 
+  * Hay diferentes tipos de motivación basada en 
     * Necesidades básicas (comer, dormir, etc.); 
     * Necesidades Personales (respeto)
     * Necesidades Sociales (aceptación por parte del grupo).
@@ -626,10 +692,10 @@ decidir si este riesgo se vuelve más o menos probable.
 
 ---
 ### SATISFACCIÓN DE NECESIDADES
-* En desarrollo de software las necesidades fisiologicas y de seguridad estan cubiertas. 
+* En desarrollo de software las necesidades fisiológicas y de seguridad están cubiertas. 
 * Satisfacción de necesidades **sociales** 
-  * Generar facilidades de comunicacion;
-  * Favorecer la comunicacion informal 
+  * Generar facilidades de comunicación;
+  * Favorecer la comunicación informal 
 * Satisfacción de necesidades de **Estima** 
   * Reconocimiento de logros. 
   * Justa recompensa económica. 
@@ -646,6 +712,31 @@ intelectual de desarrollar software.
 éxito y el reconocimiento personales.
 3. Personas **orientadas a la interacción**, están motivadas por la presencia y 
 las acciones de los compañeros de trabajo.
+
+----
+
+### Qué dice la evidencia hoy
+<!-- .slide: style="font-size: 0.70em" -->
+
+<div class="alerta">
+
+**La pirámide de Maslow hay que darla con una advertencia.** Maslow nunca la dibujó como pirámide
+—eso lo agregaron divulgadores posteriores— y nunca sostuvo que haya que satisfacer un nivel
+completo antes de pasar al siguiente. La evidencia empírica de la jerarquía estricta es débil.
+Sirve como **vocabulario** para hablar de distintos tipos de necesidad, no como modelo predictivo.
+
+</div>
+
+Los modelos que hoy se usan para equipos de software:
+
+| Modelo | Qué sostiene |
+|---|---|
+| **Autodeterminación** (Deci y Ryan) | La motivación intrínseca necesita tres cosas: **autonomía** (decidir cómo trabajo), **competencia** (mejorar en algo que me importa) y **vínculo** (pertenecer a un equipo) |
+| **Herzberg** | El sueldo, la oficina y las herramientas son **factores de higiene**: su ausencia desmotiva, pero su presencia no motiva. Lo que motiva es el logro, el reconocimiento y el trabajo en sí |
+| **Seguridad psicológica** (Edmondson) | El predictor más fuerte de desempeño de equipo encontrado por Google en su estudio interno: poder decir "no entiendo" o "me equivoqué" sin costo |
+
+**La traducción práctica:** un equipo al que se le dicta todo, que no ve el efecto de su trabajo y
+donde admitir un error se castiga, no se arregla con una fruta en la cocina.
 
 ---
 
@@ -693,7 +784,7 @@ son mejores para impulsar el trabajo hacia delante para terminar la tarea. Las p
 
 ### Organización del Grupo
 <!-- .slide: style="font-size: 0.80em" -->
-Influye en las decisiones que toma dicho grupo, en como se intercambia la información y las interacciones entre el grupo de desarrollo y los participantes externos del proyecto. 
+Influye en las decisiones que toma dicho grupo, en cómo se intercambia la información y las interacciones entre el grupo de desarrollo y los participantes externos del proyecto. 
 
 Algunas preguntas organizacionales son:
 1. ¿El administrador del proyecto debe ser el líder técnico del grupo?
@@ -717,9 +808,10 @@ El equipo debe  intercambiar información acerca de:
 ### Comunicaciones grupales
 
 La efectividad y la eficiencia de las comunicaciones están influidas por:
-1. **Tamaño del grupo:** Conforme el grupo crece, se hace más difícil que los miembros 
-se comuniquen de manera efectiva. Ejemplo: En un equipo de 8 personas, hay 56 vías de comunicación 
-**n*(n-1)**
+1. **Tamaño del grupo:** Conforme el grupo crece, se hace más difícil que los miembros
+se comuniquen de manera efectiva. La cantidad de **canales** entre pares crece de forma
+cuadrática: **n·(n−1)/2**. Con 5 personas hay 10 canales; con 8 hay **28**; con 15 hay 105.
+*(Si se cuentan las dos direcciones de cada canal, n·(n−1), con 8 personas son 56.)*
 2. **Estructura del grupo:** Grupos "informales" se comunican más que "grupos de estructura jerárquica" 
 (comunicación de arriba hacia abajo).
 
@@ -733,6 +825,129 @@ inhiben.
 comunicación pueden facilitar o inhibir las comunicaciones.
 5. **Canales de comunicación:** Cara a cara, email, documentos formales, teléfono, 
 redes sociales, wikis, etc.
+
+---
+
+## Ejercitación
+### El proyecto TicketFr
+
+<!-- .slide: style="font-size: 0.78em" -->
+
+Los ejercicios que siguen son sobre **el mismo sistema** que venimos modelando: el portal de
+gestión de eventos y venta de entradas.
+
+<div class="grid-item">
+
+**Contexto para todos los ejercicios.** Una productora contrata el desarrollo del portal.
+Alcance: configuración de salas con **varias distribuciones**, programación de funciones, venta al
+público con reserva temporal, transferencia y reembolso de entradas, red de **RRPP** con cupos
+VIP, servicios de **transporte**, **merchandising**, control de **acceso** por QR y **blacklist**
+de personas. Integra una **pasarela de pagos** externa y un **servicio de mailing** ya contratado.
+Primera preventa comprometida: **5.000 compradores concurrentes** en los primeros 10 minutos.
+
+Equipo: **6 personas** (1 líder técnico, 3 desarrolladores, 1 QA, 1 diseñador). Plazo: **9 meses**.
+
+</div>
+
+<div class="fuente">
+
+📎 El caso completo está en
+[Caso integrador: portal de venta de entradas](U5_caso_integrador_ticketera.html)
+
+</div>
+
+----
+
+### 💡 Ejercicio 1: Identificar riesgos
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.74em" -->
+
+Armá el **registro de riesgos** del proyecto TicketFr con **al menos 10 riesgos**. Para cada uno:
+
+1. Clasificalo en **proyecto / producto / empresa** y además por tipo (tecnológico, personal,
+   organizacional, de requerimientos, de estimación, y las categorías nuevas: cadena de
+   suministro, regulatorio, escala).
+2. Escribilo como una **condición observable**, no como un miedo. Mal: *"que falle el pago"*.
+   Bien: *"la pasarela no responde durante la preventa y quedan compras en estado pendiente"*.
+3. Indicá **quién** lo detectaría y **con qué indicador**.
+
+**Pista:** mirá la especificación del sistema. Cada pendiente de definición sin resolver **es** un
+riesgo de requerimientos, y hay 15 críticos.
+
+<!--
+Lo que se evalua:
+- Que aparezcan riesgos de las tres categorias y no solo tecnologicos.
+- Riesgos esperables: la preventa de 5.000 concurrentes (escala, producto); la pasarela sin
+  respuesta y la sobreventa (producto); las wallets de iOS y Android que requieren cuentas de
+  desarrollador y certificados (tecnologico + empresa); la blacklist y los datos personales
+  (regulatorio); el equipo de 6 personas para 15 modulos (estimacion); los 15 PD criticos sin
+  resolver (requerimientos); un solo QA para todo el alcance (personal); dependencia del
+  servicio de mailing contratado que no eligieron ellos (cadena de suministro).
+- El punto 2 es el que mas rinde al corregir: un riesgo que no se puede observar no se puede
+  monitorear, y por lo tanto no se puede gestionar.
+-->
+
+----
+
+### 💡 Ejercicio 2: Matriz de riesgo
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.74em" -->
+
+Tomá los 10 riesgos del ejercicio anterior y completá el cuadro:
+
+| Riesgo | Probabilidad | Efecto | Exposición | Estrategia | Dueño |
+|---|---|---|---|---|---|
+| | muy baja … muy alta | insignificante · tolerable · grave · catastrófico | | evitación · minimización · contingencia | |
+
+1. Justificá la probabilidad con un **dato o un supuesto explícito**, no con una intuición.
+2. Ordená por **exposición** y marcá los **tres** que atacarías primero.
+3. Para esos tres, escribí la estrategia con una **acción concreta y fechada**, no un deseo.
+4. ¿Cuál de los riesgos **no se puede evitar**, solo mitigar? ¿Qué implica eso?
+
+<!--
+Lo que se evalua:
+- Que distingan probabilidad de impacto: el riesgo catastrofico improbable y el tolerable casi
+  seguro requieren tratamientos distintos.
+- Que las tres estrategias no sean "monitorear de cerca". Evitacion de la preventa: prueba de
+  carga a los 3 meses con el doble del volumen esperado. Contingencia de la pasarela: cola de
+  conciliacion y no liberar las ubicaciones. Minimizacion del alcance: cerrar los PD criticos
+  antes de empezar los modulos que dependen de ellos.
+- Punto 4: la caida de la pasarela externa y el cambio regulatorio no se evitan. Eso obliga a
+  plan de contingencia, que es la categoria que los alumnos siempre dejan vacia.
+- Vale discutir que el riesgo de mayor exposicion probablemente no sea tecnico sino los 15 PD
+  criticos: empezar a construir sin definiciones es el camino directo al retrabajo.
+-->
+
+----
+
+### 💡 Ejercicio 3: Organizar el equipo
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.74em" -->
+
+Con 6 personas y 15 módulos:
+
+1. ¿Cuántos **canales de comunicación** hay en el equipo? Si se suman 4 personas más, ¿cuántos?
+   ¿Qué le pasa al costo de coordinación?
+2. Proponé una **organización** del equipo y justificá: ¿por módulos, por capas, o por recorridos
+   completos de funcionalidad? ¿Quién decide la arquitectura?
+3. El líder técnico es la única persona que entiende el modelo de distribuciones de sala.
+   Nombrá el riesgo y proponé **dos** mitigaciones distintas.
+4. El diseñador trabaja desde otra provincia y en otra franja horaria. ¿Qué tres decisiones
+   concretas tomarías para que eso no degrade la comunicación?
+
+<!--
+1. 6 personas: 15 canales. 10 personas: 45. Triplica. Es el argumento de Brooks: agregar gente a
+   un proyecto atrasado lo atrasa mas.
+2. La respuesta interesante es por recorridos completos (feature teams): un equipo que lleva
+   "comprar entrada" de punta a punta entrega valor, mientras uno organizado por capas necesita
+   que las tres capas terminen para que algo funcione. Ley de Conway: la arquitectura va a
+   terminar pareciendose a la estructura del equipo.
+3. Riesgo personal de concentracion de conocimiento (factor camion). Mitigaciones: programacion
+   en pares o revision obligatoria de ese modulo por otra persona, y documentar la decision en
+   la wiki del proyecto (que es justamente para que sirve la SSOT).
+4. Asincronia por defecto: decisiones escritas en lugar de conversadas, una franja de
+   solapamiento acordada, y nada critico que dependa de una sola conversacion en vivo.
+-->
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?
