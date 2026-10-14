@@ -40,6 +40,25 @@ Created by <i class="fab fa-telegram"></i>
     padding: 20px;
     text-align: left !important;
 }
+
+.exercise-slide {
+  border: 2px dashed #b58900;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.fuente {
+  border-top: 2px solid rgba(121, 177, 217, 0.6);
+  padding-top: 8px;
+  margin-top: 14px;
+  font-size: 0.80em;
+}
+
+.alerta {
+  border-left: 5px solid #b58900;
+  padding-left: 14px;
+  text-align: left !important;
+}
 </style>
 
 # Ingeniería de Software
@@ -59,7 +78,7 @@ Created by <i class="fab fa-telegram"></i>
 - Etapas de Planeación
 - Parámetros para el cálculo del costo
 - Fijación de Precio
-- Revisión y Ajusted del Plan
+- Revisión y Ajuste del Plan
 - Hitos y Entregables
 
 
@@ -116,7 +135,7 @@ cómo se dividirá en incrementos, cómo se asignarán los recursos. Afinar esti
 ### Una vez asignado el contrato...
 - Refinar el plan recabando más requerimientos y refinándolos.
 - Asignar recursos o decidir contratación de nuevo personal.
-- Definir mecanimos de monitoreo del proyecto (avances y costos)
+- Definir mecanismos de monitoreo del proyecto (avances y costos)
 - Se re-analizan el calendario, estimación de costos y riesgos.
 
 ---
@@ -446,7 +465,7 @@ puntos de esfuerzo, se consulta al cliente y se quitan algunas historias de la i
 ### Beneficios del enfoque de planeación ágil
 1. Todo el equipo conoce las tareas a completar en una iteración.
 2. Los desarrolladores eligen las tareas a implementar, por lo que tienen 
-un sentido de propiedad y esi motiva más a completar la tarea.
+un sentido de propiedad y eso motiva más a completar la tarea.
 
 ---
 
@@ -643,7 +662,7 @@ Considere un proyecto de aplicación de base de datos con
 
 Número de pantallas = 4
 
-Número de registros = 2
+Número de informes = 2
 
 ----
 
@@ -656,7 +675,7 @@ Número de servidores = 3
 
 Número de clientes = 4
 
-De la tabla obtenermos que el **nivel de complejidad** para cada pantalla es **medio**.
+De la tabla obtenemos que el **nivel de complejidad** para cada pantalla es **medio**.
 
 ----
 
@@ -670,7 +689,7 @@ Número de servidores = 2
 
 Número de clientes = 3
 
-De la tabla obtenermos que el **nivel de complejidad** para cada informo es **difícil**.
+De la tabla obtenemos que el **nivel de complejidad** para cada informe es **difícil**.
 
 ----
 
@@ -719,7 +738,7 @@ Tasa de productividad (PROD) del proyecto dado = 7
 
 Esfuerzo = 21,6/7
 
-Esfuerzo = 3.086 personas-mes
+Esfuerzo ≈ 3,09 personas-mes
 
 <!--
 ### 1. Modelo de composición de aplicación
@@ -927,12 +946,31 @@ Es una medida ajustada que convierte el esfuerzo de reutilización/adaptación e
 ----
 
 #### AAM: Adaptation Adjustment Multiplier
+<!-- .slide: style="font-size: 0.78em" -->
 
 ![AAM](images/unidad10/AAM.png)
 
-- **AAF:** Factor de Ajuste de Adaptación, que representa el costo de hacer un cambio.  
-- **SU:** Penalización por Comprensión del Software. Refleja cuánto cuesta entender el software antes de adaptarlo. 10 (muy simple) a 50 (muy complejo).
-- **UNFM:** Evaluación y Asimilación. Representa el esfuerzo para evaluar, seleccionar e integrar software reutilizado. Rango: 0 a 8.
+Son **cuatro** parámetros, y conviene no confundirlos:
+
+| Parámetro | Qué mide | Rango |
+|---|---|---|
+| **AAF** | Factor de ajuste de adaptación: cuánto hay que cambiar | 0 a 100 (calculado) |
+| **AA** | Evaluación y asimilación: el esfuerzo de evaluar, elegir e integrar el componente | **0 a 8** |
+| **SU** | Comprensión del software: cuánto cuesta **entenderlo** antes de tocarlo | **10** (muy simple) a **50** (muy complejo) |
+| **UNFM** | Desconocimiento del programador: qué tan poco familiarizado está con ese código | **0** (lo conoce) a **1** (nunca lo vio) |
+
+La fórmula es **por tramos**:
+
+* Si **AAF ≤ 50** → `AAM = [ AA + AAF × (1 + 0,02 × SU × UNFM) ] / 100`
+* Si **AAF > 50** → `AAM = [ AA + AAF + (SU × UNFM) ] / 100`
+
+<div class="alerta">
+
+**Ojo con dos confusiones habituales:** *AA* y *UNFM* son parámetros distintos —uno es el costo de
+asimilar, el otro el desconocimiento del programador— y **UNFM va de 0 a 1**, no de 0 a 8. Y la
+fórmula **no es** una suma de los tres factores divididos por 100.
+
+</div>
 
 ----
 
@@ -950,28 +988,51 @@ Se calcula como:
 ### Ejercicio:
 
 Supongamos:
-- ASLOC = 8,000
+- ASLOC = 8.000
 - DM = 25%, CM = 10%, IM = 20%
-- SU = 30 (dificultad media para entender el software)
-- UNFM = 4 (esfuerzo intermedio de evaluación)
+- **AA = 4** (esfuerzo intermedio de evaluación y asimilación)
+- **SU = 30** (dificultad media para entender el software)
+- **UNFM = 0,4** (el equipo conoce parcialmente ese código)
 
 ----
 
-#### 1. Calcular AAF:
+#### 1. Calcular AAF
 
-AAF = (0.4 × 25) + (0.3 × 10) + (0.3 × 20)
+`AAF = (0,4 × 25) + (0,3 × 10) + (0,3 × 20) = 10 + 3 + 6 = `**`19`**
 
-#### 2. Calcular AAM:
+#### 2. Calcular AAM
 
-AAM = (19/100) ​+ (30/100) ​+ (4/100)​
+Como **AAF = 19 ≤ 50**, se usa el primer tramo:
 
-AAM = 0.19 + 0.30 + 0.04 = 0.53
+`AAM = [ 4 + 19 × (1 + 0,02 × 30 × 0,4) ] / 100`
 
-#### 3. Calcular ESLOC:
+`AAM = [ 4 + 19 × 1,24 ] / 100 = [ 4 + 23,56 ] / 100 = `**`0,2756`**
 
-ESLOC = 8,000 × 0.53 = 4,240
+#### 3. Calcular ESLOC
 
-Reutilizar 8,000 líneas de código en esas condiciones equivale a 4,240 líneas nuevas en esfuerzo de desarrollo.
+`ESLOC = 8.000 × 0,2756 ≈ `**`2.205`**
+
+Reutilizar 8.000 líneas en esas condiciones cuesta como escribir **2.205 líneas nuevas**: un
+ahorro de alrededor del **72 %**.
+
+----
+
+### ¿Por qué importa el resultado?
+<!-- .slide: style="font-size: 0.80em" -->
+
+El número que sale de ahí responde una pregunta de decisión concreta: **¿conviene reutilizar o
+escribir de nuevo?**
+
+| AAM | Interpretación | Decisión |
+|---|---|---|
+| Cercano a **0** | Reutilización casi gratis: caja negra | Reutilizar sin dudar |
+| **0,2 a 0,5** | Adaptación con ahorro real | Reutilizar |
+| Cercano a **1** | Adaptarlo cuesta casi lo mismo que escribirlo | Evaluar los dos caminos |
+| **Mayor a 1** | Adaptarlo cuesta **más** que escribirlo de cero | Escribirlo de nuevo |
+
+**Y sí, AAM puede pasar de 1.** Con `AAF = 60`, `AA = 8`, `SU = 50` y `UNFM = 1`:
+`AAM = [8 + 60 + 50] / 100 = 1,18`. Es el caso del código heredado que nadie entiende: lo barato
+sale caro.
 
 ---
 
@@ -999,7 +1060,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 2. **Flexibilidad de desarrollo:** libertad para definir procesos. 
 3. **Resolución de riesgos:** nivel de análisis de riesgos realizado.  
 4. **Cohesión de equipo:** calidad de la comunicación y trabajo conjunto.  
-5. **Madurez del proceso:** nivel CMM (Modelo de Madurez de Capacidades) de la organización.  
+5. **Madurez del proceso:** nivel **CMMI** (Modelo de Madurez de Capacidades Integrado) de la organización. Desde 2023 rige **CMMI v3.0**, que reemplazó al viejo CMM.  
 
 ----
 
@@ -1055,7 +1116,39 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 - Si trabajaran 10 personas → serían 73 meses (~6 años).
 - Si trabajaran 50 personas → serían 15 meses (~1 año y 3 meses).
 
-El calendario final depende de la cantidad de personas asignadas y de la productividad (no es siempre lineal, porque más gente también trae coordinación extra).
+**Esa última división es falsa**, y es el error más importante de toda la unidad. Ver la slide
+siguiente.
+
+----
+
+### El mes-hombre no es una unidad intercambiable
+<!-- .slide: style="font-size: 0.74em" -->
+
+<div class="alerta">
+
+**Ley de Brooks (1975):** *"agregar personas a un proyecto de software atrasado lo atrasa más"*.
+
+</div>
+
+Dividir el esfuerzo por la cantidad de gente supone que **esfuerzo y tiempo son intercambiables**.
+No lo son, por tres razones:
+
+1. **Coordinación cuadrática.** Los canales crecen con n·(n−1)/2. De 10 a 50 personas, los canales
+   pasan de 45 a 1.225.
+2. **Tiempo de incorporación.** Cada persona nueva necesita que alguien que ya producía deje de
+   producir para explicarle el sistema.
+3. **Tareas indivisibles.** Hay trabajo que no se parte. Nueve mujeres no tienen un bebé en un mes.
+
+**COCOMO II tiene su propia ecuación de calendario**, justamente para no hacer esa división:
+
+`TDEV = 3,67 × PM^(0,28 + 0,2 × (B − 1,01))`
+
+Con PM = 730 y B = 1,1, el calendario sale cerca de **30 meses** —no 15— y el personal promedio
+que eso implica es de unas **24 personas**, no 50. El modelo te dice que el proyecto **no se puede
+comprimir** a 15 meses tirándole gente.
+
+**Regla práctica:** comprimir el calendario por debajo del **75 %** del nominal es, en COCOMO, un
+multiplicador que **aumenta** el esfuerzo (el factor SCED). Apurar sale más caro.
 
 ---
 
@@ -1083,6 +1176,181 @@ El calendario final depende de la cantidad de personas asignadas y de la product
 - Algunos contratos lo requieren como método oficial de estimación (ej. proyectos de la NASA).
 - En un marco académico, para entender estimación paramétrica y cómo distintos factores influyen en costo.
 - En empresas grandes con proyectos críticos, como parte de un paquete de estimación híbrido, junto con métricas ágiles, velocity, function points, etc.
+
+---
+
+### Cómo se estima hoy
+<!-- .slide: style="font-size: 0.68em" -->
+
+La industria se movió de **estimar duraciones** a **pronosticar con datos del propio equipo**.
+
+| Enfoque | Qué mide | Por qué se impuso |
+|---|---|---|
+| **Métricas de flujo** | *Throughput* (ítems terminados por semana), *cycle time* (de que empieza a que termina), *WIP* (trabajo en curso) | Son **datos medidos**, no opiniones. No hay que convertir nada |
+| **Pronóstico probabilístico** (Monte Carlo) | Simula miles de veces con el histórico del equipo y devuelve un **rango con probabilidad** | Responde *"85 % de probabilidad de terminar antes del 12 de mayo"*, que es lo que el negocio necesita decidir |
+| **Métricas DORA** | Frecuencia de despliegue, *lead time* del cambio, tasa de fallas del cambio, tiempo de recuperación. En 2025 se agregó la **tasa de retrabajo** | Miden la capacidad de **entregar**, que es lo que de verdad limita el calendario |
+| **Planning Poker / Delphi** | Consenso rápido del equipo en puntos relativos | Rápido y participativo, pero sigue siendo una opinión |
+
+<div class="alerta">
+
+**La crítica a los puntos de historia:** son una medida **relativa y local** —no comparables entre
+equipos— y se degradan en cuanto se usan para evaluar personas. Si hay que elegir una sola métrica
+para pronosticar, el **cycle time** histórico es más confiable que la *velocity*, porque no depende
+de cómo el equipo parte el trabajo.
+
+</div>
+
+----
+
+### Una estimación no es un compromiso
+<!-- .slide: style="font-size: 0.76em" -->
+
+El gráfico del cono de incertidumbre dice que una estimación inicial puede estar entre **0,25x y
+4x**. Eso tiene una consecuencia que se suele ignorar:
+
+<div class="grid-item">
+
+**Estimación** → un rango con una probabilidad asociada. Es técnica.
+**Compromiso** → una fecha que la organización asume frente a un tercero. Es política.
+**Objetivo** → una fecha deseada por el negocio. No tiene información.
+
+</div>
+
+Los tres se confunden todo el tiempo. El problema no es estimar mal: es **convertir una estimación
+en compromiso sin agregarle contingencia** y sin decir con qué probabilidad.
+
+**Qué hacer en la práctica:**
+
+* Entregar **rangos**, nunca un número único. *"Entre 6 y 9 meses, con 85 % de confianza en 9."*
+* Reestimar con el dato real del equipo cada iteración, en lugar de defender la estimación inicial.
+* Si el negocio fija la fecha, la variable de ajuste es el **alcance**, no la calidad.
+
+<div class="fuente">
+
+📎 Esto es exactamente lo que hace XP al recortar historias a mitad de iteración en lugar de mover
+la fecha. Ver [Desarrollo Ágil](U4_1_desarrollo_agil.html)
+
+</div>
+
+---
+
+## Ejercitación
+### Planificar TicketFr
+
+<!-- .slide: style="font-size: 0.76em" -->
+
+<div class="grid-item">
+
+**Contexto.** Portal de eventos y venta de entradas. **15 módulos** especificados y **84
+requerimientos funcionales**. Equipo de **6 personas** (1 líder técnico, 3 desarrolladores, 1 QA,
+1 diseñador). Plazo pedido por el cliente: **9 meses**. Primera preventa comprometida con
+**5.000 compradores concurrentes**.
+
+Dependencias externas: pasarela de pagos, servicio de mailing, y las wallets de iOS y Android
+(que requieren cuentas de desarrollador y certificados).
+
+</div>
+
+<div class="fuente">
+
+📎 [Caso integrador: portal de venta de entradas](U5_caso_integrador_ticketera.html)
+
+</div>
+
+----
+
+### 💡 Ejercicio 1: Dividir el trabajo
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
+
+1. Armá la **división del trabajo** del primer incremento entregable. ¿Qué módulos entran en un
+   MVP que permita **vender una entrada y validarla en la puerta**? Listalos y justificá cada
+   exclusión.
+2. Para ese incremento, definí **8 a 12 tareas** con: duración en días, esfuerzo en días-hombre,
+   dependencias y resultado esperado.
+3. Marcá los **hitos** y los **entregables**. Recordá la diferencia.
+4. Identificá el **camino crítico**: ¿qué cadena de tareas determina la fecha final?
+5. ¿Hay tareas donde el **esfuerzo sea mayor que la duración**? ¿Qué significa eso en asignación
+   de personal?
+
+<!--
+1. MVP minimo: MOD-01 (salas y distribuciones), MOD-03 (eventos y funciones), MOD-04 (precios),
+   MOD-05 (venta), MOD-06 (pagos), MOD-07 parcial (solo emision de entradas), MOD-12 (acceso),
+   MOD-14 (usuarios y roles). Quedan afuera transporte, merchandising, RRPP, wallets, blacklist
+   y el mapa del predio. El punto pedagogico: el MVP es una linea completa de punta a punta, no
+   "todos los modulos al 30%".
+2. Lo que se corrige: que las dependencias sean reales. No se puede programar una funcion sin
+   distribucion publicada, ni vender sin precios definidos.
+3. Hito = punto de control sin entregable al cliente (por ejemplo "modelo de datos aprobado").
+   Entregable = algo que el cliente recibe. Los alumnos los confunden sistematicamente.
+4. El camino critico tipico: distribucion -> funcion -> precio -> venta -> pago -> emision ->
+   acceso. Todo lo demas es paralelizable.
+5. Esfuerzo > duracion significa varias personas en paralelo sobre la misma tarea. Con 6
+   personas, no puede haber mas de 6 dias-hombre por dia calendario.
+-->
+
+----
+
+### 💡 Ejercicio 2: Estimar por tres caminos
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.70em" -->
+
+Estimá el **esfuerzo total** del proyecto con tres métodos distintos y comparalos:
+
+**a) Puntos de objeto (COCOMO II, composición de aplicación).** Contá pantallas e informes del
+sistema: el mapa de sala, el backoffice de salas y distribuciones, el alta de eventos y funciones,
+la selección de butacas, el checkout, el panel del RRPP, el control de acceso, y los 8 reportes
+especificados. Asumí **15 % de reutilización** y experiencia del equipo **nominal**.
+
+**b) Diseño temprano.** Convertí a KSLOC con el supuesto que declares, tomá **B = 1,15** y los
+multiplicadores: PERS alto, RCPX alto, RUSE nominal, PDIF alto, PREX bajo, FCIL nominal,
+SCED nominal.
+
+**c) Analogía y juicio experto.** Partí de un sistema que conozcas y ajustá.
+
+**Después:** ¿cuánto se separan los tres resultados? ¿Cuál le presentarías al cliente y **cómo** lo
+presentarías?
+
+<!--
+Lo que importa no es el numero sino la dispersion: tres metodos dan tres resultados muy distintos,
+y eso es exactamente el cono de incertidumbre. La respuesta correcta al cierre es presentar un
+RANGO con probabilidad, no un numero.
+En (b): RCPX alto por la concurrencia y los pagos; PDIF alto por la preventa de 5.000
+concurrentes; PREX bajo porque el equipo no hizo ticketing antes. Eso empuja M hacia arriba y el
+esfuerzo tambien. Si a algun grupo le da que entra en 9 meses con 6 personas, hay que revisar los
+supuestos: es la señal de que ajustaron el modelo al resultado deseado.
+-->
+
+----
+
+### 💡 Ejercicio 3: El plazo no cierra
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
+
+Supongamos que tu estimación da **54 meses-persona**. Con 6 personas son **9 meses**: justo el
+plazo pedido. El cliente pregunta si con **12 personas** lo tiene en 4 meses y medio.
+
+1. Respondé con la **ley de Brooks** y con la ecuación de calendario de COCOMO. ¿Cuál es el
+   calendario mínimo realista?
+2. ¿Qué le pasa a los canales de comunicación al pasar de 6 a 12 personas?
+3. El factor **SCED** de COCOMO penaliza la compresión del calendario. ¿Qué significa que
+   comprimir **aumente** el esfuerzo total?
+4. Proponé **tres alternativas** al "poner más gente", con su costo.
+5. De las tres restricciones —alcance, tiempo, costo— ¿cuál recomendás mover y por qué?
+
+<!--
+1. TDEV = 3,67 x PM^(0,28+0,2(B-1,01)). Con PM=54 y B=1,15 da alrededor de 13 meses, no 9 ni 4,5.
+   El modelo dice que el proyecto ya esta comprimido en el plazo original.
+2. De 15 canales a 66. Mas que cuadruplica.
+3. Significa que apurar no es gratis: parte del esfuerzo nuevo se consume en coordinacion y
+   retrabajo, no en producto. Es la formalizacion de Brooks dentro del modelo.
+4. Reducir alcance (sacar transporte, merch, RRPP y wallets del primer release); reutilizar en
+   lugar de construir (pasarela, mailing, y evaluar un servicio de pases en lugar de integrar las
+   dos wallets); bajar la calidad declarada de algun atributo no critico, dejandolo explicito.
+   Cada una tiene costo: la tercera es la unica que no se deberia elegir en silencio.
+5. El alcance. Es la unica que el cliente puede evaluar y aceptar informadamente, y la unica cuya
+   reduccion no genera deuda oculta.
+-->
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?
