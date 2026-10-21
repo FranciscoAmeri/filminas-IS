@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Automatización de Casos de Pruebas</title>
+    <title>reveal-md</title>
     <link rel="shortcut icon" href="./favicon.ico" />
     <link rel="stylesheet" href="./dist/reset.css" />
     <link rel="stylesheet" href="./dist/reveal.css" />
-    <link rel="stylesheet" href="./dist/theme/solarized.css" id="theme" />
+    <link rel="stylesheet" href="./dist/theme/black.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/base16/zenburn.css" />
 
     <link rel="stylesheet" href="./_assets/slides/css/filminas.css" />
@@ -19,13 +19,6 @@
         <section data-markdown data-separator="^---" data-separator-vertical="^\r?\n----\r?\n$">
           <textarea data-template>
             
-
-#### Ingeniería de Software
-# Automatización de Casos de Pruebas 2
-Created by <i class="fab fa-telegram"></i>
-[edme88]("https://t.me/edme88")
-
----
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -56,6 +49,26 @@ Created by <i class="fab fa-telegram"></i>
 
 </div>
 </div>
+
+---
+
+### Alcance de esta unidad
+<!-- .slide: style="font-size: 0.80em" -->
+
+Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
+desarrollar en el cursado.
+
+<div class="grid-item">
+
+Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
+**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+
+Todo lo demas se dicta, y es la base para el trabajo practico.
+
+</div>
+
+**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
+mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
 
 ---
 
@@ -103,6 +116,7 @@ para poner al sistema en el estado que se desea probar.
 ----
 
 ### Gherkin
+<!-- .slide: class="final" -->
 
 ![Gherkin](images/unidad8_automatizacion/gherkin.jpg)
 
@@ -126,6 +140,7 @@ esa acción.
 ----
 
 ### Cucumber
+<!-- .slide: class="final" -->
 Los **objetivos** principales que se deben seguir:
 * Los escenarios deben ser pensados como documentación.
 * Los escenarios deben permitir la colaboración con gente de negocio (PO, BA)
@@ -142,6 +157,7 @@ Los **objetivos** principales que se deben seguir:
 ----
 
 ### Cucumber
+<!-- .slide: class="final" -->
 Los proyectos con cucumber tienen principalmente 3 archivos:
 * **nombreTests.feature**: Describen en Gherkin el comportamiento, empleando las palabras Givem, When, Then, etc.
 * **nombreStep.js** Emplando Js se programa que acciones de código se deben realizar en cada paso.
@@ -161,22 +177,26 @@ Los siguientes principios permiten alcanzar estas metas:
 ----
 
 #### BRIEF: Lenguaje Comercial
+<!-- .slide: class="final" -->
 * Las palabras usadas deben venir del dominio comercial. No debe haber ambiguedades.
 * Un error común es emplear palabras que tienen diferente significado en diferentes contextos.
 
 ----
 
 #### BRIEF: Datos Reales
+<!-- .slide: class="final" -->
 * Los ejemplos deben usar datos reales y contretos, para ayudar a entender el contexto.
 
 ----
 
 #### BRIEF: Revelación de intención
+<!-- .slide: class="final" -->
 * En el escenario debe quedar claro cuál es la intención, que se está tratando de lograr.
 
 ----
 
 #### BRIEF: Esencial
+<!-- .slide: class="final" -->
 * Cualquier paso que no contribuya a alcanzar el propósito principal debe elimianrse. Si son importantes, deben cubrirse 
 por otros esenarios que ilustren otras reglas.
 * Un error común es incluir demasiados detalles.
@@ -184,11 +204,13 @@ por otros esenarios que ilustren otras reglas.
 ----
 
 #### BRIEF: Enfocado
+<!-- .slide: class="final" -->
 * Un escenario debería centrarse en una sola regla.
 
 ----
 
 #### BRIEF: Breve
+<!-- .slide: class="final" -->
 * Los escenarios no deberían tener más de 5 líneas, haciendo que sen fáciles de leer y entender.
 
 ---

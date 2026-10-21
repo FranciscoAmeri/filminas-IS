@@ -70,6 +70,40 @@ table{
 
 .reveal img { margin: 0.25em 0; }
 
+/* ============================================================
+   ALCANCE DEL CURSADO
+   Las filminas con class="final" no se dictan en clase por
+   tiempo, pero quedan completas porque se evaluan en el final.
+   El distintivo se genera solo: alcanza con marcar la filmina
+   con <!-- .slide: class="final" -->
+   ============================================================ */
+
+.reveal section.final::before {
+    content: "\2691  No se dicta en clase \00b7 Tema de examen final";
+    display: block;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: left;
+    color: #fdf6e3;
+    background: #b58900;
+    padding: 4px 12px;
+    margin: 0 0 14px 0;
+    border-radius: 4px;
+}
+
+.reveal section.final {
+    box-shadow: inset 0 0 0 2px rgba(181, 137, 0, 0.35);
+    border-radius: 6px;
+}
+
+/* En el listado de impresion y en el modo esquema tambien se ve */
+@media print {
+    .reveal section.final::before { background: #b58900 !important; }
+}
+
 /* Red de seguridad: si una filmina igual no entra, se puede
    desplazar en lugar de quedar cortada. */
 .reveal .slides section {
