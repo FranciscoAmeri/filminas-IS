@@ -12,6 +12,78 @@ table{
     font-size: 20px;
 }
 
+/* ============================================================
+   DENSIDAD DE CONTENIDO
+   El lienzo de reveal.js esta en 1280x900 (ver reveal.json).
+   Lo de aca abajo recupera el espacio que se come la tipografia
+   por defecto: titulos enormes, interlineado alto y margenes
+   generosos. El objetivo es que no haya que alejar el zoom.
+   Las medidas estan en em, asi que respetan los
+   <!-- .slide: style="font-size: 0.6em" --> de cada filmina.
+   ============================================================ */
+
+.reveal .slides section {
+    line-height: 1.2;
+}
+
+.reveal h1 { font-size: 1.90em; margin: 0 0 0.35em 0; line-height: 1.1; }
+.reveal h2 { font-size: 1.45em; margin: 0 0 0.30em 0; line-height: 1.1; }
+.reveal h3 { font-size: 1.15em; margin: 0 0 0.28em 0; line-height: 1.15; }
+.reveal h4 { font-size: 1.00em; margin: 0 0 0.25em 0; line-height: 1.15; }
+.reveal h5 { font-size: 0.90em; margin: 0 0 0.22em 0; }
+
+.reveal p { margin: 0 0 0.45em 0; line-height: 1.2; }
+
+.reveal ul,
+.reveal ol {
+    margin: 0 0 0.45em 1em;
+    line-height: 1.2;
+}
+.reveal li { margin-bottom: 0.12em; }
+.reveal li > ul,
+.reveal li > ol { margin-bottom: 0; }
+.reveal li li { font-size: 0.95em; }
+
+.reveal table { margin: 0.35em 0; }
+.reveal table th,
+.reveal table td {
+    padding: 0.14em 0.45em;
+    line-height: 1.18;
+}
+
+.reveal blockquote {
+    margin: 0.45em 0;
+    padding: 0.4em 0.7em;
+    line-height: 1.2;
+}
+
+.reveal pre {
+    margin: 0.45em 0;
+    font-size: 0.52em;
+    line-height: 1.2;
+}
+.reveal pre code { padding: 0.6em; max-height: none; }
+
+.reveal .grid-item { padding: 12px 14px; }
+.reveal .grid-container2,
+.reveal .grid-container4 { gap: 8px; }
+
+.reveal img { margin: 0.25em 0; }
+
+/* Red de seguridad: si una filmina igual no entra, se puede
+   desplazar en lugar de quedar cortada. */
+.reveal .slides section {
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+}
+.reveal .slides section::-webkit-scrollbar { width: 6px; }
+.reveal .slides section::-webkit-scrollbar-thumb {
+    background: rgba(121, 177, 217, 0.6);
+    border-radius: 3px;
+}
+
 .cuadroBlanco {
     color: black;
     background: rgba(255, 255, 255, 0.7);
