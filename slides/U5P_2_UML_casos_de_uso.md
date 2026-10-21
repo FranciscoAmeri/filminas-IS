@@ -124,7 +124,7 @@ Diseña los diagramas de **Casos de Uso** de los ejercicios de la guía de traba
 
 ---
 ### Detalle de CU
-<!-- .slide: style="font-size: 0.60em" -->
+<!-- .slide: style="font-size: 0.46em" -->
 
 Generalmente el diagrama de casos de uso por si solo no es suficiente, y es necesario detallar cada **caso de uso** con
 una planilla como la siguiente:

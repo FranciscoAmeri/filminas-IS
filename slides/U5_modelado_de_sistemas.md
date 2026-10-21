@@ -225,6 +225,7 @@ una que solo *dibuja*, no. Con la segunda el diagrama puede estar mal y verse bi
 ![Clasificación de los diagramas UML](images/unidad5/clasificacion-diagramas.png)
 
 ---
+<!-- .slide: style="font-size: 0.56em" -->
 
 ### Diagramas UML
 <!--http://www.softwero.com/2017/08/los-13-diagramas-uml-y-sus-componentes-1.html-->

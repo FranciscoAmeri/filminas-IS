@@ -412,7 +412,7 @@ La universidad quiere un campus virtual a medida, con integración con sus siste
 ---
 
 ### Modelo Evolutivo
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: style="font-size: 0.62em" -->
 El modelo se construye mediante una serie de **prototipos**, que se van refinando y evolucionando con el tiempo.
 Permite al cliente explorar requisitos poco claros o cambiantes. Se parte con una versión básica y se mejora a partir del feedback del usuario.
 
@@ -886,7 +886,7 @@ para aprender, no para producir código de producción.
 ---
 
 ### Cierre: los cinco modelos de un vistazo
-<!-- .slide: style="font-size: 0.70em" -->
+<!-- .slide: style="font-size: 0.50em" -->
 
 <table border="1" cellpadding="6" cellspacing="0">
   <thead>

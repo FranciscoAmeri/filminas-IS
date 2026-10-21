@@ -13,6 +13,7 @@ Created by <i class="fab fa-telegram"></i>
 ![GTP](images/indice/GTP.png)
 
 ---
+<!-- .slide: style="font-size: 0.34em" -->
 
 ![Icono](images/indice/u1_icono.png)
 ![Icono](images/indice/u2_icono.png)

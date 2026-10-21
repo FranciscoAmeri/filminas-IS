@@ -289,6 +289,7 @@ En programas como VSC se puede instalar el plugin PlantUML para poder visualizar
 Se recomienda revisar su documentación: https://plantuml.com/es/
 
 ---
+<!-- .slide: style="font-size: 0.50em" -->
 
 ### Ejemplo: PlantUML
 

@@ -256,7 +256,7 @@ Cada actividad debe incluir:
 - Cada hito debe documentarse con un **reporte breve** que resuma el avance y el trabajo realizado.  
 
 ---
-<!-- .slide: style="font-size: 0.60em" -->
+<!-- .slide: style="font-size: 0.44em" -->
 <!--
 | Tarea | Esfuerzo (días-hombre) | Duración (días) | Dependencias  |
 |:------|:-----------------------|:----------------|:--------------|
@@ -776,6 +776,7 @@ Simplifica la fórmula general:
   - SCED (ajuste de calendario)  
 
 ----
+<!-- .slide: style="font-size: 0.42em" -->
 
 Los valores de **M** se pueden tomar de la siguiente tabla:
 
@@ -930,7 +931,7 @@ Es una medida ajustada que convierte el esfuerzo de reutilización/adaptación e
 ----
 
 #### AAM: Adaptation Adjustment Multiplier
-<!-- .slide: style="font-size: 0.78em" -->
+<!-- .slide: style="font-size: 0.60em" -->
 
 ![AAM](images/unidad10/AAM.png)
 

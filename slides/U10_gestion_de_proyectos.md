@@ -84,6 +84,7 @@ Edit by F.A <!-- compelta aca con mi github -->
 ![Bibliografia](images/unidad10/ian-sommerville.png)
 
 ---
+<!-- .slide: style="font-size: 0.78em" -->
 
 ## Temario
 <div class="grid-container2">

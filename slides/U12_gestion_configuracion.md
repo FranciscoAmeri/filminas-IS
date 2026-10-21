@@ -207,6 +207,7 @@ que se realizan sobre los artefactos del software.
 </table>
 
 ---
+<!-- .slide: style="font-size: 0.52em" -->
 
 ### Identificación de Elementos de Configuración
 
@@ -217,7 +218,7 @@ Estas actividades proporcionan la base para otras actividades de gestión de con
 ----
 
 ### Identificación de Elementos de Configuración: Tareas
-<!-- .slide: style="font-size: 0.58em" -->
+<!-- .slide: style="font-size: 0.46em" -->
 - Identificar los productos que se van a mantener bajo gestión de configuración para el proyecto.
 - Asignar identificadores únicos para cada elemento de configuración y propiedades como autor, tipo de documento, persona responsable de ese elemento de configuración, etc.
 - Definir estructura de almacenamiento.
