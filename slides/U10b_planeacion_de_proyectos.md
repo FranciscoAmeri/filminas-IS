@@ -1,15 +1,4 @@
----
-title: Planeación de Proyectos
-theme: solarized
-slideNumber: true
----
 
-#### Ingeniería de Software
-# Planeación de Proyectos
-Created by <i class="fab fa-telegram"></i>
-[edme88]("https://t.me/edme88")
-
----
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -80,6 +69,26 @@ Created by <i class="fab fa-telegram"></i>
 
 ---
 
+### Alcance de esta unidad
+<!-- .slide: style="font-size: 0.80em" -->
+
+Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
+desarrollar en el cursado.
+
+<div class="grid-item">
+
+Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
+**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+
+Todo lo demas se dicta, y es la base para el trabajo practico.
+
+</div>
+
+**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
+mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
+
+---
+
 ### Tareas del administrador de proyectos
 - Dividir el trabajo en partes
 - Asignar tareas a los miembros del equipo
@@ -101,6 +110,7 @@ cómo se dividirá en incrementos, cómo se asignarán los recursos. Afinar esti
 ---
 
 ### Etapa 1 – Especulación
+<!-- .slide: class="final" -->
 - Descripción a alto nivel del proyecto
 - Revisión del plan si se obtiene el contrato
 - Cálculo preliminar del precio según esfuerzo estimado
@@ -117,6 +127,7 @@ cómo se dividirá en incrementos, cómo se asignarán los recursos. Afinar esti
 ---
 
 ### Una vez asignado el contrato...
+<!-- .slide: class="final" -->
 - Refinar el plan recabando más requerimientos y refinándolos.
 - Asignar recursos o decidir contratación de nuevo personal.
 - Definir mecanismos de monitoreo del proyecto (avances y costos)
@@ -125,6 +136,7 @@ cómo se dividirá en incrementos, cómo se asignarán los recursos. Afinar esti
 ---
 
 ### Fijación de precio: Realidad
+<!-- .slide: class="final" -->
 En la práctica influyen:  
 
 - Consideraciones **organizacionales**
@@ -134,7 +146,7 @@ En la práctica influyen:
 
 ---
 
-<!-- .slide: style="font-size: 0.85em" -->
+<!-- .slide: class="final" style="font-size: 0.85em" -->
 - **Oportunidad de mercado:** Cotizar bajo para ganar un cliente o adquirir experiencia en nuevos productos.  
 - **Incertidumbre en la estimación:** Incrementar el precio para cubrir contingencias derivadas de falta de conocimiento o experiencia.  
 - **Términos contractuales:** Si el cliente conserva la propiedad del código y puede reutilizarlo, la ganancia a largo plazo será menor.  
@@ -144,6 +156,7 @@ En la práctica influyen:
 ---
 
 ### De la propuesta al acuerdo
+<!-- .slide: class="final" -->
 Un costo de proyecto se negocia a partir de un borrador de propuesta.  
 
 Luego cliente y proveedor acuerdan la **especificación detallada** antes de la ejecución.
@@ -160,6 +173,7 @@ Incluye una planificación detallada con:
 ----
 
 ### Desarrollo dirigido por un plan
+<!-- .slide: class="final" -->
 
 5. **División del trabajo:** Listado de actividades con sus plazos y entregas asociadas.
 6. **Calendario del proyecto:** Indica las dependencias entre las actividades, el tiempo 
@@ -169,7 +183,7 @@ estimado requerido para alcanzar cada plazo y la asignación de personal.
 ----
 
 ### Complementos del plan
-<!-- .slide: style="font-size: 0.95em" -->
+<!-- .slide: class="final" style="font-size: 0.95em" -->
 8. **Plan de calidad:** Describe los procedimientos de calidad y estándares que se usarán.
 9. **Plan de validación:**  Describe el enfoque, los recursos y el calendario utilizados para la 
 validación del sistema.
@@ -180,6 +194,7 @@ validación del sistema.
 ---
 
 ### Revisión y ajustes del plan
+<!-- .slide: class="final" -->
 Los cambios son inevitables: deben revisarse regularmente ante variaciones en requerimientos, calendario o riesgos.  
 
 Factores a considerar: **fecha de entrega, personal disponible, presupuesto y herramientas**.  
@@ -194,6 +209,7 @@ Factores a considerar: **fecha de entrega, personal disponible, presupuesto y he
 ---
 
 ### Realismo en la planificación
+<!-- .slide: class="final" -->
 Se debe ser realista a la hora de preparar un plan. Por eso, las suposiciones deben ser **prudentes y conservadoras**.
 
 Tiene que incluir suficiente **contingencia** para evitar renegociaciones frecuentes.
@@ -201,6 +217,7 @@ Tiene que incluir suficiente **contingencia** para evitar renegociaciones frecue
 ---
 
 ### Mitigación de problemas graves
+<!-- .slide: class="final" -->
 
 - Tomar acciones de **mitigación de riesgos**.  
 - Renegociar calendario y realizar **revisión técnica formal** para validar alineación con los objetivos del cliente.  
@@ -223,12 +240,14 @@ Proceso de definir cómo se organizará el trabajo:
 ---
 
 ### Reutilización de estimaciones
+<!-- .slide: class="final" -->
 - Si el proyecto es similar a uno anterior, pueden **reutilizarse estimaciones previas**.  
 - Si cambian los **métodos de diseño o lenguajes de implementación**, las estimaciones anteriores pueden no ser aplicables.  
 
 ---
 
 ### Regla empírica para estimar
+<!-- .slide: class="final" -->
 1. **Estimar en condiciones ideales** (asumiendo que nada saldrá mal).  
 2. **Ampliar la estimación** para cubrir problemas anticipados.  
 3. Añadir un **factor de contingencia** (30% a 50%) para imprevistos no anticipados. 
@@ -243,6 +262,7 @@ diferentes actividades que constituyen un proyecto.
 ---
 
 ### Elementos de cada actividad
+<!-- .slide: class="final" -->
 Cada actividad debe incluir:  
 1. **Duración** en días o meses calendario.  
 2. **Esfuerzo** requerido en días-hombre.  
@@ -252,6 +272,7 @@ Cada actividad debe incluir:
 ---
 
 ### Definición de hitos
+<!-- .slide: class="final" -->
 - Los **hitos** marcan puntos clave en el calendario.  
 - Cada hito debe documentarse con un **reporte breve** que resuma el avance y el trabajo realizado.  
 
@@ -369,23 +390,27 @@ Cada actividad debe incluir:
 ---
 
 ### Gráfica de barras de actividad
+<!-- .slide: class="final" -->
 
 ![Grafico de Secuencia](images/unidad10/grafico-secuencia.jpg)
 
 ---
 
 ### Tareas independientes
+<!-- .slide: class="final" -->
 - Las tareas **independientes** pueden realizarse en paralelo.  
 
 ---
 
 ### Gráfica de asignación de personal
+<!-- .slide: class="final" -->
 
 ![Grafico de asignacion de personal](images/unidad10/asignacion-de-personal.png)
 
 ---
 
 ### Reglas de asignación de personal
+<!-- .slide: class="final" -->
 - Una persona puede trabajar en **más de una tarea** al mismo tiempo.  
 - Puede haber períodos sin asignación (vacaciones, otro proyecto, capacitación, etc.).  
 - Las **asignaciones parciales** se indican con una línea diagonal sobre la barra.  
@@ -412,6 +437,7 @@ El desarrollo de software sigue un enfoque **iterativo**:
 ---
 
 ###  Planeación ágil
+<!-- .slide: class="final" -->
 1. Planeación de la entrega (release), que prevé con muchos meses de antelación y 
 decide sobre las características que deben incluirse en una entrega de un sistema.
 2. Planeación de la iteración, tiene un panorama a corto plazo y se enfoca en 
@@ -426,6 +452,7 @@ la planeación del siguiente incremento de un sistema. En general representa de 
 ----
 
 ### Planeación en XP
+<!-- .slide: class="final" -->
 1. **Identificar** un conjunto de **historias** que comprendan toda la funcionalidad que se incluirá en el sistema final.
 2. Para poder **estimar**, el equipo lee y discute las historias y las clasifica de acuerdo con la cantidad de tiempo que consideran que se tardará en implementarla. Se asigna puntos de esfuerzo hipotéticos.
 3. Seleccionar y afinar las historias que reflejarán las características a aplicar en una **entrega** de un sistema y el orden en el que deben implementar. El cliente participa de este proceso.
@@ -433,6 +460,7 @@ la planeación del siguiente incremento de un sistema. En general representa de 
 ----
 
 ### Planeación en XP
+<!-- .slide: class="final" -->
 4. Se eligen las historias a implementar en dicha **iteración**; el número de historias depende del tiempo del sprint y la velocidad del equipo. Se suman los puntos de las historias terminadas
 y se calcula nuevamente la velocidad.
 5. Planeación más detallada en donde las historias se dividen en **tareas**.
@@ -447,6 +475,7 @@ puntos de esfuerzo, se consulta al cliente y se quitan algunas historias de la i
 ---
 
 ### Beneficios del enfoque de planeación ágil
+<!-- .slide: class="final" -->
 1. Todo el equipo conoce las tareas a completar en una iteración.
 2. Los desarrolladores eligen las tareas a implementar, por lo que tienen 
 un sentido de propiedad y eso motiva más a completar la tarea.
@@ -508,6 +537,7 @@ Se pueden calibrar los modelos con proyectos ya completados para mejorar la prec
 ----
 
 ### Modelado algorítmico de costos
+<!-- .slide: class="final" -->
 
 ![Formula-estimacion](images/unidad10/modelado-algoritmico.png)
 
@@ -536,10 +566,12 @@ Incluye 4 submodelos:
 ---
 
 ![Cocomo](images/unidad10/cocomo.png) 
+<!-- .slide: class="final" -->
 
 ---
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 
 - Permite estimar el costo y el esfuerzo en la etapa 1 del  Modelo COCOMO II 
 - El tamaño se estima mediante Puntos de Objeto
@@ -548,6 +580,7 @@ Incluye 4 submodelos:
 ----
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 
 Para estimar el esfuerzo para desarrollar un proyecto se siguen los siguientes pasos:
 1. Acceso a recuentos de objetos
@@ -561,6 +594,7 @@ Para estimar el esfuerzo para desarrollar un proyecto se siguen los siguientes p
 ----
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 #### 1. Acceso a recuentos de objetos
 
 Calcule el número de pantallas, informes y componentes 3GL que conformarán esta aplicación.
@@ -568,6 +602,7 @@ Calcule el número de pantallas, informes y componentes 3GL que conformarán est
 ----
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 #### 2. Clasifique los niveles de complejidad de cada objeto
 
 Se clasifica cada instancia de objeto en niveles de complejidad simple, media y difícil.
@@ -577,6 +612,7 @@ Se clasifica cada instancia de objeto en niveles de complejidad simple, media y 
 ----
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 #### 2. Clasifique los niveles de complejidad de cada objeto
 
 ![Calculo de Reportes](images/unidad10/calculo-reportes.jpg)
@@ -584,6 +620,7 @@ Se clasifica cada instancia de objeto en niveles de complejidad simple, media y 
 ----
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 #### 3. Asignar pesos de complejidad a cada objeto
 
 Los pesos se utilizan para tres tipos de objetos: pantallas, informes y componentes 3GL.
@@ -593,6 +630,7 @@ Los pesos se utilizan para tres tipos de objetos: pantallas, informes y componen
 ----
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 #### 4. Determinar los puntos del objeto
 
 Sumar todas las instancias de objetos ponderados para obtener un número; esto se conoce como recuento de puntos de objeto.
@@ -602,6 +640,7 @@ Sumar todas las instancias de objetos ponderados para obtener un número; esto s
 ----
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 #### 5. Calcular nuevos puntos de objeto (NOP)
 Estimar el porcentaje de reutilización que se debe lograr en un proyecto.
 
@@ -613,7 +652,7 @@ Los NOP son los puntos de objeto que se deben desarrollar y se diferencian del r
 
 ### 1. Modelo de composición de aplicación
 #### 6. Calcular la tasa de productividad (PROD)
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 La tasa de productividad se calcula a partir de la información sobre la experiencia y la capacidad del desarrollador.
 
 ![Porcentaje de Productividad](images/unidad10/Productivity-Rate.webp)
@@ -621,6 +660,7 @@ La tasa de productividad se calcula a partir de la información sobre la experie
 ----
 
 ### 1. Modelo de composición de aplicación
+<!-- .slide: class="final" -->
 #### 7. Calcule el esfuerzo estimado
 El esfuerzo para desarrollar un proyecto se puede calcular como:
 
@@ -633,6 +673,7 @@ El esfuerzo se mide en personas-mes.
 ----
 
 ### EJEMPLO
+<!-- .slide: class="final" -->
 
 Considere un proyecto de aplicación de base de datos con
 1. La aplicación tiene 4 pantallas con 4 vistas cada una y 7 tablas de datos para 3 servidores y 4 clientes.
@@ -643,6 +684,7 @@ Considere un proyecto de aplicación de base de datos con
 ----
 
 #### Paso 1: 
+<!-- .slide: class="final" -->
 
 Número de pantallas = 4
 
@@ -651,6 +693,7 @@ Número de informes = 2
 ----
 
 #### Paso 2: Para las pantallas,
+<!-- .slide: class="final" -->
 Número de vistas = 4
 
 Número de tablas de datos = 7
@@ -664,6 +707,7 @@ De la tabla obtenemos que el **nivel de complejidad** para cada pantalla es **me
 ----
 
 #### Paso 2: Para informes
+<!-- .slide: class="final" -->
 
 Número de secciones = 6
 
@@ -678,6 +722,7 @@ De la tabla obtenemos que el **nivel de complejidad** para cada informe es **dif
 ----
 
 #### Paso 3: Peso de Complejidad
+<!-- .slide: class="final" -->
 
 De la tabla de peso de complejidad obtenemos:
 
@@ -688,6 +733,7 @@ Peso de complejidad para cada informe = 8
 ----
 
 #### Paso 4: Puntos Objeto
+<!-- .slide: class="final" -->
 
 Recuento de puntos del objeto = sigma (número de instancias del objeto) * (su peso de complejidad)
 
@@ -696,6 +742,7 @@ Puntos Objeto = 4 * 2 + 2 * 8 = 24
 ----
 
 #### Paso 5: % de reutilización 
+<!-- .slide: class="final" -->
 
 El porcentaje de reutilización de puntos de objeto = 10% (dado)
 
@@ -707,6 +754,7 @@ NOP = [24 * (100 -10)]/100 = 21,6
 ----
 
 #### Paso 6:
+<!-- .slide: class="final" -->
 
 La experiencia y capacidad del desarrollador son **bajas**.
 Utilizando la tabla de tasa de productividad:
@@ -717,6 +765,7 @@ Tasa de productividad (PROD) del proyecto dado = 7
 ----
 
 #### Paso 7:
+<!-- .slide: class="final" -->
 
 **Esfuerzo = NOP / PROD**
 
@@ -761,7 +810,7 @@ Simplifica la fórmula general:
 ----
 
 ### Parámetros del diseño temprano
-<!-- .slide: style="font-size: 0.70em" -->
+<!-- .slide: class="final" style="font-size: 0.70em" -->
 ![Fórmula](images/unidad10/diseno-temprano.png)
 
 - **A = 2.94** (propuesto por Boehm)
@@ -776,7 +825,7 @@ Simplifica la fórmula general:
   - SCED (ajuste de calendario)  
 
 ----
-<!-- .slide: style="font-size: 0.42em" -->
+<!-- .slide: class="final" style="font-size: 0.42em" -->
 
 Los valores de **M** se pueden tomar de la siguiente tabla:
 
@@ -864,7 +913,7 @@ Los valores de **M** se pueden tomar de la siguiente tabla:
 ### Ejercicio:
 
 Supongamos:
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 - Tamaño = 100 Puntos de Aplicación (AP).
 - Exponente B = 1.12 (un caso intermedio, ni muy riesgoso ni muy maduro).
 - Atributos: 
@@ -880,6 +929,7 @@ Supongamos:
 ----
 
 #### Paso 1: Calcular M
+<!-- .slide: class="final" -->
 𝑀 = 0.83 × 1.00 × 1.07 × 1.00 × 1.33 × 0.87 × 1.00 = **1.03**
   
 #### Paso 2: Calcular esfuerzo (PM)
@@ -893,6 +943,7 @@ PM = 2.94 × (100) 1.12 × 1.03 = **526 meses-persona**
 ---
 
 ###  3. Modelo de reutilización
+<!-- .slide: class="final" -->
 Calcula esfuerzo al integrar **código existente o generado automáticamente**.  
 
 Tipos:  
@@ -903,7 +954,7 @@ Tipos:
 
 ### Fórmula de reutilización
 
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 **ASLOC** son las siglas de "Adapted Source Lines of Code".
 
 Representa el número de líneas de código existentes que se van a adaptar/reutilizar en el nuevo proyecto.
@@ -919,6 +970,7 @@ No todo ese código cuenta como “nuevo”, porque adaptarlo no cuesta lo mismo
 ----
 
 ### Conversión a ESLOC
+<!-- .slide: class="final" -->
 **ESLOC** son las siglas de "Equivalent Source Lines of Code".
 
 Es una medida ajustada que convierte el esfuerzo de reutilización/adaptación en un equivalente a "líneas nuevas".
@@ -931,7 +983,7 @@ Es una medida ajustada que convierte el esfuerzo de reutilización/adaptación e
 ----
 
 #### AAM: Adaptation Adjustment Multiplier
-<!-- .slide: style="font-size: 0.60em" -->
+<!-- .slide: class="final" style="font-size: 0.60em" -->
 
 ![AAM](images/unidad10/AAM.png)
 
@@ -960,6 +1012,7 @@ fórmula **no es** una suma de los tres factores divididos por 100.
 ----
 
 ### AAF: Factor de Ajuste de Adaptación
+<!-- .slide: class="final" -->
 
 Se calcula como:
 **AAF = 0.4 × DM + 0.3 × CM + 0.3 × IM**
@@ -971,6 +1024,7 @@ Se calcula como:
 ----
 
 ### Ejercicio:
+<!-- .slide: class="final" -->
 
 Supongamos:
 - ASLOC = 8.000
@@ -982,6 +1036,7 @@ Supongamos:
 ----
 
 #### 1. Calcular AAF
+<!-- .slide: class="final" -->
 
 `AAF = (0,4 × 25) + (0,3 × 10) + (0,3 × 20) = 10 + 3 + 6 = `**`19`**
 
@@ -1003,7 +1058,7 @@ ahorro de alrededor del **72 %**.
 ----
 
 ### ¿Por qué importa el resultado?
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 
 El número que sale de ahí responde una pregunta de decisión concreta: **¿conviene reutilizar o
 escribir de nuevo?**
@@ -1022,6 +1077,7 @@ sale caro.
 ---
 
 ### 4. Modelo posarquitectónico
+<!-- .slide: class="final" -->
 Se aplica cuando ya existe un diseño arquitectónico inicial.  
 
 - Permite estimaciones más precisas del **tamaño**.  
@@ -1030,6 +1086,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 ----
 
 ### Fórmula posaquitectonica
+<!-- .slide: class="final" -->
 
 ![Postarquitetconica](images/unidad10/posarquitectonico.png)
 
@@ -1041,6 +1098,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 ----
 
 ### Factores posarquitectónicos
+<!-- .slide: class="final" -->
 1. **Precedencia:** experiencia previa en proyectos similares.  
 2. **Flexibilidad de desarrollo:** libertad para definir procesos. 
 3. **Resolución de riesgos:** nivel de análisis de riesgos realizado.  
@@ -1050,6 +1108,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 ----
 
 ### Multiplicadores de Esfuerzo
+<!-- .slide: class="final" -->
 - Producto
 - Plataforma
 - Personal
@@ -1057,7 +1116,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 ----
 
 ### Multiplicadores de Esfuerzo: Producto
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 1. **RELY:** Reliability / Fiabilidad requerida. Qué tan crítico es que el software funcione sin fallas.
 2. **DATA:** Database Size / Tamaño de base de datos. Relación entre la base de datos y el código fuente.
 3. **CPLX:** Complexity / Complejidad del producto. Número de operaciones, interfaces, algoritmos, interacción con usuarios, etc
@@ -1067,6 +1126,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 ----
 
 ### Multiplicadores de Esfuerzo: Plataforma
+<!-- .slide: class="final" -->
 6. **TIME:** Execution Time Constraint / Restricciones de tiempo de ejecución. Qué porcentaje del tiempo de CPU puede usar la aplicación.
 7. **STOR:** Main Storage Constraint / Restricciones de memoria. Aplicaciones que deben correr con muy poca RAM son más difíciles de desarrollar.
 8. **PVOL:** Platform Volatility / Volatilidad de la plataforma. Qué tan seguido cambia el hardware, el SO o el middleware en el que corre el sistema.
@@ -1075,7 +1135,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 ----
 
 ### Multiplicadores de Esfuerzo: Personal
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 9. **ACAP:** Analyst Capability. Habilidad de analistas en requerimientos y diseño.
 10. **PCAP:** Programmer Capability. Habilidad técnica del equipo de codificación.
 11. **PCON:** Personnel Continuity. Mide la rotación del equipo (turnover). Mucha rotación = más esfuerzo.
@@ -1086,6 +1146,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 ----
 
 ### Multiplicadores de Esfuerzo: Proyecto
+<!-- .slide: class="final" -->
 15. **TOOL:** Use of Software Tools. Nivel de soporte de CASE, entornos integrados, repositorios de versiones, herramientas de prueba, etc.
 16. **SITE:** Multisite Development. Equipos distribuidos en varios husos horarios → más esfuerzo.
 17. **SCED:** Schedule Compression. Ajuste del calendario respecto al nominal (ej. terminar en 75% del tiempo normal implica más esfuerzo).
@@ -1093,6 +1154,7 @@ Se aplica cuando ya existe un diseño arquitectónico inicial.
 ---
 
 ![Estimacion COCOMO](images/unidad10/estimacion-cocomo.png)
+<!-- .slide: class="final" -->
 
 ---
 
@@ -1138,6 +1200,7 @@ multiplicador que **aumenta** el esfuerzo (el factor SCED). Apurar sale más car
 ---
 
 ### Ejemplo de COCOMO
+<!-- .slide: class="final" -->
 ¿Qué ocurre al variar los controladores de costo?  
 - Valores **altos** → esfuerzo estimado puede triplicarse.  
 - Valores **bajos** → esfuerzo se reduce a 1/3 del original.  

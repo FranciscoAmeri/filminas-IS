@@ -1,15 +1,4 @@
----
-title: Automatización de Casos de Pruebas
-theme: solarized
-slideNumber: true
----
 
-#### Ingeniería de Software
-# Automatización de Casos de Pruebas
-Created by <i class="fab fa-telegram"></i>
-[edme88]("https://t.me/edme88")
-
----
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -47,6 +36,26 @@ Created by <i class="fab fa-telegram"></i>
 
 </div>
 </div>
+
+---
+
+### Alcance de esta unidad
+<!-- .slide: style="font-size: 0.80em" -->
+
+Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
+desarrollar en el cursado.
+
+<div class="grid-item">
+
+Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
+**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+
+Todo lo demas se dicta, y es la base para el trabajo practico.
+
+</div>
+
+**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
+mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
 
 ---
 
@@ -115,6 +124,7 @@ En el proceso de automatización es fundamentar contar con las siguientes herram
 ----
 
 #### Ejercicio 1: Instalar NodeJs
+<!-- .slide: class="final" -->
 1. Ingresar a https://nodejs.org/es
 2. Descargar la versión recomendada
 3. Realizar la instalación
@@ -122,6 +132,7 @@ En el proceso de automatización es fundamentar contar con las siguientes herram
 ----
 
 #### Ejercicio 2: Instalar Git
+<!-- .slide: class="final" -->
 1. Ingresar a https://git-scm.com/
 2. Descargar git para el SO correspondiente
 3. Realizar la instalación
@@ -129,6 +140,7 @@ En el proceso de automatización es fundamentar contar con las siguientes herram
 ----
 
 #### Ejercicio 3: Instalar VSC
+<!-- .slide: class="final" -->
 1. Ingresar a https://code.visualstudio.com/
 2. Descargar VSC
 3. Realizar la instalación
@@ -142,7 +154,7 @@ funcionalidades y mejoras.
 ----
 
 ### Plugin o Extensiones
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 Algunos plugin de utilidad son:
 * **ESLint**: Es una herramienta de análisis estático que ayuda al proceso de **linting**. Es decir, realiza una revisión
 del código para encontrar: errores de sintaxis, código poco intuitivo o difícil de mantener, uso de "malas prácticas", 
@@ -153,6 +165,7 @@ uso de estilos inconsistentes, entre otros.
 ----
 
 ### Plugin o Extensiones
+<!-- .slide: class="final" -->
 * **Cypress Snippets**: Permite seleccionar tests rápidamente como .only para ejecutar solo uno. También agiliza escribir funciones.
 * **Cypress Helper**: Agiliza procesos de autocompletado, go to definition, entre otros.
 * **Better Comments**: Coloriza los comentarios para facilitar su lectura.
@@ -160,6 +173,7 @@ uso de estilos inconsistentes, entre otros.
 ----
 
 ### Plugin o Extensiones
+<!-- .slide: class="final" -->
 * **Bracket Pair Colorization Toggler**: Permite asignar colores diferentes a las llaves y paréntesis para facilitar la
 lectura del código.
 * **GitLens**: Permite ver con facilidad quien modificó las líneas de código y cuando (especialmente útil cuando se
@@ -168,6 +182,7 @@ trabaja en equipo).
 ----
 
 #### Ejercicio 4: Instalar plugins en VSC
+<!-- .slide: class="final" -->
 Instalar todos los plugins necesarios en el VSC:
 * ESLint
 * Path Intellisense
@@ -203,6 +218,7 @@ Al ejecutar el comando, se permite ingresar:
 ----
 
 #### Ejercicio 5: Instalar npm
+<!-- .slide: class="final" -->
 1. Abrir el VSC
 2. Ejecutar el comando **npm init** en la terminal
 3. Verificar que el **package.json** se generó
@@ -210,13 +226,14 @@ Al ejecutar el comando, se permite ingresar:
 ----
 
 #### Ejercicio 6: Instalar Cypress
+<!-- .slide: class="final" -->
 1. Ejecutar el comando **npm install cypress** en la terminal
 2. Verificar que el **package.json** se agregó cypress con la versión
 
 ----
 
 #### Ejercicio 7: Inicializar Cypress
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 1. Ejecutar el comando **npx cypress open** en la terminal
 2. Seleccionar la opción **E2E testing**
 3. Verificar los archivos nuevos que se generarán, y clickear en **Continue**
@@ -234,6 +251,7 @@ ser de selectores, no tanto de funcionalidad, por lo que solo hay que actualizar
 ----
 
 ### Page Object
+<!-- .slide: class="final" -->
 
 Consiste en crear un objeto por cada conjunto de elementos significativos de la interfaz con la que interactuamos.
 
@@ -242,6 +260,7 @@ Consiste en crear un objeto por cada conjunto de elementos significativos de la 
 ----
 
 ### Page Object
+<!-- .slide: class="final" -->
 * Representa componentes web
 * Evita duplicación de código
 * Automatizaciones mantenibles y fáciles de entender
@@ -251,12 +270,14 @@ Consiste en crear un objeto por cada conjunto de elementos significativos de la 
 ----
 
 ### Page Object
+<!-- .slide: class="final" -->
 Aunque el nombre sugiere representar una página de nuestra aplicación, si dentro de la página existen componentes, se
 puede construir un page object de ese elemento para reutilizarlo.
 
 ----
 
 ### Page Object
+<!-- .slide: class="final" -->
 Ejemplo: El header se repite a través de todas las páginas de esta web, entonces, en lugar de integrar los elementos
 en el PageObject de la Home, es conveniente crear un PageObject a parte.
 ![Componentes](images/unidad8_automatizacion/componentes.png)
@@ -264,6 +285,7 @@ en el PageObject de la Home, es conveniente crear un PageObject a parte.
 ----
 
 ### Page Object: Modelo 1
+<!-- .slide: class="final" -->
 
 En la parte superior se definen los locadores de los elementos, 
 en la parte inferior las funciones que devuelven esos objetos.
@@ -272,6 +294,7 @@ en la parte inferior las funciones que devuelven esos objetos.
 ----
 
 ### Page Object: Modelo 1
+<!-- .slide: class="final" -->
 
 Para emplearlo en los tests, primero se importa, y luego se instancia el pageObject.
 ![POM](images/unidad8_automatizacion/pom_modelo1_uso.jpg)
@@ -279,6 +302,7 @@ Para emplearlo en los tests, primero se importa, y luego se instancia el pageObj
 ----
 
 ### Page Object: Modelo 1
+<!-- .slide: class="final" -->
 **Ventajas:**
 Separación de la lógica del localizador (selector) y los métodos de interacción. Esto puede hacer que el código sea más
 organizado y más fácil de mantener, especialmente si la página posee muchos elementos o acciones repetitivos.
@@ -289,6 +313,7 @@ Requiere crear una instancia del pageObject antes de utilizar los métodos.
 ----
 
 ### Page Object: Modelo 2
+<!-- .slide: class="final" -->
 
 Los locadores van dentro de los métodos.
 
@@ -297,6 +322,7 @@ Los locadores van dentro de los métodos.
 ----
 
 ### Page Object: Modelo 2
+<!-- .slide: class="final" -->
 
 Para emplearlo en los tests, solo se debe importar.
 
@@ -305,6 +331,7 @@ Para emplearlo en los tests, solo se debe importar.
 ----
 
 ### Page Object: Modelo 2
+<!-- .slide: class="final" -->
 **Ventajas:**
 Se pueden emplear los métodos directamente sin necesidad de crear una instancia de la clase. Los métodos están 
 disponibles globalmente para su uso directo, lo que puede resultar en un código más conciso. 
@@ -328,30 +355,35 @@ Orden de preferencia:
 ----
 
 ### Locadores: Data-test
+<!-- .slide: class="final" -->
 
 ![Locadores: Data-test](images/unidad8_automatizacion/locator-datatest.jpg)
 
 ----
 
 ### Locadores: ID
+<!-- .slide: class="final" -->
 
 ![Locadores: ID](images/unidad8_automatizacion/locator-id.jpg)
 
 ----
 
 ### Locadores: Name
+<!-- .slide: class="final" -->
 
 ![Locadores: Name](images/unidad8_automatizacion/locator-name.jpg)
 
 ----
 
 ### Locadores: Class
+<!-- .slide: class="final" -->
 
 ![Locadores: Class](images/unidad8_automatizacion/locator-class.jpg)
 
 ----
 
 ### Locadores: Xpath
+<!-- .slide: class="final" -->
 
 ![Locadores: xpath](images/unidad8_automatizacion/locator-xpath.jpg)
 

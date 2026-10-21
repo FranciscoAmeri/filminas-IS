@@ -1,15 +1,4 @@
----
-title: Pruebas de Software
-theme: solarized
-slideNumber: true
----
 
-#### Ingeniería de Software
-# Pruebas de Software
-Created by <i class="fab fa-telegram"></i>
-[edme88]("https://t.me/edme88")
-
----
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -56,6 +45,26 @@ Created by <i class="fab fa-telegram"></i>
 </div>
 
 ---
+
+### Alcance de esta unidad
+<!-- .slide: style="font-size: 0.80em" -->
+
+Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
+desarrollar en el cursado.
+
+<div class="grid-item">
+
+Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
+**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+
+Todo lo demas se dicta, y es la base para el trabajo practico.
+
+</div>
+
+**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
+mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
+
+---
 ### ¿Por qué probar software?
 * El 80% del costo del ciclo de vida del software puede provenir de defectos no detectados tempranamente.  
 * Un bug crítico puede costar millones o incluso poner en riesgo vidas humanas.  
@@ -73,6 +82,7 @@ técnicas de validación estáticas.
 
 ---
 ### Pruebas de Software
+<!-- .slide: class="final" -->
 **Puede revelar la presencia de errores, no sus ausencias.**
 
 ---
@@ -139,6 +149,7 @@ Implica inspecciones y revisiones (realizadas SIN ejecución), análisis y compr
 ----
 
 ### Inspecciones y Pruebas
+<!-- .slide: class="final" -->
 ![Inspecciones y Pruebas](images/unidad8/inspecciones-y-pruebas.png)
 
 ----
@@ -174,6 +185,7 @@ normas, la portabilidad y facilidad de mantenimiento).
 ----
 
 #### VSC: Plugins
+<!-- .slide: class="final" -->
 - **ESlint:** Es una herramienta de análisis estático de código enfocada en encontrar y corregir problemas en el código 
 JavaScript y en otros lenguajes basados en este, como TypeScript. Se utiliza para mantener un código más limpio, 
 consistente y libre de errores.
@@ -306,6 +318,7 @@ como JUnit, Jest o React Testing Library) para escribir y ejecutar las pruebas d
 
 ---
 ### Partes del conjunto automatizado de pruebas
+<!-- .slide: class="final" -->
 1. **Configuración**, donde se inicializa el sistema con el caso de prueba, es decir, entradas y salidas esperadas.
 2. **Llamada**, cuando se llama al objeto o método para probar.
 3. **Declaración**, donde se compara el resultado de la llamada con el resultado esperado. Si es verdadera, la
@@ -313,7 +326,7 @@ como JUnit, Jest o React Testing Library) para escribir y ejecutar las pruebas d
 
 ---
 ### Efectividad de prueba de unidad
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 * Los casos de prueba deben demostrar que, cuando se usa como se esperaba, el componente que se está
   probando hace lo que se supone que debe hacer.
 * Si hay defectos en el componente, éstos deben ser revelados por los casos de prueba.
@@ -492,6 +505,7 @@ Acciones:
 
 ---
 ### Pautas para diseñar casos de prueba basados en secuencias
+<!-- .slide: class="final" -->
 * Secuencias que tienen un solo valor.
 * Usar secuencias de diferentes tamaños en diferentes pruebas. 
 * Acceder al primero, al del medio y al último elementos de la secuencia. 
@@ -515,11 +529,12 @@ Asumiendo que las pruebas unitarias en los objetos individuales dentro del compo
 
 ---
 ### Prueba de interface
+<!-- .slide: class="final" -->
 **Objetivo: detectar fallas debido a errores de interfaz o suposiciones inválidas sobre interfaces.**
 
 ---
 ### Prueba de interface: Tipos de interface
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 1. **Interfaces de parámetro:** los datos, o referencias de función, pasan de un componente a otro (métodos en un objeto).
 2. **Interfaces de memoria compartida:** un bloque de memoria se comparte entre componentes. (sistemas embebidos, sensores
 crean datos que se recuperan y son procesados por otros componentes).
@@ -530,7 +545,7 @@ cliente-servidor)
 
 ---
 ### Errores de interface
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 * **Uso incorrecto de la interface:** un componente llama a otro con errores en el uso de su interface.
 Ej: Interfaces de parámetro, error de tipo, orden o número de parámetros.
 * **Mala interpretación de la interface:** un componente malinterpreta la especificación de la interface del
@@ -540,6 +555,7 @@ consumidor de datos operan a diferentes niveles de rapidez.
 
 ---
 ### Lineamientos para pruebas de interfaz
+<!-- .slide: class="final" -->
 * Diseñar pruebas para que los parámetros de un procedimiento llamado se encuentren en los
 extremos de sus rangos.
 * Probar los parámetros de tipo puntero con punteros nulos.
@@ -559,7 +575,7 @@ transfieren los datos correctos en el momento adecuado a través de sus interfac
 
 ---
 ### Pruebas del sistema y de componentes
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 * Durante las pruebas del sistema, se prueba el sistema completo. Incluyendo:
   * Componentes reutilizables que han sido desarrollados por separado e integrados con
   componentes desarrollados recientemente.
@@ -570,6 +586,7 @@ transfieren los datos correctos en el momento adecuado a través de sus interfac
 ---
 
 ### Clasificación de pruebas (otras dimensiones)
+<!-- .slide: class="final" -->
 * **Según el objetivo:** funcionales, no funcionales.  
 * **Según el conocimiento interno:** caja negra, caja blanca, caja gris.  
 * **Según el entorno:** manuales, automatizadas, híbridas.  
@@ -586,12 +603,14 @@ interacciones que se están probando.
 
 ---
 ### Políticas de prueba
+<!-- .slide: class="final" -->
 Las pruebas exhaustivas del sistema son imposibles. Se establece una política de pruebas
 para definir la cobertura.
 
 ----
 
 ### Políticas de prueba
+<!-- .slide: class="final" -->
 En general se debe probar:
 * Todas las funciones del sistema que se acceden a través de menús.
 * Las combinaciones de funciones a las que se accede a través del mismo menú.
@@ -620,6 +639,7 @@ dirigido por plan
 ----
 
 ### Desarrollo basado en pruebas
+<!-- .slide: class="final" -->
 ![Desarrollo basado en pruebas](images/unidad8/desarrollo-basado-en-pruebas.png)
 
 ----
@@ -691,6 +711,7 @@ especificación del sistema.
 
 ---
 ### Pruebas de versión y pruebas de sistema
+<!-- .slide: class="final" -->
 Diferencias importantes:
 * Un equipo separado que no haya estado involucrado en el desarrollo del sistema, debe ser
 responsable de las pruebas de versión.
@@ -709,6 +730,7 @@ Son pruebas de validación.
 
 ---
 ### Requisitos MHC-PMS:
+<!-- .slide: class="final" -->
 * Si un paciente se sabe que es alérgico a algún medicamento en particular, entonces la
 prescripción de medicamentos que dará lugar a un mensaje de aviso que se entregará al usuario del sistema.
 * Si un prescriptor elige ignorar una advertencia de alergia, deberán proveer una razón por la que esto ha sido ignorado.
@@ -716,7 +738,7 @@ prescripción de medicamentos que dará lugar a un mensaje de aviso que se entre
 ----
 
 ### Pruebas de requerimientos MHC-PMS
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 * Elegir uno o más paciente/s con alergia a un fármaco: 
   * Prescribir medicamentos para los cuales no es alérgico, comprobar que el mensaje de advertencia no se emite. 
   * Prescribir el medicamento para el cual es alérgico, comprobar que la advertencia se emite.
@@ -728,6 +750,7 @@ usuario proporcione una explicación de por qué rechazada la advertencia.
 
 ---
 ### Pruebas de escenario
+<!-- .slide: class="final" -->
 * Son un enfoque a las pruebas de versión donde se crean escenarios típicos de uso y se les utiliza en el desarrollo de 
 casos de prueba para el sistema.
 * Un escenario es una historia que describe una forma en que puede usarse el sistema.
@@ -736,7 +759,7 @@ casos de prueba para el sistema.
 ----
 
 ### Prueba de escenario MHC-PMS
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 Kate es enfermera con especialidad en atención a la salud mental. Una de sus
 responsabilidades es visitar a domicilio a los pacientes, para comprobar la
 efectividad de su tratamiento y que no sufran de efectos colaterales del fármaco.
@@ -752,7 +775,7 @@ efecto colateral es que se mantiene despierto durante la noche.
 ----
 
 ### Prueba de escenario MHC-PMS
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 Kate observa el registro de Jim y se le pide la palabra clave para descifrar el
 registro. Comprueba el medicamento prescrito y consulta sus efectos colaterales.
 El insomnio es un efecto colateral conocido, así que anota el problema en el
@@ -768,6 +791,7 @@ obtener información de seguimiento y concertar citas en la clínica.
 ----
 
 ### Pruebas para el escenario
+<!-- .slide: class="final" -->
 * Autenticación al ingresar al sistema. 
 * Descarga y carga registros de paciente específicos desde una laptop. 
 * Agenda de visitas a domicilio. 
@@ -797,6 +821,7 @@ liberación se han llevado a cabo.
 ----
 
 ### Pruebas de usuario
+<!-- .slide: class="final" -->
 El entorno de trabajo del usuario tiene un efecto importante en la fiabilidad,
 rendimiento, facilidad de uso y robustez de un sistema.
 No puede ser replicado en un entorno de prueba.
@@ -822,6 +847,7 @@ en el entorno del cliente.
 
 ---
 ### Etapas en el proceso de las pruebas de aceptación
+<!-- .slide: class="final" -->
 ![Etapas en el proceso de aceptación de pruebas](images/unidad8/aceptacion-de-pruebas.png)
 
 ----

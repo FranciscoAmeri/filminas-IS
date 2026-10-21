@@ -1,15 +1,4 @@
----
-title: Casos de Pruebas
-theme: solarized
-slideNumber: true
----
 
-#### Ingeniería de Software
-# Casos de Pruebas
-Created by <i class="fab fa-telegram"></i>
-[edme88]("https://t.me/edme88")
-
----
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -60,6 +49,26 @@ Created by <i class="fab fa-telegram"></i>
 
 ---
 
+### Alcance de esta unidad
+<!-- .slide: style="font-size: 0.80em" -->
+
+Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
+desarrollar en el cursado.
+
+<div class="grid-item">
+
+Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
+**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+
+Todo lo demas se dicta, y es la base para el trabajo practico.
+
+</div>
+
+**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
+mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
+
+---
+
 ### Casos de Prueba
 En la norma ISO 29119 (Estándar Internacional para pruebas de Software) se define caso de prueba como:
 
@@ -83,7 +92,7 @@ problemas antes de que lleguen a los usuarios finales.
 ----
 
 ## Plantilla de Casos de Pruebas
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 2. **Documentación:** Los CP actúan como documentación detallada de cómo se debe probar una funcionalidad. Esto es útil 
 para los equipos de desarrollo y pruebas, ya que proporciona instrucciones claras sobre qué se debe probar y cómo hacerlo.
 3. **Automatización:** Los CP son esenciales para la automatización de pruebas. Pueden ser traducidos a scripts de 
@@ -96,7 +105,7 @@ funcionando como se espera.
 ----
 
 ## Plantilla de Casos de Pruebas
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 5. **Reproducción de errores:** Los CP permiten a los equipos de desarrollo y pruebas reproducir errores informados por 
 los usuarios. Esto facilita la identificación y corrección de problemas específicos.
 6. **Estándares de calidad:** Los CP son una parte fundamental de los estándares de calidad en el desarrollo de software. 
@@ -176,7 +185,7 @@ comunicación entre los miembros del equipo de desarrollo, los diseñadores, los
 ----
 
 ### Identificador de caso de uso e Identificador de la prueba
-<!-- .slide: style="font-size: 0.90em" -->
+<!-- .slide: class="final" style="font-size: 0.90em" -->
 Un identificador de caso de uso puede ser una etiqueta alfanumérica única o un número, y a menudo se organiza de manera 
 estructurada para reflejar la jerarquía o el flujo de trabajo de un sistema. Por ejemplo, podría tener un formato como 
 "CU-001" para el primer caso de uso de un sistema, "CU-002" para el segundo, y así sucesivamente. Y de manera similar
@@ -197,7 +206,7 @@ stakeholders del proyecto a comprender rápidamente de qué se trata el caso de 
 ----
 
 ### Nombre del Caso de Uso
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 Los principales propósitos del nombre son:
 * **Identificación:** El nombre del caso de uso es una forma rápida de identificar un CU particular dentro de la 
 documentación del sistema. Proporciona un nombre único y distintivo que facilita la referencia y la comunicación entre 
@@ -209,7 +218,7 @@ descripción detallada.
 ----
 
 ### Nombre del Caso de Uso
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 * **Comunicación Efectiva:** El nombre del CU actúa como un medio de comunicación eficiente al proporcionar un resumen 
 rápido y legible de la funcionalidad que se está abordando.
 * **Búsqueda y Referencia:** Permite a los miembros del equipo buscar y hacer referencia rápidamente a un CU específico 
@@ -236,15 +245,18 @@ lo que facilita la gestión y la revisión de los mismos.
 ---
 
 ### Informador
+<!-- .slide: class="final" -->
 Se especifica quién es la persona o el equipo que documentó la prueba a realizar. 
 
 ---
 ### Responsable
+<!-- .slide: class="final" -->
 Se especifica quién es la persona o el equipo encargado de ejecutar la prueba. Es importante para asignar la 
 responsabilidad de ejecutar y documentar la prueba.
 
 ---
 ### Fecha de la Prueba
+<!-- .slide: class="final" -->
 Se registra cuándo se realizó la prueba. Esto es crucial para llevar un registro de cuándo se ejecutó el caso de prueba 
 y para rastrear el progreso del proceso de pruebas.
 En algunos sistemas habitual tener múltiples campos tipo fecha: Fecha de Creación, Fecha de Última Modificación, FechaS
@@ -267,6 +279,7 @@ Ofrece un contexto más amplio para comprender la prueba en su conjunto.
 
 ---
 ### Detalle de lo que se Prueba
+<!-- .slide: class="final" -->
 Este campo se enfoca en los aspectos específicos o las características que se están probando en este caso de prueba en 
 particular. Ayuda a definir claramente el alcance de la prueba.
 
@@ -285,11 +298,13 @@ Suele adjuntarse capturas de pantalla de cómo se visualiza la UI cuando se ejec
 
 ---
 ### Funciona / No Funciona / Requiere mantenimiento perfectivo
+<!-- .slide: class="final" -->
 Este campo indica si el caso de prueba funciona según lo esperado, no funciona (en caso de fallo) o si se requiere 
 realizar ajustes o mejoras en el software (mantenimiento perfectivo).
 
 ---
 ### Comentarios
+<!-- .slide: class="final" -->
 Los comentarios permiten agregar información adicional, aclaraciones o detalles relevantes relacionados con la ejecución 
 de la prueba. Pueden ser útiles para proporcionar contexto adicional o explicar situaciones específicas.
 
@@ -309,18 +324,22 @@ Se suele emplear **Jira**, **Azure** o cualquier herramienta de tickets, que per
 ---
 
 ![Jira 2](images/unidad8/jira2.jpg)
+<!-- .slide: class="final" -->
 
 ---
 
 ![Jira Ejemplo 1](images/unidad8/jira-ejemplo1.jpg)
+<!-- .slide: class="final" -->
 
 ---
 
 ![Jira Ejemplo 2](images/unidad8/jira-ejemplo2.jpg)
+<!-- .slide: class="final" -->
 
 ---
 
 ![Jira Ejemplo 3](images/unidad8/jira-ejemplo3.jpg)
+<!-- .slide: class="final" -->
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?

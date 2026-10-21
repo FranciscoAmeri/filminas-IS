@@ -1,15 +1,4 @@
----
-title: Calidad del Software
-theme: solarized
-slideNumber: true
----
 
-#### Ingeniería de Software
-# Calidad del Software
-Created by <i class="fab fa-telegram"></i>
-[edme88]("https://t.me/edme88")
-
----
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -81,6 +70,26 @@ Created by <i class="fab fa-telegram"></i>
 
 ---
 
+### Alcance de esta unidad
+<!-- .slide: style="font-size: 0.80em" -->
+
+Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
+desarrollar en el cursado.
+
+<div class="grid-item">
+
+Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
+**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+
+Todo lo demas se dicta, y es la base para el trabajo practico.
+
+</div>
+
+**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
+mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
+
+---
+
 #### Ingeniería de Software
 #### Ian Sommerville
 
@@ -111,6 +120,7 @@ reusabilidad, etc.)
 
 ---
 ### EL COMPROMISO DE CALIDAD
+<!-- .slide: class="final" -->
 * No podemos esperar a que las especificaciones mejoren para poner atención al manejo de la calidad
 * Debe haber procedimientos que permitan mejorar la calidad aunque la especificaciones no sean perfectas
 * El manejo de la calidad no solo se refiere a reducir defectos sino también a mejorar otras cualidades del producto
@@ -125,6 +135,7 @@ software
 
 ---
 ### ACTIVIDADES DE MANEJO DE CALIDAD
+<!-- .slide: class="final" -->
 El manejo de calidad debe ser separado del manejo del proyecto
 para asegurar independencia
 
@@ -194,6 +205,7 @@ producto y las acciones a tomar para enfrentar dichos riesgos
 ----
 
 ### ATRIBUTOS DE LA CALIDAD DEL SOFTWARE
+<!-- .slide: class="final" -->
 
 1. **Protección:** Capacidad del sistema para evitar accesos no autorizados o acciones maliciosas. Incluye control de acceso, manejo de roles, autenticación y autorización.
 
@@ -204,6 +216,7 @@ producto y las acciones a tomar para enfrentar dichos riesgos
 ----
 
 ### ATRIBUTOS DE LA CALIDAD DEL SOFTWARE
+<!-- .slide: class="final" -->
 
 4. **Comprensibilidad:** Qué tan fácil es entender el código o la lógica del sistema.
 
@@ -216,6 +229,7 @@ producto y las acciones a tomar para enfrentar dichos riesgos
 ----
 
 ### ATRIBUTOS DE LA CALIDAD DEL SOFTWARE
+<!-- .slide: class="final" -->
 
 8. **Eficiencia:** Uso óptimo de recursos (CPU, memoria, red, tiempo de respuesta).
 
@@ -226,6 +240,7 @@ producto y las acciones a tomar para enfrentar dichos riesgos
 ----
 
 ### ATRIBUTOS DE LA CALIDAD DEL SOFTWARE
+<!-- .slide: class="final" -->
 
 11. **Portabilidad:** Capacidad del sistema para ejecutarse en diferentes entornos o plataformas.
 
@@ -236,6 +251,7 @@ producto y las acciones a tomar para enfrentar dichos riesgos
 ----
 
 ### ATRIBUTOS DE LA CALIDAD DEL SOFTWARE
+<!-- .slide: class="final" -->
 
 14. **Usabilidad:** Facilidad con la que el usuario puede utilizar el sistema de forma efectiva, eficiente y satisfactoria.
 
@@ -244,7 +260,7 @@ producto y las acciones a tomar para enfrentar dichos riesgos
 ---
 
 ### Ejercicio: Atributos de Calidad
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 Para cada uno de los siguientes ejemplos determine el atributo de calidad principal:
 
 <p class="fragment">3. Robustez</p>
@@ -259,7 +275,7 @@ Para cada uno de los siguientes ejemplos determine el atributo de calidad princi
 ----
 
 ### Ejercicio: Atributos de Calidad
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 <p class="fragment">14. Usabilidad</p>
 - Una interfaz clara con botones y mensajes comprensibles.
 
@@ -272,7 +288,7 @@ Para cada uno de los siguientes ejemplos determine el atributo de calidad princi
 ----
 
 ### Ejercicio: Atributos de Calidad
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 <p class="fragment">13. Reusabilidad</p>
 - Una librería de autenticación usada en varios microservicios.
 
@@ -285,7 +301,7 @@ Para cada uno de los siguientes ejemplos determine el atributo de calidad princi
 ----
 
 ### Ejercicio: Atributos de Calidad
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 <p class="fragment">4. Comprensibilidad</p>
 - Un código bien comentado, con nombres descriptivos y arquitectura clara.
 <p class="fragment">11. Portabilidad</p>
@@ -296,7 +312,7 @@ Para cada uno de los siguientes ejemplos determine el atributo de calidad princi
 ----
 
 ### Ejercicio: Atributos de Calidad
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 <p class="fragment">7. Comprobabilidad</p>
 - Tener tests automatizados, logs y trazas claras que faciliten la validación de comportamientos.
 
@@ -375,6 +391,7 @@ porque tiene subcaracterísticas definidas y métricas asociadas en la familia I
 
 ---
 ### CALIDAD DE PROCESOS PRACTICA
+<!-- .slide: class="final" -->
 * Definir procesos de estándares que indiquen como llevar a cabo las
   revisiones, la administración de la configuración, etc.
 * Monitoriear el proceso de desarrollo para asegurar que se están siguiendo los estándares.
@@ -382,6 +399,7 @@ porque tiene subcaracterísticas definidas y métricas asociadas en la familia I
 
 ---
 ### CALIDAD BASADA EN PROCESOS
+<!-- .slide: class="final" -->
 ![Calidad Basada en Procesos](images/unidad11/proceso-de-calidad.png)
 
 ---
@@ -392,6 +410,7 @@ porque tiene subcaracterísticas definidas y métricas asociadas en la familia I
 
 ---
 ### IMPORTANCIA DE LOS ESTÁNDARES
+<!-- .slide: class="final" -->
 * Reúne las mejores practicas
 * Evita la repetición de errores pasados 
 * Proporciona un marco para el análisis de calidad - involucra verificar la conformidad con estándares
@@ -399,7 +418,7 @@ porque tiene subcaracterísticas definidas y métricas asociadas en la familia I
 
 ---
 ### ESTÁNDARES DE PRODUCTOS Y PROCESOS
-<!-- .slide: style="font-size: 0.80em" -->
+<!-- .slide: class="final" style="font-size: 0.80em" -->
 <!--
 | Estándares de producto                    | Estándares de proceso                             |
 |:------------------------------------------|:--------------------------------------------------|
@@ -454,12 +473,14 @@ porque tiene subcaracterísticas definidas y métricas asociadas en la familia I
 ----
 
 ### PROBLEMAS CON ESTÁNDARES
+<!-- .slide: class="final" -->
 * Involucrar a los desarrolladores. Los Ingenieros deberán entender la racionalidad bajo un estándar.
 * Revisión de estándares y su uso regularmente. Los estándares pueden rápidamente estar desactualizados lo cual reduce su credibilidad entre sus usuarios
 * Los estándares detallados deberán tener asociado una herramienta de soporte
 
 ---
 ### PROBLEMAS CON ESTÁNDARES
+<!-- .slide: class="final" -->
 **Excesivo trabajo manual es el más significante reclamo en contra de los estándares**
 
 ---
@@ -530,16 +551,19 @@ está hablando de un modelo retirado.
 
 ---
 ### CERTIFICACIÓN ISO
+<!-- .slide: class="final" -->
 * Los Estándares de calidad y procedimientos deberán ser documentados en un manual organizacional de calidad
 * Personal externo puede certificar que una organización conforma con los estándares ISO 9000/9001
 * Los clientes demandan cada vez mas que los productos tengan la certificación ISO 9000/9001
 
 ---
 ### ISO 9001
+<!-- .slide: class="final" -->
 ![ISO 9001](images/unidad11/iso9001.png)
 
 ---
 ### ISO 9001 Y MANEJO DE CALIDAD
+<!-- .slide: class="final" -->
 ![Manejo de Calidad](images/unidad11/manejo-de-calidad.png)
 
 ---
@@ -554,6 +578,7 @@ está hablando de un modelo retirado.
 
 ---
 ### PROCEDIMIENTOS DE REVISIÓN
+<!-- .slide: class="final" -->
 * Función de calidad - Es parte del proceso general de administración de calidad
 * Función de administración del proyecto - proveen información para los administradores del proyecto
 * Funciones de comunicación. Paso de conocimientos entre miembros del equipo
@@ -567,6 +592,7 @@ aprobado el progreso de la siguiente etapa del desarrollo
 
 ---
 ### REVISIONES DE CALIDAD
+<!-- .slide: class="final" -->
 * El objetivo es descubrir defectos en el sistema e inconsistencias
 * Cualquier documento producido en el proceso puede ser revisado
 * El equipo de revisión deberá ser relativamente pequeño y las revisiones deberán ser relativamente cortas
@@ -608,7 +634,7 @@ aprobado el progreso de la siguiente etapa del desarrollo
 
 ---
 ### INSPECCIONES DEL PROGRAMA
-<!-- .slide: style="font-size: 0.60em" -->
+<!-- .slide: class="final" style="font-size: 0.60em" -->
 <!--
 | Clase de falla    | Comprobación de inspección                                                               |
 |:------------------|:-----------------------------------------------------------------------------------------|
@@ -678,7 +704,7 @@ aprobado el progreso de la siguiente etapa del desarrollo
 ----
 
 ### INSPECCIONES DEL PROGRAMA
-<!-- .slide: style="font-size: 0.50em" -->
+<!-- .slide: class="final" style="font-size: 0.50em" -->
 <!--
 | Clase de falla                      | Comprobación de inspección                                                                                      |
 |:------------------------------------|:----------------------------------------------------------------------------------------------------------------|
@@ -801,6 +827,7 @@ caro del proceso.
 ---
 
 ### Proceso de Revisión de Software
+<!-- .slide: class="final" -->
 
 ![Proceso de Revisión de Software](images/unidad11/proceso-de-revision.png)
 
@@ -812,6 +839,7 @@ caro del proceso.
 
 ---
 ### MÉTRICAS DE CONTROL Y PREDICCIÓN
+<!-- .slide: class="final" -->
 ![Métricas de Control y Predicción](images/unidad11/metricas-control-prediccion.png)
 
 ---
@@ -823,6 +851,7 @@ caro del proceso.
 
 ---
 ### ATRIBUTOS INTERNOS Y EXTERNOS
+<!-- .slide: class="final" -->
 ![Atributos Internos y Externos](images/unidad11/atributos-internos-externos.png)
 
 ---
@@ -837,7 +866,7 @@ caro del proceso.
 ----
 
 ### MÉTRICAS ESTÁTICAS DE PRODUCTOS DE SOFTWARE
-<!-- .slide: style="font-size: 0.70em" -->
+<!-- .slide: class="final" style="font-size: 0.70em" -->
 * **Fan-in/Fan-Out:** Fan-in (abanico de entrada) es una medida del número de funciones o métodos que llaman a otra 
 función o método (por ejemplo, X). Fan-out (abanico de salida) es el número de funciones a las que llama la función X. 
 Un valor alto para fan-in significa que X está estrechamente acoplado con el resto del diseño y que los cambios a X 
@@ -850,6 +879,7 @@ la longitud del código es una de las métricas más fiables para predecir la pr
 ----
 
 ### MÉTRICAS ESTÁTICAS DE PRODUCTOS DE SOFTWARE
+<!-- .slide: class="final" -->
 * **Complejidad Ciclomática:** Ésta es una medida de la complejidad del control de un programa. Tal complejidad del 
 control puede relacionarse con la comprensibilidad del programa.
 * **Longitud de identificadores:** Ésta es una medida de la longitud promedio de los identificadores (nombres para 
@@ -859,6 +889,7 @@ sean significativos y, por ende, más comprensible será el programa.
 ----
 
 ### MÉTRICAS ESTÁTICAS DE PRODUCTOS DE SOFTWARE
+<!-- .slide: class="final" -->
 * **Profundidad de anidado condicional:** Ésta es una medida de la profundidad de anidado de los enunciados if en un 
 programa. Los enunciados if profundamente anidados son difíciles de entender y proclives potencialmente a errores.
 * **Índice Fog:** Ésta es una medida de la longitud promedio de las palabras y oraciones en los documentos. Cuanto más 
@@ -866,6 +897,7 @@ alto sea el valor del índice Fog de un documento, más difícil será entender 
 
 ---
 ### MÉTRICAS ORIENTADAS a OBJETOS
+<!-- .slide: class="final" -->
 * Métodos ponderados por clase
 * Profundidad de árbol de herencia
 * Número de hijos
@@ -876,7 +908,7 @@ alto sea el valor del índice Fog de un documento, más difícil será entender 
 ----
 
 ### MÉTRICAS ORIENTADAS a OBJETOS
-<!-- .slide: style="font-size: 0.75em" -->
+<!-- .slide: class="final" style="font-size: 0.75em" -->
 * **Métodos ponderados por clase:** Éste es el número de métodos en cada clase, ponderado por la complejidad de cada 
 método. Por lo tanto, un método simple puede tener una complejidad de 1, y un método grande y complejo tendrá un valor 
 mucho mayor. Cuanto más grande sea el valor para esta métrica, más compleja será la case de objeto. Es más probable que 
@@ -890,7 +922,7 @@ objetos en las hojas del árbol.
 ----
 
 ### MÉTRICAS ORIENTADAS a OBJETOS
-<!-- .slide: style="font-size: 0.75em" -->
+<!-- .slide: class="final" style="font-size: 0.75em" -->
 * **Número de hijos:** Ésta es una medida del número de subclases inmediatas en una clase. Mide la amplitud de una 
 jerarquia de clase, mientras que DIT mide su profundidad. Un valor alto de NOC puede indicar mayor reutilización. Podria 
 significar que debe realizarse más esfuerzo para validar las clases base, debido al número de subclases que dependen 
@@ -903,7 +935,7 @@ una clase afecte a otras clases en el programa.
 ----
 
 ### MÉTRICAS ORIENTADAS a OBJETOS
-<!-- .slide: style="font-size: 0.75em" -->
+<!-- .slide: class="final" style="font-size: 0.75em" -->
 * **Respuesta por clase:** RFC es una medida del número de métodos que potencialmente podrían ejecutarse en respuesta a 
 un mensaje recibido por un objeto de dicha clase. Nuevamente, RFC se relaciona con la complejidad. Cuanto más alto sea 
 el valor para RFC, más compleja será una case y, por ende, es más probable que incluya errores.
@@ -914,6 +946,7 @@ información útil además de la proporcionada por otras métricas.
 
 ---
 ### PROCESO DE MEDICIÓN DEL PRODUCTO
+<!-- .slide: class="final" -->
 ![Medición del Producto](images/unidad11/medicion-del-producto.png)
 
 ---
@@ -925,13 +958,14 @@ información útil además de la proporcionada por otras métricas.
 
 ---
 ### MÉTRICAS DE ACOPLAMIENTO
+<!-- .slide: class="final" -->
 * Asociado con la medida ‘fan-in y fan-out’.
 * Alta entrada (fan-in)- implica un alto acoplamiento debido a las dependencias de los módulos.
 * Alta salida (fan-out)- implica un alto acoplamiento debido a la complejidad del control
 
 ---
 ### MÉTRICAS DE CALIDAD EN UN PROGRAMA
-<!-- .slide: style="font-size: 0.85em" -->
+<!-- .slide: class="final" style="font-size: 0.85em" -->
 * Las métricas de diseño son también aplicables a programas.
 * Otras métricas incluyen:
   * Longitud. El tamaño del código fuente del programa.
@@ -942,6 +976,7 @@ información útil además de la proporcionada por otras métricas.
 
 ---
 ### CONSIDERACIONES PARA LAS MÉTRICAS
+<!-- .slide: class="final" -->
 * La longitud del código es simple pero la experimentación ha sugerido que
 representa un buen predictor de problemas
 * La complejidad ciclomatica puede ser engañosa
@@ -962,13 +997,16 @@ M = A − N + 2
 
 ---
 ![Grafos](images/unidad11/grafo.jpg)
+<!-- .slide: class="final" -->
 
 ---
 
 Grafo numerando nodos y aristas. **M=8-7+2**
+<!-- .slide: class="final" -->
 
 ---
 ### MÉTRICAS DE CALIDAD DE LA DOCUMENTACIÓN
+<!-- .slide: class="final" -->
 * La legibilidad es importante en la documentación
 * El índice “Gunnings Fog” es una medida de la legibilidad
   * Basada en la longitud de las frases y el número de sílabas en una palabra
