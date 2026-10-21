@@ -1,4 +1,15 @@
+---
+title: Casos de Pruebas
+theme: solarized
+slideNumber: true
+---
 
+#### Ingeniería de Software
+# Casos de Pruebas
+Created by <i class="fab fa-telegram"></i>
+[edme88]("https://t.me/edme88")
+
+---
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -52,20 +63,19 @@
 ### Alcance de esta unidad
 <!-- .slide: style="font-size: 0.80em" -->
 
-Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
-desarrollar en el cursado.
+Quedan **4 clases** y el programa no entra completo, asi que parte del material
+de esta unidad no se desarrolla en el cursado.
 
 <div class="grid-item">
 
-Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
-**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+Lo que **no se dicta en clase** esta completo en un mazo aparte:
+**[Casos de Pruebas: material de examen final](U8P_plantilla_caso_de_prueba_final.html)**
 
-Todo lo demas se dicta, y es la base para el trabajo practico.
+Es material de estudio y **se evalua en el examen final**.
 
 </div>
 
-**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
-mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
+Todo lo que sigue aca **si se dicta**, y es la base para el trabajo practico.
 
 ---
 
@@ -88,30 +98,6 @@ Los casos de prueba son parte fundamental de las pruebas de software y tienen va
 1. **Verificación de la calidad:** Los CP ayudan a garantizar que una aplicación o sistema funcione correctamente y 
 cumpla con los requisitos establecidos. Al ejecutar pruebas exhaustivas, se pueden detectar y corregir errores y 
 problemas antes de que lleguen a los usuarios finales.
-
-----
-
-## Plantilla de Casos de Pruebas
-<!-- .slide: class="final" style="font-size: 0.80em" -->
-2. **Documentación:** Los CP actúan como documentación detallada de cómo se debe probar una funcionalidad. Esto es útil 
-para los equipos de desarrollo y pruebas, ya que proporciona instrucciones claras sobre qué se debe probar y cómo hacerlo.
-3. **Automatización:** Los CP son esenciales para la automatización de pruebas. Pueden ser traducidos a scripts de 
-pruebas automatizadas que permiten ejecutar las pruebas de forma repetitiva y consistente, lo que ahorra tiempo y 
-recursos a largo plazo.
-4. **Validación de cambios:** Cuando se realizan cambios en una aplicación o sistema, los CP existentes pueden utilizarse 
-para verificar que las modificaciones no hayan introducido nuevos errores y que las funcionalidades existentes sigan 
-funcionando como se espera.
-
-----
-
-## Plantilla de Casos de Pruebas
-<!-- .slide: class="final" style="font-size: 0.80em" -->
-5. **Reproducción de errores:** Los CP permiten a los equipos de desarrollo y pruebas reproducir errores informados por 
-los usuarios. Esto facilita la identificación y corrección de problemas específicos.
-6. **Estándares de calidad:** Los CP son una parte fundamental de los estándares de calidad en el desarrollo de software. 
-Ayudan a mantener la coherencia en las pruebas y a garantizar que todas las funcionalidades se evalúen de manera adecuada.
-7. **Mejora de la confiabilidad:** Al realizar pruebas sistemáticas y controladas, se mejora la confiabilidad y 
-estabilidad del software, lo que reduce la probabilidad de fallos inesperados y garantiza una mejor experiencia para los usuarios.
 
 ---
 
@@ -182,18 +168,6 @@ permiten realizar un seguimiento más eficaz de los casos de uso o tests afectad
 * **Facilitar la comunicación:** Los identificadores proporcionan un lenguaje común y estandarizado que facilita la 
 comunicación entre los miembros del equipo de desarrollo, los diseñadores, los probadores y otros interesados en el proyecto.
 
-----
-
-### Identificador de caso de uso e Identificador de la prueba
-<!-- .slide: class="final" style="font-size: 0.90em" -->
-Un identificador de caso de uso puede ser una etiqueta alfanumérica única o un número, y a menudo se organiza de manera 
-estructurada para reflejar la jerarquía o el flujo de trabajo de un sistema. Por ejemplo, podría tener un formato como 
-"CU-001" para el primer caso de uso de un sistema, "CU-002" para el segundo, y así sucesivamente. Y de manera similar
-para los tests "TST-001", "TST-002".
-
-La elección del formato y la convención de nomenclatura dependen de las prácticas específicas de documentación adoptadas 
-por el equipo de desarrollo.
-
 ---
 
 ### Nombre del Caso de Uso
@@ -202,30 +176,6 @@ específico.
 
 Se suele utilizar una etiqueta o título corto que ayuda a los miembros del equipo de desarrollo, probadores y otros 
 stakeholders del proyecto a comprender rápidamente de qué se trata el caso de uso. 
-
-----
-
-### Nombre del Caso de Uso
-<!-- .slide: class="final" style="font-size: 0.80em" -->
-Los principales propósitos del nombre son:
-* **Identificación:** El nombre del caso de uso es una forma rápida de identificar un CU particular dentro de la 
-documentación del sistema. Proporciona un nombre único y distintivo que facilita la referencia y la comunicación entre 
-los miembros del equipo.
-* **Clarificación del Propósito:** El nombre del CU proporciona una descripción concisa del propósito o la funcionalidad 
-que el caso de uso representa. Esto ayuda a responder la pregunta "¿Qué hace este caso de uso?" sin necesidad de una 
-descripción detallada.
-
-----
-
-### Nombre del Caso de Uso
-<!-- .slide: class="final" style="font-size: 0.80em" -->
-* **Comunicación Efectiva:** El nombre del CU actúa como un medio de comunicación eficiente al proporcionar un resumen 
-rápido y legible de la funcionalidad que se está abordando.
-* **Búsqueda y Referencia:** Permite a los miembros del equipo buscar y hacer referencia rápidamente a un CU específico 
-cuando sea necesario.
-* **Contextualización:** Ayuda a poner en contexto el CU en el flujo general de trabajo o el comportamiento del sistema. 
-El nombre debe ser lo suficientemente descriptivo para que otros puedan entender su función sin tener que leer toda la 
-documentación detallada.
 
 ---
 
@@ -243,26 +193,6 @@ software. Esto es útil para garantizar que todos los aspectos requeridos del so
 lo que facilita la gestión y la revisión de los mismos.
 
 ---
-
-### Informador
-<!-- .slide: class="final" -->
-Se especifica quién es la persona o el equipo que documentó la prueba a realizar. 
-
----
-### Responsable
-<!-- .slide: class="final" -->
-Se especifica quién es la persona o el equipo encargado de ejecutar la prueba. Es importante para asignar la 
-responsabilidad de ejecutar y documentar la prueba.
-
----
-### Fecha de la Prueba
-<!-- .slide: class="final" -->
-Se registra cuándo se realizó la prueba. Esto es crucial para llevar un registro de cuándo se ejecutó el caso de prueba 
-y para rastrear el progreso del proceso de pruebas.
-En algunos sistemas habitual tener múltiples campos tipo fecha: Fecha de Creación, Fecha de Última Modificación, FechaS
-de ejecuciones, etc.
-
----
 ### Prerrequisitos
 Los prerrequisitos enumeran las condiciones o configuraciones necesarias que deben estar en su lugar antes de ejecutar 
 el caso de prueba. Ayudan a garantizar que el entorno de prueba sea adecuado y que no falte ningún elemento necesario.
@@ -278,12 +208,6 @@ El detalle de la prueba proporciona una descripción general de lo que se va a p
 Ofrece un contexto más amplio para comprender la prueba en su conjunto.
 
 ---
-### Detalle de lo que se Prueba
-<!-- .slide: class="final" -->
-Este campo se enfoca en los aspectos específicos o las características que se están probando en este caso de prueba en 
-particular. Ayuda a definir claramente el alcance de la prueba.
-
----
 ### Resultado esperado
 Aquí se especifican los resultados que se anticipan cuando la prueba se ejecuta correctamente. Estos resultados deben 
 ser medibles y verificables.
@@ -297,18 +221,6 @@ resultado obtenido con el resultado esperado permite determinar si la prueba fue
 Suele adjuntarse capturas de pantalla de cómo se visualiza la UI cuando se ejecuta la prueba.
 
 ---
-### Funciona / No Funciona / Requiere mantenimiento perfectivo
-<!-- .slide: class="final" -->
-Este campo indica si el caso de prueba funciona según lo esperado, no funciona (en caso de fallo) o si se requiere 
-realizar ajustes o mejoras en el software (mantenimiento perfectivo).
-
----
-### Comentarios
-<!-- .slide: class="final" -->
-Los comentarios permiten agregar información adicional, aclaraciones o detalles relevantes relacionados con la ejecución 
-de la prueba. Pueden ser útiles para proporcionar contexto adicional o explicar situaciones específicas.
-
----
 ### Resultado: ACEPTADO / NO ACEPTADO
 Al finalizar la ejecución de la prueba, este campo indica si el caso de prueba se considera aceptado (cumple con los 
 criterios de aceptación) o no aceptado (falló en algún aspecto).
@@ -320,26 +232,6 @@ Se suele emplear **Jira**, **Azure** o cualquier herramienta de tickets, que per
 ---
 
 ![Jira 1](images/unidad8/jira1.jpg)
-
----
-
-![Jira 2](images/unidad8/jira2.jpg)
-<!-- .slide: class="final" -->
-
----
-
-![Jira Ejemplo 1](images/unidad8/jira-ejemplo1.jpg)
-<!-- .slide: class="final" -->
-
----
-
-![Jira Ejemplo 2](images/unidad8/jira-ejemplo2.jpg)
-<!-- .slide: class="final" -->
-
----
-
-![Jira Ejemplo 3](images/unidad8/jira-ejemplo3.jpg)
-<!-- .slide: class="final" -->
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?

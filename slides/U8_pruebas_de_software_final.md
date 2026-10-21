@@ -1,0 +1,266 @@
+---
+title: Pruebas de Software - Material de examen final
+theme: solarized
+slideNumber: true
+---
+
+#### Ingenieria de Software
+# Pruebas de Software
+### Material de examen final
+
+<style>
+.grid-container2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 0.8em;
+    text-align: left !important;
+}
+
+.grid-item {
+    border: 3px solid rgba(121, 177, 217, 0.8);
+    padding: 20px;
+    text-align: left !important;
+}
+</style>
+
+---
+
+### Que es este mazo
+<!-- .slide: style="font-size: 0.80em" -->
+
+<div class="grid-item">
+
+Estas filminas **no se dictan en clase** por razones de tiempo, pero
+**entran en el examen final**.
+
+Son la profundizacion de los temas que si se vieron en
+**[Pruebas de Software](U8_pruebas_de_software.html)**. Conviene estudiarlas despues de ese mazo,
+no antes.
+
+</div>
+
+Son **24 filminas**.
+
+---
+### Pruebas de Software
+
+**Puede revelar la presencia de errores, no sus ausencias.**
+
+---
+
+### Inspecciones y Pruebas
+
+![Inspecciones y Pruebas](images/unidad8/inspecciones-y-pruebas.png)
+
+---
+
+#### VSC: Plugins
+
+- **ESlint:** Es una herramienta de análisis estático de código enfocada en encontrar y corregir problemas en el código 
+JavaScript y en otros lenguajes basados en este, como TypeScript. Se utiliza para mantener un código más limpio, 
+consistente y libre de errores.
+- **SonarLint:** Ayuda a los desarrolladores a encontrar y solucionar errores en tiempo real mientras escriben código.
+
+---
+### Partes del conjunto automatizado de pruebas
+
+1. **Configuración**, donde se inicializa el sistema con el caso de prueba, es decir, entradas y salidas esperadas.
+2. **Llamada**, cuando se llama al objeto o método para probar.
+3. **Declaración**, donde se compara el resultado de la llamada con el resultado esperado. Si es verdadera, la
+  prueba ha tenido éxito, si es falso ha fracasado.
+
+---
+### Efectividad de prueba de unidad
+<!-- .slide: style="font-size: 0.90em" -->
+* Los casos de prueba deben demostrar que, cuando se usa como se esperaba, el componente que se está
+  probando hace lo que se supone que debe hacer.
+* Si hay defectos en el componente, éstos deben ser revelados por los casos de prueba.
+* Dos tipos de casos de prueba de unidad:
+  * El primero debe reflejar el funcionamiento normal de un programa y demostrar que el componente funciona como se esperaba.
+  * El segundo debe basarse en la experiencia de donde surgen los problemas comunes.
+  * Se debe utilizar entradas anormales para comprobar que el componente no falle.
+
+---
+### Pautas para diseñar casos de prueba basados en secuencias
+
+* Secuencias que tienen un solo valor.
+* Usar secuencias de diferentes tamaños en diferentes pruebas. 
+* Acceder al primero, al del medio y al último elementos de la secuencia. 
+* Secuencias de longitud cero.
+
+---
+### Prueba de interface
+
+**Objetivo: detectar fallas debido a errores de interfaz o suposiciones inválidas sobre interfaces.**
+
+---
+### Prueba de interface: Tipos de interface
+<!-- .slide: style="font-size: 0.90em" -->
+1. **Interfaces de parámetro:** los datos, o referencias de función, pasan de un componente a otro (métodos en un objeto).
+2. **Interfaces de memoria compartida:** un bloque de memoria se comparte entre componentes. (sistemas embebidos, sensores
+crean datos que se recuperan y son procesados por otros componentes).
+3. **Interfaces de procedimiento:** un componente encapsula un conjunto de procedimientos que pueden ser llamados por otros
+componentes (componentes reutilizables)
+4. **Interfaces que pasan mensajes:** al enviar un mensaje, un componente solicita un servicio de otro componente (sistemas
+cliente-servidor)
+
+---
+### Errores de interface
+<!-- .slide: style="font-size: 0.90em" -->
+* **Uso incorrecto de la interface:** un componente llama a otro con errores en el uso de su interface.
+Ej: Interfaces de parámetro, error de tipo, orden o número de parámetros.
+* **Mala interpretación de la interface:** un componente malinterpreta la especificación de la interface del
+componente Ej: método de búsqueda binaria enviando como parámetro un arreglo desordenado.
+* **Errores de temporización:** en sistemas de tiempo real que usan una memoria compartida. El productor de datos y el
+consumidor de datos operan a diferentes niveles de rapidez.
+
+---
+### Lineamientos para pruebas de interfaz
+
+* Diseñar pruebas para que los parámetros de un procedimiento llamado se encuentren en los
+extremos de sus rangos.
+* Probar los parámetros de tipo puntero con punteros nulos.
+* Diseñar pruebas que hagan que el componente falle.
+* Utilice las pruebas de estrés en los sistemas de paso de mensajes.
+* En los sistemas de memoria compartida, variar el orden en que se activan los componentes.
+
+---
+### Pruebas del sistema y de componentes
+<!-- .slide: style="font-size: 0.90em" -->
+* Durante las pruebas del sistema, se prueba el sistema completo. Incluyendo:
+  * Componentes reutilizables que han sido desarrollados por separado e integrados con
+  componentes desarrollados recientemente.
+  * Componentes desarrollados por diferentes miembros del equipo o sub-equipos
+* Las pruebas del sistema son colectivas más que un proceso individual.
+* En general las realiza un equipo de pruebas independiente sin participación de diseñadores y programadores.
+
+---
+
+### Clasificación de pruebas (otras dimensiones)
+
+* **Según el objetivo:** funcionales, no funcionales.  
+* **Según el conocimiento interno:** caja negra, caja blanca, caja gris.  
+* **Según el entorno:** manuales, automatizadas, híbridas.  
+* **Según el tipo de dato:** pruebas positivas, negativas, límite.
+
+---
+### Políticas de prueba
+
+Las pruebas exhaustivas del sistema son imposibles. Se establece una política de pruebas
+para definir la cobertura.
+
+---
+
+### Políticas de prueba
+
+En general se debe probar:
+* Todas las funciones del sistema que se acceden a través de menús.
+* Las combinaciones de funciones a las que se accede a través del mismo menú.
+* Todas las funciones para las cuales haya entrada del usuario.
+
+---
+
+### Desarrollo basado en pruebas
+
+![Desarrollo basado en pruebas](images/unidad8/desarrollo-basado-en-pruebas.png)
+
+---
+### Pruebas de versión y pruebas de sistema
+
+Diferencias importantes:
+* Un equipo separado que no haya estado involucrado en el desarrollo del sistema, debe ser
+responsable de las pruebas de versión.
+* Las **pruebas del sistema** por el equipo de desarrollo debe centrarse en el descubrimiento de
+errores en el sistema (pruebas de defectos).
+* El objetivo de las **pruebas de versión** es para comprobar que el sistema cumpla con sus
+requisitos y es lo suficientemente bueno para el uso externo (pruebas de validación).
+
+---
+### Requisitos MHC-PMS:
+
+* Si un paciente se sabe que es alérgico a algún medicamento en particular, entonces la
+prescripción de medicamentos que dará lugar a un mensaje de aviso que se entregará al usuario del sistema.
+* Si un prescriptor elige ignorar una advertencia de alergia, deberán proveer una razón por la que esto ha sido ignorado.
+
+---
+
+### Pruebas de requerimientos MHC-PMS
+<!-- .slide: style="font-size: 0.80em" -->
+* Elegir uno o más paciente/s con alergia a un fármaco: 
+  * Prescribir medicamentos para los cuales no es alérgico, comprobar que el mensaje de advertencia no se emite. 
+  * Prescribir el medicamento para el cual es alérgico, comprobar que la advertencia se emite.
+* Elegir uno o más paciente/s con alergias a dos o más drogas:
+  * Prescribir ambos fármacos por separado, comprobar que se emitió la advertencia para cada uno. 
+  * Prescribir ambos fármacos al mismo tiempo comprobar que las dos advertencias se emiten correctamente. 
+* Prescribir un medicamento que emite una advertencia e ignorarla. Comprobar que el sistema requiere que el
+usuario proporcione una explicación de por qué rechazada la advertencia.
+
+---
+### Pruebas de escenario
+
+* Son un enfoque a las pruebas de versión donde se crean escenarios típicos de uso y se les utiliza en el desarrollo de 
+casos de prueba para el sistema.
+* Un escenario es una historia que describe una forma en que puede usarse el sistema.
+* Los escenarios deben ser realistas, y lo usuarios reales del sistema tienen que relacionarse con ellos.
+
+---
+
+### Prueba de escenario MHC-PMS
+<!-- .slide: style="font-size: 0.80em" -->
+Kate es enfermera con especialidad en atención a la salud mental. Una de sus
+responsabilidades es visitar a domicilio a los pacientes, para comprobar la
+efectividad de su tratamiento y que no sufran de efectos colaterales del fármaco.
+En un día de visitas domésticas, Kate ingresa al MHC-PMS y lo usa para
+imprimir su agenda de visitas domiciliarias para ese día, junto con información
+resumida sobre los pacientes por visitar. Solicita que los registros para dichos
+pacientes se descarguen a su laptop. Se le pide la palabra clave para cifrar los
+registros en la laptop.
+Uno de los pacientes a quienes visita es Jim, quien es tratado con medicamentos
+antidepresivos. Jim siente que el medicamento le ayuda, pero considera que el
+efecto colateral es que se mantiene despierto durante la noche.
+
+---
+
+### Prueba de escenario MHC-PMS
+<!-- .slide: style="font-size: 0.80em" -->
+Kate observa el registro de Jim y se le pide la palabra clave para descifrar el
+registro. Comprueba el medicamento prescrito y consulta sus efectos colaterales.
+El insomnio es un efecto colateral conocido, así que anota el problema en el
+registro de Jim y sugiere que visite la clínica para que cambien el medicamento.
+Él está de acuerdo, así que Kate ingresa un recordatorio para llamarlo en
+cuanto ella regrese a la clínica, para concertarle una cita con un médico.
+Termina la consulta y el sistema vuelve a cifrar el registro de Jim.
+Más tarde, al terminar sus consultas, Kate regresa a la clínica y sube los
+registros de los pacientes visitados a la base de datos. El sistema genera para
+Kate una lista de aquellos pacientes con quienes debe comunicarse, para
+obtener información de seguimiento y concertar citas en la clínica.
+
+---
+
+### Pruebas para el escenario
+
+* Autenticación al ingresar al sistema. 
+* Descarga y carga registros de paciente específicos desde una laptop. 
+* Agenda de visitas a domicilio. 
+* Cifrado y descifrado de registros de pacientes en un dispositivo móvil. 
+* Recuperación y modificación de registros. 
+* Vinculación con la base de datos de medicamentos que mantenga información acerca de efectos colaterales. 
+* Sistema para recordatorio de llamadas.
+
+---
+
+### Pruebas de usuario
+
+El entorno de trabajo del usuario tiene un efecto importante en la fiabilidad,
+rendimiento, facilidad de uso y robustez de un sistema.
+No puede ser replicado en un entorno de prueba.
+
+---
+### Etapas en el proceso de las pruebas de aceptación
+
+![Etapas en el proceso de aceptación de pruebas](images/unidad8/aceptacion-de-pruebas.png)
+
+
+---
+## Dudas, Preguntas, Comentarios?
+![DUDAS](images/pregunta.gif)

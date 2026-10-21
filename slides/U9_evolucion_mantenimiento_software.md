@@ -1,4 +1,15 @@
+---
+title: Evolución y Mantenimiento de Software
+theme: solarized
+slideNumber: true
+---
 
+#### Ingeniería de Software
+# Evolución y Mantenimiento de Software
+Created by <i class="fab fa-telegram"></i>
+[edme88]("https://t.me/edme88")
+
+---
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -43,20 +54,19 @@
 ### Alcance de esta unidad
 <!-- .slide: style="font-size: 0.80em" -->
 
-Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
-desarrollar en el cursado.
+Quedan **4 clases** y el programa no entra completo, asi que parte del material
+de esta unidad no se desarrolla en el cursado.
 
 <div class="grid-item">
 
-Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
-**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+Lo que **no se dicta en clase** esta completo en un mazo aparte:
+**[Evolución y Mantenimiento de Software: material de examen final](U9_evolucion_mantenimiento_software_final.html)**
 
-Todo lo demas se dicta, y es la base para el trabajo practico.
+Es material de estudio y **se evalua en el examen final**.
 
 </div>
 
-**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
-mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
+Todo lo que sigue aca **si se dicta**, y es la base para el trabajo practico.
 
 ---
 ### Evolución y/o Mantenimiento
@@ -67,14 +77,6 @@ mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
   * Corrección de errores 
   * Adaptarlo a cambios de software o hardware 
   * Mejora de rendimiento
-
----
-### Evolución o Mantenimiento
-<!-- .slide: class="final" -->
-* **Evolución del software:** una sola organización es responsable tanto del desarrollo inicial del software
-como de su evolución posterior.
-* **Mantenimiento del software:** el desarrollo inicial del software y su evolución posterior es realizado por
-organizaciones diferentes.
 
 ---
 **El proceso de desarrollo de software se debe considerar
@@ -97,11 +99,6 @@ Provienen de:
 continúan a lo largo de la vida de un sistema.**
 
 ![Proceso de Desarrollo](images/unidad9/proceso-desarrollo2.jpg)
-
----
-### Proceso de evolución del software
-<!-- .slide: class="final" -->
-![Proceso de evolución del software](images/unidad9/evolucion-de-software.jpg)
 
 ---
 ### Implementación del cambio (ideal)
@@ -128,27 +125,6 @@ evolución permanece invariante durante su ciclo de vida.
 5. **Conservación de la familiaridad:** Cuando un sistema evoluciona, todos aquellos que están asociados a él deben 
 mantener un conocimiento de su contenido y comportamiento para tratar de conseguir una evolución satisfactoria.
 
-----
-
-### Leyes de Lehman
-<!-- .slide: class="final" -->
-6. **Crecimiento continuo:** Las funcionalidades del sistema tienen que crecer constantemente para mantener la 
-satisfacción del usuario a lo largo de su ciclo de vida.
-7. **Reducción de la calidad:** La calidad de los sistemas comienza a disminuir a menos que se mantengan de forma 
-rigurosa y se adapten a los cambios en su entorno de funcionamiento.
-
-----
-
-### Leyes de Lehman
-<!-- .slide: class="final" -->
-8. **Realimentación del sistema:** El proceso de evolución del sistema es consecuencia de un proceso de retroalimentación 
-a diferentes niveles.
-
----
-### Leyes de Lehman
-<!-- .slide: class="final" -->
-![Leyes de Lehman](images/unidad9/leyes-lehman.jpg)
-
 ---
 ### Mantenimiento del software
 Es el proceso general de cambiar un sistema después de que éste se entregó.
@@ -171,63 +147,13 @@ implementación de nuevos requerimientos
 ![Grafico Circular](images/unidad9/grafico-circular.jpg)
 
 ---
-### Los costos del Mantenimiento de software
-<!-- .slide: class="final" -->
-Resulta más costoso agregar funcionalidad después de que un sistema
-está en operación, que implementar la misma funcionalidad durante el
-desarrollo.
-
----
-### Los costos del Mantenimiento de software
-<!-- .slide: class="final" -->
-* **Estabilidad del equipo:** Después la entrega, en general el equipo de desarrollo se separa.
-* **Calidad de desarrollo deficiente:** se ahorra esfuerzo durante el desarrollo aunque el software sea más difícil de 
-cambiar en el futuro.
-* **Habilidades del personal:** El personal de mantenimiento con frecuencia es relativamente inexperto.
-* **Antigüedad y estructura del programa:** Conforme se realizan cambios al programa, su estructura tiende a degradarse.
-
----
 ### Predicción del Mantenimiento de software
 Predecir qué cambios pueden proponerse al sistema y qué partes serán las más difíciles de mantener.
 
 Estimar los costos del mantenimiento durante cierto lapso de tiempo.
 
 ---
-### Predicción del Mantenimiento de software
-<!-- .slide: class="final" -->
-![Estimar costos de mantenimiento](images/unidad9/estimar-costos-de-mantenimiento.jpg)
-
----
-### Predicción del Mantenimiento de software
-<!-- .slide: class="final" style="font-size: 0.80em" -->
-Se debe valorar:
-* **El número y la complejidad de las interfaces del sistema:** 
-Cuanto más grande es el número de interfaces es más probable que se requieran cambios al agregar nuevos requerimientos.
-* **El número de requerimientos de sistema inherentemente inestables:**
-Los requerimientos que reflejan políticas y procedimientos de la organización son más inestables que los que
-se basan en características de un dominio estable.
-* **Los procesos empresariales donde se usa el sistema:**
-A medida que evolucionan los procesos empresariales se generan necesidades de cambio. Cuantos más procesos use un 
-sistema, habrá más demandas de cambio.
-
----
 ![Tipos de mantenimiento](images/unidad9/tipos-de-mantenimiento.jpg)
-
----
-![Mantenimiento Preventivo](images/unidad9/matenimiento-preventivo.jpg)
-<!-- .slide: class="final" -->
-
----
-![Mantenimiento Correctivo](images/unidad9/mantenimiento-correctivo.jpg)
-<!-- .slide: class="final" -->
-
----
-![Mantenimiento Perfectivo](images/unidad9/mantenimiento-perfectivo.jpg)
-<!-- .slide: class="final" -->
-
----
-![Mantenimiento Adaptativo](images/unidad9/mantenimiento-adaptativo.jpg)
-<!-- .slide: class="final" -->
 
 ---
 ### Actividades del Mantenimiento de software

@@ -1,4 +1,15 @@
+---
+title: Automatización de Casos de Pruebas
+theme: solarized
+slideNumber: true
+---
 
+#### Ingeniería de Software
+# Automatización de Casos de Pruebas 2
+Created by <i class="fab fa-telegram"></i>
+[edme88]("https://t.me/edme88")
+
+---
 <!-- .slide: style="font-size: 0.60em" -->
 <style>
 .grid-container2 {
@@ -35,20 +46,19 @@
 ### Alcance de esta unidad
 <!-- .slide: style="font-size: 0.80em" -->
 
-Quedan **4 clases** y el programa no entra completo, asi que parte del material no se va a
-desarrollar en el cursado.
+Quedan **4 clases** y el programa no entra completo, asi que parte del material
+de esta unidad no se desarrolla en el cursado.
 
 <div class="grid-item">
 
-Las filminas marcadas con **&#9761; No se dicta en clase** estan completas aca y
-**se evaluan en el examen final**. Son material de estudio: nadie las va a explicar en clase.
+Lo que **no se dicta en clase** esta completo en un mazo aparte:
+**[Automatización de Casos de Pruebas: material de examen final](U8P3_gherkin_final.html)**
 
-Todo lo demas se dicta, y es la base para el trabajo practico.
+Es material de estudio y **se evalua en el examen final**.
 
 </div>
 
-**Como estudiarlas:** la filmina marcada siempre viene despues de la que si se dicta sobre el
-mismo tema. Si entendiste la que se dicto, la marcada es la profundizacion.
+Todo lo que sigue aca **si se dicta**, y es la base para el trabajo practico.
 
 ---
 
@@ -93,13 +103,6 @@ para poner al sistema en el estado que se desea probar.
 * **When** La interacción del usuario que acciona la funcionalidad que deseamos testear.
 * **Then** Especifica el resultado esperado en el test. Observamos los cambios en el sistema y vemos si son los deseados.
 
-----
-
-### Gherkin
-<!-- .slide: class="final" -->
-
-![Gherkin](images/unidad8_automatizacion/gherkin.jpg)
-
 ---
 ### Cucumber
 Es una herramienta para implementar metodologías como el Behaviour Driven Development BDD, que permite ejecutar 
@@ -117,15 +120,6 @@ equipos comerciales y técnicos.
 * **Especificaciones Ejecutables:** Porque cada paso en el escenario está vinculado a un fragmento de código que realiza
 esa acción.
 
-----
-
-### Cucumber
-<!-- .slide: class="final" -->
-Los **objetivos** principales que se deben seguir:
-* Los escenarios deben ser pensados como documentación.
-* Los escenarios deben permitir la colaboración con gente de negocio (PO, BA)
-* Los escenarios deben permitir la evolución del producto.
-
 ---
 
 ### Ejercicio: Cypress+Cucumber
@@ -133,15 +127,6 @@ Los **objetivos** principales que se deben seguir:
 2. Clona el repositorio
 3. Ejecutar el comando **npx cypress open**
 4. Ejecuta algún test
-
-----
-
-### Cucumber
-<!-- .slide: class="final" -->
-Los proyectos con cucumber tienen principalmente 3 archivos:
-* **nombreTests.feature**: Describen en Gherkin el comportamiento, empleando las palabras Givem, When, Then, etc.
-* **nombreStep.js** Emplando Js se programa que acciones de código se deben realizar en cada paso.
-* **nombrePage.js** Se colocan los locadores dentro de métodos que permitan obtenerlos y manipularlos con mayor facilidad.
 
 ---
 
@@ -153,45 +138,6 @@ Los siguientes principios permiten alcanzar estas metas:
 * Esencial
 * Enfocado (Focused)
 * Breve (brief)
-
-----
-
-#### BRIEF: Lenguaje Comercial
-<!-- .slide: class="final" -->
-* Las palabras usadas deben venir del dominio comercial. No debe haber ambiguedades.
-* Un error común es emplear palabras que tienen diferente significado en diferentes contextos.
-
-----
-
-#### BRIEF: Datos Reales
-<!-- .slide: class="final" -->
-* Los ejemplos deben usar datos reales y contretos, para ayudar a entender el contexto.
-
-----
-
-#### BRIEF: Revelación de intención
-<!-- .slide: class="final" -->
-* En el escenario debe quedar claro cuál es la intención, que se está tratando de lograr.
-
-----
-
-#### BRIEF: Esencial
-<!-- .slide: class="final" -->
-* Cualquier paso que no contribuya a alcanzar el propósito principal debe elimianrse. Si son importantes, deben cubrirse 
-por otros esenarios que ilustren otras reglas.
-* Un error común es incluir demasiados detalles.
-
-----
-
-#### BRIEF: Enfocado
-<!-- .slide: class="final" -->
-* Un escenario debería centrarse en una sola regla.
-
-----
-
-#### BRIEF: Breve
-<!-- .slide: class="final" -->
-* Los escenarios no deberían tener más de 5 líneas, haciendo que sen fáciles de leer y entender.
 
 ---
 ## ¿Dudas, Preguntas, Comentarios?
