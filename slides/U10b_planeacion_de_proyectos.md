@@ -378,16 +378,6 @@ Incluye 4 submodelos:
 
 ---
 
-### 2. Modelo de diseño temprano
-Simplifica la fórmula general:  
-
-**Esfuerzo = A × Tamaño^B × M**  
-
-- Tamaño expresado en **puntos de función**, convertidos a **KSLOC** (miles de líneas de código).  
-- Factores: entradas/salidas externas, interacciones, interfaces y tablas.  
-
----
-
 730 meses-hombre significa:
 - Si una sola persona trabajara sola → tardaría 730 meses (~60 años).
 - Si trabajaran 10 personas → serían 73 meses (~6 años).
@@ -561,34 +551,38 @@ Dependencias externas: pasarela de pagos, servicio de mailing, y las wallets de 
 
 ----
 
-### 💡 Ejercicio 2: Estimar por tres caminos
+### 💡 Ejercicio 2: Estimar de tres maneras
 <!-- .slide: class="exercise-slide" -->
-<!-- .slide: style="font-size: 0.70em" -->
+<!-- .slide: style="font-size: 0.68em" -->
 
-Estimá el **esfuerzo total** del proyecto con tres métodos distintos y comparalos:
+Estimá el **esfuerzo del primer incremento** —el MVP del ejercicio anterior— con tres enfoques
+distintos, y comparalos:
 
-**a) Puntos de objeto (COCOMO II, composición de aplicación).** Contá pantallas e informes del
-sistema: el mapa de sala, el backoffice de salas y distribuciones, el alta de eventos y funciones,
-la selección de butacas, el checkout, el panel del RRPP, el control de acceso, y los 8 reportes
-especificados. Asumí **15 % de reutilización** y experiencia del equipo **nominal**.
+**a) Analogía.** Partí de un sistema que conozcas o hayas hecho, ajustá por diferencias de
+tamaño y de complejidad, y **declará los supuestos** del ajuste.
 
-**b) Diseño temprano.** Convertí a KSLOC con el supuesto que declares, tomá **B = 1,15** y los
-multiplicadores: PERS alto, RCPX alto, RUSE nominal, PDIF alto, PREX bajo, FCIL nominal,
-SCED nominal.
+**b) Juicio experto en grupo (Planning Poker).** Repartí las tareas del ejercicio 1 y que cada
+integrante las estime en puntos relativos, sin ver lo que puso el resto. Donde haya dispersión
+grande, discutan **por qué** antes de volver a estimar: la discrepancia casi siempre revela que
+entendieron la tarea de forma distinta.
 
-**c) Analogía y juicio experto.** Partí de un sistema que conozcas y ajustá.
+**c) Métricas de flujo.** Suponé que el equipo termina **4 tareas por semana** y que el
+*cycle time* promedio es de 6 días. ¿Cuánto tarda el MVP? ¿Qué pasa si el throughput cae a 2?
 
-**Después:** ¿cuánto se separan los tres resultados? ¿Cuál le presentarías al cliente y **cómo** lo
-presentarías?
+**Para cerrar:** ¿cuánto se separan los tres resultados? ¿Cuál le presentarías al cliente y
+**cómo**? ¿Qué le agregarías al número antes de decirlo en voz alta?
 
 <!--
-Lo que importa no es el numero sino la dispersion: tres metodos dan tres resultados muy distintos,
-y eso es exactamente el cono de incertidumbre. La respuesta correcta al cierre es presentar un
-RANGO con probabilidad, no un numero.
-En (b): RCPX alto por la concurrencia y los pagos; PDIF alto por la preventa de 5.000
-concurrentes; PREX bajo porque el equipo no hizo ticketing antes. Eso empuja M hacia arriba y el
-esfuerzo tambien. Si a algun grupo le da que entra en 9 meses con 6 personas, hay que revisar los
-supuestos: es la señal de que ajustaron el modelo al resultado deseado.
+Lo que importa no es el numero sino la dispersion: tres enfoques dan tres resultados distintos, y
+eso es exactamente el cono de incertidumbre.
+La respuesta correcta al cierre es presentar un RANGO con una probabilidad asociada y una
+contingencia explicita, nunca un numero unico. Si un grupo entrega "4 meses" sin rango, ahi esta
+la correccion.
+En (b) el valor pedagogico no es el numero sino la discusion: la dispersion entre estimadores es
+informacion, no ruido.
+En (c): 4 tareas por semana sobre las 8 a 12 tareas del ejercicio 1 da 2 a 3 semanas de
+throughput puro; con el cycle time se ve que el trabajo en curso tambien cuenta. Si el throughput
+cae a la mitad, el plazo se duplica: es la relacion que la velocity esconde.
 -->
 
 ----
@@ -600,20 +594,24 @@ supuestos: es la señal de que ajustaron el modelo al resultado deseado.
 Supongamos que tu estimación da **54 meses-persona**. Con 6 personas son **9 meses**: justo el
 plazo pedido. El cliente pregunta si con **12 personas** lo tiene en 4 meses y medio.
 
-1. Respondé con la **ley de Brooks** y con la ecuación de calendario de COCOMO. ¿Cuál es el
-   calendario mínimo realista?
-2. ¿Qué le pasa a los canales de comunicación al pasar de 6 a 12 personas?
-3. El factor **SCED** de COCOMO penaliza la compresión del calendario. ¿Qué significa que
-   comprimir **aumente** el esfuerzo total?
+1. Respondé con la **ley de Brooks**. ¿Por qué dividir el esfuerzo por la cantidad de personas no
+   da el calendario?
+2. ¿Qué le pasa a los **canales de comunicación** al pasar de 6 a 12 personas? Calculalo.
+3. ¿Cuánto del trabajo de este proyecto es **indivisible**, es decir, no se puede repartir entre
+   más gente por más que la haya? Nombrá dos tareas concretas del ejercicio 1.
 4. Proponé **tres alternativas** al "poner más gente", con su costo.
 5. De las tres restricciones —alcance, tiempo, costo— ¿cuál recomendás mover y por qué?
 
 <!--
-1. TDEV = 3,67 x PM^(0,28+0,2(B-1,01)). Con PM=54 y B=1,15 da alrededor de 13 meses, no 9 ni 4,5.
-   El modelo dice que el proyecto ya esta comprimido en el plazo original.
-2. De 15 canales a 66. Mas que cuadruplica.
-3. Significa que apurar no es gratis: parte del esfuerzo nuevo se consume en coordinacion y
-   retrabajo, no en producto. Es la formalizacion de Brooks dentro del modelo.
+1. Porque esfuerzo y tiempo no son intercambiables: coordinacion cuadratica, tiempo de
+   incorporacion de cada persona nueva (que consume a alguien que ya producia) y tareas
+   indivisibles. Si el plazo original ya era de 9 meses para 54 meses-persona, el proyecto YA
+   estaba comprimido: no hay margen para la mitad.
+2. De 15 canales a 66, con n(n-1)/2. Mas que cuadruplica.
+3. Candidatas: definir el modelo de distribuciones de sala y la decision de si la compra es unica
+   o separada por dominio. Son decisiones de diseño que tiene que tomar una persona o dos
+   conversando, y no se aceleran agregando gente. Tampoco se acelera la integracion con la
+   pasarela, que depende de un tercero.
 4. Reducir alcance (sacar transporte, merch, RRPP y wallets del primer release); reutilizar en
    lugar de construir (pasarela, mailing, y evaluar un servicio de pases en lugar de integrar las
    dos wallets); bajar la calidad declarada de algun atributo no critico, dejandolo explicito.
