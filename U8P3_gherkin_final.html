@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Automatización de Casos de Pruebas - Material de examen final</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/solarized.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/base16/zenburn.css" />
+
+    <link rel="stylesheet" href="./_assets/slides/css/filminas.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="^---" data-separator-vertical="^\r?\n----\r?\n$">
+          <textarea data-template>
+            
+
+#### Ingenieria de Software
+# Automatización de Casos de Pruebas
+### Material de examen final
+
+<style>
+.grid-container2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 0.8em;
+    text-align: left !important;
+}
+
+.grid-item {
+    border: 3px solid rgba(121, 177, 217, 0.8);
+    padding: 20px;
+    text-align: left !important;
+}
+</style>
+
+---
+
+### Que es este mazo
+<!-- .slide: style="font-size: 0.80em" -->
+
+<div class="grid-item">
+
+Estas filminas **no se dictan en clase** por razones de tiempo, pero
+**entran en el examen final**.
+
+Son la profundizacion de los temas que si se vieron en
+**[Automatización de Casos de Pruebas](U8P3_gherkin.html)**. Conviene estudiarlas despues de ese mazo,
+no antes.
+
+</div>
+
+Son **9 filminas**.
+
+---
+
+### Gherkin
+
+
+![Gherkin](images/unidad8_automatizacion/gherkin.jpg)
+
+---
+
+### Cucumber
+
+Los **objetivos** principales que se deben seguir:
+* Los escenarios deben ser pensados como documentación.
+* Los escenarios deben permitir la colaboración con gente de negocio (PO, BA)
+* Los escenarios deben permitir la evolución del producto.
+
+---
+
+### Cucumber
+
+Los proyectos con cucumber tienen principalmente 3 archivos:
+* **nombreTests.feature**: Describen en Gherkin el comportamiento, empleando las palabras Givem, When, Then, etc.
+* **nombreStep.js** Emplando Js se programa que acciones de código se deben realizar en cada paso.
+* **nombrePage.js** Se colocan los locadores dentro de métodos que permitan obtenerlos y manipularlos con mayor facilidad.
+
+---
+
+#### BRIEF: Lenguaje Comercial
+
+* Las palabras usadas deben venir del dominio comercial. No debe haber ambiguedades.
+* Un error común es emplear palabras que tienen diferente significado en diferentes contextos.
+
+---
+
+#### BRIEF: Datos Reales
+
+* Los ejemplos deben usar datos reales y contretos, para ayudar a entender el contexto.
+
+---
+
+#### BRIEF: Revelación de intención
+
+* En el escenario debe quedar claro cuál es la intención, que se está tratando de lograr.
+
+---
+
+#### BRIEF: Esencial
+
+* Cualquier paso que no contribuya a alcanzar el propósito principal debe elimianrse. Si son importantes, deben cubrirse 
+por otros esenarios que ilustren otras reglas.
+* Un error común es incluir demasiados detalles.
+
+---
+
+#### BRIEF: Enfocado
+
+* Un escenario debería centrarse en una sola regla.
+
+---
+
+#### BRIEF: Breve
+
+* Los escenarios no deberían tener más de 5 líneas, haciendo que sen fáciles de leer y entender.
+
+
+---
+## Dudas, Preguntas, Comentarios?
+![DUDAS](images/pregunta.gif)
+
+          </textarea>
+        </section>
+      </div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./mermaid/dist/mermaid.min.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        slideNumber: true,
+        highlight: {
+          highlightOnLoad: false
+        },
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"progress":true,"slideNumber":true,"width":1280,"height":900,"margin":0.02,"minScale":0.2,"maxScale":1.5,"_":["slides"],"static":"public"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+      Reveal.addEventListener('ready', function (event) {
+        const blocks = Reveal.getRevealElement().querySelectorAll('pre code:not(.mermaid)');
+        const hlp = Reveal.getPlugin('highlight');
+        blocks.forEach(hlp.highlightBlock);
+      });
+    </script>
+
+    <script>
+      const mermaidOptions = extend({ startOnLoad: false }, {});
+      mermaid.startOnLoad = false;
+      mermaid.initialize(mermaidOptions);
+      const cb = function (event) {
+        mermaid.init(mermaidOptions, '.stack.present > .present pre code.mermaid');
+        mermaid.init(mermaidOptions, '.slides > .present:not(.stack) pre code.mermaid');
+      }
+      Reveal.addEventListener('ready', cb);
+      Reveal.addEventListener('slidetransitionend', cb);
+    </script>
+  </body>
+</html>
