@@ -553,19 +553,51 @@ función, y sólo si la entrada está **emitida** (no usada, no ya reembolsada).
 |---|---|---|---|---|
 | 1 | | | | |
 
+----
+
+### Resolución: las clases
+<!-- .slide: style="font-size: 0.72em" -->
+
+**Paso 1 y 2.** Hay **dos entradas**, y cada una se parte distinto:
+
+| Entrada | Tipo | Clases válidas | Clases inválidas |
+|---|---|---|---|
+| **Tiempo hasta la función** | Rango continuo | **≥ 48 h** | **< 48 h** |
+| **Estado de la entrada** | Conjunto de valores | **Emitida** | Usada · Reembolsada · Anulada · Con transferencia pendiente |
+
+**Paso 3.** La frontera está en las 48 horas, así que los tres valores de borde son
+**47, 48 y 49**.
+
+<div class="alerta">
+
+**El 48 no se puede responder.** ¿El plazo incluye el límite o no? La especificación **no lo
+define** — es el pendiente PD-005. Una prueba de borde acaba de encontrar un hueco de
+requerimientos, que es exactamente para lo que sirve.
+
+</div>
+
+----
+
+### Resolución: los casos
+<!-- .slide: style="font-size: 0.70em" -->
+
+| Caso | Horas antes | Estado de la entrada | Esperado | Clase / Límite |
+|---|---|---|---|---|
+| 1 | **47** | Emitida | Rechaza | Límite − 1 |
+| 2 | **48** | Emitida | **Sin definir (PD-005)** | **Límite exacto** |
+| 3 | **49** | Emitida | Acepta | Límite + 1 |
+| 4 | 72 | Emitida | Acepta | Clase válida, valor del medio |
+| 5 | 72 | **Usada** | Rechaza | Clase inválida de estado |
+| 6 | 72 | **Reembolsada** | Rechaza | Clase inválida de estado |
+| 7 | 72 | **Transferencia pendiente** | Rechaza | Clase inválida de estado |
+
+**Siete casos.** Notá que del 5 al 7 el tiempo es siempre 72 h: se mantiene la entrada válida
+para probar **una sola cosa inválida por vez**.
+
 <!--
-1. Dos entradas: el tiempo que falta para la funcion (rango continuo) y el estado de la entrada
-   (conjunto de valores).
-2. Tiempo: clase valida >= 48 h, clase invalida < 48 h. Estado: valida = EMITIDA; invalidas =
-   USADA, REEMBOLSADA, ANULADA, y con transferencia pendiente.
-3. Borde de 48 h: 47, 48 y 49. El 48 es el que define si el plazo incluye el limite o no, y es
-   exactamente el pendiente PD-005 de la especificacion: la spec NO lo define. Buen momento para
-   mostrar que una prueba de borde descubre un hueco de requerimientos.
-4. Minimo 7 casos: 47 h (rechaza), 48 h (depende de la definicion), 49 h (acepta), 72 h con
-   entrada usada (rechaza), 72 h con entrada ya reembolsada (rechaza), 72 h con transferencia
-   pendiente (rechaza), 72 h con entrada emitida (acepta).
-   Si alguien entrega 3 casos, le falto partir el estado. Si entrega 20, combino todo con todo:
-   ahi conviene mostrar que para combinaciones existe la tabla de decision.
+Si un grupo entrega 3 casos, le falto partir el estado de la entrada.
+Si entrega 20, combino todo con todo: ahi conviene mostrar que para las combinaciones existe la
+tabla de decision, que es justo lo que sigue.
 -->
 
 ---
@@ -714,16 +746,74 @@ bloqueado**.
    pregunta para el cliente.
 6. Convertí cada regla que quedó en un **caso de prueba** con la plantilla que vimos.
 
-<!--
-2. Tres condiciones -> 8 reglas. Que lo calculen ANTES es el punto: despues comparan contra lo
-   que se les habia ocurrido a mano, que suelen ser 3 o 4.
-4. Si la entrada no esta emitida, lo demas no importa: se fusionan varias reglas.
-5. Las dudas esperables, y las tres son pendientes reales de la especificacion: si el cedente
-   bloqueado puede transferir (PD-065), si se puede transferir una entrada que ya se transfirio
-   antes y cuantas veces (PD-004), y que pasa si el destinatario no tiene cuenta (PD-013).
-   Ese es el cierre: la tabla de decision encontro tres huecos de requerimientos sin escribir
-   una linea de codigo.
--->
+----
+
+### Resolución: la tabla completa
+<!-- .slide: style="font-size: 0.58em" -->
+
+**Condiciones:** ¿la entrada está emitida? · ¿está libre de transferencia pendiente? · ¿el
+destinatario está sin bloqueo?
+**Acciones:** transferir · rechazar por entrada no transferible · rechazar por transferencia
+pendiente · rechazar por destinatario bloqueado.
+
+**3 condiciones → 2³ = 8 reglas.**
+
+| | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 |
+|---|---|---|---|---|---|---|---|---|
+| **Entrada emitida** | V | V | V | V | F | F | F | F |
+| **Sin transferencia pendiente** | V | V | F | F | V | V | F | F |
+| **Destinatario sin bloqueo** | V | F | V | F | V | F | V | F |
+| | | | | | | | | |
+| Transferir | **X** | | | | | | | |
+| Rechazar: entrada no transferible | | | | | **X** | **X** | **X** | **X** |
+| Rechazar: transferencia pendiente | | | **X** | | | | | |
+| Rechazar: destinatario bloqueado | | **X** | | | | | | |
+| **Prioridad a definir** | | | | **?** | | | | |
+
+----
+
+### Resolución: simplificada
+<!-- .slide: style="font-size: 0.68em" -->
+
+Si la entrada **no está emitida**, lo demás no importa: R5 a R8 se fusionan en una.
+
+| | R1 | R2 | R3 | R4 | **R5-8** |
+|---|---|---|---|---|---|
+| **Entrada emitida** | V | V | V | V | **F** |
+| **Sin transferencia pendiente** | V | V | F | F | **—** |
+| **Destinatario sin bloqueo** | V | F | V | F | **—** |
+| | | | | | |
+| Transferir | **X** | | | | |
+| Rechazar: entrada no transferible | | | | | **X** |
+| Rechazar: transferencia pendiente | | | **X** | **?** | |
+| Rechazar: destinatario bloqueado | | **X** | | **?** | |
+
+**De 8 reglas quedaron 5.** Y **R4** queda abierta: se dan las dos causas de rechazo a la vez y
+hay que decidir cuál se informa.
+
+----
+
+### Resolución: lo que la tabla encontró
+<!-- .slide: style="font-size: 0.74em" -->
+
+Las combinaciones que no se pueden responder con la especificación en la mano:
+
+<div class="grid-item">
+
+1. **R4:** si hay transferencia pendiente **y** el destinatario está bloqueado, ¿qué motivo se
+   informa? *(Prioridad sin definir.)*
+2. ¿Puede transferir una persona que **está bloqueada ella misma**? La regla habla del
+   destinatario, no del que cede. → **PD-065**
+3. ¿Se puede transferir una entrada **que ya fue transferida antes**? ¿Cuántas veces?
+   → **PD-004**
+4. ¿Qué pasa si el destinatario **no tiene cuenta** en la plataforma? → **PD-013**
+
+</div>
+
+**Tres de esas cuatro son pendientes reales de la especificación del proyecto.** La tabla de
+decisión los encontró **sin escribir una línea de código**, y ése es el punto de toda la clase:
+las técnicas de caja negra no sirven sólo para probar — sirven para **descubrir que la
+especificación está incompleta**.
 
 ---
 
