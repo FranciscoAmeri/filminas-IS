@@ -271,11 +271,39 @@ Todas son **pruebas de defecto**, cuya meta es descubrir bugs en el software.
 
 ---
 
-### Anti Patrones de Tetsing
+### Anti Patrones de Testing
 
 ![Anti Patrones de Testing](images/unidad8/anti-patrones-de-testing.png)
 
 El esquema conocido como “cono de helado” ó “cigarro”, se focalizan principalmente en las pruebas exploratorias.
+
+----
+
+### El cono de helado
+<!-- .slide: style="font-size: 0.80em" -->
+
+<div class="grid-container2">
+<div>
+
+![Anti patrón del cono de helado](images/unidad8/cono-de-helado.png)
+
+</div>
+<div class="grid-item">
+
+Es la **pirámide dada vuelta**: muchas pruebas manuales arriba, pocas unitarias abajo.
+
+**Por qué aparece:** nadie lo diseña así. Se llega por acumulación, cuando se prueba al final
+sobre la interfaz en lugar de probar mientras se construye.
+
+**Por qué es un problema:**
+
+* Las de arriba son las **más lentas y más caras** de ejecutar.
+* Son las más **frágiles**: cualquier cambio de interfaz las rompe.
+* Cuando una falla, **no dicen dónde está el defecto**.
+* No escalan: la única forma de ir más rápido es agregar gente.
+
+</div>
+</div>
 
 ---
 ### 1. Pruebas de unidad
@@ -675,6 +703,105 @@ intereses de todos los actores del sistema.
 * Se automatizan pruebas unitarias, de integración y regresión en pipelines.  
 * Se usan entornos de prueba efímeros y datos simulados.  
 * Cultura de “calidad compartida”: todos los roles son responsables de la calidad.
+
+---
+
+### Skills de IA para desarrollar pruebas
+<!-- .slide: style="font-size: 0.78em" -->
+
+Escribir pruebas es trabajo **repetitivo y con reglas claras**: exactamente lo que conviene
+empaquetar en una *skill*. Hoy hay skills instalables para **cada nivel de la pirámide**.
+
+<div class="grid-item">
+
+Una skill no escribe las pruebas por vos. **Codifica el procedimiento**: qué probar primero, cómo
+nombrar los casos, qué selectores usar, qué no hacer. Es la plantilla de casos de prueba que
+vimos, pero ejecutable.
+
+</div>
+
+<div class="fuente">
+
+📎 Qué es una skill, qué es un plugin y cómo se instalan:
+[Claude y Superpowers](IA1_claude_superpowers.html)
+
+</div>
+
+----
+
+### El mapa, por nivel de la pirámide
+<!-- .slide: style="font-size: 0.62em" -->
+
+| Nivel | Qué hace la skill | Dónde buscarla |
+|---|---|---|
+| **Unitarias** | Generan y mantienen pruebas unitarias siguiendo las convenciones del lenguaje: nombres, *arrange-act-assert*, qué mockear y qué no | En los plugins por lenguaje del directorio: hay skills de *unit testing* para **TypeScript**, **Java**, **Go** y **Python**, y para frameworks como **Spring** o **Fastify** |
+| **Integración** | Pruebas que cruzan componentes reales: base de datos, API, colas | Las mismas familias traen su variante de *integration testing* |
+| **End to end** | Escriben pruebas de **Playwright o Cypress** a partir de las rutas, formularios y botones **reales** del proyecto, usando selectores estables, y antes detectan qué páginas necesitan puntos de anclaje para poder probarse | Plugin de **generación E2E** del directorio: skill `e2e-test-generator`, comandos `/e2e-map` y `/e2e-write` |
+| **Proceso** | No generan pruebas: **imponen el método**. `test-driven-development` obliga a rojo → verde → refactor; `verification-before-completion` exige evidencia antes de decir que algo funciona | **Superpowers** |
+
+**El cuarto nivel es el que más cambia el resultado.** Los tres primeros te dan pruebas más
+rápido; el cuarto evita que escribas las pruebas *después* del código, que es el origen del cono
+de helado.
+
+----
+
+### Cómo las agregan al proyecto
+<!-- .slide: style="font-size: 0.74em" -->
+
+<div class="grid-item">
+
+1. En el proyecto, abrir una sesión y ejecutar `/plugin`.
+2. Ir a la pestaña **Discover** y buscar por palabra clave: `test`, `e2e`, `tdd`, o el lenguaje
+   del proyecto.
+3. **Leer el panel de detalle antes de aceptar:** dice qué skills, agentes y *hooks* agrega, y
+   cuánto contexto consume.
+4. Elegir el alcance **project**, para que quede habilitado para todo el equipo. La entrada se
+   *commitea* en `.claude/settings.json`.
+5. Verificar con `/` que aparezcan los comandos nuevos.
+
+</div>
+
+**Por qué alcance `project` y no `user`:** si la skill define cómo se escriben las pruebas del
+equipo, tiene que valer para todos. Una convención que depende de qué instaló cada uno en su
+máquina no es una convención — es una costumbre.
+
+----
+
+### 💡 Ejercicio: Pruebas asistidas sobre TicketFr
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.66em" -->
+
+**a) Instalar.** Agreguen al repositorio del proyecto, con alcance **project**: una skill de
+pruebas unitarias del lenguaje que usen, el plugin de generación **E2E**, y **Superpowers** por
+`test-driven-development`. Commiteen `.claude/settings.json`.
+
+**b) Unitarias.** Elijan la regla de negocio **"límite de 6 entradas por función"** y pidan las
+pruebas unitarias. Revisen: ¿cubren el límite exacto, el valor anterior y el posterior? ¿Y las
+entradas reembolsadas, que no computan?
+
+**c) End to end.** Corran el mapeo de rutas sobre el portal y después generen la prueba del
+recorrido **buscar evento → elegir butaca → pagar → recibir la entrada**.
+
+**d) Revisar, que es el punto.** Sobre lo generado, respondan:
+
+1. ¿Los selectores son **estables** o dependen de textos y clases de CSS que van a cambiar?
+2. ¿Las pruebas verifican el **comportamiento esperado**, o simplemente confirman lo que el
+   código hace hoy?
+3. ¿Qué caso de los que ustedes conocen del dominio **no** generó? Pista: la reserva de 10
+   minutos y la pasarela sin respuesta.
+4. ¿En qué nivel de la pirámide quedaron la mayoría? ¿Se parece a la pirámide o al cono?
+
+<!--
+El eje del ejercicio es (d), no (a) a (c).
+2 es la pregunta central: una prueba generada a partir del codigo existente lo unico que
+garantiza es que el codigo hace lo que hace. Si el limite estaba implementado mal, la prueba
+generada tambien va a estar mal y ademas va a pasar en verde. Por eso TDD invierte el orden.
+3: las herramientas generan bien lo que se ve en la interfaz y mal lo que depende del tiempo o
+de un sistema externo. La reserva que vence sola y el timeout de la pasarela son justamente los
+dos casos que nadie genera y que son los que rompen en produccion.
+4: si el grupo genero sobre todo E2E porque era lo mas facil de pedir, acaban de construir un
+cono de helado asistido por IA. Es el cierre de la clase.
+-->
 
 ---
 
