@@ -1021,45 +1021,47 @@ intereses de todos los actores del sistema.
 ---
 
 ### Skills de IA para desarrollar pruebas
-<!-- .slide: style="font-size: 0.74em" -->
+<!-- .slide: style="font-size: 0.72em" -->
 
 Escribir pruebas es trabajo **repetitivo y con reglas claras**: justo lo que conviene empaquetar
-en una *skill*. Hay skills instalables para cada nivel de la pirámide.
+en una *skill*. Tres que conviene conocer:
 
-| Nivel | Qué aporta |
-|---|---|
-| **Unitarias e integración** | Skills de *unit testing* dentro de los plugins por lenguaje: TypeScript, Java, Go, Python, Spring, Fastify. Siguen las convenciones del lenguaje: nombres, *arrange-act-assert*, qué simular y qué no |
-| **End to end** | Generan pruebas de **Playwright o Cypress** a partir de las rutas, formularios y botones **reales** del proyecto, con selectores estables |
-| **Proceso** | No generan pruebas: **imponen el método**. `test-driven-development` obliga a rojo → verde → refactor |
+| Skill | Qué es | Dónde encaja |
+|---|---|---|
+| **QA Skills** · *petrkindlmann* | Colección de skills orientada al trabajo de **QA** | Diseño de casos, cobertura y revisión |
+| **TestMu AI Agent Skills** | Conjunto de skills de **testing para agentes** | Automatización y pruebas de punta a punta |
+| **Superpowers** → `test-driven-development` | No genera pruebas: **impone el método** rojo → verde → refactor | El proceso, antes del código |
 
-**Una skill no escribe las pruebas por vos: codifica el procedimiento.** Es la plantilla de casos
-de prueba que vimos, pero ejecutable.
+<div class="alerta">
+
+**Antes de instalar cualquiera, leé su panel de detalle** en `/plugin`: ahí dice exactamente qué
+skills trae, qué comandos agrega y cuánto contexto consume. Dos colecciones con nombre parecido
+pueden traer cosas muy distintas.
+
+</div>
 
 ----
 
-### Cómo se usan
-<!-- .slide: style="font-size: 0.76em" -->
+### Superpowers no es nueva: ya la venimos usando
+<!-- .slide: style="font-size: 0.74em" -->
 
 <div class="grid-item">
 
-1. En el proyecto, ejecutar `/plugin` y buscar en **Discover** por `test`, `e2e`, `tdd` o el
-   lenguaje que usen.
-2. **Leer el detalle antes de aceptar:** dice qué agrega y cuánto contexto consume.
-3. Instalar con alcance **project**, para que valga para todo el equipo.
-4. Usarla: la skill se activa sola cuando el pedido encaja, o se invoca con `/nombre`.
+Es el mismo plugin que vimos en **[Claude y Superpowers](IA1_claude_superpowers.html)**, el que
+impone el proceso de desarrollo: `brainstorming` para entender antes de diseñar, `writing-plans`
+para convertir el diseño en tareas, `executing-plans` para implementarlas.
+
+**`test-driven-development` es la pieza de ese mismo plugin que corresponde a esta unidad.** No
+hay que instalar nada nuevo: ya está.
 
 </div>
 
-**Y la advertencia que importa:** una prueba generada a partir del código existente sólo garantiza
-que el código hace lo que hace. Si la regla estaba mal implementada, la prueba también va a estar
-mal **y va a pasar en verde**. Por eso el orden de TDD no es un capricho.
+Y encaja exactamente con lo que vimos: obliga a escribir **primero la prueba que falla**. Ésa es
+la diferencia entre probar y confirmar.
 
-<div class="fuente">
-
-📎 Qué es una skill, qué es un plugin y cómo se instalan:
-[Claude y Superpowers](IA1_claude_superpowers.html)
-
-</div>
+**La advertencia que lo justifica:** una prueba generada a partir del código existente sólo
+garantiza que el código hace lo que hace. Si la regla estaba mal implementada, la prueba también
+va a estar mal **y va a pasar en verde**. Por eso el orden importa.
 
 ---
 
