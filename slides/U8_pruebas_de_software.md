@@ -407,52 +407,165 @@ como JUnit, Jest o React Testing Library) para escribir y ejecutar las pruebas d
 ![Técnicas de Caja Negra](images/unidad8/tecnicas-caja-negra.png)
 
 ---
-### Pruebas de partición
-* Resultados de los datos de entrada y de salida a menudo caen en diferentes clases en las que
-  todos los miembros de una clase están relacionados.
-* Cada una de estas clases es una partición de equivalencia o de dominio en el que el
-  programa se comporta de una manera equivalente para cada miembro de la clase.
-* Los casos de prueba deben ser elegidos en cada partición.
+### El problema que resuelven las dos técnicas
+<!-- .slide: style="font-size: 0.80em" -->
+
+El campo **"cantidad de entradas"** de TicketFr acepta un número entre **1 y 6**.
+
+¿Cuántos casos de prueba hacen falta? Si probáramos todo: 1, 2, 3, 4, 5, 6… más el 0, los
+negativos, el 7, el 1.000, las letras, los decimales, el campo vacío. **Son infinitos.**
+
+<div class="grid-item">
+
+Y con dos campos es peor: si el otro acepta 10.000 valores, las combinaciones son
+**6 × 10.000 = 60.000**.
+
+</div>
+
+**Probar todo es imposible.** Las dos técnicas que siguen responden la misma pregunta desde
+ángulos distintos:
+
+* **Particiones de equivalencia** → ¿qué **valores** elijo de un campo?
+* **Tabla de decisión** → ¿qué **combinaciones** de condiciones pruebo?
+
+---
+
+### Particiones de equivalencia
+<!-- .slide: style="font-size: 0.80em" -->
+
+**La idea, en una frase:** si el programa trata **igual** a todos los valores de un grupo, con
+probar **uno solo** del grupo alcanza.
+
+Ese grupo se llama **clase de equivalencia**. Si el caso con el valor 3 pasa, el caso con el 4
+también va a pasar: están en la misma clase y recorren exactamente el mismo código.
+
+<div class="grid-item">
+
+Para la cantidad de entradas, con límite de 1 a 6:
+
+| Clase | Rango | ¿Válida? | Un representante |
+|---|---|---|---|
+| Menor al mínimo | ≤ 0 | Inválida | **0** |
+| Dentro del rango | 1 a 6 | **Válida** | **3** |
+| Mayor al máximo | ≥ 7 | Inválida | **9** |
+
+</div>
+
+**Pasamos de infinitos casos a 3.** Y no son 3 casos cualquiera: cada uno representa a toda su
+clase.
 
 ----
 
-### Partición de equivalencia
+### Cómo se encuentran las clases
+<!-- .slide: style="font-size: 0.70em" -->
+
+No es intuición: hay reglas según el tipo de dato de entrada.
+
+| Si la entrada es… | Clases que genera | Ejemplo en TicketFr |
+|---|---|---|
+| Un **rango** de valores | 1 válida + 2 inválidas (abajo y arriba) | Cantidad de entradas 1 a 6 → `≤0`, `1-6`, `≥7` |
+| Un **conjunto** de valores admitidos | 1 válida por cada valor + 1 inválida | Estado de la función: `publicada`, `agotada`, `cancelada` + cualquier otro |
+| Una **condición** verdadero/falso | 1 válida + 1 inválida | ¿El comprador está autenticado? → sí / no |
+| Un **formato** obligatorio | 1 válida + 1 inválida por cada forma de romperlo | Correo del comprador → válido, sin arroba, vacío, con espacios |
+
+<div class="alerta">
+
+**El error más común:** armar clases sobre **los valores** en lugar de sobre **el comportamiento
+del sistema**. Si el sistema hace lo mismo con el 2 y con el 5, están en la misma clase aunque
+sean números distintos. Si hiciera algo distinto con el 1 —por ejemplo, un mensaje en singular—
+entonces el 1 es su propia clase.
+
+</div>
+
+----
+
+### Y ahora el borde: valores límite
+<!-- .slide: style="font-size: 0.74em" -->
+
+Elegir un representante del medio de cada clase no alcanza, porque **los defectos viven en los
+bordes**. Casi siempre son errores de `<` contra `<=`, o de contar desde 0 en lugar de 1.
+
+Por eso a cada frontera se le prueban **tres valores**: el límite, el anterior y el siguiente.
+
+<div class="grid-item">
+
+Para el límite de **6 entradas por función**:
+
+| Valor | Qué verifica | Esperado |
+|---|---|---|
+| **0** | Debajo del mínimo | Rechaza |
+| **1** | El mínimo exacto | **Acepta** |
+| **5** | Justo antes del máximo | Acepta |
+| **6** | El máximo exacto | **Acepta** |
+| **7** | Justo después del máximo | Rechaza |
+
+</div>
+
+**El 6 y el 7 son los dos casos que más defectos encuentran de toda la unidad.** Son los que
+distinguen *"hasta 6"* de *"menos de 6"*.
+
+----
+
+### Las dos juntas, en la práctica
+<!-- .slide: style="font-size: 0.78em" -->
+
+Las técnicas se usan combinadas: **partición** dice qué clases hay, **valores límite** dice qué
+valor elegir dentro de cada una.
+
+<div class="grid-item">
+
+**Receta:**
+
+1. Identificar cada entrada y su regla.
+2. Partir el dominio en clases válidas e inválidas.
+3. De cada clase válida, tomar un valor del medio **y los de los bordes**.
+4. De cada clase inválida, tomar al menos uno.
+5. Probar **una entrada inválida por vez**: si metés dos, no sabés cuál disparó el error.
+
+</div>
+
+El punto 5 es el que más se olvida. Un caso con cantidad `-1` **y** correo inválido no prueba
+dos cosas: prueba una sola, y no sabés cuál.
+
+----
+
 ![Partición de equivalencia](images/unidad8/particion-equivalencia.png)
 
 ----
 
-### Particiones de equivalencia
 ![Partición de Equivalencia](images/unidad8/particion-de-equivalencia.png)
 
 ---
 
 ### Ejercicio: Partición + Límite
-<!-- .slide: style="font-size: 0.90em" -->
-¿Cuántos casos y qué casos se deberían plantear para testear esta función? Complete la tabla inferior:
-- Función calcularPrecio(total, esVip, cupon)
-- total ∈ [0, 10.000];
-- si esVip = true → 10% desc.;
-- cupon opcional: "PROMO10" desc. 10%, no acumulable con VIP;
-- si total < 100 no aplica ningún descuento;
-- resultado mínimo = 0.
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
 
-| Caso | total | esVip | cupon    | Esperado | Partición / Límite |
-|------|-------|-------|----------|----------|--------------------|
-| 1    |       |       |          |          |                    
+En TicketFr, el **reembolso** de una entrada se admite hasta **48 horas antes** del inicio de la
+función, y sólo si la entrada está **emitida** (no usada, no ya reembolsada).
+
+1. Identificá las **entradas** del problema y la regla de cada una.
+2. Armá las **clases de equivalencia** de cada entrada, marcando válidas e inválidas.
+3. Para la frontera de las 48 horas, elegí los **tres valores** de borde.
+4. Completá la tabla de casos. ¿Cuántos te quedaron?
+
+| Caso | Horas antes | Estado de la entrada | Esperado | Clase / Límite |
+|---|---|---|---|---|
+| 1 | | | | |
 
 <!--
-| #  | total  | esVip | cupon     | Esperado | Justificación                                    |
-| -- | ------ | ----- | --------- | -------- | ------------------------------------------------ |
-| 1  | 50     | false | ""        | 50       | total < 100 → sin descuento                      |
-| 2  | 100    | false | ""        | 100      | justo en el límite → sin descuento (pero válido) |
-| 3  | 200    | true  | ""        | 180      | aplica 10% por VIP                               |
-| 4  | 200    | false | "PROMO10" | 180      | aplica 10% por cupón                             |
-| 5  | 200    | true  | "PROMO10" | 180      | no acumulable → solo uno aplica                  |
-| 6  | -10    | false | ""        | error    | valor fuera de rango                             |
-| 7  | 10.001 | false | ""        | error    | valor fuera de rango                             |
-| 8  | 99     | true  | ""        | 99       | borde inferior sin descuento                     |
-| 9  | 100    | true  | ""        | 90       | borde superior con descuento                     |
-| 10 | 200    | "no"  | ""        | error    | tipo inválido                                    |
+1. Dos entradas: el tiempo que falta para la funcion (rango continuo) y el estado de la entrada
+   (conjunto de valores).
+2. Tiempo: clase valida >= 48 h, clase invalida < 48 h. Estado: valida = EMITIDA; invalidas =
+   USADA, REEMBOLSADA, ANULADA, y con transferencia pendiente.
+3. Borde de 48 h: 47, 48 y 49. El 48 es el que define si el plazo incluye el limite o no, y es
+   exactamente el pendiente PD-005 de la especificacion: la spec NO lo define. Buen momento para
+   mostrar que una prueba de borde descubre un hueco de requerimientos.
+4. Minimo 7 casos: 47 h (rechaza), 48 h (depende de la definicion), 49 h (acepta), 72 h con
+   entrada usada (rechaza), 72 h con entrada ya reembolsada (rechaza), 72 h con transferencia
+   pendiente (rechaza), 72 h con entrada emitida (acepta).
+   Si alguien entrega 3 casos, le falto partir el estado. Si entrega 20, combino todo con todo:
+   ahi conviene mostrar que para combinaciones existe la tabla de decision.
 -->
 
 ---
@@ -465,44 +578,155 @@ La prueba de tabla de decisión es un método de prueba de caja negra que repres
 
 ----
 
+### ¿Cuándo se usa una, cuándo la otra?
+<!-- .slide: style="font-size: 0.80em" -->
+
+| | Particiones de equivalencia | Tabla de decisión |
+|---|---|---|
+| **Mira** | Una entrada por vez | La **combinación** de varias condiciones |
+| **Responde** | ¿Qué valor elijo? | ¿Qué combinaciones pruebo? |
+| **Sirve cuando** | La salida depende de **cuánto vale** algo | La salida depende de **qué cosas se cumplen a la vez** |
+| **Ejemplo** | Cantidad de entradas entre 1 y 6 | ¿Se confirma la compra? Depende de la reserva **y** del límite **y** de la blacklist |
+
+**La señal para usar tabla de decisión:** cuando la regla del negocio se escribe con varios
+*"si… y además… pero si…"*. Ahí la partición no alcanza, porque el problema no es el valor de
+una variable sino **la interacción entre varias**.
+
+----
+
+### Cómo se construye, paso a paso
+<!-- .slide: style="font-size: 0.76em" -->
+
+<div class="grid-item">
+
+1. **Listar las condiciones.** Las que el sistema evalúa para decidir. Sólo verdadero/falso.
+2. **Listar las acciones.** Los resultados posibles.
+3. **Calcular las combinaciones:** con *n* condiciones son **2ⁿ** reglas. Con 3 condiciones, 8.
+4. **Completar la tabla:** una columna por regla, con todas las combinaciones de V y F.
+5. **Marcar la acción** de cada regla.
+6. **Simplificar:** donde una condición no cambia el resultado, se reemplaza por **"—"** y las
+   reglas se fusionan.
+7. **Cada regla que queda es un caso de prueba.**
+
+</div>
+
+El paso 3 es el que da seguridad: **si salen 8 combinaciones y vos pensaste 4, te faltan 4.** La
+tabla no deja que te olvides de un caso.
+
+----
+
+### Ejemplo completo: confirmar una compra
+<!-- .slide: style="font-size: 0.62em" -->
+
+**Condiciones:** ¿la reserva sigue vigente? · ¿está dentro del límite de 6? · ¿el comprador está
+libre de bloqueos?
+**Acciones:** confirmar la compra · rechazar por reserva vencida · rechazar por límite ·
+rechazar por bloqueo.
+
+Con 3 condiciones → **2³ = 8 reglas**:
+
+| | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 |
+|---|---|---|---|---|---|---|---|---|
+| **Reserva vigente** | V | V | V | V | F | F | F | F |
+| **Dentro del límite** | V | V | F | F | V | V | F | F |
+| **Sin bloqueo** | V | F | V | F | V | F | V | F |
+| | | | | | | | | |
+| Confirmar la compra | **X** | | | | | | | |
+| Rechazar: reserva vencida | | | | | **X** | **X** | **X** | **X** |
+| Rechazar: límite superado | | | **X** | **X** | | | | |
+| Rechazar: bloqueado | | **X** | | | | | | |
+
+**Notar R4:** se superan el límite **y** hay bloqueo. El sistema informa **un solo** motivo, así
+que hay que decidir cuál tiene prioridad. **Eso no estaba escrito en ningún lado**: la tabla lo
+hizo aparecer.
+
+----
+
+### La simplificación
+<!-- .slide: style="font-size: 0.72em" -->
+
+Si la reserva venció, **no importa** lo demás: el resultado es el mismo. Las reglas R5 a R8 se
+fusionan en una sola.
+
+| | R1 | R2 | R3 | **R5-8** |
+|---|---|---|---|---|
+| **Reserva vigente** | V | V | V | **F** |
+| **Dentro del límite** | V | V | F | **—** |
+| **Sin bloqueo** | V | F | V | **—** |
+| | | | | |
+| Confirmar la compra | **X** | | | |
+| Rechazar: reserva vencida | | | | **X** |
+| Rechazar: límite superado | | | **X** | |
+| Rechazar: bloqueado | | **X** | | |
+
+**De 8 reglas quedaron 4**, más la R4 que depende de la decisión de prioridad.
+
+<div class="alerta">
+
+**Y acá está el valor real de la técnica:** la tabla no sólo genera los casos de prueba. Al
+obligarte a completar **todas** las combinaciones, te muestra los huecos de la especificación
+—como R4— **antes** de que el sistema esté construido.
+
+</div>
+
+----
+
 ### Tabla de Decisión
 
 ![Tabla de Decisión](images/unidad8/tabla-decision.png)
 
 ----
 
-### Tabla de Decisión
-Condiones:
+### Otro ejemplo: aprobación de un préstamo
+<!-- .slide: style="font-size: 0.80em" -->
+
+Condiciones:
 1. Puntuación crediticia (alta, media, baja)
 2. Ingresos (altos, bajos)
 
 Comportamiento:
-1. El préstamo se pruede aprobar o rechazar
-2. La tasa de interés puede ser baja, media o no aplicar (si no hay prestamo)
+1. El préstamo se puede aprobar o rechazar
+2. La tasa de interés puede ser baja, media o no aplicar (si no hay préstamo)
+
+**Ojo con este caso:** la primera condición **no** es verdadero/falso, tiene **tres** valores. Las
+combinaciones entonces no son 2², son **3 × 2 = 6**. Cuando una condición tiene más de dos
+valores, se multiplica en lugar de elevar.
 
 ----
 
-### Tabla de Decisión
 ![Ejemplo de Tabla de Decisión](images/unidad8/tabla-decision-ejemplo.png)
 
 ---
 
 ### Ejercicio: Tabla de Decisión
-Para una tienda en línea que ofrece descuentos según la membresía y el monto total de compra:
-Condiciones:
-- ¿El cliente es miembro?
-- ¿La compra total es superior a $100?
+<!-- .slide: class="exercise-slide" -->
+<!-- .slide: style="font-size: 0.72em" -->
 
-Acciones:
-- 10% de descuento
-- 5% de descuento
-- Sin descuento
+En TicketFr, una entrada se puede **transferir** a otra persona si: la entrada está **emitida**
+(no usada ni reembolsada), **no tiene** una transferencia pendiente, y el **destinatario no está
+bloqueado**.
+
+1. Listá las **condiciones** y las **acciones**.
+2. ¿Cuántas reglas salen? Calculalo **antes** de dibujar la tabla.
+3. Armá la tabla completa.
+4. **Simplificala** con "—" donde corresponda.
+5. ¿Alguna combinación te dejó una duda que la especificación no responde? Escribila como
+   pregunta para el cliente.
+6. Convertí cada regla que quedó en un **caso de prueba** con la plantilla que vimos.
 
 <!--
-[!Tabla de Decision Ejercicio](images/unidad8/tabla-decision-ejemplo2.png)
+2. Tres condiciones -> 8 reglas. Que lo calculen ANTES es el punto: despues comparan contra lo
+   que se les habia ocurrido a mano, que suelen ser 3 o 4.
+4. Si la entrada no esta emitida, lo demas no importa: se fusionan varias reglas.
+5. Las dudas esperables, y las tres son pendientes reales de la especificacion: si el cedente
+   bloqueado puede transferir (PD-065), si se puede transferir una entrada que ya se transfirio
+   antes y cuantas veces (PD-004), y que pasa si el destinatario no tiene cuenta (PD-013).
+   Ese es el cierre: la tabla de decision encontro tres huecos de requerimientos sin escribir
+   una linea de codigo.
 -->
 
 ---
+
 ### Pautas generales de prueba
 * Elegir entradas que obligan al sistema a generar todos los mensajes de error.
 * Elegir entradas que causen el desbordamiento de buffers de entrada 
@@ -687,6 +911,49 @@ intereses de todos los actores del sistema.
 * Se automatizan pruebas unitarias, de integración y regresión en pipelines.  
 * Se usan entornos de prueba efímeros y datos simulados.  
 * Cultura de “calidad compartida”: todos los roles son responsables de la calidad.
+
+---
+
+### Skills de IA para desarrollar pruebas
+<!-- .slide: style="font-size: 0.74em" -->
+
+Escribir pruebas es trabajo **repetitivo y con reglas claras**: justo lo que conviene empaquetar
+en una *skill*. Hay skills instalables para cada nivel de la pirámide.
+
+| Nivel | Qué aporta |
+|---|---|
+| **Unitarias e integración** | Skills de *unit testing* dentro de los plugins por lenguaje: TypeScript, Java, Go, Python, Spring, Fastify. Siguen las convenciones del lenguaje: nombres, *arrange-act-assert*, qué simular y qué no |
+| **End to end** | Generan pruebas de **Playwright o Cypress** a partir de las rutas, formularios y botones **reales** del proyecto, con selectores estables |
+| **Proceso** | No generan pruebas: **imponen el método**. `test-driven-development` obliga a rojo → verde → refactor |
+
+**Una skill no escribe las pruebas por vos: codifica el procedimiento.** Es la plantilla de casos
+de prueba que vimos, pero ejecutable.
+
+----
+
+### Cómo se usan
+<!-- .slide: style="font-size: 0.76em" -->
+
+<div class="grid-item">
+
+1. En el proyecto, ejecutar `/plugin` y buscar en **Discover** por `test`, `e2e`, `tdd` o el
+   lenguaje que usen.
+2. **Leer el detalle antes de aceptar:** dice qué agrega y cuánto contexto consume.
+3. Instalar con alcance **project**, para que valga para todo el equipo.
+4. Usarla: la skill se activa sola cuando el pedido encaja, o se invoca con `/nombre`.
+
+</div>
+
+**Y la advertencia que importa:** una prueba generada a partir del código existente sólo garantiza
+que el código hace lo que hace. Si la regla estaba mal implementada, la prueba también va a estar
+mal **y va a pasar en verde**. Por eso el orden de TDD no es un capricho.
+
+<div class="fuente">
+
+📎 Qué es una skill, qué es un plugin y cómo se instalan:
+[Claude y Superpowers](IA1_claude_superpowers.html)
+
+</div>
 
 ---
 
