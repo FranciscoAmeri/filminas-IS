@@ -255,11 +255,39 @@ Todas son **pruebas de defecto**, cuya meta es descubrir bugs en el software.
 
 ---
 
-### Anti Patrones de Tetsing
+### Anti Patrones de Testing
 
 ![Anti Patrones de Testing](images/unidad8/anti-patrones-de-testing.png)
 
 El esquema conocido como “cono de helado” ó “cigarro”, se focalizan principalmente en las pruebas exploratorias.
+
+----
+
+### El cono de helado
+<!-- .slide: style="font-size: 0.80em" -->
+
+<div class="grid-container2">
+<div>
+
+![Anti patrón del cono de helado](images/unidad8/cono-de-helado.png)
+
+</div>
+<div class="grid-item">
+
+Es la **pirámide dada vuelta**: muchas pruebas manuales arriba, pocas unitarias abajo.
+
+**Por qué aparece:** nadie lo diseña así. Se llega por acumulación, cuando se prueba al final
+sobre la interfaz en lugar de probar mientras se construye.
+
+**Por qué es un problema:**
+
+* Las de arriba son las **más lentas y más caras** de ejecutar.
+* Son las más **frágiles**: cualquier cambio de interfaz las rompe.
+* Cuando una falla, **no dicen dónde está el defecto**.
+* No escalan: la única forma de ir más rápido es agregar gente.
+
+</div>
+</div>
 
 ---
 ### 1. Pruebas de unidad

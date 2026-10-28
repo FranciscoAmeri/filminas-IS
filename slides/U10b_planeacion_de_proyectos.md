@@ -406,16 +406,18 @@ No lo son, por tres razones:
    producir para explicarle el sistema.
 3. **Tareas indivisibles.** Hay trabajo que no se parte. Nueve mujeres no tienen un bebé en un mes.
 
-**COCOMO II tiene su propia ecuación de calendario**, justamente para no hacer esa división:
+Por eso los modelos de estimación serios **no calculan el calendario dividiendo**: tienen una
+ecuación aparte para la duración, que crece mucho más despacio que lo que baja el esfuerzo por
+persona. En el caso de arriba, un modelo de ese tipo da un calendario del orden de **30 meses**,
+no de 15, con unas **24 personas** y no 50.
 
-`TDEV = 3,67 × PM^(0,28 + 0,2 × (B − 1,01))`
+<div class="alerta">
 
-Con PM = 730 y B = 1,1, el calendario sale cerca de **30 meses** —no 15— y el personal promedio
-que eso implica es de unas **24 personas**, no 50. El modelo te dice que el proyecto **no se puede
-comprimir** a 15 meses tirándole gente.
+**Y hay un segundo efecto, menos intuitivo:** comprimir el calendario por debajo de cierto umbral
+—alrededor del 75 % del plazo normal— **aumenta el esfuerzo total**. Parte del trabajo extra se
+consume en coordinación y retrabajo, no en producto. **Apurar no sale gratis: sale más caro.**
 
-**Regla práctica:** comprimir el calendario por debajo del **75 %** del nominal es, en COCOMO, un
-multiplicador que **aumenta** el esfuerzo (el factor SCED). Apurar sale más caro.
+</div>
 
 ---
 
